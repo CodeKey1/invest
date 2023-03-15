@@ -4093,8 +4093,8 @@ table tr:hover .table-links {
 }
 
 .nav-tabs .nav-item .nav-link.active {
-    color: #000;
-    background: #373c60;
+    color: #ffffff;
+    background: #ffa426;
 }
 
 .tab-content>.tab-pane {
@@ -6138,7 +6138,7 @@ pre {
 }
 
 .section>*:first-child {
-    margin-top: -7px
+    margin-top: -50px
 }
 
 .section .section-header {
@@ -10776,7 +10776,7 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
 }
 
 .theme-white .nav-tabs .nav-item .nav-link {
-    color: #6777ef
+    color: #000000
 }
 
 .theme-white .swal-button.swal-button--confirm {

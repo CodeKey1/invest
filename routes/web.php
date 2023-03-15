@@ -56,8 +56,18 @@ Route::get('/import-create', [App\Http\Controllers\Admin\ImportController::class
 |--------------------------------------------------------------------------
 */
 Route::get('/investment', [App\Http\Controllers\Admin\InvestmentController::class, 'index'])->name('investment');
-Route::get('/investment-show', [App\Http\Controllers\Admin\InvestmentController::class, 'show'])->name('investment.show');
+Route::get('/investment-show{id}', [App\Http\Controllers\Admin\InvestmentController::class, 'show'])->name('investment.show');
 Route::get('/investment-create', [App\Http\Controllers\Admin\InvestmentController::class, 'create'])->name('investment.Create');
+Route::Post('/investment-store', [App\Http\Controllers\Admin\InvestmentController::class, 'store'])->name('investment.store');
+Route::get('/investment-delete{id}', [App\Http\Controllers\Admin\InvestmentController::class, 'destroy'])->name('investment.delete');
+
+/*
+|--------------------------------------------------------------------------
+| Dashboard Investment Controller *****************    مشروعات الإستثمارية
+|--------------------------------------------------------------------------
+*/
+Route::get('/project', [App\Http\Controllers\Admin\InvestmentController::class, 'project'])->name('project');
+Route::get('/project-create', [App\Http\Controllers\Admin\InvestmentController::class, 'project_create'])->name('project.create');
 
 /*
 |--------------------------------------------------------------------------
@@ -106,5 +116,16 @@ Route::get('/report', [App\Http\Controllers\Admin\ReportController::class, 'inde
 |--------------------------------------------------------------------------
 */
 Route::get('/search', [App\Http\Controllers\Admin\OtherController::class, 'index'])->name('search');
+
+/*
+|--------------------------------------------------------------------------
+| Dashboard roles admin Controller ****************************************
+|--------------------------------------------------------------------------
+*/
+Route::get('/role', [App\Http\Controllers\Admin\AdminController::class, 'index'])->name('role');
+Route::get('/role-create', [App\Http\Controllers\Admin\AdminController::class, 'create'])->name('role.Create');
+Route::POST('/role-store', [App\Http\Controllers\Admin\AdminController::class, 'store'])->name('role.store');
+Route::get('/role-delete{id}', [App\Http\Controllers\Admin\AdminController::class, 'destroy'])->name('role.delete');
+Route::get('/role-edit{id}', [App\Http\Controllers\Admin\AdminController::class, 'edit'])->name('role.edite');
 
 });

@@ -28,112 +28,154 @@
 
             @include('layouts.sidbar')
             <!-- Main Content -->
+
             <div class="main-content">
                 <section class="section">
+
                     <div class="section-body">
                         <div class="row" style="direction: rtl">
                             <div class="col-12 col-md-12 col-lg-12">
                                 @include('layouts.success')
                                 @include('layouts.error')
-                                <form class="needs-validation" id="work_experience" novalidate=""
-                                    action="#" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h4>طلب الحصول علي موافقة لإقامت مشروع</h4>
-                                            <div class="card-header-action">
-                                                <div class="dropdown">
-                                                  <a href="#" data-toggle="dropdown" class="btn btn-warning dropdown-toggle">Options</a>
-                                                  <div class="dropdown-menu" style="background-color: rgb(53, 60, 72);">
-                                                    <a href="#" class="dropdown-item has-icon text-success"><i class="fas fa-eye"></i> View</a>
-                                                    <a href="#" class="dropdown-item has-icon text-info"><i class="far fa-edit"></i> Edit</a>
+
+                                <div class="card"
+                                    style="flex-direction: inherit;
+                                    background-color: #fff0;
+                                    border-radius: 10px;
+                                    border: none;
+                                    position: relative;
+                                    margin-bottom: 30px;
+                                    box-shadow: unset;">
+                                    <span class="badge badge-danger" style="border-radius: 4px;">تاريخ اليوم :
+                                        {{ $now }} </span>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>طلب الحصول علي موافقة لإقامت مشروع</h4>
+                                        <div class="card-header-action">
+                                            <div class="dropdown">
+                                                <a href="#" data-toggle="dropdown"
+                                                    class="btn btn-warning dropdown-toggle">Options</a>
+                                                <div class="dropdown-menu" style="background-color: rgb(53, 60, 72);">
+                                                    <a href="#" class="dropdown-item has-icon text-success"><i
+                                                            class="fas fa-eye"></i> View</a>
+                                                    <a href="#" class="dropdown-item has-icon text-info"><i
+                                                            class="far fa-edit"></i> Edit</a>
                                                     <div class="dropdown-divider"></div>
-                                                    <a href="#" class="dropdown-item has-icon text-danger"><i class="far fa-trash-alt"></i>
-                                                      Delete</a>
-                                                  </div>
+                                                    <a href="#" class="dropdown-item has-icon text-danger"><i
+                                                            class="far fa-trash-alt"></i>
+                                                        Delete</a>
                                                 </div>
-                                                <a href="{{ route('investment') }}" class="btn btn-primary">ادارة الطلبات</a>
                                             </div>
-                                            {{-- <button class="btn btn-dark"
+                                            <a href="{{ route('investment') }}" class="btn btn-primary">ادارة
+                                                الطلبات</a>
+                                        </div>
+                                        {{-- <button class="btn btn-dark"
                                                 style="position: absolute; left: 10px; top:5px"><a
                                                     class="nav-link text-white"
                                                     href="#">عودة</a></button> --}}
-                                        </div>
                                     </div>
+                                </div>
+                                <form class="needs-validation" id="work_experience" novalidate=""
+                                    action="{{ route('investment.store') }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
                                     <div class="card card-primary">
-
                                         <div class="card-body">
                                             <div class="form-row">
                                                 <div class="form-group col-md-12">
+                                                    <label>
+                                                        <i type="button" data-feather="alert-circle"
+                                                            data-toggle="modal" data-target="#exampleModal"></i> طلب
+                                                        الحصول علي مشروع </label>
+                                                    <select class="form-control" id="project" name="name">
+                                                        <option disabled selected>اختر المشروع</option>
+                                                        @isset($category)
+                                                            @if ($category && $category->count() > 0)
+                                                                @foreach ($category as $cat)
+                                                                    <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                                                                @endforeach
+                                                            @endif
+                                                        @endisset
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label> الجهات للموافة علي المشرع </label>
+                                                        @isset($clicense)
+                                                            @if ($clicense && $clicense->count() > 0)
+                                                                @foreach ($clicense as $lice)
+                                                                <div class="option license-{{ $lice->license_cate->id }} badge badge-danger">{{ $lice->license->name }}</div>
+                                                                @endforeach
+                                                            @endif
+                                                        @endisset
+
+                                                </div>
+                                                <div class="form-group col-md-12">
                                                     <label> اسم الشركة / المواطن</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="">
+                                                        name="owner_name" class="form-control"placeholder="">
                                                 </div>
-
                                                 <div class="form-group col-md-12">
                                                     <label> العنوان</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="">
+                                                        name="address" class="form-control"placeholder="">
                                                 </div>
-
                                                 <div class="form-group col-md-6">
                                                     <label> اسم المفوض</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="">
+                                                        name="representative_name" class="form-control"placeholder="">
                                                 </div>
                                                 <div class="form-group col-md-6">
-                                                    <label>  بالتوكيل رقم</label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="">
+                                                    <label> بالتوكيل رقم</label>
+                                                    <input style="height: calc(2.25rem + 6px);" type="number"
+                                                        name="representative_id" class="form-control"placeholder="">
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label>بطاقة رقم</label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="">
+                                                    <input style="height: calc(2.25rem + 6px);" type="number"
+                                                        name="NID" class="form-control"placeholder="">
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label>تليفون</label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="">
+                                                    <input style="height: calc(2.25rem + 6px);" type="number"
+                                                        name="phone" class="form-control"placeholder="">
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label> مساحة المشروع</label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="">
+                                                    <input style="height: calc(2.25rem + 6px);" type="number"
+                                                        name="size" class="form-control"placeholder="">
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label>المدينة</label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="">
+                                                    <select class="form-control" name="city_id">
+                                                        <option disabled selected>اختر المدينة</option>
+                                                        @isset($city)
+                                                            @if ($city && $city->count() > 0)
+                                                                @foreach ($city as $City)
+                                                                    <option value="{{ $City->id }}">{{ $City->name }}</option>
+                                                                @endforeach
+                                                            @endif
+                                                        @endisset
+                                                    </select>
                                                 </div>
                                                 <div class="form-group col-md-12">
                                                     <label>المواقع المقترحة لإقامة المشروع بالمحافظة</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="">
+                                                        name="" class="form-control"placeholder="">
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label>براسمال قيمتة</label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="">
+                                                    <input style="height: calc(2.25rem + 6px);" type="number"
+                                                        name="Self_financing" class="form-control"placeholder="">
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label>نسبة التمويل الذاتي</label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="">
+                                                    <input style="height: calc(2.25rem + 6px);" type="number"
+                                                        name="" class="form-control"placeholder="">
                                                 </div>
                                             </div>
-                                            <button type="submit" class="btn btn-success" style="float: left;" >حفظ</button>
+                                            <button type="submit" class="btn btn-success"
+                                                style="float: left;">حفظ</button>
                                         </div>
                                     </div>
                                 </form>
@@ -145,6 +187,23 @@
                     </div>
             </div>
             </section>
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="formModal"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="formModal" style="text-align: center">بيانات طلب الحصول علي
+                                مشروع استثماري</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
             @include('layouts.setting')
         </div>
         @include('layouts.footer')
@@ -164,11 +223,12 @@
     <script src="assets/bundles/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
     <script src="assets/bundles/bootstrap-daterangepicker/daterangepicker.js"></script>
     <script>
+
+$('.option').hide();
+    $('#project').on('change', function(e) {
         $('.option').hide();
-        $('#city').on('change', function(e) {
-            $('.option').hide();
-            $('.city-' + e.target.value).show();
-        });
+        $('.license-' + e.target.value).show();
+    });
     </script>
 
 </body>

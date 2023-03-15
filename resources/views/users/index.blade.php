@@ -134,6 +134,11 @@
          toastr.success("{{ Session::get('success') }}");
     </script>
     @endif
+    @if (Session::has('error'))
+    <script>
+         toastr.success("{{ Session::get('error') }}");
+    </script>
+    @endif
 </body>
 
 
