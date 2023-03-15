@@ -51,7 +51,7 @@
                                                         Delete</a>
                                                 </div>
                                             </div>
-                                            <a href="#" class="btn btn-primary">View All</a>
+                                            <a href="{{ route('role.Create') }}" class="btn btn-primary">اضافة صلحيات</a>
                                         </div>
                                     </div>
                                     <div class="card-body" style="direction: rtl;">
@@ -69,17 +69,31 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td>
-                                                            <a class="btn btn-icon btn-success" href="#" ata-toggle="tooltip" data-placement="top" title="عرض وتعديل" ><i class="fas fa-user"></i></a>
-                                                            <a class="btn btn-icon btn-danger" href="#"><i class="fas fa-times"></i></a>
-                                                        </td>
-                                                    </tr>
+                                                    @foreach ($roles as $role)
+                                                        <tr>
+                                                            <td>{{ $role->id }}</td>
+                                                            <td>{{ $role->name }}</td>
+                                                            <td class="mb-2">{{ $role->role }}</td>
+
+                                                            <td class="mb-2">
+                                                                @if ($role->state == 0)
+                                                                    <div class="badge badge-danger"> </div>
+                                                                @elseif($role->state == 1)
+                                                                    <div class="badge badge-success"> </div>
+                                                                @endif
+                                                            </td>
+                                                            <td class="mb-2">{{ $role->email }}</td>
+                                                            <td>
+                                                                <a class="btn btn-icon btn-success" href="{{ route('role.edite', $role->id) }}"
+                                                                    ata-toggle="tooltip" data-placement="top"
+                                                                    title="عرض وتعديل"><i class="fas fa-user"></i></a>
+                                                                <a class="btn btn-icon btn-danger"
+                                                                    href="{{ route('role.delete', $role->id) }}"><i
+                                                                        class="fas fa-times"></i></a>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+
                                                 </tbody>
                                             </table>
                                         </div>

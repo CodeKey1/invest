@@ -12,9 +12,11 @@
     <link rel="stylesheet" href="assets/css/app.min.css">
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/bundles/bootstrap-daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="assets/bundles/select2/dist/css/select2.min.css">
     <link rel="stylesheet" href="assets/bundles/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
     <link rel="stylesheet" href="assets/bundles/izitoast/css/iziToast.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/bundles/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <!-- Custom style CSS -->
     <link rel="stylesheet" href="assets/css/custom.css">
@@ -35,25 +37,30 @@
                             <div class="col-12 col-md-12 col-lg-12">
                                 @include('layouts.success')
                                 @include('layouts.error')
-                                <form class="needs-validation" id="work_experience" novalidate=""
-                                    action="#" method="POST" enctype="multipart/form-data">
+                                <form class="needs-validation" id="work_experience" novalidate="" action="#"
+                                    method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="card card-primary">
                                         <div class="card-header">
-                                            <h4>مـدريــة </h4>
+                                            <h4>اضافة صلحيات </h4>
                                             <div class="card-header-action">
                                                 <div class="dropdown">
-                                                  <a href="#" data-toggle="dropdown" class="btn btn-warning dropdown-toggle">Options</a>
-                                                  <div class="dropdown-menu" style="background-color: rgb(53, 60, 72);">
-                                                    <a href="#" class="dropdown-item has-icon text-success"><i class="fas fa-eye"></i> View</a>
-                                                    <a href="#" class="dropdown-item has-icon text-info"><i class="far fa-edit"></i> Edit</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a href="#" class="dropdown-item has-icon text-danger"><i class="far fa-trash-alt"></i>
-                                                      Delete</a>
-                                                  </div>
+                                                    <a href="#" data-toggle="dropdown"
+                                                        class="btn btn-warning dropdown-toggle">Options</a>
+                                                    <div class="dropdown-menu"
+                                                        style="background-color: rgb(53, 60, 72);">
+                                                        <a href="#" class="dropdown-item has-icon text-success"><i
+                                                                class="fas fa-eye"></i> View</a>
+                                                        <a href="#" class="dropdown-item has-icon text-info"><i
+                                                                class="far fa-edit"></i> Edit</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a href="#" class="dropdown-item has-icon text-danger"><i
+                                                                class="far fa-trash-alt"></i>
+                                                            Delete</a>
+                                                    </div>
                                                 </div>
                                                 <a href="#" class="btn btn-primary">View All</a>
-                                              </div>
+                                            </div>
                                             {{-- <button class="btn btn-dark"
                                                 style="position: absolute; left: 10px; top:5px"><a
                                                     class="nav-link text-white"
@@ -61,30 +68,27 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="form-row">
-                                                <div class="form-group col-md-4">
-                                                    <label> اختر المركز</label>
-                                                    <select class="form-control" id="city" name="city">
-                                                        <option value="" disabled selected>اختر المركز</option>
 
-                                                    </select>
-                                                </div>
 
-                                                <div class="form-group col-md-4">
-                                                    <label> المنطقة</label>
-                                                    <select class="form-control" name="region">
-                                                        <option value="" disabled selected>اختر المنطقة</option>
-
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group col-md-4">
-                                                    <label> اسم الجمعية</label>
+                                                <div class="form-group col-md-12">
+                                                    <label> اسم الصلحية</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="">
+                                                     class="form-control" name="name">
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label>Tags</label>
+                                                    <select class="form-control select2" multiple="" name="permissions[]">
+                                                        @foreach ($permissions as $permission)
+                                                            <option value="{{ $permission->id }}">
+                                                                {{ $permission->name }}
+                                                            </option>
+                                                        @endforeach
+
+                                                    </select>
                                                 </div>
                                             </div>
-                                            <button type="submit" class="btn btn-success" style="float: left;" >حفظ</button>
+                                            <button type="submit" class="btn btn-success"
+                                                style="float: left;">حفظ</button>
                                         </div>
                                     </div>
                                 </form>
@@ -112,8 +116,10 @@
     <script src="assets/js/scripts.js"></script>
     <!-- Custom JS File -->
     <script src="assets/js/custom.js"></script>
+    <script src="assets/bundles/select2/dist/js/select2.full.min.js"></script>
     <script src="assets/bundles/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
     <script src="assets/bundles/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="assets/bundles/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
     <script>
         $('.option').hide();
         $('#city').on('change', function(e) {

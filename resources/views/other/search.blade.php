@@ -68,7 +68,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="section-body" style="display: none">
+                    <div class="section-body" >
                         <div class="row" style="direction: rtl">
                             <div class="col-12">
                                 <div class="card card-secondary">

@@ -1,0 +1,88 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
+//use Spatie\Permission\Contracts\Role;
+use Spatie\Permission\Models\Role ;
+
+class AdminController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        //
+        $roles = Role::select()->get();
+        return view('roles.index',compact('roles'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+        $roles = Role::select()->get();
+        $permissions = Permission::select()->get();
+        return view('roles.create',compact('roles','permissions'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+        $request->validate([
+            'name' => 'bail|required|unique:roles',
+            'permissions' => 'bail|required',
+        ]);
+
+        $role = Role::create(['name' => $request->name]);
+        $per =  Permission::whereIn('id', $request->permissions)->get();
+        $role->syncPermissions($per);
+        return redirect()->route('Roles')->with(['success' => 'تم التسجيل بنجاح']);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+        $permissions = Permission::get();
+        $roles = Role::with('permissions')->find($id);
+        return view('roles.edit',compact('roles','permissions'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+        $role = Role::find($id);
+        $role->delete();
+        return redirect()->route('role')->with(['success' => 'تم الحذف بنجاح']);
+    }
+}

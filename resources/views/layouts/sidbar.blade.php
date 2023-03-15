@@ -86,9 +86,9 @@
                     <i data-feather="briefcase"></i></a>
                     <ul class="dropdown-menu">
 
+                        <li><a class="nav-link" href="{{ route('section') }}">الجهات المختصة</a></li>
                     <li><a class="nav-link" href="{{ route('investment.Create') }}">اضافة طلب</a></li>
                     <li><a class="nav-link" href="{{ route('investment') }}">طلبات</a></li>
-                    <li><a class="nav-link" href="{{ route('section') }}">القطاعات</a></li>
 
                 </ul>
             </li>
@@ -217,11 +217,9 @@
                 <a href="#" class="menu-toggle nav-link has-dropdown"><span>الإعدادات</span>
                     <i data-feather="user-check"></i></a>
                 <ul class="dropdown-menu">
-
                     <li><a class="nav-link" href="{{ route('user') }}"> المستخدمين</a></li>
-
-                    <li><a class="nav-link" href="#">الصلحيات</a></li>
-
+                    <li><a class="nav-link" href="{{ route('role') }}">الصلحيات</a></li>
+                    <li><a class="nav-link" href="#">اعدادات البرنامج</a></li>
                 </ul>
             </li>
 

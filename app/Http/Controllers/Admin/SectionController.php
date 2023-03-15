@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\C_license;
+use App\Models\Category;
+use App\Models\License;
+use App\Models\SupCategory;
 use Illuminate\Http\Request;
 
 class SectionController extends Controller
@@ -13,7 +17,19 @@ class SectionController extends Controller
     public function index()
     {
         //
-        return view('investment.section.index');
+        $clicense   = C_license::select()->with('license_cate','license')->where('category_id',1)->get();
+        $clicense2   = C_license::select()->with('license_cate','license')->where('category_id',2)->get();
+        $clicense3   = C_license::select()->with('license_cate','license')->where('category_id',3)->get();
+        $clicense4   = C_license::select()->with('license_cate','license')->where('category_id',4)->get();
+        $clicense5   = C_license::select()->with('license_cate','license')->where('category_id',5)->get();
+
+        $category   = SupCategory::select()->with('supcate')->where('category_id',1)->get();
+        $category_1 = SupCategory::select()->with('supcate')->where('category_id',2)->get();
+        $category_2 = SupCategory::select()->with('supcate')->where('category_id',3)->get();
+        $category_3 = SupCategory::select()->with('supcate')->where('category_id',4)->get();
+        $category_4 = SupCategory::select()->with('supcate')->where('category_id',5)->get();
+        return view('investment.section.index',compact('category','category_1','category_2','category_3','category_4','clicense'
+        ,'clicense2','clicense3','clicense4','clicense5'));
     }
 
     /**
@@ -22,7 +38,9 @@ class SectionController extends Controller
     public function create()
     {
         //
-        return view('investment.section.create');
+        
+        $category   = Category::select()->get();
+        return view('investment.section.create',compact('category','clicense'));
     }
 
     /**

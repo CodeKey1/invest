@@ -35,25 +35,31 @@
                             <div class="col-12 col-md-12 col-lg-12">
                                 @include('layouts.success')
                                 @include('layouts.error')
-                                <form class="needs-validation" id="work_experience" novalidate=""
-                                    action="#" method="POST" enctype="multipart/form-data">
+                                <form class="needs-validation" id="work_experience" novalidate="" action="#"
+                                    method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="card">
                                         <div class="card-header">
                                             <h4> عرض طلب الإسثمار / طلب 1</h4>
                                             <div class="card-header-action">
                                                 <div class="dropdown">
-                                                  <a href="#" data-toggle="dropdown" class="btn btn-warning dropdown-toggle">Options</a>
-                                                  <div class="dropdown-menu" style="background-color: rgb(53, 60, 72);">
-                                                    <a href="#" class="dropdown-item has-icon text-success"><i class="fas fa-eye"></i> View</a>
-                                                    <a href="#" class="dropdown-item has-icon text-info"><i class="far fa-edit"></i> Edit</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a href="#" class="dropdown-item has-icon text-danger"><i class="far fa-trash-alt"></i>
-                                                      Delete</a>
-                                                  </div>
+                                                    <a href="#" data-toggle="dropdown"
+                                                        class="btn btn-warning dropdown-toggle">Options</a>
+                                                    <div class="dropdown-menu"
+                                                        style="background-color: rgb(53, 60, 72);">
+                                                        <a href="#" class="dropdown-item has-icon text-success"><i
+                                                                class="fas fa-eye"></i> View</a>
+                                                        <a href="#" class="dropdown-item has-icon text-info"><i
+                                                                class="far fa-edit"></i> Edit</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a href="#" class="dropdown-item has-icon text-danger"><i
+                                                                class="far fa-trash-alt"></i>
+                                                            Delete</a>
+                                                    </div>
                                                 </div>
-                                                <a href="{{ route('investment') }}" class="btn btn-primary">ادارة الطلبات</a>
-                                              </div>
+                                                <a href="{{ route('investment') }}" class="btn btn-primary">ادارة
+                                                    الطلبات</a>
+                                            </div>
                                             {{-- <button class="btn btn-dark"
                                                 style="position: absolute; left: 10px; top:5px"><a
                                                     class="nav-link text-white"
@@ -64,54 +70,30 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-12 col-md-6 col-lg-2">
-                                          <div class="card card-primary">
-                                            <div class="card-header">
-                                                <i class="fas fa-times" style="color: red;"></i><h4>المساحة</h4>
-                                            </div>
 
-                                          </div>
-                                        </div>
-                                        <div class="col-12 col-md-6 col-lg-2">
-                                          <div class="card card-secondary">
-                                            <div class="card-header">
-                                                <i class="fas fa-check-double" style="color: seagreen;"></i><h4>جهة</h4>
-                                            </div>
+                                        @foreach ($r_license as $r)
+                                            @if ($r->R_Lisense->id == $request->id)
+                                                <div class="col-12 col-md-6 col-lg-2">
+                                                    <div class="card card-primary">
+                                                        <div class="card-header">
+                                                            <i class="fas fa-check-double" style="color: green;"></i>
+                                                            <h4 style="font-size: 12px;">{{ $r->L_Lisense->name }}</h4>
+                                                        </div>
 
-                                          </div>
-                                        </div>
-                                        <div class="col-12 col-md-6 col-lg-2">
-                                          <div class="card card-danger">
-                                            <div class="card-header">
-                                                <i class="fas fa-check-double" style="color: seagreen;"></i><h4>جهة </h4>
-                                            </div>
+                                                    </div>
+                                                </div>
+                                            @elseif($r->R_Lisense->id != $request->id)
+                                                <div class="col-12 col-md-6 col-lg-2">
+                                                    <div class="card card-primary">
+                                                        <div class="card-header">
+                                                            <i class="fas fa-times" style="color: red;"></i>
+                                                            <h4 style="font-size: 12px;">{{ $r->L_Lisense->name }}</h4>
+                                                        </div>
 
-                                          </div>
-                                        </div>
-                                        <div class="col-12 col-md-6 col-lg-2">
-                                          <div class="card card-warning">
-                                            <div class="card-header">
-                                                <i class="fas fa-check-double" style="color: seagreen;"></i> <h4>جهة</h4>
-                                            </div>
-
-                                          </div>
-                                        </div>
-                                        <div class="col-12 col-md-6 col-lg-2">
-                                          <div class="card card-warning">
-                                            <div class="card-header">
-                                                <i class="fas fa-check-double" style="color: seagreen;"></i> <h4>جهة</h4>
-                                            </div>
-
-                                          </div>
-                                        </div>
-                                        <div class="col-12 col-md-6 col-lg-2">
-                                          <div class="card card-warning">
-                                            <div class="card-header">
-                                                <i class="fas fa-check-double" style="color: seagreen;"></i> <h4>جهة</h4>
-                                            </div>
-
-                                          </div>
-                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @endforeach
                                     </div>
                                     <div class="card card-primary">
 
@@ -120,70 +102,60 @@
                                                 <div class="form-group col-md-12">
                                                     <label> اسم الشركة / المواطن</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="" disabled>
+                                                        name="name" value="{{ $request->name }}" class="form-control"placeholder=""
+                                                        disabled>
                                                 </div>
 
                                                 <div class="form-group col-md-12">
                                                     <label> العنوان</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="" disabled>
+                                                    value="{{ $request->name }}" class="form-control"placeholder="" disabled>
                                                 </div>
 
                                                 <div class="form-group col-md-4">
                                                     <label> اسم المفوض</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="" disabled>
+                                                    value="{{ $request->name }}" class="form-control"placeholder="" disabled>
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label>  بالتوكيل رقم</label>
+                                                    <label> بالتوكيل رقم</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="" disabled>
+                                                    value="{{ $request->name }}" class="form-control"placeholder="" disabled>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label>بطاقة رقم</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="" disabled>
+                                                    value="{{ $request->name }}" class="form-control"placeholder="" disabled>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label>تليفون</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="" disabled>
+                                                    value="{{ $request->name }}" class="form-control"placeholder="" disabled>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label> مساحة المشروع</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="" disabled>
+                                                    value="{{ $request->name }}" class="form-control"placeholder="" disabled>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label>المدينة</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="" disabled>
+                                                    value="{{ $request->name }}" class="form-control"placeholder="" disabled>
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label>براسمال قيمتة</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="" disabled>
+                                                    value="{{ $request->name }}" class="form-control"placeholder="" disabled>
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label>نسبة التمويل الذاتي</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="" disabled>
+                                                    value="{{ $request->name }}" class="form-control"placeholder="" disabled>
                                                 </div>
                                                 <div class="form-group col-md-12">
                                                     <label>المواقع المقترحة لإقامة المشروع بالمحافظة</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="" disabled>
+                                                    value="{{ $request->name }}" class="form-control"placeholder="" disabled>
                                                 </div>
                                                 <div class="form-group col-md-12">
                                                     <hr style="border-top-color: #00000063 !important;" />
