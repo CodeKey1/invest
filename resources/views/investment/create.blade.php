@@ -53,7 +53,7 @@
                                                   </div>
                                                 </div>
                                                 <a href="{{ route('investment') }}" class="btn btn-primary">ادارة الطلبات</a>
-                                              </div>
+                                            </div>
                                             {{-- <button class="btn btn-dark"
                                                 style="position: absolute; left: 10px; top:5px"><a
                                                     class="nav-link text-white"

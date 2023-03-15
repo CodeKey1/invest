@@ -75,167 +75,171 @@
         </div>
         {{-- /* super admin permission and role for sidebar*/ --}}
         @if (auth()->user()->hasRole('super_admin'))
-        <ul class="sidebar-menu">
-            <li class="dropdown active">
-                <a href="{{ route('home') }}" class="nav-link"><span>الرئيسية</span><i data-feather="monitor"></i></a>
-            </li>
+            <ul class="sidebar-menu">
+                <li class="dropdown active">
+                    <a href="{{ route('home') }}" class="nav-link"><span>الرئيسية</span><i
+                            data-feather="monitor"></i></a>
+                </li>
 
-            <li class="menu-header"></li>
-            <li class="dropdown">
-                <a href="#" class="menu-toggle nav-link has-dropdown"><span> الطلبات </span>
-                    <i data-feather="briefcase"></i></a>
+                <li class="menu-header"></li>
+                <li class="dropdown">
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><span> الطلبات </span>
+                        <i data-feather="briefcase"></i></a>
                     <ul class="dropdown-menu">
 
-                    <li><a class="nav-link" href="{{ route('investment.Create') }}">اضافة طلب</a></li>
-                    <li><a class="nav-link" href="{{ route('investment') }}">طلبات</a></li>
-                    <li><a class="nav-link" href="{{ route('section') }}">القطاعات</a></li>
+                        <li><a class="nav-link" href="{{ route('investment.Create') }}">اضافة طلب</a></li>
+                        <li><a class="nav-link" href="{{ route('investment') }}">طلبات</a></li>
+                        <li><a class="nav-link" href="{{ route('section') }}">القطاعات</a></li>
 
-                </ul>
-            </li>
-
-
-            <li class="dropdown">
-                <a href="#" class="menu-toggle nav-link has-dropdown"><span> المحاضر </span>
-                    <i data-feather="briefcase"></i></a>
-                <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="#">الطلبات المقبولة</a></li>
-                    <li><a class="nav-link" href="#">طلبات </a></li>
-                </ul>
-            </li>
+                    </ul>
+                </li>
 
 
-
-            <li class="dropdown">
-                <a href="#" class="menu-toggle nav-link has-dropdown"><span> المزادات </span>
-                    <i data-feather="briefcase"></i></a>
-                <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="{{ route('auction.Create') }}">اضافة اطرحة</a></li>
-                </ul>
-            </li>
+                <li class="dropdown">
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><span> المحاضر </span>
+                        <i data-feather="briefcase"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="nav-link" href="#">الطلبات المقبولة</a></li>
+                        <li><a class="nav-link" href="#">طلبات </a></li>
+                    </ul>
+                </li>
 
 
 
-            <li class="dropdown">
-                <a href="{{ route('search') }}" class="nav-link"><span>بحــث</span>
-                    <i data-feather="briefcase"></i></a>
-
-            </li>
-
-
-            <li class="menu-header">
-                <hr />
-            </li>
-
-
-            <li class="dropdown">
-                <a href="#" class="menu-toggle nav-link has-dropdown"><span>الوارد
-                    </span>
-                    <i data-feather="chevrons-left"></i></a>
-                <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="{{ route('import.Create') }}"> اضافة وارد</a></li>
-                    <li><a class="nav-link" href="{{ route('import') }}">كل الوارد</a></li>
-                </ul>
-            </li>
+                <li class="dropdown">
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><span> المزادات </span>
+                        <i data-feather="briefcase"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="nav-link" href="{{ route('auction.Create') }}">اضافة اطرحة</a></li>
+                    </ul>
+                </li>
 
 
 
-            <li class="dropdown">
-                <a href="#" class="menu-toggle nav-link has-dropdown"><span>الصادر
-                    </span>
-                    <i data-feather="chevrons-right"></i></a>
-                <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="{{ route('export.Create') }}">اضافة صادر</a></li>
-                    <li><a class="nav-link" href="{{ route('export') }}"> كل الصادر</a></li>
-                </ul>
-            </li>
+                <li class="dropdown">
+                    <a href="{{ route('search') }}" class="nav-link"><span>بحــث</span>
+                        <i data-feather="briefcase"></i></a>
+
+                </li>
+
+
+                <li class="menu-header">
+                    <hr />
+                </li>
+
+
+                <li class="dropdown">
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><span>الوارد
+                        </span>
+                        <i data-feather="chevrons-left"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="nav-link" href="{{ route('import.Create') }}"> اضافة وارد</a></li>
+                        <li><a class="nav-link" href="{{ route('import') }}">كل الوارد</a></li>
+                    </ul>
+                </li>
 
 
 
-            <li class="dropdown">
-                <a href="#" class="menu-toggle nav-link has-dropdown"><span> الجهات </span>
-                    <i data-feather="anchor"></i></a>
-                <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="{{ route('side.Create') }}">اضافة جهة</a></li>
-                    <li><a class="nav-link" href="">متابعة الجهات</a></li>
-                </ul>
-            </li>
+                <li class="dropdown">
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><span>الصادر
+                        </span>
+                        <i data-feather="chevrons-right"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="nav-link" href="{{ route('export.Create') }}">اضافة صادر</a></li>
+                        <li><a class="nav-link" href="{{ route('export') }}"> كل الصادر</a></li>
+                    </ul>
+                </li>
 
 
 
-            <li class="dropdown">
-                <a href="#" class="menu-toggle nav-link has-dropdown"><span> القرارات المحافظ </span>
-                    <i data-feather="briefcase"></i></a>
-                <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="#">قرارات</a></li>
-                    <li><a class="nav-link" href="#">قوانين</a></li>
-                </ul>
-            </li>
-
-
-            <li class="menu-header">
-                <hr />
-            </li>
-
-
-            <li class="dropdown">
-                <a href="#" class="menu-toggle nav-link has-dropdown"><span> تقارير الطلبات</span>
-                    <i data-feather="briefcase"></i></a>
-                <ul class="dropdown-menu">
-
-                    <li><a class="nav-link" href="#">تقرير مفصل</a></li>
-
-                    <li><a class="nav-link" href="{{ route('report') }}">تقرير </a></li>
-
-                    <li><a class="nav-link" href="#">تقرير مجمع</a></li>
-
-                </ul>
-            </li>
+                <li class="dropdown">
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><span> الجهات </span>
+                        <i data-feather="anchor"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="nav-link" href="{{ route('side.Create') }}">اضافة جهة</a></li>
+                        <li><a class="nav-link" href="">متابعة الجهات</a></li>
+                    </ul>
+                </li>
 
 
 
-            <li class="dropdown">
-                <a href="#" class="menu-toggle nav-link has-dropdown"><span>الأرشيف</span>
-                    <i data-feather="briefcase"></i></a>
-                <ul class="dropdown-menu">
-
-                    <li><a class="nav-link" href="#">تقرير مفصل</a></li>
-
-                    <li><a class="nav-link" href="#">تقرير </a></li>
-
-                    <li><a class="nav-link" href="#">تقرير مجمع</a></li>
-
-                </ul>
-            </li>
+                <li class="dropdown">
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><span> القرارات المحافظ </span>
+                        <i data-feather="briefcase"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="nav-link" href="#">قرارات</a></li>
+                        <li><a class="nav-link" href="#">قوانين</a></li>
+                    </ul>
+                </li>
 
 
-            <li class="menu-header">
-                <hr />
-            </li>
+                <li class="menu-header">
+                    <hr />
+                </li>
 
 
-            <li class="dropdown">
-                <a href="#" class="menu-toggle nav-link has-dropdown"><span>الإعدادات</span>
-                    <i data-feather="user-check"></i></a>
-                <ul class="dropdown-menu">
+                <li class="dropdown">
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><span> تقارير الطلبات</span>
+                        <i data-feather="briefcase"></i></a>
+                    <ul class="dropdown-menu">
 
-                    <li><a class="nav-link" href="{{ route('user') }}"> المستخدمين</a></li>
+                        <li><a class="nav-link" href="#">تقرير مفصل</a></li>
 
-                    <li><a class="nav-link" href="#">الصلحيات</a></li>
+                        <li><a class="nav-link" href="{{ route('report') }}">تقرير </a></li>
 
-                </ul>
-            </li>
+                        <li><a class="nav-link" href="#">تقرير مجمع</a></li>
 
-        </ul>
+                    </ul>
+                </li>
+
+
+
+                <li class="dropdown">
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><span>الأرشيف</span>
+                        <i data-feather="briefcase"></i></a>
+                    <ul class="dropdown-menu">
+
+                        <li><a class="nav-link" href="#">تقرير مفصل</a></li>
+
+                        <li><a class="nav-link" href="#">تقرير </a></li>
+
+                        <li><a class="nav-link" href="#">تقرير مجمع</a></li>
+
+                    </ul>
+                </li>
+
+
+                <li class="menu-header">
+                    <hr />
+                </li>
+
+
+                <li class="dropdown">
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><span>الإعدادات</span>
+                        <i data-feather="user-check"></i></a>
+                    <ul class="dropdown-menu">
+
+                        <li><a class="nav-link" href="{{ route('user') }}"> المستخدمين</a></li>
+
+                        <li><a class="nav-link" href="#">الصلحيات</a></li>
+
+                        <li><a class="nav-link" href="{{ route('app.modify') }}">اضافات وتعديلات</a></li>
+
+                    </ul>
+                </li>
+
+            </ul>
         @endif
 
         {{-- /* user permission and role for sidebar*/ --}}
         @if (auth()->user()->hasRole('user'))
-        <ul class="sidebar-menu">
-            <li class="dropdown active">
-                <a href="{{ route('home') }}" class="nav-link"><span>الرئيسية</span><i data-feather="monitor"></i></a>
-            </li>
+            <ul class="sidebar-menu">
+                <li class="dropdown active">
+                    <a href="{{ route('home') }}" class="nav-link"><span>الرئيسية</span><i
+                            data-feather="monitor"></i></a>
+                </li>
 
-            {{-- <li class="menu-header"></li>
+                {{-- <li class="menu-header"></li>
             <li class="dropdown">
                 <a href="#" class="menu-toggle nav-link has-dropdown"><span> الطلبات </span>
                     <i data-feather="briefcase"></i></a>
@@ -249,86 +253,86 @@
             </li> --}}
 
 
-            <li class="dropdown">
-                <a href="#" class="menu-toggle nav-link has-dropdown"><span> المحاضر </span>
-                    <i data-feather="briefcase"></i></a>
-                <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="#">الطلبات المقبولة</a></li>
-                    <li><a class="nav-link" href="#">طلبات </a></li>
-                </ul>
-            </li>
+                <li class="dropdown">
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><span> المحاضر </span>
+                        <i data-feather="briefcase"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="nav-link" href="#">الطلبات المقبولة</a></li>
+                        <li><a class="nav-link" href="#">طلبات </a></li>
+                    </ul>
+                </li>
 
-            <li class="dropdown">
-                <a href="#" class="menu-toggle nav-link has-dropdown"><span> المزادات </span>
-                    <i data-feather="briefcase"></i></a>
-                <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="{{ route('auction.Create') }}">اضافة اطرحة</a></li>
-                </ul>
-            </li>
+                <li class="dropdown">
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><span> المزادات </span>
+                        <i data-feather="briefcase"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="nav-link" href="{{ route('auction.Create') }}">اضافة اطرحة</a></li>
+                    </ul>
+                </li>
 
-            <li class="dropdown">
-                <a href="{{ route('search') }}" class="nav-link"><span>بحــث</span>
-                    <i data-feather="briefcase"></i></a>
+                <li class="dropdown">
+                    <a href="{{ route('search') }}" class="nav-link"><span>بحــث</span>
+                        <i data-feather="briefcase"></i></a>
 
-            </li>
+                </li>
 
-            <li class="menu-header">
-                <hr />
-            </li>
+                <li class="menu-header">
+                    <hr />
+                </li>
 
-            <li class="dropdown">
-                <a href="#" class="menu-toggle nav-link has-dropdown"><span>الوارد
-                    </span>
-                    <i data-feather="chevrons-left"></i></a>
-                <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="{{ route('import.Create') }}"> اضافة وارد</a></li>
-                    <li><a class="nav-link" href="{{ route('import') }}">كل الوارد</a></li>
-                </ul>
-            </li>
+                <li class="dropdown">
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><span>الوارد
+                        </span>
+                        <i data-feather="chevrons-left"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="nav-link" href="{{ route('import.Create') }}"> اضافة وارد</a></li>
+                        <li><a class="nav-link" href="{{ route('import') }}">كل الوارد</a></li>
+                    </ul>
+                </li>
 
-            <li class="dropdown">
-                <a href="#" class="menu-toggle nav-link has-dropdown"><span>الصادر
-                    </span>
-                    <i data-feather="chevrons-right"></i></a>
-                <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="{{ route('export.Create') }}">اضافة صادر</a></li>
-                    <li><a class="nav-link" href="{{ route('export') }}"> كل الصادر</a></li>
-                </ul>
-            </li>
+                <li class="dropdown">
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><span>الصادر
+                        </span>
+                        <i data-feather="chevrons-right"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="nav-link" href="{{ route('export.Create') }}">اضافة صادر</a></li>
+                        <li><a class="nav-link" href="{{ route('export') }}"> كل الصادر</a></li>
+                    </ul>
+                </li>
 
-            <li class="menu-header">
-                <hr />
-            </li>
+                <li class="menu-header">
+                    <hr />
+                </li>
 
-            <li class="dropdown">
-                <a href="#" class="menu-toggle nav-link has-dropdown"><span> تقارير الطلبات</span>
-                    <i data-feather="briefcase"></i></a>
-                <ul class="dropdown-menu">
+                <li class="dropdown">
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><span> تقارير الطلبات</span>
+                        <i data-feather="briefcase"></i></a>
+                    <ul class="dropdown-menu">
 
-                    <li><a class="nav-link" href="#">تقرير مفصل</a></li>
+                        <li><a class="nav-link" href="#">تقرير مفصل</a></li>
 
-                    <li><a class="nav-link" href="{{ route('report') }}">تقرير </a></li>
+                        <li><a class="nav-link" href="{{ route('report') }}">تقرير </a></li>
 
-                    <li><a class="nav-link" href="#">تقرير مجمع</a></li>
+                        <li><a class="nav-link" href="#">تقرير مجمع</a></li>
 
-                </ul>
-            </li>
+                    </ul>
+                </li>
 
-            <li class="dropdown">
-                <a href="#" class="menu-toggle nav-link has-dropdown"><span>الأرشيف</span>
-                    <i data-feather="briefcase"></i></a>
-                <ul class="dropdown-menu">
+                <li class="dropdown">
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><span>الأرشيف</span>
+                        <i data-feather="briefcase"></i></a>
+                    <ul class="dropdown-menu">
 
-                    <li><a class="nav-link" href="#">تقرير مفصل</a></li>
+                        <li><a class="nav-link" href="#">تقرير مفصل</a></li>
 
-                    <li><a class="nav-link" href="#">تقرير </a></li>
+                        <li><a class="nav-link" href="#">تقرير </a></li>
 
-                    <li><a class="nav-link" href="#">تقرير مجمع</a></li>
+                        <li><a class="nav-link" href="#">تقرير مجمع</a></li>
 
-                </ul>
-            </li>
+                    </ul>
+                </li>
 
-        </ul>
+            </ul>
         @endif
     </aside>
 </div>
