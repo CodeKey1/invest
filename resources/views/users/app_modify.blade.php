@@ -699,7 +699,7 @@
                                                         </div>
                                                         <div class="col-lg-6">
                                                             <div class="table-responsive">
-                                                                <h6> جدول المدن</h6>
+                                                                <h6> جدول موافقات كل فئة</h6>
                                                                 <table class="table table-striped table-hover"
                                                                     style="width:100%;">
                                                                     <thead>
