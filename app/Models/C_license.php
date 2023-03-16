@@ -13,7 +13,7 @@ class C_license extends Model
 
     protected $fillable = ['category_id','license_id','created_at','updated_at'];
 
-    public function license_cate(){
+    public function license_cat(){
 
         return  $this->belongsTo(Category::class ,'category_id');
     }

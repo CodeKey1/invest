@@ -13,10 +13,13 @@ class Category extends Model
 
     protected $fillable = ['id','name','created_at','updated_at'];
 
-    public function category_project(){
+    public function cat_request(){
         return $this->hasMany(RequestP::class);
     }
-    public function cat_other(){
-        return $this->hasMany(SupCategory::class);
+    public function cat_license(){
+        return $this->hasMany(C_license::class);
+    }
+    public function sub_cat(){
+        return $this->hasMany(SubCategory::class);
     }
 }

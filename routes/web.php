@@ -104,6 +104,7 @@ Route::POST('/user-store', [App\Http\Controllers\Admin\UsersController::class, '
 Route::get('/user-delete{id}', [App\Http\Controllers\Admin\UsersController::class, 'destroy'])->name('user.delete');
 
 Route::get('/app-modify', [App\Http\Controllers\Admin\AppModifyController::class, 'index'])->name('app.modify');
+Route::POST('/app-modify-create', [App\Http\Controllers\Admin\AppModifyController::class, 'create'])->name('app.create');
 /*
 |--------------------------------------------------------------------------
 | Dashboard report Controller ****************************************
