@@ -40,7 +40,7 @@
                                     @csrf
                                     <div class="card">
                                         <div class="card-header">
-                                            <h4> عرض طلب الإسثمار / طلب 1</h4>
+                                            <h4> عرض طلب الإسثمار / {{ $request->name }}</h4>
                                             <div class="card-header-action">
                                                 <div class="dropdown">
                                                     <a href="#" data-toggle="dropdown"

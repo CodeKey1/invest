@@ -28,13 +28,17 @@ class RequestP extends Model
         'phone',
         'state',
         'sub_ctegory_id',
+        'category_id',
         'city_id',
         'created_at',
         'updated_at',
     ];
 
     public function categoryname(){
-        return  $this->belongsTo(Category::class ,'sub_ctegory_id');
+        return  $this->belongsTo(Category::class ,'category_id');
+    }
+    public function subCat(){
+        return  $this->belongsTo(SupCategory::class ,'sub_ctegory_id');
     }
     public function city(){
         return  $this->belongsTo(City::class ,'city_id');

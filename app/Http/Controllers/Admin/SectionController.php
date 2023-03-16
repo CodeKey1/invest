@@ -38,9 +38,9 @@ class SectionController extends Controller
     public function create()
     {
         //
-        
+        $license = License::select()->get();
         $category   = Category::select()->get();
-        return view('investment.section.create',compact('category','clicense'));
+        return view('investment.section.create',compact('category','license'));
     }
 
     /**

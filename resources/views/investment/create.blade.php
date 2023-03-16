@@ -88,7 +88,7 @@
                                                         <i type="button" data-feather="alert-circle"
                                                             data-toggle="modal" data-target="#exampleModal"></i> طلب
                                                         الحصول علي مشروع </label>
-                                                    <select class="form-control" id="project" name="name">
+                                                    <select class="form-control" id="project" name="category_id">
                                                         <option disabled selected>اختر المشروع</option>
                                                         @isset($category)
                                                             @if ($category && $category->count() > 0)
@@ -140,14 +140,26 @@
                                                     <input style="height: calc(2.25rem + 6px);" type="number"
                                                         name="phone" class="form-control"placeholder="">
                                                 </div>
-                                                <div class="form-group col-md-6">
-                                                    <label> مساحة المشروع</label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="number"
-                                                        name="size" class="form-control"placeholder="">
+                                                <div class="form-row col-md-12">
+                                                    <div class="form-group col-md-4">
+                                                        <label> مساحة المشروع</label>
+                                                        <input style="height: calc(2.25rem + 6px);" type="number"
+                                                            name="size" class="form-control"placeholder="">
+                                                    </div>
+                                                    <div class="form-group col-md-4">
+                                                        <label> مساحة المشروع</label>
+                                                        <input style="height: calc(2.25rem + 6px);" type="number"
+                                                            name="size" class="form-control"placeholder="">
+                                                    </div>
+                                                    <div class="form-group col-md-4">
+                                                        <label> مساحة المشروع</label>
+                                                        <input style="height: calc(2.25rem + 6px);" type="number"
+                                                            name="size" class="form-control"placeholder="">
+                                                    </div>
                                                 </div>
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-4">
                                                     <label>المدينة</label>
-                                                    <select class="form-control" name="city_id">
+                                                    <select class="form-control" id="city_id" name="city_id">
                                                         <option disabled selected>اختر المدينة</option>
                                                         @isset($city)
                                                             @if ($city && $city->count() > 0)
@@ -158,10 +170,39 @@
                                                         @endisset
                                                     </select>
                                                 </div>
-                                                <div class="form-group col-md-12">
+                                                <div class="form-group col-md-4">
+                                                    <label> أختر النشاط </label>
+                                                    <select class="form-control" id="city" name="city" required>
+                                                        <option value="" disabled hidden selected>اختر المركز
+                                                        </option>
+                                                        @isset($place_cat)
+                                                            @if ($place_cat && $place_cat->count() > 0)
+                                                                @foreach ($place_cat as $item)
+                                                                    <option value="{{ $item->id }}">
+                                                                        {{ $item->name }}
+                                                                    </option>
+                                                                @endforeach
+                                                            @endif
+                                                        @endisset
+                                                    </select>
+
+                                                </div>
+                                                <div class="form-group col-md-4">
                                                     <label>المواقع المقترحة لإقامة المشروع بالمحافظة</label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="" class="form-control"placeholder="">
+                                                    <select class="form-control" id="area" name="region" required>
+                                                        <option value="" disabled hidden selected>اختر المنطقة
+                                                        </option>
+                                                        @isset($place)
+                                                            @if ($place && $place->count() > 0)
+                                                                @foreach ($place as $Place)
+                                                                    <option class="coption city-{{  $Place->catePlace->id }} type-{{  $Place->cityPlace->id }}"
+                                                                        value="{{  $Place->catePlace->id }}">
+                                                                        {{ $Place->name }}
+                                                                    </option>
+                                                                @endforeach
+                                                            @endif
+                                                        @endisset
+                                                    </select>
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label>براسمال قيمتة</label>
@@ -174,8 +215,48 @@
                                                         name="" class="form-control"placeholder="">
                                                 </div>
                                             </div>
-                                            <button type="submit" class="btn btn-success"
-                                                style="float: left;">حفظ</button>
+                                            <div>
+                                                {{-- <label for="" style="text-align:center">الملفات المرفقة بالطلب</label>
+                                                <hr style="border-top: 1px solid rgb(0 0 0 / 31%); width: 76%;" /> --}}
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="card card-primary">
+                                        <div class="card-body">
+                                            <div class="form-row">
+                                                <div class="form-group col-md-3">
+                                                 <label for=""> عقد نأسيس (الشركة/ منشأة فرد) إن وجد </label>
+                                                 <input type="file" name="feasibility_study" class="form-control" style="height: calc(2.25rem + 6px);">
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                 <label for=""> السجل التجاري  إن وجد </label>
+                                                 <input type="file" name="tax_card" class="form-control" style="height: calc(2.25rem + 6px);">
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                 <label for=""> البطاقة الضريبية  إن وجد </label>
+                                                 <input type="file" name="commercial_register" class="form-control" style="height: calc(2.25rem + 6px);">
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                 <label for=""> صورة البطاقة   </label>
+                                                 <input type="file" name="nid_photo" class="form-control" style="height: calc(2.25rem + 6px);" >
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                 <label for=""> مستنادات الملاءة المالية  </label>
+                                                 <input type="file" name="financial_capital" class="form-control" style="height: calc(2.25rem + 6px);">
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                 <label for="">  كروكي الموقع المختار واحداثياته  إن وجد </label>
+                                                 <input type="file" name="location_string" class="form-control" style="height: calc(2.25rem + 6px);">
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                 <label for=""> دراسة جدوي للمشروع  إن وجد </label>
+                                                 <input type="file" name="feasibility_study" class="form-control" style="height: calc(2.25rem + 6px);" >
+                                                </div>
+                                             </div>
+                                             <button type="submit" class="btn btn-success"
+                                                 style="float: left;">حفظ</button>
                                         </div>
                                     </div>
                                 </form>
@@ -224,11 +305,22 @@
     <script src="assets/bundles/bootstrap-daterangepicker/daterangepicker.js"></script>
     <script>
 
-$('.option').hide();
-    $('#project').on('change', function(e) {
+
         $('.option').hide();
-        $('.license-' + e.target.value).show();
-    });
+        $('.coption').hide();
+            $('#project').on('change', function(e) {
+                $('.option').hide();
+                $('.license-' + e.target.value).show();
+            });
+
+            $('#city_id').on('change', function(e) {
+                $('.coption').hide();
+                $('.type-' + e.target.value).show();
+            });
+            $('#city').on('change', function(e) {
+                $('.coption').hide();
+                $('.city-' + e.target.value).show();
+            });
     </script>
 
 </body>

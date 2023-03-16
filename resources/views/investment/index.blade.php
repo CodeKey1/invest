@@ -72,11 +72,12 @@
                                                 <thead>
                                                     <tr>
                                                         <th> # </th>
-                                                        <th>اسم المشروع</th>
+                                                        <th> مشروع </th>
+                                                        <th> فئة المشروع </th>
                                                         <th>اسم المتقدم</th>
                                                         <th> مواطن / شركة </th>
                                                         <th>المدينة</th>
-                                                        <th>الموقع المقترح</th>
+
                                                         <th> موافقات الجهات </th>
                                                         <th>تفاصيل</th>
                                                     </tr>
@@ -88,10 +89,11 @@
                                                                 <tr>
                                                                     <td>{{ $requests->id }}</td>
                                                                     <td>{{ $requests->categoryname->name }}</td>
+                                                                    <td>{{ $requests->subCat->name }}</td>
                                                                     <td>{{ $requests->name }}</td>
                                                                     <td>{{ $requests->owner_type }}</td>
                                                                     <td>{{ $requests->city->name }}</td>
-                                                                    <td>{{ $requests->id }}</td>
+                                                                    
                                                                     <td>
                                                                         @foreach ($r_license as $r)
                                                                         @if ($r->R_Lisense->id == $requests->id )

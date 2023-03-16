@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\C_license;
 use App\Models\Category;
 use App\Models\City;
+use App\Models\Place;
+use App\Models\Place_Category;
+use App\Models\Project;
 use App\Models\R_license;
 use App\Models\RequestP;
 use Illuminate\Http\Request;
@@ -21,7 +24,7 @@ class InvestmentController extends Controller
     {
         //
         $r_license = R_license::select()->with('L_Lisense','R_Lisense')->get();
-        $request   = RequestP::select()->with('categoryname','city','rl')->get();
+        $request   = RequestP::select()->with('categoryname','city','rl','subCat')->get();
         return view('investment.index',compact('request','r_license'));
     }
 
@@ -31,11 +34,13 @@ class InvestmentController extends Controller
     public function create()
     {
         //
+        $place = Place::select()->with('catePlace','cityPlace')->get();
+        $place_cat = Place_Category::select()->with('PC')->get();
         $clicense   = C_license::select()->with('license_cate','license')->get();
         $city = City::select()->get();
         $category = Category::select()->get();
         $now = Carbon::today()->format('y-m-d');
-        return view('investment.create',compact('now','category','city','clicense'));
+        return view('investment.create',compact('now','category','city','clicense','place_cat','place'));
     }
 
     /**
@@ -63,9 +68,76 @@ class InvestmentController extends Controller
 
         // ]);
 
+        $file1 = "";
+        if($feasibility_study = $request->file('feasibility_study')){
+            $file_extension = $request->feasibility_study->getclientoriginalExtension();
+            $file1 = time() . '.' . $file_extension;
+            $path = 'attatcment_project';
+            $feasibility_study -> move($path, $file1);
+            $feasibility_study = $file1 ;
+        }
+        $file2 = "";
+        if($nid_photo = $request->file('nid_photo')){
+            $file_extension = $request->nid_photo->getclientoriginalExtension();
+            $file2 = time() . '.' . $file_extension;
+            $path = 'attatcment_project';
+            $nid_photo -> move($path, $file2);
+            $nid_photo = $file2 ;
+        }
+        $file3 = "";
+        if($financial_capital = $request->file('financial_capital')){
+            $file_extension = $request->financial_capital->getclientoriginalExtension();
+            $file3 = time() . '.' . $file_extension;
+            $path = 'attatcment_project';
+            $financial_capital -> move($path, $file3);
+            $financial_capital = $file3 ;
+        }
+        $file4 = "";
+        if($commercial_register = $request->file('commercial_register')){
+            $file_extension = $request->commercial_register->getclientoriginalExtension();
+            $file4 = time() . '.' . $file_extension;
+            $path = 'attatcment_project';
+            $commercial_register -> move($path, $file4);
+            $commercial_register = $file4 ;
+        }
+        $file5 = "";
+        if($tax_card = $request->file('tax_card')){
+            $file_extension = $request->tax_card->getclientoriginalExtension();
+            $file5 = time() . '.' . $file_extension;
+            $path = 'attatcment_project';
+            $tax_card -> move($path, $file5);
+            $tax_card = $file5 ;
+        }
+        $file6 = "";
+        if($site_sketch = $request->file('site_sketch')){
+            $file_extension = $request->site_sketch->getclientoriginalExtension();
+            $file6 = time() . '.' . $file_extension;
+            $path = 'attatcment_project';
+            $site_sketch -> move($path, $file6);
+            $site_sketch = $file6 ;
+        }
+        $file7 = "";
+        if($location_string = $request->file('location_string')){
+            $file_extension = $request->location_string->getclientoriginalExtension();
+            $file7 = time() . '.' . $file_extension;
+            $path = 'attatcment_project';
+            $location_string -> move($path, $file7);
+            $location_string = $file7 ;
+        }
+        // else{
+        //     $feasibility_study = "";
+        //     $nid_photo = "";
+        //     $financial_capital = "";
+        //     $commercial_register = "";
+        //     $tax_card = "";
+        //     $site_sketch = "";
+        //     $location_string = "";
+        //  }
+
         try{
             RequestP:: create(([
              'name' => $request['name'],
+             'category_id' => $request['category_id'],
              'owner_type' =>$request['email'],
              'owner_name' =>$request['owner_name'],
              'address' =>$request['address'],
@@ -80,6 +152,17 @@ class InvestmentController extends Controller
              'phone' =>$request['phone'],
              'state' =>$request['state'],
 
+             ]));
+
+             Project::create(([
+                'feasibility_study' =>$file1,
+                'financial_capital' =>$file2,
+                'commercial_register' =>$file3,
+                'tax_card' =>$file4,
+                'site_sketch' =>$file5,
+                'location_string' =>$file6,
+                'nid_photo' =>$file7,
+                'name' =>$request['name'],
 
              ]));
 

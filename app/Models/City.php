@@ -14,6 +14,11 @@ class City extends Model
     protected $fillable = ['id','name','created_at','updated_at'];
 
     public function cityname(){
+
         return $this->hasMany(RequestP::class ,'city_id');
+    }
+    public function cityPlc(){
+
+        return $this->hasMany(Place::class ,'city_id');
     }
 }
