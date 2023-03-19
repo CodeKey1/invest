@@ -38,7 +38,7 @@ class RequestP extends Model
         return  $this->belongsTo(Category::class ,'category_id');
     }
     public function subCat(){
-        return  $this->belongsTo(SupCategory::class ,'sub_ctegory_id');
+        return  $this->belongsTo(SubCategory::class ,'sub_ctegory_id');
     }
     public function city(){
         return  $this->belongsTo(City::class ,'city_id');

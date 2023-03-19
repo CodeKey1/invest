@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\C_license;
 use App\Models\Category;
 use App\Models\License;
-use App\Models\SupCategory;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 
 class SectionController extends Controller
@@ -23,11 +23,11 @@ class SectionController extends Controller
         $clicense4   = C_license::select()->with('license_cate','license')->where('category_id',4)->get();
         $clicense5   = C_license::select()->with('license_cate','license')->where('category_id',5)->get();
 
-        $category   = SupCategory::select()->with('supcate')->where('category_id',1)->get();
-        $category_1 = SupCategory::select()->with('supcate')->where('category_id',2)->get();
-        $category_2 = SupCategory::select()->with('supcate')->where('category_id',3)->get();
-        $category_3 = SupCategory::select()->with('supcate')->where('category_id',4)->get();
-        $category_4 = SupCategory::select()->with('supcate')->where('category_id',5)->get();
+        $category   = SubCategory::select()->with('supcate')->where('category_id',1)->get();
+        $category_1 = SubCategory::select()->with('supcate')->where('category_id',2)->get();
+        $category_2 = SubCategory::select()->with('supcate')->where('category_id',3)->get();
+        $category_3 = SubCategory::select()->with('supcate')->where('category_id',4)->get();
+        $category_4 = SubCategory::select()->with('supcate')->where('category_id',5)->get();
         return view('investment.section.index',compact('category','category_1','category_2','category_3','category_4','clicense'
         ,'clicense2','clicense3','clicense4','clicense5'));
     }
