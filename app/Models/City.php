@@ -11,7 +11,7 @@ class City extends Model
 
     protected $table  = 'city';
 
-    protected $fillable = ['id','name','created_at','updated_at'];
+    protected $fillable = ['id','name','gov_id','created_at','updated_at'];
 
     public function cityname(){
 
@@ -20,5 +20,16 @@ class City extends Model
     public function cityPlc(){
 
         return $this->hasMany(Place::class ,'city_id');
+    }
+    public function reqname(){
+        return $this->hasMany(RequestP::class ,'city_id');
+    }
+
+    public function place_name(){
+        return $this->hasMany(Place::class ,'city_id');
+    }
+
+    public function govname(){
+        return $this->belongsTo(gov::class ,'gov_id');
     }
 }

@@ -16,4 +16,10 @@ class Place_Category extends Model
     public function PC(){
         return  $this->belongsTo(Place::class ,'place_category_id');
 }
+
+
+
+    public function placename(){
+        return $this->hasMany(Place::class ,'place_category_id');
+    }
 }
