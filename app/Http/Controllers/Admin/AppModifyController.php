@@ -18,6 +18,7 @@ use App\Models\C_license;
 
 use App\Models\Contract_type;
 use App\Models\Asset_type;
+use App\Models\Asset;
 
 class AppModifyController extends Controller
 {
@@ -35,7 +36,8 @@ class AppModifyController extends Controller
         
         $contract = Contract_type::select()->get();
         $assets = Asset_type::select()->get();
-        return view('users.app_modify',compact('gov','city','place','placeCat','category','subcategory','license','clicense','contract','assets'));
+        $asset = Asset::select()->get();
+        return view('users.app_modify',compact('gov','city','place','placeCat','category','subcategory','license','clicense','contract','assets','asset'));
     }
 
     public function create(Request $request){
@@ -158,6 +160,31 @@ class AppModifyController extends Controller
                 try{ 
                     Asset_type::create(([
                      'name' => $assets,
+                     ]));
+                    return redirect()->route('app.modify')-> with(['success' => 'تم التسجيل بنجاح']);
+                }catch(\Exception $ex){
+                    return redirect()->route('app.modify')-> with(['error' => 'خطأ'.$ex]);
+                }
+                break;
+            case 'newAssetbtn':
+                $asset_number = $request['asset_number'];
+                $asset_name = $request['asset_name'];
+                $asset_address = $request['asset_address'];
+                $status = 0;
+                $note = $request['note'];
+                $city_id = $request['city_id'];
+                $asset_type = $request['asset_type'];
+                $contract_type = $request['contract_type'];
+                try{ 
+                    Asset::create(([
+                     'number' => $asset_number,
+                     'name' => $asset_name,
+                     'address' => $asset_address,
+                     'status' => $status,
+                     'note' => $note,
+                     'city_id' => $city_id,
+                     'assets_type_id' => $asset_type,
+                     'contract_type_id' => $contract_type,
                      ]));
                     return redirect()->route('app.modify')-> with(['success' => 'تم التسجيل بنجاح']);
                 }catch(\Exception $ex){

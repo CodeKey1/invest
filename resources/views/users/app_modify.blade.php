@@ -118,9 +118,6 @@
                                                                                         data-placement="top"
                                                                                         title="عرض وتعديل"><i
                                                                                             class="fas fa-user"></i></a>
-                                                                                    <a class="btn btn-icon btn-danger"
-                                                                                        href="#"><i
-                                                                                            class="fas fa-times"></i></a>
                                                                                 </td>
                                                                             </tr>
                                                                         @endforeach
@@ -200,9 +197,6 @@
                                                                                                 data-placement="top"
                                                                                                 title="عرض وتعديل"><i
                                                                                                     class="fas fa-user"></i></a>
-                                                                                            <a class="btn btn-icon btn-danger"
-                                                                                                href="#"><i
-                                                                                                    class="fas fa-times"></i></a>
                                                                                         </td>
                                                                                     </tr>
                                                                                 @endforeach
@@ -327,9 +321,6 @@
                                                                                                 data-placement="top"
                                                                                                 title="عرض وتعديل"><i
                                                                                                     class="fas fa-user"></i></a>
-                                                                                            <a class="btn btn-icon btn-danger"
-                                                                                                href="#"><i
-                                                                                                    class="fas fa-times"></i></a>
                                                                                         </td>
                                                                                     </tr>
                                                                                 @endforeach
@@ -391,9 +382,6 @@
                                                                                                 data-placement="top"
                                                                                                 title="عرض وتعديل"><i
                                                                                                     class="fas fa-user"></i></a>
-                                                                                            <a class="btn btn-icon btn-danger"
-                                                                                                href="#"><i
-                                                                                                    class="fas fa-times"></i></a>
                                                                                         </td>
                                                                                     </tr>
                                                                                 @endforeach
@@ -490,9 +478,6 @@
                                                                                                 data-placement="top"
                                                                                                 title="عرض وتعديل"><i
                                                                                                     class="fas fa-user"></i></a>
-                                                                                            <a class="btn btn-icon btn-danger"
-                                                                                                href="#"><i
-                                                                                                    class="fas fa-times"></i></a>
                                                                                         </td>
                                                                                     </tr>
                                                                                 @endforeach
@@ -571,9 +556,6 @@
                                                                                                 data-placement="top"
                                                                                                 title="عرض وتعديل"><i
                                                                                                     class="fas fa-user"></i></a>
-                                                                                            <a class="btn btn-icon btn-danger"
-                                                                                                href="#"><i
-                                                                                                    class="fas fa-times"></i></a>
                                                                                         </td>
                                                                                     </tr>
                                                                                 @endforeach
@@ -632,9 +614,6 @@
                                                                                                 data-placement="top"
                                                                                                 title="عرض وتعديل"><i
                                                                                                     class="fas fa-user"></i></a>
-                                                                                            <a class="btn btn-icon btn-danger"
-                                                                                                href="#"><i
-                                                                                                    class="fas fa-times"></i></a>
                                                                                         </td>
                                                                                     </tr>
                                                                                 @endforeach
@@ -725,9 +704,6 @@
                                                                                                 data-placement="top"
                                                                                                 title="عرض وتعديل"><i
                                                                                                     class="fas fa-user"></i></a>
-                                                                                            <a class="btn btn-icon btn-danger"
-                                                                                                href="#"><i
-                                                                                                    class="fas fa-times"></i></a>
                                                                                         </td>
                                                                                     </tr>
                                                                                 @endforeach
@@ -755,6 +731,12 @@
                                             <a class="nav-link" id="assets-tab" data-toggle="tab" href="#assets"
                                                 role="tab" aria-controls="assets" aria-selected="true">نوع
                                                 الاصول</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="newAssets-tab" data-toggle="tab"
+                                                href="#newAssets" role="tab" aria-controls="newAssets"
+                                                aria-selected="true">اضافة
+                                                اصول</a>
                                         </li>
                                     </ul>
                                     <div class="tab-content">
@@ -803,9 +785,6 @@
                                                                                                 data-placement="top"
                                                                                                 title="عرض وتعديل"><i
                                                                                                     class="fas fa-user"></i></a>
-                                                                                            <a class="btn btn-icon btn-danger"
-                                                                                                href="#"><i
-                                                                                                    class="fas fa-times"></i></a>
                                                                                         </td>
                                                                                     </tr>
                                                                                 @endforeach
@@ -867,9 +846,144 @@
                                                                                                 data-placement="top"
                                                                                                 title="عرض وتعديل"><i
                                                                                                     class="fas fa-user"></i></a>
-                                                                                            <a class="btn btn-icon btn-danger"
-                                                                                                href="#"><i
-                                                                                                    class="fas fa-times"></i></a>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                @endforeach
+                                                                            @endif
+                                                                        @endisset
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="newAssets" role="tabpanel"
+                                            aria-labelledby="category-tab">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h4>اضافة اصول</h4>
+                                                </div>
+                                                <div class="card-body" style="direction: rtl">
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group col-md-12">
+                                                                <label> اسم الاصل</label>
+                                                                <input style="height: calc(2.25rem + 6px);"
+                                                                    type="text" name="asset_name"
+                                                                    class="form-control" placeholder="">
+                                                            </div>
+                                                            <div class="form-group col-md-12">
+                                                                <label> المدينة</label>
+                                                                <select class="form-control" name="city_id">
+                                                                    <option value="" hidden disabled selected>
+                                                                        اختر
+                                                                        المدينة
+                                                                    </option>
+                                                                    @isset($city)
+                                                                        @if ($city && $city->count() > 0)
+                                                                            @foreach ($city as $city1)
+                                                                                <option value="{{ $city1->id }}">
+                                                                                    {{ $city1->name }}
+                                                                                </option>
+                                                                            @endforeach
+                                                                        @endif
+                                                                    @endisset
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group col-md-12">
+                                                                <label> نوع الاصل</label>
+                                                                <select class="form-control" name="asset_type">
+                                                                    <option value="" hidden disabled selected>
+                                                                        اختر
+                                                                        النوع
+                                                                    </option>
+                                                                    @isset($assets)
+                                                                        @if ($assets && $assets->count() > 0)
+                                                                            @foreach ($assets as $assets1)
+                                                                                <option value="{{ $assets1->id }}">
+                                                                                    {{ $assets1->name }}
+                                                                                </option>
+                                                                            @endforeach
+                                                                        @endif
+                                                                    @endisset
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group col-md-12">
+                                                                <label> العنوان</label>
+                                                                <input style="height: calc(2.25rem + 6px);"
+                                                                    type="text" name="asset_address"
+                                                                    class="form-control"placeholder="">
+                                                            </div>
+                                                            <div class="form-group col-md-12">
+                                                                <label> رقم الوحدة</label>
+                                                                <input style="height: calc(2.25rem + 6px);"
+                                                                    type="text" name="asset_number"
+                                                                    class="form-control"placeholder="">
+                                                            </div>
+                                                            <div class="form-group col-md-12">
+                                                                <label> نوع العقد</label>
+                                                                <select class="form-control" name="contract_type">
+                                                                    <option value="" hidden disabled selected>
+                                                                        اختر
+                                                                        النوع
+                                                                    </option>
+                                                                    @isset($contract)
+                                                                        @if ($contract && $contract->count() > 0)
+                                                                            @foreach ($contract as $contract1)
+                                                                                <option value="{{ $contract1->id }}">
+                                                                                    {{ $contract1->name }}
+                                                                                </option>
+                                                                            @endforeach
+                                                                        @endif
+                                                                    @endisset
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group col-md-12">
+                                                                <label>ملاحظات</label>
+                                                                <textarea class="form-control" name="note" cols="10" rows="5"></textarea>
+                                                            </div>
+                                                            <button type="submit" name="actionbtn"
+                                                                class="btn btn-success" value="newAssetbtn"
+                                                                style="float: left;">حفظ</button>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="table-responsive">
+                                                                <h6> جدول الاصول</h6>
+                                                                <table class="table table-striped table-hover"
+                                                                    style="width:100%;">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th> # </th>
+                                                                            <th>اسم الاصل</th>
+                                                                            <th>نوع الاصل</th>
+                                                                            <th>نوع العقد</th>
+                                                                            <th>المدينة</th>
+                                                                            <th>العنوان</th>
+                                                                            <th>تفاصيل</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @isset($asset)
+                                                                            @if ($asset && $asset->count() > 0)
+                                                                                @foreach ($asset as $asset1)
+                                                                                    <tr>
+                                                                                        <td>{{ $asset1->id }}</td>
+                                                                                        <td>{{ $asset1->name }}</td>
+                                                                                        <td>{{ $asset1->asset_type->name }}
+                                                                                        </td>
+                                                                                        <td>{{ $asset1->contract_type->name }}
+                                                                                        <td>{{ $asset1->city_name->name }}
+                                                                                        <td>{{ $asset1->address }}
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <a class="btn btn-icon btn-success"
+                                                                                                href=""
+                                                                                                ata-toggle="tooltip"
+                                                                                                data-placement="top"
+                                                                                                title="عرض وتعديل"><i
+                                                                                                    class="fas fa-user"></i></a>
                                                                                         </td>
                                                                                     </tr>
                                                                                 @endforeach

@@ -12,4 +12,8 @@ class Contract_type extends Model
     protected $table  = 'contract_type';
 
     protected $fillable = ['id','name','created_at','updated_at'];
+
+    public function asset_name(){
+        return $this->hasMany(Asset::class ,'assets_type_id');
+    }
 }
