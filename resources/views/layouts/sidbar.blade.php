@@ -87,7 +87,7 @@
                         <i data-feather="briefcase"></i></a>
                     <ul class="dropdown-menu">
 
-                        <li><a class="nav-link" href="{{ route('section') }}">الجهات المختصة</a></li>
+                        {{-- <li><a class="nav-link" href="{{ route('section') }}">الجهات المختصة</a></li> --}}
                         <li><a class="nav-link" href="{{ route('investment.Create') }}">اضافة طلب</a></li>
                         <li><a class="nav-link" href="{{ route('investment') }}">طلبات</a></li>
 
@@ -100,7 +100,7 @@
                         <i data-feather="briefcase"></i></a>
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="#">الطلبات المقبولة</a></li>
-                        <li><a class="nav-link" href="#">طلبات </a></li>
+                        <li><a class="nav-link" href="{{ route('lecturer') }}"> المحاضر </a></li>
                     </ul>
                 </li>
 

@@ -51,7 +51,7 @@
                                                     <a href="#" class="dropdown-item has-icon text-info"><i
                                                             class="far fa-edit"></i> تقارير</a>
                                                     <div class="dropdown-divider"></div>
-                                                    <a href="{{ route('lecturer') }}"
+                                                    <a href="#"
                                                         class="dropdown-item has-icon text-danger"><i
                                                             class="fas fa-archive"></i>
                                                         المشوعات الإسثمارية </a>

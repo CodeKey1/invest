@@ -25,8 +25,15 @@ class InvestmentController extends Controller
     {
         //
         $r_license = R_license::select()->with('L_Lisense','R_Lisense')->get();
-        $request   = RequestP::select()->with('categoryname','city','rl','subCat')->get();
+        $request   = RequestP::select()->with('categoryname','city','rl','subCat')->where('state',1)->get();
         return view('investment.index',compact('request','r_license'));
+    }
+    public function lecturer()
+    {
+        //
+        $r_license = R_license::select()->with('L_Lisense','R_Lisense')->get();
+        $request   = RequestP::select()->with('categoryname','city','rl','subCat')->where('state',0)->get();
+        return view('investment.lecturer.index',compact('request','r_license'));
     }
 
     /**
@@ -72,7 +79,7 @@ class InvestmentController extends Controller
         $file1 = "";
         if($feasibility_study = $request->file('feasibility_study')){
             $file_extension = $request->feasibility_study->getclientoriginalExtension();
-            $file1 = time() . '.' . $file_extension;
+            $file1 = time() . 'feasibility_study'. '.' . $file_extension;
             $path = 'attatcment_project';
             $feasibility_study -> move($path, $file1);
             $feasibility_study = $file1 ;
@@ -80,7 +87,7 @@ class InvestmentController extends Controller
         $file2 = "";
         if($nid_photo = $request->file('nid_photo')){
             $file_extension = $request->nid_photo->getclientoriginalExtension();
-            $file2 = time() . '.' . $file_extension;
+            $file2 = time() . 'nid_photo'.'.' . $file_extension;
             $path = 'attatcment_project';
             $nid_photo -> move($path, $file2);
             $nid_photo = $file2 ;
@@ -88,7 +95,7 @@ class InvestmentController extends Controller
         $file3 = "";
         if($financial_capital = $request->file('financial_capital')){
             $file_extension = $request->financial_capital->getclientoriginalExtension();
-            $file3 = time() . '.' . $file_extension;
+            $file3 = time() . 'financial_capital'.'.' . $file_extension;
             $path = 'attatcment_project';
             $financial_capital -> move($path, $file3);
             $financial_capital = $file3 ;
@@ -96,7 +103,7 @@ class InvestmentController extends Controller
         $file4 = "";
         if($commercial_register = $request->file('commercial_register')){
             $file_extension = $request->commercial_register->getclientoriginalExtension();
-            $file4 = time() . '.' . $file_extension;
+            $file4 = time() . 'commercial_register'. '.' . $file_extension;
             $path = 'attatcment_project';
             $commercial_register -> move($path, $file4);
             $commercial_register = $file4 ;
@@ -104,7 +111,7 @@ class InvestmentController extends Controller
         $file5 = "";
         if($tax_card = $request->file('tax_card')){
             $file_extension = $request->tax_card->getclientoriginalExtension();
-            $file5 = time() . '.' . $file_extension;
+            $file5 = time() . 'tax_card'. '.' . $file_extension;
             $path = 'attatcment_project';
             $tax_card -> move($path, $file5);
             $tax_card = $file5 ;
@@ -112,7 +119,7 @@ class InvestmentController extends Controller
         $file6 = "";
         if($site_sketch = $request->file('site_sketch')){
             $file_extension = $request->site_sketch->getclientoriginalExtension();
-            $file6 = time() . '.' . $file_extension;
+            $file6 = time() . 'site_sketch'.'.' . $file_extension;
             $path = 'attatcment_project';
             $site_sketch -> move($path, $file6);
             $site_sketch = $file6 ;
@@ -120,7 +127,7 @@ class InvestmentController extends Controller
         $file7 = "";
         if($location_string = $request->file('location_string')){
             $file_extension = $request->location_string->getclientoriginalExtension();
-            $file7 = time() . '.' . $file_extension;
+            $file7 = time() .'location_string'. '.' . $file_extension;
             $path = 'attatcment_project';
             $location_string -> move($path, $file7);
             $location_string = $file7 ;
@@ -135,10 +142,11 @@ class InvestmentController extends Controller
         //     $location_string = "";
         //  }
 
-        try{
-            RequestP:: create(([
+        // try{
+            $request   = RequestP:: create(([
              'name' => $request['name'],
              'category_id' => $request['category_id'],
+             'sub_ctegory_id' => $request['sub_ctegory_id'],
              'owner_type' =>$request['email'],
              'owner_name' =>$request['owner_name'],
              'address' =>$request['address'],
@@ -155,7 +163,7 @@ class InvestmentController extends Controller
 
              ]));
 
-             Project::create(([
+             $project = Project::create(([
                 'feasibility_study' =>$file1,
                 'financial_capital' =>$file2,
                 'commercial_register' =>$file3,
@@ -164,13 +172,14 @@ class InvestmentController extends Controller
                 'location_string' =>$file6,
                 'nid_photo' =>$file7,
                 'name' =>$request['name'],
+                'request_id' =>$request->id,
 
              ]));
 
-            return redirect()->route('investment')-> with(['success' => 'تم التسجيل بنجاح']);
-        }catch(\Exception $ex){
-            return redirect()->route('investment')-> with(['error' => 'خطأ']);
-        }
+            return redirect()->route('section.Create',[$request->id , $request->category_id])-> with(['success' => 'تم التسجيل بنجاح']);
+        // }catch(\Exception $ex){
+        //     return redirect()->route('investment')-> with(['error' => 'خطأ'.$ex]);
+        // }
     }
 
     /**
@@ -179,9 +188,10 @@ class InvestmentController extends Controller
     public function show(string $id)
     {
         //
+        $project = Project::select()->with('request_PJ')->where('request_id',$id)->get();
         $r_license = R_license::select()->with('L_Lisense','R_Lisense')->get();
         $request = RequestP::select()->with('categoryname','city')->find($id);
-        return view('investment.edit',compact('request','r_license'));
+        return view('investment.edit',compact('request','r_license','project'));
     }
 
     /**
@@ -206,23 +216,27 @@ class InvestmentController extends Controller
     public function destroy(string $id)
     {
         //
-        $user = RequestP::find($id);
+        $project = Project::where('request_id',$id)->delete('request_id');
+        $user = RequestP::with('Project_Rq')->find($id);
+
+
         $user->delete();
+
         return redirect()->route('investment')->with(['success' => 'تم الحذف بنجاح']);
     }
 
     /**
      * Display a listing of the projects of investment.
      */
-    public function project(){
-        return view('investment.project.index');
-    }
-    /**
-     * Show the form for creating a new projects of investment.
-     */
-    public function project_create(){
-        return view('investment.project.create');
-    }
+    // public function project(){
+    //     return view('investment.project.index');
+    // }
+    // /**
+    //  * Show the form for creating a new projects of investment.
+    //  */
+    // public function project_create(){
+    //     return view('investment.project.create');
+    // }
 
 
 }

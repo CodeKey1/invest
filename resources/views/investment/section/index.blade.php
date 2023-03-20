@@ -113,7 +113,7 @@
                                                                         <tbody>
                                                                             <tr>
                                                                                 <td>{{ $Category->id }}</td>
-                                                                                <td>{{ $Category->supcate->name }}</td>
+                                                                                <td>{{ $Category->cat_name->name }}</td>
                                                                                 <td>{{ $Category->name }}</td>
                                                                                 <td>
                                                                                     <a class="btn btn-icon btn-success"
@@ -155,7 +155,7 @@
                                                                             <tr>
                                                                                 <td>{{ $Category->id }}</td>
                                                                                 <td>{{ $Category->name }}</td>
-                                                                                <td>{{ $Category->supcate->name }}</td>
+                                                                                <td>{{ $Category->cat_name->name }}</td>
                                                                                 <td>
                                                                                     <a class="btn btn-icon btn-success"
                                                                                         href="#" ata-toggle="tooltip"
@@ -196,7 +196,7 @@
                                                                             <tr>
                                                                                 <td>{{ $Category->id }}</td>
                                                                                 <td>{{ $Category->name }}</td>
-                                                                                <td>{{ $Category->supcate->name }}</td>
+                                                                                <td>{{ $Category->cat_name->name }}</td>
                                                                                 <td>
                                                                                     <a class="btn btn-icon btn-success"
                                                                                         href="#" ata-toggle="tooltip"
@@ -237,7 +237,7 @@
                                                                             <tr>
                                                                                 <td>{{ $Category->id }}</td>
                                                                                 <td>{{ $Category->name }}</td>
-                                                                                <td>{{ $Category->supcate->name }}</td>
+                                                                                <td>{{ $Category->cat_name->name }}</td>
                                                                                 <td>
                                                                                     <a class="btn btn-icon btn-success"
                                                                                         href="#" ata-toggle="tooltip"
@@ -278,7 +278,7 @@
                                                                             <tr>
                                                                                 <td>{{ $Category->id }}</td>
                                                                                 <td>{{ $Category->name }}</td>
-                                                                                <td>{{ $Category->supcate->name }}</td>
+                                                                                <td>{{ $Category->cat_name->name }}</td>
                                                                                 <td>
                                                                                     <a class="btn btn-icon btn-success"
                                                                                         href="#" ata-toggle="tooltip"

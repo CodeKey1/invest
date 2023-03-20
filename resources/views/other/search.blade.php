@@ -50,7 +50,7 @@
                                             <div class="form-group col-md-3">
 
                                                 <select class="form-control" name="region">
-                                                    <option value="" disabled selected>اختر المنطقة</option>
+                                                    <option value="" disabled selected>اختر المشروع</option>
 
                                                 </select>
                                             </div>

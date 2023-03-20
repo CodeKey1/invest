@@ -36,20 +36,18 @@
                             <div class="col-12 col-md-12 col-lg-12">
                                 @include('layouts.success')
                                 @include('layouts.error')
-                                <form class="needs-validation" novalidate="" action="#"
-                                    method="POST" enctype="multipart/form-data">
+                                <form>
                                     @csrf
                                     <div class="card">
                                         <div class="card-header">
-                                            <h4>اضافة جهة</h4>
+                                            <h4> الجهلت المطلوب موافقتها لطلب الإستثمار : {{ $request->name }}</h4>
                                             <div class="card-header-action">
                                                 <div class="dropdown">
-                                                    <a href="#" data-toggle="dropdown"
-                                                        class="btn btn-warning dropdown-toggle">Options</a>
-                                                    <div class="dropdown-menu"
+                                                    <a href="#" data-toggle="modal" data-target=".bd-example-modal-lg"
+                                                        class="btn btn-warning"> طلب استعجال </a>
+                                                    {{-- <div class="dropdown-menu"
                                                         style="background-color: rgb(53, 60, 72);">
-                                                        <a href="{{ route('section.Create') }}"
-                                                            class="dropdown-item has-icon text-success"><i
+                                                        <a href="#" class="dropdown-item has-icon text-success"><i
                                                                 class="fas fa-eye"></i> اضافة</a>
                                                         <a href="#" class="dropdown-item has-icon text-info"><i
                                                                 class="far fa-edit"></i> Edit</a>
@@ -57,71 +55,102 @@
                                                         <a href="#" class="dropdown-item has-icon text-danger"><i
                                                                 class="far fa-trash-alt"></i>
                                                             Delete</a>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
-                                                <a href="{{ route('section') }}" class="btn btn-primary">ادارة
+                                                <a href="#" class="btn btn-primary">ادارة
                                                     الجهات</a>
                                             </div>
-                                            {{-- <button class="btn btn-dark"
-                                                style="position: absolute; left: 10px; top:5px"><a
-                                                    class="nav-link text-white"
-                                                    href="#">عودة</a></button> --}}
+
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="card-text" style="text-align:center;"> للإسثمار بـ:
+                                                {{ $request->categoryname->name }} </p>
                                         </div>
                                     </div>
                                     <div class="card card-primary">
 
                                         <div class="card-body">
-                                            <div class="form-row" id="work_experience">
-                                                <div class="form-group col-md-5">
-
-                                                    <select class="form-control" id="city" name="name">
-                                                        <option value="" disabled selected>اختر المشروع</option>
-                                                        @isset($category)
-                                                            @if ($category && $category->count() > 0)
-                                                                @foreach ($category as $cat)
-                                                                    <option value="{{ $cat->id }}">{{ $cat->name }}
-                                                                    </option>
-                                                                @endforeach
-                                                            @endif
-                                                        @endisset
-                                                    </select>
-                                                </div>
-                                                <div class="form-group col-md-5">
-
-                                                    <select class="form-control select2" multiple="" style="direction: rtl;width: 100%;" name="name">
-                                                        <option value="" disabled selected>اختر الجهة</option>
-                                                        @isset($license)
-                                                            @if ($license && $license->count() > 0)
-                                                                @foreach ($license as $Lic)
-                                                                    <option value="{{ $Lic->id }}">{{ $Lic->name }}
-                                                                    </option>
-                                                                @endforeach
-                                                            @endif
-                                                        @endisset
-                                                    </select>
-                                                </div>
-                                                <div class="form-group col-md-2">
-                                                    <a href="javascript:void(0)" class="btn btn-primary"
-                                                        style="width: 110px;height: calc(2.25rem + 6px);line-height: 30px;"
-                                                        onclick="addWorkRow()">+</a>
-                                                </div>
-                                            </div>
+                                            @isset($license)
+                                                @if ($license && $license->count() > 0)
+                                                    @foreach ($license as $lic)
+                                                        <div class="form-row" id="work_experience">
+                                                            <div class="form-group col-md-4">
+                                                                <label for=""> الجهات المطلوب موافقتها </label>
+                                                                <input style="height: calc(2.25rem + 6px);" type="text"
+                                                                    name="owner_name" value="{{ $lic->license->name }}"
+                                                                    class="form-control" disabled>
+                                                            </div>
+                                                            <div class="form-group col-md-4">
+                                                                <label for="">تاريخ الإرسال للجهة </label>
+                                                                <input style="height: calc(2.25rem + 6px);" type="date"
+                                                                    name="owner_name" value=""
+                                                                    class="form-control"placeholder="">
+                                                            </div>
+                                                            <div class="form-group col-md-4">
+                                                                <label for=""> الملف المرفق </label>
+                                                                <input style="height: calc(2.25rem + 6px);" type="file"
+                                                                    name="owner_name" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                @endif
+                                            @endisset
                                             <button type="submit" class="btn btn-success"
                                                 style="float: left;">حفظ</button>
                                         </div>
                                     </div>
-                                </form>
                             </div>
-                            {{-- <a href="javascript:void(0)" style="padding: 5px 10px 5px 10px;" id="addWork-btn"
+                        </div>
+                        </form>
+                    </div>
+                    {{-- <a href="javascript:void(0)" style="padding: 5px 10px 5px 10px;" id="addWork-btn"
                                 class="btn btn-primary form-label" onclick="addWorkRow()">+ اضف مستحق
                             </a> --}}
-                        </div>
-                    </div>
             </div>
-            </section>
-            @include('layouts.setting')
         </div>
-        @include('layouts.footer')
+    </div>
+    </section>
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="direction: rtl">
+                    @isset($license)
+                        @if ($license && $license->count() > 0)
+                            @foreach ($license as $lic)
+                                <div class="form-row" id="work_experience">
+                                    <div class="form-group col-md-4">
+                                        <label for=""> الجهات المطلوب موافقتها </label>
+                                        <input style="height: calc(2.25rem + 6px);" type="text" name="owner_name"
+                                            value="{{ $lic->license->name }}" class="form-control" disabled>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="">تاريخ الإرسال للجهة </label>
+                                        <input style="height: calc(2.25rem + 6px);" type="date" name="owner_name"
+                                            value="" class="form-control"placeholder="">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for=""> الملف المرفق </label>
+                                        <input style="height: calc(2.25rem + 6px);" type="file" name="owner_name"
+                                            class="form-control">
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endif
+                    @endisset
+                    <button type="submit" class="btn btn-success" style="float: left;">حفظ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @include('layouts.setting')
+    </div>
+    @include('layouts.footer')
     </div>
     </div>
     <!-- General JS Scripts -->
@@ -138,7 +167,7 @@
     <script src="assets/bundles/select2/dist/js/select2.full.min.js"></script>
     <script src="assets/bundles/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
     <script src="assets/bundles/bootstrap-daterangepicker/daterangepicker.js"></script>
-    <script>
+    {{-- <script>
         $('.option').hide();
         $('#city').on('change', function(e) {
             $('.option').hide();
@@ -146,7 +175,6 @@
         });
     </script>
     <script>
-
         function addWorkRow() {
             var elements = document.getElementsByClassName('work-xp-input');
             var empty = "no"
@@ -159,7 +187,8 @@
             if (empty == "no" && document.getElementsByClassName("work-xp").length < 4) {
                 const div = document.createElement('div');
                 div.className = 'card-body form-row';
-                div.innerHTML = `
+                div.innerHTML =
+                    `
                 <div class="form-group col-md-5">
                     <select class="form-control" id="city" name="name">
                         <option value="" disabled selected>اختر المشروع</option>
@@ -249,7 +278,7 @@
                 document.getElementById("addSkill-btn").style.display = "block";
             }
         }
-    </script>
+    </script> --}}
 
 </body>
 

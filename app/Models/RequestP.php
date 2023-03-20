@@ -46,4 +46,7 @@ class RequestP extends Model
     public function rl(){
         return  $this->hasMany(R_license::class ,'request_id');
     }
+    public function Project_Rq(){
+        return  $this->hasMany(Project::class ,'request_id');
+    }
 }

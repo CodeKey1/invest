@@ -104,7 +104,8 @@
                                                         @isset($clicense)
                                                             @if ($clicense && $clicense->count() > 0)
                                                                 @foreach ($clicense as $lice)
-                                                                <div class="option license-{{ $lice->license_cate->id }} badge badge-danger">{{ $lice->license->name }}</div>
+                                                                <div class="option license-{{ $lice->license_cate->id }} badge badge-danger" >{{ $lice->license->name }}</div>
+                                                                {{-- <input class="option license-{{ $lice->license_cate->id }}" type="text" value="{{ $lice->license_cate->id }}" name="sub_ctegory_id"> --}}
                                                                 @endforeach
                                                             @endif
                                                         @endisset

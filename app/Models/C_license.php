@@ -17,6 +17,10 @@ class C_license extends Model
 
         return  $this->belongsTo(Category::class ,'category_id');
     }
+    public function license_cate(){
+
+        return  $this->belongsTo(Category::class ,'category_id');
+    }
     public function license(){
 
         return  $this->belongsTo(License::class ,'license_id');

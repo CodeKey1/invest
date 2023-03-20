@@ -66,8 +66,8 @@ Route::get('/investment-delete{id}', [App\Http\Controllers\Admin\InvestmentContr
 | Dashboard Investment Controller *****************    مشروعات الإستثمارية
 |--------------------------------------------------------------------------
 */
-Route::get('/project', [App\Http\Controllers\Admin\InvestmentController::class, 'project'])->name('project');
-Route::get('/project-create', [App\Http\Controllers\Admin\InvestmentController::class, 'project_create'])->name('project.create');
+Route::get('/lecturer', [App\Http\Controllers\Admin\InvestmentController::class, 'lecturer'])->name('lecturer');
+Route::get('/lecturer-create', [App\Http\Controllers\Admin\InvestmentController::class, 'lecturer_create'])->name('project.create');
 
 /*
 |--------------------------------------------------------------------------
@@ -75,7 +75,7 @@ Route::get('/project-create', [App\Http\Controllers\Admin\InvestmentController::
 |--------------------------------------------------------------------------
 */
 Route::get('/section', [App\Http\Controllers\Admin\SectionController::class, 'index'])->name('section');
-Route::get('/section-create', [App\Http\Controllers\Admin\SectionController::class, 'create'])->name('section.Create');
+Route::get('/section-create{id1}{id}', [App\Http\Controllers\Admin\SectionController::class, 'create'])->name('section.Create');
 
 /*
 |--------------------------------------------------------------------------
