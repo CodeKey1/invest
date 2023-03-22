@@ -35,6 +35,8 @@
             <div class="main-content">
                 <section class="section">
                     <div class="section-body">
+                        @include('layouts.success')
+                        @include('layouts.error')
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
@@ -74,7 +76,8 @@
                                                                     <td>{{ $auction1->label }}</td>
                                                                     <td>{{ $auction1->note }}</td>
                                                                     <td>
-                                                                        <a class="btn btn-icon btn-success" href=""
+                                                                        <a class="btn btn-icon btn-success"
+                                                                            href="{{ route('auction.edit', $auction1->id) }}"
                                                                             ata-toggle="tooltip" data-placement="top"
                                                                             title="عرض وتعديل">
                                                                             <i class="fas fa-user"></i>

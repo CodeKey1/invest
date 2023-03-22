@@ -35,6 +35,8 @@
             <div class="main-content">
                 <section class="section">
                     <div class="section-body">
+                        @include('layouts.success')
+                        @include('layouts.error')
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
@@ -42,7 +44,7 @@
                                         <h4>اطروحات المزادات</h4>
                                         <div class="card-header-action">
                                             <a href="{{ route('offer.Create') }}"
-                                                class="dropdown-item has-icon text-success"><i
+                                                class="dropdown-item has-icon text-dark btn-warning"><i
                                                     class="fas fa-plus"></i>اضافة اطروحات جديد</a>
                                         </div>
                                     </div>
@@ -68,10 +70,10 @@
                                                 </thead>
                                                 @isset($offer)
                                                     @if ($offer && $offer->count() > 0)
-                                                        @foreach ($offer as $ctr=>$offer1)
+                                                        @foreach ($offer as $offer1)
                                                             <tbody>
                                                                 <tr>
-                                                                    <td>{{ $ctr+1 }}</td>
+                                                                    <td>{{ $offer1->id }}</td>
                                                                     <td>{{ $offer1->auction_name->name }}</td>
                                                                     <td>{{ $offer1->auction_name->date }}</td>
                                                                     <td>{{ $offer1->investor }}</td>
@@ -80,7 +82,8 @@
                                                                     <td>{{ $offer1->recived }}</td>
                                                                     <td>{{ $offer1->note }}</td>
                                                                     <td>
-                                                                        <a class="btn btn-icon btn-success" href=""
+                                                                        <a class="btn btn-icon btn-success"
+                                                                            href="{{ route('offer.edit', $offer1->id) }}"
                                                                             ata-toggle="tooltip" data-placement="top"
                                                                             title="عرض وتعديل">
                                                                             <i class="fas fa-user"></i>
