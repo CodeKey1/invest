@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="assets/css/app.min.css">
     <link rel="stylesheet" href="assets/bundles/izitoast/css/iziToast.min.css">
     <!-- Template CSS -->
+    <link rel="stylesheet" href="assets/bundles/select2/dist/css/select2.min.css">
     <link rel="stylesheet" href="assets/bundles/bootstrap-daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="assets/bundles/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
     <link rel="stylesheet" href="assets/bundles/izitoast/css/iziToast.min.css">
@@ -37,7 +38,7 @@
                                 @include('layouts.success')
                                 @include('layouts.error')
                                 <form class="needs-validation" id="work_experience" novalidate=""
-                                    action="#" method="POST" enctype="multipart/form-data">
+                                    action="{{ route('import.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="card card-primary">
                                         <div class="card-header">
@@ -59,48 +60,47 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="form-row">
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-6">
                                                     <label>رقم الوارد</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="number"
-                                                        name="agr_name"
+                                                        name="import_id"
                                                         class="form-control"placeholder="">
                                                 </div>
+                                                <div class="form-group col-md-6">
+                                                    <label> اسم الجهة الوارد منها</label>
+                                                    <select class="form-control" id="city" name="import_side">
+                                                        <option value="" disabled selected>اختر الجهة</option>
+                                                    </select>
+                                                </div>
 
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-8">
                                                     <label>عنوان الملف الوارد</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
+                                                        name="import_name"
                                                         class="form-control"placeholder="">
                                                 </div>
-
                                                 <div class="form-group col-md-4">
-                                                    <label> اسم الجهة الوارد منها</label>
-                                                    <select class="form-control" id="city" name="city">
-                                                        <option value="" disabled selected>اختر المركز</option>
-                                                    </select>
+                                                    <label> الملف المرفق</label>
+                                                    <input style="height: calc(2.25rem + 6px);" type="file" multiple
+                                                        name="import_file[]"
+                                                        class="form-control">
                                                 </div>
                                             </div>
                                             <div class="form-row">
-                                                <div class="form-group col-md-4">
-                                                    <label> اختر المركز</label>
-                                                    <select class="form-control" id="city" name="city">
-                                                        <option value="" disabled selected>اختر المركز</option>
-
+                                                <div class="form-group col-md-6">
+                                                    <label> الموظف المكلف بالملف</label>
+                                                    <select class="form-control select2" style="width: 100% !important;" multiple="" name="region">
+                                                        <option value="" disabled selected>اختر الموظف</option>
+                                                        <option value="" >1 الموظف</option>
+                                                        <option value="" >2 الموظف</option>
+                                                        <option value="" >3 الموظف</option>
+                                                        <option value="" >4 الموظف</option>
                                                     </select>
                                                 </div>
-
-                                                <div class="form-group col-md-4">
-                                                    <label> المنطقة</label>
-                                                    <select class="form-control" name="region">
-                                                        <option value="" disabled selected>اختر المنطقة</option>
-
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group col-md-4">
-                                                    <label> اسم الجمعية</label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
+                                                <div class="form-group col-md-6">
+                                                    <label> تاريخ استلام الوارد </label>
+                                                    <input style="height: calc(2.25rem + 6px);" type="date"
+                                                        name="import_date"
                                                         class="form-control"placeholder="">
                                                 </div>
                                             </div>
@@ -108,7 +108,7 @@
                                                 <div class="form-group col-md-12">
                                                     <label>اضافة ملاحظات</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
+                                                        name="import_note"
                                                         class="form-control"placeholder="">
                                                 </div>
                                             </div>
@@ -131,6 +131,7 @@
     </div>
     <!-- General JS Scripts -->
     <script src="assets/js/app.min.js"></script>
+    <script src="assets/bundles/select2/dist/js/select2.full.min.js"></script>
     <!-- JS Libraies -->
     <!-- Page Specific JS File -->
     <script src="assets/bundles/izitoast/js/iziToast.min.js"></script>

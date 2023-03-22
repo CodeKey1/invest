@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Import;
 use Illuminate\Http\Request;
 
 class ImportController extends Controller
@@ -13,7 +14,8 @@ class ImportController extends Controller
     public function index()
     {
         //
-        return view('import.index');
+        $import = Import:: select()->get();
+        return view('import.index',compact('import'));
     }
 
     /**
@@ -31,6 +33,39 @@ class ImportController extends Controller
     public function store(Request $request)
     {
         //
+        $file = array();
+        $import_attatch[]="";
+
+        if ($files = $request->file('import_file')){
+         foreach ($files as $ctr=>$file){
+            $ext = strtolower($file->getClientOriginalName());
+            $file_name = time().'.'.$ext;
+            $path = 'import-files';
+            $file -> move($path, $file_name);
+            $import_attatch[$ctr]= $file_name;
+         }
+
+        }
+        else{
+
+            $import_attatch[] = "";
+
+         }
+
+        // try{
+             Import:: create(([
+             'import_name' => $request['import_name'],
+             'import_id' => $request['import_id'],
+             'import_date' => $request['import_date'],
+             'import_side' =>$request['import_side'],
+             'import_note' =>$request['import_note'],
+             'import_file' => implode('|',$import_attatch)
+             ]));
+
+            return redirect()->route('import')-> with(['success' => 'تم التسجيل بنجاح']);
+        // }catch(\Exception $ex){
+        //     return redirect()->route('import')-> with(['error' => 'خطأ'.$ex]);
+        // }
     }
 
     /**
@@ -47,6 +82,8 @@ class ImportController extends Controller
     public function edit(string $id)
     {
         //
+        $import = Import::select()->find($id);
+        return view('import.edit',compact('import'));
     }
 
     /**
@@ -55,6 +92,24 @@ class ImportController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        try{
+            $import = Import ::select()->where('id',$id)->find($id);
+            //return redirect()->route('sewage.list') -> with(['success' => '--> ' . $project->pdate->project_id]);
+            if(!$import){
+                return redirect()->route('import')->with(['error' => 'وارد غير موجود']);
+            }
+
+            $import-> update(([
+             'import_id' => $request['import_id'],
+             'import_name' => $request['import_name'],
+             'import_side' => $request['import_side'],
+
+             ]));
+
+            return redirect()->route('import')-> with(['success' => 'تم التسجيل بنجاح']);
+        }catch(\Exception $ex){
+            return redirect()->route('import')-> with(['error' => 'خطأ'.$ex]);
+        }
     }
 
     /**
@@ -63,5 +118,8 @@ class ImportController extends Controller
     public function destroy(string $id)
     {
         //
+        $import = Import::find($id);
+        $import->delete();
+        return redirect()->route('import')->with(['success' => 'تم الحذف بنجاح']);
     }
 }

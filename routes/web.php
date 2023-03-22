@@ -41,6 +41,9 @@ Route::group(['namespace'=> 'admin','middleware' => 'auth'],function (){
 */
 Route::get('/export', [App\Http\Controllers\Admin\ExportController::class, 'index'])->name('export');
 Route::get('/export-create', [App\Http\Controllers\Admin\ExportController::class, 'create'])->name('export.Create');
+Route::get('/export-edit{id}', [App\Http\Controllers\Admin\ExportController::class, 'edit'])->name('export.edit');
+Route::get('/export-update{id}', [App\Http\Controllers\Admin\ExportController::class, 'update'])->name('export.update');
+Route::get('/export-delete{id}', [App\Http\Controllers\Admin\ExportController::class, 'destroy'])->name('export.delete');
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +52,10 @@ Route::get('/export-create', [App\Http\Controllers\Admin\ExportController::class
 */
 Route::get('/import', [App\Http\Controllers\Admin\ImportController::class, 'index'])->name('import');
 Route::get('/import-create', [App\Http\Controllers\Admin\ImportController::class, 'create'])->name('import.Create');
+Route::Post('/import-store', [App\Http\Controllers\Admin\ImportController::class, 'store'])->name('import.store');
+Route::get('/import-edit{id}', [App\Http\Controllers\Admin\ImportController::class, 'edit'])->name('import.edit');
+Route::get('/import-update{id}', [App\Http\Controllers\Admin\ImportController::class, 'update'])->name('import.update');
+Route::get('/import-delete{id}', [App\Http\Controllers\Admin\ImportController::class, 'destroy'])->name('import.delete');
 
 /*
 |--------------------------------------------------------------------------

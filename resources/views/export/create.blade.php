@@ -11,6 +11,7 @@
     <!-- General CSS Files -->
     <link rel="stylesheet" href="assets/css/app.min.css">
     <!-- Template CSS -->
+    <link rel="stylesheet" href="assets/bundles/select2/dist/css/select2.min.css">
     <link rel="stylesheet" href="assets/bundles/bootstrap-daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="assets/bundles/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
     <link rel="stylesheet" href="assets/bundles/izitoast/css/iziToast.min.css">
@@ -61,47 +62,43 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="form-row">
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-6">
                                                     <label>رقم الصادر</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="number"
                                                         name="agr_name"
                                                         class="form-control"placeholder="">
                                                 </div>
-
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-6">
+                                                    <label> اسم الجهات الصادر اليها</label>
+                                                    <select class="form-control select2" style="width: 100% !important;" multiple="" name="region">
+                                                        <option value="" disabled selected>اختر الجهات</option>
+                                                        <option value="" >1 الجهة</option>
+                                                        <option value="" >2 الجهة</option>
+                                                        <option value="" >3 الجهة</option>
+                                                        <option value="" >4 الجهة</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-md-12">
                                                     <label>عنوان الملف الصادر</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
                                                         name="agr_name"
                                                         class="form-control"placeholder="">
                                                 </div>
-
-                                                <div class="form-group col-md-4">
-                                                    <label> اسم جهة الصادر </label>
-                                                    <select class="form-control" id="city" name="city">
-                                                        <option value="" disabled selected>اختر المركز</option>
-                                                    </select>
-                                                </div>
                                             </div>
                                             <div class="form-row">
-                                                <div class="form-group col-md-4">
-                                                    <label> اختر المركز</label>
-                                                    <select class="form-control" id="city" name="city">
-                                                        <option value="" disabled selected>اختر المركز</option>
-
+                                                <div class="form-group col-md-6">
+                                                    <label> الموظف المكلف بالملف</label>
+                                                    <select class="form-control select2" style="width: 100% !important;" multiple="" name="region">
+                                                        <option value="" disabled selected>اختر الموظف</option>
+                                                        <option value="" >1 الموظف</option>
+                                                        <option value="" >2 الموظف</option>
+                                                        <option value="" >3 الموظف</option>
+                                                        <option value="" >4 الموظف</option>
                                                     </select>
                                                 </div>
-
-                                                <div class="form-group col-md-4">
-                                                    <label> المنطقة</label>
-                                                    <select class="form-control" name="region">
-                                                        <option value="" disabled selected>اختر المنطقة</option>
-
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group col-md-4">
-                                                    <label> اسم الجمعية</label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="text"
+                                                <div class="form-group col-md-6">
+                                                    <label> تاريخ استلام الصادر </label>
+                                                    <input style="height: calc(2.25rem + 6px);" type="date"
                                                         name="agr_name"
                                                         class="form-control"placeholder="">
                                                 </div>
@@ -133,6 +130,7 @@
     </div>
     <!-- General JS Scripts -->
     <script src="assets/js/app.min.js"></script>
+    <script src="assets/bundles/select2/dist/js/select2.full.min.js"></script>
     <!-- JS Libraies -->
     <!-- Page Specific JS File -->
     <script src="assets/bundles/izitoast/js/iziToast.min.js"></script>

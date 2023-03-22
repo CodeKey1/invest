@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Export;
 use Illuminate\Http\Request;
 
 class ExportController extends Controller
@@ -13,7 +14,8 @@ class ExportController extends Controller
     public function index()
     {
         //
-        return view('export.index');
+        $export = Export::select()->get();
+        return view('export.index',compact('export'));
 
     }
 
@@ -48,6 +50,9 @@ class ExportController extends Controller
     public function edit(string $id)
     {
         //
+        $export = Export::select()->find($id);
+        return view('export.edit',compact('export'));
+
     }
 
     /**
@@ -56,6 +61,25 @@ class ExportController extends Controller
     public function update(Request $request, string $id)
     {
         //
+
+        try{
+            $export = Export ::select()->where('id',$id)->find($id);
+            //return redirect()->route('sewage.list') -> with(['success' => '--> ' . $project->pdate->project_id]);
+            if(!$export){
+                return redirect()->route('export')->with(['error' => 'وارد غير موجود']);
+            }
+
+            $export-> update(([
+             'export_id' => $request['export_id'],
+             'export_name' => $request['export_name'],
+             'export_side' => $request['export_side'],
+
+             ]));
+
+            return redirect()->route('export')-> with(['success' => 'تم التسجيل بنجاح']);
+        }catch(\Exception $ex){
+            return redirect()->route('export')-> with(['error' => 'خطأ'.$ex]);
+        }
     }
 
     /**
@@ -64,5 +88,8 @@ class ExportController extends Controller
     public function destroy(string $id)
     {
         //
+        $export = Export::find($id);
+        $export->delete();
+        return redirect()->route('export')->with(['success' => 'تم الحذف بنجاح']);
     }
 }

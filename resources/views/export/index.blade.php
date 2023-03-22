@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <!-- datatables.html  21 Nov 2019 03:55:21 GMT -->
+
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
@@ -13,7 +14,9 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <!-- Custom style CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+        integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 
@@ -22,6 +25,7 @@
     <link rel="stylesheet" href="assets/css/custom.css">
     <link rel='shortcut icon' type='image/x-icon' href='assets/img/favicon.ico' />
 </head>
+
 <body class="light theme-white dark-sidebar">
     <div class="loader"></div>
     <div id="app">
@@ -38,7 +42,8 @@
                                         <h4> الجمعيات الزراعية </h4>
                                         <div class="card-header-action">
                                             <div class="dropdown">
-                                                <a href="#" data-toggle="dropdown" class="btn btn-warning dropdown-toggle">Options</a>
+                                                <a href="#" data-toggle="dropdown"
+                                                    class="btn btn-warning dropdown-toggle">Options</a>
                                                 <div class="dropdown-menu" style="background-color: rgb(53, 60, 72);">
                                                     <a href="#" class="dropdown-item has-icon text-success"><i
                                                             class="fas fa-eye"></i> View</a>
@@ -60,26 +65,46 @@
                                                 <thead>
                                                     <tr>
                                                         <th> # </th>
-                                                        <th>اسم المركز</th>
-                                                        <th>اسم المنطقة</th>
-                                                        <th>اسم الجمعية</th>
-                                                        <th>عدد المزارعين</th>
+                                                        <th>رقم الصادر</th>
+                                                        <th>عنوان الصادر</th>
+                                                        <th>تاريخ الصادر</th>
+                                                        <th> الجهات الصادر اليها</th>
+                                                        <th> حالة </th>
                                                         <th>تفاصيل</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td>
-                                                            <a class="btn btn-icon btn-success" href="#" ata-toggle="tooltip" data-placement="top" title="عرض وتعديل" ><i class="fas fa-user"></i></a>
-                                                            <a class="btn btn-icon btn-danger" href="#"><i class="fas fa-times"></i></a>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
+                                                @isset($export)
+                                                    @if ($export && $export->count() > 0)
+                                                        @foreach ($export as $exports)
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>{{ $exports->id }}</td>
+                                                                    <td>{{ $exports->export_id }}</td>
+                                                                    <td>{{ $exports->export_name }}</td>
+                                                                    <td>{{ $exports->export_date }}</td>
+                                                                    <td>{{ $exports->export_side }}</td>
+                                                                    <td>
+                                                                        @if ($exports->state == 1)
+                                                                            <div class="badge badge-success"> </div>
+                                                                        @elseif($exports->state == 0)
+                                                                            <div class="badge badge-danger"> </div>
+                                                                        @endif
+                                                                    </td>
+                                                                    <td>
+                                                                        <a class="btn btn-icon btn-success"
+                                                                            href="{{ route('export.edit', $exports->id) }}"
+                                                                            ata-toggle="tooltip" data-placement="top"
+                                                                            title="عرض وتعديل"><i
+                                                                                class="fas fa-user"></i></a>
+                                                                        <a class="btn btn-icon btn-danger"
+                                                                            href="{{ route('export.delete', $exports->id) }}"><i
+                                                                                class="fas fa-times"></i></a>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        @endforeach
+                                                    @endif
+                                                @endisset
                                             </table>
                                         </div>
                                     </div>
@@ -103,11 +128,13 @@
     <script src="assets/js/page/datatables.js"></script>
     <!-- Template JS File -->
     <script src="assets/js/scripts.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @if (Session::has('success'))
-    <script>
-         toastr.success("{{ Session::get('success') }}");
-    </script>
+        <script>
+            toastr.success("{{ Session::get('success') }}");
+        </script>
     @endif
     <script>
         $(document).ready(function() {

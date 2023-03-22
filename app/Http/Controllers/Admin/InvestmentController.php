@@ -142,7 +142,7 @@ class InvestmentController extends Controller
         //     $location_string = "";
         //  }
 
-        // try{
+        try{
             $request   = RequestP:: create(([
              'name' => $request['name'],
              'category_id' => $request['category_id'],
@@ -177,9 +177,9 @@ class InvestmentController extends Controller
              ]));
 
             return redirect()->route('section.Create',[$request->id , $request->category_id])-> with(['success' => 'تم التسجيل بنجاح']);
-        // }catch(\Exception $ex){
-        //     return redirect()->route('investment')-> with(['error' => 'خطأ'.$ex]);
-        // }
+        }catch(\Exception $ex){
+            return redirect()->route('investment')-> with(['error' => 'خطأ'.$ex]);
+        }
     }
 
     /**
