@@ -84,6 +84,11 @@ Route::get('/section-create', [App\Http\Controllers\Admin\SectionController::cla
 */
 Route::get('/auction', [App\Http\Controllers\Admin\AuctionController::class, 'index'])->name('auction');
 Route::get('/auction-create', [App\Http\Controllers\Admin\AuctionController::class, 'create'])->name('auction.Create');
+Route::POST('/auction-insert', [App\Http\Controllers\Admin\AuctionController::class, 'store'])->name('auction.Store');
+
+Route::get('/offer', [App\Http\Controllers\Admin\AuctionController::class, 'offer_index'])->name('offer');
+Route::get('/offer-create', [App\Http\Controllers\Admin\AuctionController::class, 'offer_create'])->name('offer.Create');
+Route::POST('/offer-insert', [App\Http\Controllers\Admin\AuctionController::class, 'offer_store'])->name('offer.Store');
 
 /*
 |--------------------------------------------------------------------------

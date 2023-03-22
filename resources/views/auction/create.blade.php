@@ -10,7 +10,6 @@
     <title></title>
     <!-- General CSS Files -->
     <link rel="stylesheet" href="assets/css/app.min.css">
-    <link rel="stylesheet" href="assets/bundles/izitoast/css/iziToast.min.css">
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/bundles/bootstrap-daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="assets/bundles/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
@@ -36,98 +35,50 @@
                             <div class="col-12 col-md-12 col-lg-12">
                                 @include('layouts.success')
                                 @include('layouts.error')
-                                <form class="needs-validation" id="work_experience" novalidate=""
-                                    action="#" method="POST" enctype="multipart/form-data">
+                                <div class="card card-primary">
+                                    <div class="card-header">
+                                        <h4>اضافة مزاد جديد</h4>
+                                        <div class="card-header-action">
+                                            <a href="{{ route('auction') }}"
+                                                class="dropdown-item has-icon text-black"><i
+                                                    class="fa-sharp fa-solid fa-circle-arrow-left"></i>عودة</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <form class="needs-validation" novalidate="" action="{{ route('auction.Store') }}"
+                                    method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="card card-primary">
-                                        <div class="card-header">
-                                            <h4>اضــافة وارد جديــد</h4>
-                                            <div class="card-header-action">
-                                                {{-- <div class="dropdown">
-                                                    <a href="#" data-toggle="dropdown"
-                                                        class="btn btn-warning dropdown-toggle">الإعدادت</a>
-                                                    <div class="dropdown-menu" style="background-color: rgb(53, 60, 72);">
-                                                        <a href="{{ route('import.Create') }}" class="dropdown-item has-icon text-success"><i
-                                                                class="fas fa-eye"></i>اضافة وارد حديد</a>
-                                                        <a href="#" class="dropdown-item has-icon text-info"><i
-                                                                class="far fa-edit"></i> تقارير</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a href="" class="dropdown-item has-icon text-info"><i
-                                                                class="fas fa-archive"></i>
-                                                               الأرشيف </a>
-                                                    </div>
-                                                </div> --}}
-                                                <a href="{{ route('auction') }}" class="btn btn-warning">المزادات</a>
-                                                <a href="{{ route('home') }}" class="btn btn-primary">الرئيسية</a>
-                                            </div>
-                                        </div>
                                         <div class="card-body">
-                                            <div class="form-row">
-                                                <div class="form-group col-md-4">
-                                                    <label>رقم الوارد</label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="number"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="">
-                                                </div>
-
-                                                <div class="form-group col-md-4">
-                                                    <label>عنوان الملف الوارد</label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="">
-                                                </div>
-
-                                                <div class="form-group col-md-4">
-                                                    <label> اسم الجهة الوارد منها</label>
-                                                    <select class="form-control" id="city" name="city">
-                                                        <option value="" disabled selected>اختر المركز</option>
-                                                    </select>
-                                                </div>
+                                            <div class="form-group col-md-12">
+                                                <label> اسم المزاد</label>
+                                                <input style="height: calc(2.25rem + 6px);" type="text"
+                                                    name="name" class="form-control"placeholder="" required>
                                             </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-md-4">
-                                                    <label> اختر المركز</label>
-                                                    <select class="form-control" id="city" name="city">
-                                                        <option value="" disabled selected>اختر المركز</option>
-
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group col-md-4">
-                                                    <label> المنطقة</label>
-                                                    <select class="form-control" name="region">
-                                                        <option value="" disabled selected>اختر المنطقة</option>
-
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group col-md-4">
-                                                    <label> اسم الجمعية</label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="">
-                                                </div>
+                                            <div class="form-group col-md-12">
+                                                <label> تاريخ المزاد</label>
+                                                <input style="height: calc(2.25rem + 6px);" type="date"
+                                                    name="date" class="form-control"placeholder="" required>
                                             </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-md-12">
-                                                    <label>اضافة ملاحظات</label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="">
-                                                </div>
+                                            <div class="form-group col-md-12">
+                                                <label> عنوان المزاد</label>
+                                                <input style="height: calc(2.25rem + 6px);" type="text"
+                                                    name="label" class="form-control"placeholder="" required>
                                             </div>
-                                            <button type="submit" class="btn btn-success" style="float: left;" >حفظ</button>
+                                            <div class="form-group col-md-12">
+                                                <label>ملاحظات</label>
+                                                <textarea class="form-control" name="note" cols="10" rows="5"></textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-success"
+                                                style="float: left;">حفظ</button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
-                            {{-- <a href="javascript:void(0)" style="padding: 5px 10px 5px 10px;" id="addWork-btn"
-                                class="btn btn-primary form-label" onclick="addWorkRow()">+ اضف مستحق
-                            </a> --}}
                         </div>
                     </div>
+                </section>
             </div>
-            </section>
             @include('layouts.setting')
         </div>
         @include('layouts.footer')
@@ -146,13 +97,6 @@
     <script src="assets/js/custom.js"></script>
     <script src="assets/bundles/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
     <script src="assets/bundles/bootstrap-daterangepicker/daterangepicker.js"></script>
-    <script>
-        $('.option').hide();
-        $('#city').on('change', function(e) {
-            $('.option').hide();
-            $('.city-' + e.target.value).show();
-        });
-    </script>
 
 </body>
 

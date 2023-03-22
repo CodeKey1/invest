@@ -110,7 +110,8 @@
                     <a href="#" class="menu-toggle nav-link has-dropdown"><span> المزادات </span>
                         <i data-feather="briefcase"></i></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="{{ route('auction.Create') }}">اضافة اطرحة</a></li>
+                        <li><a class="nav-link" href="{{ route('auction') }}">مزادات</a></li>
+                        <li><a class="nav-link" href="{{ route('offer') }}">اطروحات</a></li>
                     </ul>
                 </li>
 
