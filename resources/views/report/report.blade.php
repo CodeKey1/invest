@@ -93,9 +93,12 @@
                                     @include('layouts.error')
                                     <div class="card card-primary work-xp">
                                         <div class="card-header">
-                                            <h3>تقرير اجمالي لمزاد "@isset($offer)
-                                                    {{ $offer->auction_name->name }}
-                                                @endisset"</h3>
+                                            <h3>تقرير اجمالي لمزاد "@isset($offerDetail)
+                                                    @foreach ($offerDetail as $offerDetail1)
+                                                        {{ $offerDetail1->name }}
+                                                    @endforeach
+                                                @endisset"
+                                            </h3>
                                         </div>
                                         <div class="card-body">
                                             <table class="table">
@@ -104,8 +107,10 @@
                                                         <th scope="row" style="text-align: inherit;width: 130px; ">
                                                             اسم المزاد : </th>
                                                         <td style="text-align: inherit;">
-                                                            @isset($offer)
-                                                                {{ $offer->auction_name->name }}
+                                                            @isset($offerDetail)
+                                                                @foreach ($offerDetail as $offerDetail1)
+                                                                    {{ $offerDetail1->name }}
+                                                                @endforeach
                                                             @endisset
                                                         </td>
                                                     </tr>
@@ -113,8 +118,10 @@
                                                         <th scope="row" style="text-align: inherit;width: 130px; ">
                                                             تاريخ المزاد : </th>
                                                         <td style="text-align: inherit;">
-                                                            @isset($offer)
-                                                                {{ $offer->auction_name->date }}
+                                                            @isset($offerDetail)
+                                                                @foreach ($offerDetail as $offerDetail1)
+                                                                    {{ $offerDetail1->date }}
+                                                                @endforeach
                                                             @endisset
                                                         </td>
                                                     </tr>
@@ -122,8 +129,10 @@
                                                         <th scope="row" style="text-align: inherit;width: 130px; ">
                                                             عدد الاطروحات :</th>
                                                         <td style="text-align: inherit;">
-                                                            @isset($offer)
-                                                                {{ $offer->id->count() }}
+                                                            @isset($offerDetail)
+                                                                @foreach ($offerDetail as $offerDetail1)
+                                                                    {{ $offerDetail1->offer_count }}
+                                                                @endforeach
                                                             @endisset
                                                         </td>
                                                     </tr>
@@ -131,8 +140,10 @@
                                                         <th scope="row" style="text-align: inherit;width: 130px; ">
                                                             اجمالي المبلغ :</th>
                                                         <td style="text-align: inherit;">
-                                                            @isset($offer)
-                                                                {{ $offer->asset_name->contract_cost->sum() }}
+                                                            @isset($offerDetail)
+                                                                @foreach ($offerDetail as $offerDetail1)
+                                                                    {{ $offerDetail1->cost_sum }}
+                                                                @endforeach
                                                             @endisset
                                                             جنيه
                                                         </td>
@@ -141,8 +152,10 @@
                                                         <th scope="row" style="text-align: inherit;width: 130px;">
                                                             عدد الاصول :</th>
                                                         <td style="text-align: inherit;">
-                                                            @isset($offer)
-                                                                {{ $offer->asset_name->id->count() }}
+                                                            @isset($offerDetail)
+                                                                @foreach ($offerDetail as $offerDetail1)
+                                                                    {{ $offerDetail1->asset_count }}
+                                                                @endforeach
                                                             @endisset
                                                         </td>
                                                     </tr>

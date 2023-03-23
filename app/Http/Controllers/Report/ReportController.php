@@ -10,6 +10,8 @@ use App\Models\Asset;
 use App\Models\Offer;
 use App\Models\contract_type;
 
+use Illuminate\Support\Facades\DB as DB;
+
 class ReportController extends Controller
 {
     /**
@@ -30,6 +32,18 @@ class ReportController extends Controller
         $auction = Auction::select()->get(); 
         $offer = Offer::where('auction_id','=', $auction_id)->get(); 
 
-        return view('report.report',compact('auction','offer'));
+        $offerDetail = DB::table('offer')
+            ->select('auction.name as name',
+                    'auction.date as date',
+                    DB::raw('count(DISTINCT offer.id) as offer_count'),
+                    DB::raw('sum(DISTINCT assets.contract_cost) as cost_sum'),
+                    DB::raw('count(DISTINCT assets.id) as asset_count'),
+                    )
+            ->join('auction','auction.id','=','offer.auction_id')
+            ->join('assets','assets.id','=','offer.assets_id')
+            ->groupBy('auction.id','assets.id','auction.name','auction.date')
+            ->get();
+        //return redirect()->route('offer') -> with(['success' => $offerDetail]);
+        return view('report.report',compact('auction','offer','offerDetail'));
     }
 }
