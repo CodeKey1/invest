@@ -19,6 +19,8 @@
     <!-- Custom style CSS -->
     <link rel="stylesheet" href="assets/css/custom.css">
     <link rel='shortcut icon' type='image/x-icon' href='assets/img/favicon.ico' />
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
 </head>
 
 <body class="light theme-white dark-sidebar">
@@ -207,24 +209,34 @@
                                                 </div>
                                                 <div class="form-group col-md-12">
                                                     <label>ملاحظات</label>
-                                                    <textarea class="form-control" name="note" cols="10" rows="5" disabled>{{ $offer->note }}</textarea>
-                                                    <textarea class="form-control" name="note" cols="10" rows="5">{{ $offer->note }}</textarea>
+                                                    <textarea class="form-control" name="note" cols="5" rows="3" disabled>{{ $offer->note }}</textarea>
+                                                    <textarea class="form-control" name="note" cols="5" rows="3">{{ $offer->note }}</textarea>
                                                 </div>
-                                                <div class="form-group col-md-2">
-                                                    <input type="checkbox" class="btn-check" id="offer_status"
-                                                        autocomplete="off">
-                                                    <label class="btn btn-outline-primary" for="offer_status">تعليق
-                                                        التعاقد</label><br>
-                                                </div>
-                                                <div class="form-group col-md-2">
+                                                @if ($offer->status)
+                                                    <div class="form-group col-md-6">
+                                                        <input type="checkbox" class="btn-check" name="offer_status"
+                                                            id="offer_status" autocomplete="off" checked>
+                                                        <label class="btn btn-outline-primary" for="offer_status">
+                                                            تعاقد فعال</label><br>
+                                                    </div>
+                                                @else
+                                                    <div class="form-group col-md-6">
+                                                        <input type="checkbox" class="btn-check" name="offer_status"
+                                                            id="offer_status" autocomplete="off">
+                                                        <label class="btn btn-outline-primary"
+                                                            for="offer_status">تفعيل
+                                                            التعاقد</label><br>
+                                                    </div>
+                                                @endif
+                                                <div class="form-group col-md-6">
                                                     <input type="checkbox" class="btn-check" id="asset_status"
                                                         autocomplete="off">
-                                                    <label class="btn btn-outline-primary" for="asset_status">الغاء
+                                                    <label class="btn btn-outline-danger" for="asset_status">الغاء
                                                         التعاقد</label><br>
                                                 </div>
-                                                <button type="submit" class="btn btn-success"
-                                                    style="float: left;">حفظ</button>
                                             </div>
+                                            <button type="submit" class="btn btn-success"
+                                                style="float: left;">حفظ</button>
                                         </div>
                                     </div>
                                 </form>

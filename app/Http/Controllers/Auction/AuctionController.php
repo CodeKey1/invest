@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Auction;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -64,7 +64,6 @@ class AuctionController extends Controller
             return redirect()->route('auction')-> with(['error' => 'خطأ']);
         }
     }
-    
     public function offer_store(Request $request)
     {
         $file="";
@@ -183,7 +182,14 @@ class AuctionController extends Controller
         $investor = $request['investor'];
         $phone = $request['phone'];
         $work_date = $request['work_date'];
-        $offerStatus = 1;
+        switch($request['offer_status']){
+            case NULL:
+                $offerStatus = 0;
+                break;
+            default:
+                $offerStatus = 1;
+                break;   
+        }
         $delivery_record = $file;
         $note = $request['note'];
         $increase_rate = $request['increase_rate'];

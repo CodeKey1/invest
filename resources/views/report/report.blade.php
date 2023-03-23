@@ -50,141 +50,161 @@
             @include('layouts.sidbar')
             <!-- Main Content -->
             <div class="main-content">
-                <section class="section" id="print">
-                    <div id="centerlogo"
-                        style="margin: 30px ; justify-content: space-between; align-items: center; display:flex;">
-                        <img width="80px" height="100px" src="../images/logo/aswan.png">
-
-                        <img width="80px" height="100px" src="../images/logo/logo.png">
-                    </div>
-                    <div class="section-body">
-                        <div class="row" style="direction: rtl">
-                            <div class="col-12 col-md-12 col-lg-12">
-                                @include('layouts.success')
-                                @include('layouts.error')
-                                <div class="card card-primary work-xp">
-                                    <div class="card-header">
-                                        <h3>تقرير تفصيلي لمشروع ""</h3>
-                                    </div>
-                                    <div class="card-body">
-                                        {{-- <table class="table">
-                                            <tbody>
-                                                <tr style="height: 50px;">
-                                                    <th scope="row" style="text-align: inherit;width: 130px; ">
-                                                        اسم المشروع : </th>
-                                                    <td style="text-align: inherit; "></td>
-                                                </tr>
-                                                <tr style="height: 50px;">
-                                                    <th scope="row" style="text-align: inherit;width: 130px; ">
-                                                        تاريخ الانشاء :</th>
-                                                    <td style="text-align: inherit; ">
-                                                        </td>
-                                                </tr>
-                                                <tr style="height: 50px;">
-                                                    <th scope="row" style="text-align: inherit;width: 130px; ">
-                                                        تاريخ الانتهاء :</th>
-                                                    <td style="text-align: inherit;">
-                                                        </td>
-                                                </tr>
-                                                <tr style="height: 50px;">
-                                                    <th scope="row" style="text-align: inherit;width: 130px;">
-                                                        التكلفة المستحقة :</th>
-                                                    <td style="text-align: inherit;">
-                                                        جنيه
-                                                    </td>
-                                                    <th scope="row" style="text-align: inherit;width: 130px;">
-                                                        ما تم تحصيله :</th>
-                                                    <td style="text-align: inherit;">
-
-                                                        جنيه
-                                                    </td>
-                                                    <th scope="row" style="text-align: inherit;width: 130px;">
-                                                        التكلفة المتبقية :</th>
-                                                    <td style="text-align: inherit;">
-
-                                                        جنيه
-                                                    </td>
-                                                </tr>
-                                                <tr style="height: 50px;">
-                                                    <th scope="row" style="text-align: inherit;width: 130px;">
-                                                        المساحة / الزمام :</th>
-                                                    <td style="text-align: inherit;">
-                                                        <div class="badge badge-light">
-
-                                                            فدان</div>
-                                                        <div class="badge badge-light">
-
-                                                            فراط</div>
-                                                        <div class="badge badge-light">
-
-                                                            سهم</div>
-                                                    </td>
-                                                    <th scope="row" style="text-align: inherit;width: 130px;">
-                                                        المساحة / الزمام (الفعلي):</th>
-                                                    <td style="text-align: inherit;">
-
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table> --}}
-
-                                        <table class="table table-bordered" style="margin-top: 50px;">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">تاريخ الحصر </th>
-                                                    <th scope="col">تاريخ العرض والنشر </th>
-                                                    <th scope="col">تاريخ المعارضات </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row">بدأ</th>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">نهو</th>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                </tr>
-
-                                            </tbody>
-                                        </table>
-                                        <table class="table table-bordered" style="margin-top: 50px;">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">تاريخ ابلاغ الضرائب </th>
-                                                    <th scope="col">تاريخ ابلاغ المساحة </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row">مبدأي (صرف)</th>
-                                                    <td></td>
-                                                    <td></td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">نهائي (مساحة)</th>
-                                                    <td></td>
-                                                    <td></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                <div class="col-12 col-md-12 col-lg-12">
+                    <div class="card card-primary">
+                        <div class="card-body">
+                            <form action="{{ route('auctionReport') }}" method="GET" enctype="multipart/form-data">
+                                @csrf
+                                <div class="row">
+                                    <button type="submit" class="text-white btn-dark col-1">عرض</button>
+                                    <select class="form-control col-9" name="auction">
+                                        <option value="" hidden disabled selected>
+                                            اختر
+                                            المزاد
+                                        </option>
+                                        @isset($auction)
+                                            @if ($auction && $auction->count() > 0)
+                                                @foreach ($auction as $auction1)
+                                                    <option value="{{ $auction1->id }}">
+                                                        {{ $auction1->name }}
+                                                    </option>
+                                                @endforeach
+                                            @endif
+                                        @endisset
+                                    </select>
+                                    <h6 class="col-2">اختر المزاد</h6>
                                 </div>
-                            </div>
-                            <div class="justify-content-right d-flex">
-                                <button class="btn btn-danger  float-left mt-3 mr-2" id="print_Button"
-                                    onclick="printDiv()"> <i class="mdi mdi-printer ml-1"></i>طباعة</button>
-                            </div>
+                            </form>
                         </div>
                     </div>
+                </div>
+                @isset($offer)
+                    <section class="section" id="print">
+                        <div id="centerlogo"
+                            style="margin: 30px ; justify-content: space-between; align-items: center; display:flex;">
+                            <img width="80px" height="100px" src="../images/logo/aswan.png">
+
+                            <img width="80px" height="100px" src="../images/logo/logo.png">
+                        </div>
+                        <div class="section-body">
+                            <div class="row" style="direction: rtl">
+                                <div class="col-12 col-md-12 col-lg-12">
+                                    @include('layouts.success')
+                                    @include('layouts.error')
+                                    <div class="card card-primary work-xp">
+                                        <div class="card-header">
+                                            <h3>تقرير اجمالي لمزاد "@isset($offer)
+                                                    {{ $offer->auction_name->name }}
+                                                @endisset"</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr style="height: 50px;">
+                                                        <th scope="row" style="text-align: inherit;width: 130px; ">
+                                                            اسم المزاد : </th>
+                                                        <td style="text-align: inherit;">
+                                                            @isset($offer)
+                                                                {{ $offer->auction_name->name }}
+                                                            @endisset
+                                                        </td>
+                                                    </tr>
+                                                    <tr style="height: 50px;">
+                                                        <th scope="row" style="text-align: inherit;width: 130px; ">
+                                                            تاريخ المزاد : </th>
+                                                        <td style="text-align: inherit;">
+                                                            @isset($offer)
+                                                                {{ $offer->auction_name->date }}
+                                                            @endisset
+                                                        </td>
+                                                    </tr>
+                                                    <tr style="height: 50px;">
+                                                        <th scope="row" style="text-align: inherit;width: 130px; ">
+                                                            عدد الاطروحات :</th>
+                                                        <td style="text-align: inherit;">
+                                                            @isset($offer)
+                                                                {{ $offer->id->count() }}
+                                                            @endisset
+                                                        </td>
+                                                    </tr>
+                                                    <tr style="height: 50px;">
+                                                        <th scope="row" style="text-align: inherit;width: 130px; ">
+                                                            اجمالي المبلغ :</th>
+                                                        <td style="text-align: inherit;">
+                                                            @isset($offer)
+                                                                {{ $offer->asset_name->contract_cost->sum() }}
+                                                            @endisset
+                                                            جنيه
+                                                        </td>
+                                                    </tr>
+                                                    <tr style="height: 50px;">
+                                                        <th scope="row" style="text-align: inherit;width: 130px;">
+                                                            عدد الاصول :</th>
+                                                        <td style="text-align: inherit;">
+                                                            @isset($offer)
+                                                                {{ $offer->asset_name->id->count() }}
+                                                            @endisset
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                            <table class="table table-bordered" style="margin-top: 50px;">
+                                                <thead>
+                                                    <tr>
+                                                        <th>المستفيد</th>
+                                                        <th>الهاتف</th>
+                                                        <th>اسم الاصل</th>
+                                                        <th>عنوان الاصل</th>
+                                                        <th>نوع التعاقد</th>
+                                                        <th>تكلفة التعاقد</th>
+                                                        <th>مدة التعاقد</th>
+                                                        <th>ت. الاستلام</th>
+                                                        <th>ت. الاشغال</th>
+                                                        <th>حالة العقد</th>
+                                                        <th>ملاحظات</th>
+                                                    </tr>
+                                                </thead>
+                                                @isset($offer)
+                                                    @if ($offer && $offer->count() > 0)
+                                                        @foreach ($offer as $offer1)
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>{{ $offer1->investor }}</td>
+                                                                    <td>{{ $offer1->number }}</td>
+                                                                    <td>{{ $offer1->asset_name->name }}</td>
+                                                                    <td>{{ $offer1->asset_name->address }}</td>
+                                                                    <td>{{ $offer1->asset_name->contract_type->name }}</td>
+                                                                    <td>{{ $offer1->asset_name->contract_cost }}</td>
+                                                                    <td>{{ $offer1->asset_name->contract_period }}</td>
+                                                                    <td>{{ $offer1->recived }}</td>
+                                                                    <td>{{ $offer1->work_date }}</td>
+                                                                    <td>
+                                                                        @if ($offer1->status)
+                                                                            <span>فعال</span>
+                                                                        @else
+                                                                            <span style="color: red">غير فعال</span>
+                                                                        @endif
+                                                                    </td>
+                                                                    <td>{{ $offer1->note }}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        @endforeach
+                                                    @endif
+                                                @endisset
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="justify-content-right d-flex">
+                                    <button class="btn btn-danger  float-left mt-3 mr-2" id="print_Button"
+                                        onclick="printDiv()"> <i class="mdi mdi-printer ml-1"></i>طباعة</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                @endisset
             </div>
-            </section>
             @include('layouts.setting')
         </div>
         @include('layouts.footer')

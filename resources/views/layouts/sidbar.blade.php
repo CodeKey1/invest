@@ -117,11 +117,11 @@
 
 
 
-                <li class="dropdown">
+                {{-- <li class="dropdown">
                     <a href="{{ route('search') }}" class="nav-link"><span>بحــث</span>
                         <i data-feather="briefcase"></i></a>
 
-                </li>
+                </li> --}}
 
 
                 <li class="menu-header">
@@ -180,13 +180,13 @@
 
 
                 <li class="dropdown">
-                    <a href="#" class="menu-toggle nav-link has-dropdown"><span> تقارير الطلبات</span>
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><span> التقارير </span>
                         <i data-feather="briefcase"></i></a>
                     <ul class="dropdown-menu">
 
-                        <li><a class="nav-link" href="#">تقرير مفصل</a></li>
+                        <li><a class="nav-link" href="#">تقرير الطلبات</a></li>
 
-                        <li><a class="nav-link" href="{{ route('report') }}">تقرير </a></li>
+                        <li><a class="nav-link" href="{{ route('auction.report') }}">تقرير المزادات</a></li>
 
                         <li><a class="nav-link" href="#">تقرير مجمع</a></li>
 
