@@ -40,7 +40,8 @@
                                         <h4>تعديل اطروحة ({{ $offer->auction_name->name }}) -
                                             ({{ $offer->asset_name->name }}) لصالح ({{ $offer->investor }})</h4>
                                         <div class="card-header-action">
-                                            <a href="{{ route('offer') }}" class="dropdown-item has-icon text-black"><i
+                                            <a href="{{ route('offer') }}"
+                                                class="dropdown-item has-icon text-dark btn-warning"><i
                                                     class="fa-sharp fa-solid fa-circle-arrow-left"></i>عودة</a>
                                         </div>
                                     </div>
@@ -138,7 +139,9 @@
                                                         value="{{ $offer->recived }}" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label>محضر الاستلام</label>
+                                                    <label>محضر الاستلام <span style="color: red">pdf او word بحد اقصي
+                                                            1
+                                                            ميجا</span></label>
                                                     <label class="form-control"
                                                         style="height: calc(2.25rem + 6px);"><a target="_blank"
                                                             href="auctionOffer-files/{{ $offer->delivery_record }}">{{ $offer->delivery_record }}</a></label>
@@ -207,7 +210,18 @@
                                                     <textarea class="form-control" name="note" cols="10" rows="5" disabled>{{ $offer->note }}</textarea>
                                                     <textarea class="form-control" name="note" cols="10" rows="5">{{ $offer->note }}</textarea>
                                                 </div>
-
+                                                <div class="form-group col-md-2">
+                                                    <input type="checkbox" class="btn-check" id="offer_status"
+                                                        autocomplete="off">
+                                                    <label class="btn btn-outline-primary" for="offer_status">تعليق
+                                                        التعاقد</label><br>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <input type="checkbox" class="btn-check" id="asset_status"
+                                                        autocomplete="off">
+                                                    <label class="btn btn-outline-primary" for="asset_status">الغاء
+                                                        التعاقد</label><br>
+                                                </div>
                                                 <button type="submit" class="btn btn-success"
                                                     style="float: left;">حفظ</button>
                                             </div>

@@ -44,7 +44,7 @@
                                         <h4>المزادات</h4>
                                         <div class="card-header-action">
                                             <a href="{{ route('auction.Create') }}"
-                                                class="dropdown-item has-icon text-success"><i
+                                                class="dropdown-item has-icon text-dark btn-warning"><i
                                                     class="fas fa-plus"></i>اضافة مزاد جديد</a>
                                         </div>
                                     </div>

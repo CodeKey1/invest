@@ -39,7 +39,8 @@
                                     <div class="card-header">
                                         <h4>اضافة اطروحة جديد</h4>
                                         <div class="card-header-action">
-                                            <a href="{{ route('offer') }}" class="dropdown-item has-icon text-black"><i
+                                            <a href="{{ route('offer') }}"
+                                                class="dropdown-item has-icon text-dark btn-warning"><i
                                                     class="fa-sharp fa-solid fa-circle-arrow-left"></i>عودة</a>
                                         </div>
                                     </div>
@@ -123,9 +124,11 @@
                                                         name="recived" class="form-control"placeholder="" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label>محضر الاستلام</label>
+                                                    <label>محضر الاستلام <span style="color: red">pdf او word بحد اقصي 1
+                                                            ميجا</span></label>
                                                     <input style="height: calc(2.25rem + 6px);" type="file"
-                                                        name="delivery_record" class="form-control" required>
+                                                        name="delivery_record" accept=",.doc, .docx, .pdf"
+                                                        class="form-control" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label>تاريخ الاشغال</label>
@@ -170,7 +173,7 @@
                                                 </div>
                                                 <div class="form-group col-md-12">
                                                     <label>ملاحظات</label>
-                                                    <textarea class="form-control" name="note" cols="10" rows="5"></textarea>
+                                                    <textarea class="form-control" name="note" cols="10" rows="5"> </textarea>
                                                 </div>
 
                                                 <button type="submit" class="btn btn-success"

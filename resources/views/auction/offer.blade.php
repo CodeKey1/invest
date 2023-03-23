@@ -64,6 +64,7 @@
                                                         <th>اسم الاصل</th>
                                                         <th>نوع التعاقد</th>
                                                         <th>تاريخ الاستلام</th>
+                                                        <th>الحالة</th>
                                                         <th>ملاحظات</th>
                                                         <th>تفاصيل</th>
                                                     </tr>
@@ -80,6 +81,15 @@
                                                                     <td>{{ $offer1->asset_name->name }}</td>
                                                                     <td>{{ $offer1->asset_name->contract_type->name }}</td>
                                                                     <td>{{ $offer1->recived }}</td>
+                                                                    <td>
+                                                                        @if ($offer1->status)
+                                                                            <div class="badge badge-success">
+                                                                            </div>
+                                                                        @else
+                                                                            <div class="badge badge-danger">
+                                                                            </div>
+                                                                        @endif
+                                                                    </td>
                                                                     <td>{{ $offer1->note }}</td>
                                                                     <td>
                                                                         <a class="btn btn-icon btn-success"

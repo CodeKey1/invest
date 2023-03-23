@@ -39,7 +39,7 @@
                                         <h4>تعديل المزاد ({{ $auction->name }})</h4>
                                         <div class="card-header-action">
                                             <a href="{{ route('auction') }}"
-                                                class="dropdown-item has-icon text-black"><i
+                                                class="dropdown-item has-icon text-dark btn-warning"><i
                                                     class="fa-sharp fa-solid fa-circle-arrow-left"></i>عودة</a>
                                         </div>
                                     </div>

@@ -67,14 +67,21 @@ class AuctionController extends Controller
     
     public function offer_store(Request $request)
     {
-
         $file="";
         if($delivery_record = $request->file('delivery_record')){
-            $file_extension = $request->delivery_record->getclientoriginalExtension();
-            $file = time() .'-'. 'delivery_record' . '.' . $file_extension;
-            $path = 'auctionOffer-files';
-            $delivery_record->move($path,$file);
-            $delivery_record = $file;
+            if ($delivery_record->getclientoriginalExtension() === 'pdf' || $delivery_record->getclientoriginalExtension() === 'doc'  || $delivery_record->getclientoriginalExtension() === 'docx')
+            {
+                if ($delivery_record->getSize() < 1000000)
+                {
+                    $file_extension = $request->delivery_record->getclientoriginalExtension();
+                    $file = time() .'-'. 'delivery_record' . '.' . $file_extension;
+                    $path = 'auctionOffer-files';
+                    $delivery_record->move($path,$file);
+                    $delivery_record = $file;
+                }else
+                    return redirect()->back()->with(['error' => 'حجم الملف يجب الا يزيد عن 1 ميجا']);
+            }else
+                return redirect()->back()->with(['error' => 'الملف يجب ان يكون pdf او word فقط']);
         }
         
         $auction_id = $request['auction'];
@@ -155,11 +162,17 @@ class AuctionController extends Controller
         $file="";
         if($request['delivery_record']!="null"){
             if($delivery_record = $request->file('delivery_record')){
-                $file_extension = $request->delivery_record->getclientoriginalExtension();
-                $file = $id .'-'. 'delivery_record' . '.' . $file_extension;
-                $path = 'auctionOffer-files';
-                $delivery_record->move($path,$file);
-                $delivery_record = $file;
+                if ($delivery_record->getclientoriginalExtension() === 'pdf' || $delivery_record->getclientoriginalExtension() === 'doc'  || $delivery_record->getclientoriginalExtension() === 'docx'){
+                    if ($delivery_record->getSize() < 1000000){
+                        $file_extension = $request->delivery_record->getclientoriginalExtension();
+                        $file = $id .'-'. 'delivery_record' . '.' . $file_extension;
+                        $path = 'auctionOffer-files';
+                        $delivery_record->move($path,$file);
+                        $delivery_record = $file;
+                    }else
+                        return redirect()->back()->with(['error' => 'حجم الملف يجب الا يزيد عن 1 ميجا']);
+                }else
+                    return redirect()->back()->with(['error' => 'الملف يجب ان يكون pdf او word فقط']);
             }
         }
         //return redirect()->route('offer')-> with(['success' => $file]);
