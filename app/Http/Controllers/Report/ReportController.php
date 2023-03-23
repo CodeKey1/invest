@@ -29,6 +29,7 @@ class ReportController extends Controller
         $auction_id =  $request['auction'];
         $auction = Auction::select()->get(); 
         $offer = Offer::where('auction_id','=', $auction_id)->get(); 
+
         return view('report.report',compact('auction','offer'));
     }
 }

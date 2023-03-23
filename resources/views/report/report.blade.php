@@ -171,7 +171,7 @@
                                                             <tbody>
                                                                 <tr>
                                                                     <td>{{ $offer1->investor }}</td>
-                                                                    <td>{{ $offer1->number }}</td>
+                                                                    <td>{{ $offer1->phone }}</td>
                                                                     <td>{{ $offer1->asset_name->name }}</td>
                                                                     <td>{{ $offer1->asset_name->address }}</td>
                                                                     <td>{{ $offer1->asset_name->contract_type->name }}</td>
