@@ -129,8 +129,8 @@
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
                                                         value="{{ $offer->phone }}" class="form-control" disabled>
                                                     <input style="height: calc(2.25rem + 6px);" type="number"
-                                                        name="phone" class="form-control" value="{{ $offer->phone }}"
-                                                        required>
+                                                        name="phone" min="10" max="11"
+                                                        class="form-control" value="{{ $offer->phone }}" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label>تاريخ الاستلام</label>

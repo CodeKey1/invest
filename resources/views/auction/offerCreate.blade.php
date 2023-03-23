@@ -116,7 +116,8 @@
                                                 <div class="form-group col-md-4">
                                                     <label>رقم الهاتف</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="number"
-                                                        name="phone" class="form-control"placeholder="" required>
+                                                        name="phone" min="10" max="11"
+                                                        class="form-control"placeholder="" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label>تاريخ الاستلام</label>
