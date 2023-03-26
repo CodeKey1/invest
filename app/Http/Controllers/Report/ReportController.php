@@ -38,7 +38,7 @@ class ReportController extends Controller
                     ->select('auction.name as name',
                             'auction.date as date',
                             DB::raw('count(DISTINCT offer.id) as offer_count'),
-                            DB::raw('sum(assets.contract_cost) as cost_sum'),
+                            DB::raw('sum(offer.contract_cost) as cost_sum'),
                             DB::raw('count(DISTINCT assets.id) as asset_count'),
                             )
                     ->join('auction','auction.id','=','offer.auction_id')
@@ -54,7 +54,7 @@ class ReportController extends Controller
                     ->select('auction.name as name',
                             'auction.date as date',
                             DB::raw('count(DISTINCT offer.id) as offer_count'),
-                            DB::raw('sum(assets.contract_cost) as cost_sum'),
+                            DB::raw('sum(offer.contract_cost) as cost_sum'),
                             DB::raw('count(DISTINCT assets.id) as asset_count'),
                             )
                     ->join('auction','auction.id','=','offer.auction_id')
@@ -71,7 +71,7 @@ class ReportController extends Controller
                     ->select('auction.name as name',
                             'auction.date as date',
                             DB::raw('count(DISTINCT offer.id) as offer_count'),
-                            DB::raw('sum(assets.contract_cost) as cost_sum'),
+                            DB::raw('sum(offer.contract_cost) as cost_sum'),
                             DB::raw('count(DISTINCT assets.id) as asset_count'),
                             )
                     ->join('auction','auction.id','=','offer.auction_id')

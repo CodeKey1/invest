@@ -171,12 +171,12 @@
                                                 <div class="form-group col-md-4">
                                                     <label>نوع التعاقد</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        value="{{ $offer->asset_name->contract_type->name }}"
+                                                        value="{{ $offer->contract_type->name }}"
                                                         class="form-control" disabled>
                                                     <select class="form-control" name="contract_type">
-                                                        <option value="{{ $offer->asset_name->contract_type_id }}"
-                                                            hidden selected>
-                                                            {{ $offer->asset_name->contract_type->name }}
+                                                        <option value="{{ $offer->contract_type_id }}" hidden
+                                                            selected>
+                                                            {{ $offer->contract_type->name }}
                                                         </option>
                                                         @isset($contract_type)
                                                             @if ($contract_type && $contract_type->count() > 0)
@@ -192,20 +192,20 @@
                                                 <div class="form-group col-md-4">
                                                     <label>مدة العقد</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        value="{{ $offer->asset_name->contract_period }}"
-                                                        class="form-control" disabled>
+                                                        value="{{ $offer->contract_period }}" class="form-control"
+                                                        disabled>
                                                     <input style="height: calc(2.25rem + 6px);" type="date"
                                                         name="contract_period" class="form-control"
-                                                        value="{{ $offer->asset_name->contract_period }}" required>
+                                                        value="{{ $offer->contract_period }}" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label>قيمة العقد</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        value="{{ $offer->asset_name->contract_cost }}"
-                                                        class="form-control" disabled>
+                                                        value="{{ $offer->contract_cost }}" class="form-control"
+                                                        disabled>
                                                     <input style="height: calc(2.25rem + 6px);" step="0.1"
                                                         type="number" name="contract_cost" class="form-control"
-                                                        value="{{ $offer->asset_name->contract_cost }}" required>
+                                                        value="{{ $offer->contract_cost }}" required>
                                                 </div>
                                                 <div class="form-group col-md-12">
                                                     <label>ملاحظات</label>

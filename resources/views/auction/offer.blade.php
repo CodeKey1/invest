@@ -79,7 +79,7 @@
                                                                     <td>{{ $offer1->auction_name->date }}</td>
                                                                     <td>{{ $offer1->investor }}</td>
                                                                     <td>{{ $offer1->asset_name->name }}</td>
-                                                                    <td>{{ $offer1->asset_name->contract_type->name }}</td>
+                                                                    <td>{{ $offer1->contract_type->name }}</td>
                                                                     <td>{{ $offer1->recived }}</td>
                                                                     <td>
                                                                         @if ($offer1->status)

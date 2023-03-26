@@ -195,9 +195,9 @@
                                                                     <td>{{ $offer1->phone }}</td>
                                                                     <td>{{ $offer1->asset_name->name }}</td>
                                                                     <td>{{ $offer1->asset_name->address }}</td>
-                                                                    <td>{{ $offer1->asset_name->contract_type->name }}</td>
-                                                                    <td>{{ $offer1->asset_name->contract_cost }}</td>
-                                                                    <td>{{ $offer1->asset_name->contract_period }}</td>
+                                                                    <td>{{ $offer1->contract_type->name }}</td>
+                                                                    <td>{{ $offer1->contract_cost }}</td>
+                                                                    <td>{{ $offer1->contract_period }}</td>
                                                                     <td>{{ $offer1->recived }}</td>
                                                                     <td>{{ $offer1->work_date }}</td>
                                                                     <td>

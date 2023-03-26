@@ -107,15 +107,15 @@ class AuctionController extends Controller
                 'status' => $offerStatus,
                 'delivery_record' => $delivery_record,
                 'note' => $note,
+                'contract_cost' => $contract_cost,
+                'contract_period' => $contract_period,
                 'increase_rate' => $increase_rate,
                 'assets_id' => $asset_id,
-                'auction_id' => $auction_id
+                'auction_id' => $auction_id,
+                'contract_type_id' => $contract_type 
              ]));
              Asset::select()->find($asset_id)->update(([
                 'status' => $assetStatus,
-                'contract_cost' => $contract_cost,
-                'contract_period' => $contract_period,
-                'contract_type_id' => $contract_type 
              ]));
             return redirect()->route('offer.Create')-> with(['success' => 'تم التسجيل بنجاح']);
         }catch(\Exception $ex){
@@ -208,15 +208,15 @@ class AuctionController extends Controller
                     'status' => $offerStatus,
                     'delivery_record' => $delivery_record,
                     'note' => $note,
-                    'increase_rate' => $increase_rate,
-                    'assets_id' => $asset_id,
-                    'auction_id' => $auction_id
-                 ]));
-                 Asset::select()->find($asset_id)->update(([
-                    'status' => $assetStatus,
                     'contract_cost' => $contract_cost,
                     'contract_period' => $contract_period,
-                    'contract_type_id' => $contract_type 
+                    'increase_rate' => $increase_rate,
+                    'assets_id' => $asset_id,
+                    'auction_id' => $auction_id,
+                    'contract_type_id' => $contract_type
+                 ]));
+                 Asset::select()->find($asset_id)->update(([
+                    'status' => $assetStatus, 
                  ]));
                 return redirect()->route('offer')-> with(['success' => 'تم التعديل بنجاح']);
             }catch(\Exception $ex){
@@ -231,15 +231,16 @@ class AuctionController extends Controller
                     'work_date' => $work_date,
                     'status' => $offerStatus,
                     'note' => $note,
+                    'contract_cost' => $contract_cost,
+                    'contract_period' => $contract_period,
                     'increase_rate' => $increase_rate,
                     'assets_id' => $asset_id,
-                    'auction_id' => $auction_id
+                    'auction_id' => $auction_id,
+                    'contract_type_id' => $contract_type 
                  ]));
                  Asset::select()->find($asset_id)->update(([
                     'status' => $assetStatus,
-                    'contract_cost' => $contract_cost,
-                    'contract_period' => $contract_period,
-                    'contract_type_id' => $contract_type 
+                    
                  ]));
                 return redirect()->route('offer')-> with(['success' => 'تم التعديل بنجاح']);
             }catch(\Exception $ex){
