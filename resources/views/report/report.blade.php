@@ -55,9 +55,18 @@
                         <div class="card-body">
                             <form action="{{ route('auctionReport') }}" method="GET" enctype="multipart/form-data">
                                 @csrf
-                                <div class="row">
+                                <div class="row" style="display: flex; justify-content: space-around ">
                                     <button type="submit" class="text-white btn-dark col-1">عرض</button>
-                                    <select class="form-control col-9" name="auction">
+                                    <select class="form-control col-2" name="type" required>
+                                        <option value="" hidden disabled selected>
+                                            اختر
+                                            نوع التقرير
+                                        </option>
+                                        <option value="all">الكل</option>
+                                        <option value="active">الفعال</option>
+                                        <option value="hold">الغير فعال</option>
+                                    </select>
+                                    <select class="form-control col-8" name="auction" required>
                                         <option value="" hidden disabled selected>
                                             اختر
                                             المزاد
@@ -72,7 +81,6 @@
                                             @endif
                                         @endisset
                                     </select>
-                                    <h6 class="col-2">اختر المزاد</h6>
                                 </div>
                             </form>
                         </div>
@@ -93,7 +101,7 @@
                                     @include('layouts.error')
                                     <div class="card card-primary work-xp">
                                         <div class="card-header">
-                                            <h3>تقرير اجمالي لمزاد "@isset($offerDetail)
+                                            <h3>تقرير {{ $type }} لمزاد "@isset($offerDetail)
                                                     @foreach ($offerDetail as $offerDetail1)
                                                         {{ $offerDetail1->name }}
                                                     @endforeach
@@ -194,7 +202,7 @@
                                                                     <td>{{ $offer1->work_date }}</td>
                                                                     <td>
                                                                         @if ($offer1->status)
-                                                                            <span>فعال</span>
+                                                                            <span style="color: green">فعال</span>
                                                                         @else
                                                                             <span style="color: red">غير فعال</span>
                                                                         @endif

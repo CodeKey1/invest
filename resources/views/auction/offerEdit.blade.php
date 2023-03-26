@@ -129,7 +129,7 @@
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
                                                         value="{{ $offer->phone }}" class="form-control" disabled>
                                                     <input style="height: calc(2.25rem + 6px);" type="number"
-                                                        name="phone" min="10" max="11"
+                                                        name="phone" minlength="10" maxlength="11"
                                                         class="form-control" value="{{ $offer->phone }}" required>
                                                 </div>
                                                 <div class="form-group col-md-4">

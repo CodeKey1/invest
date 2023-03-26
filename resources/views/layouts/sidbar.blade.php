@@ -183,13 +183,8 @@
                     <a href="#" class="menu-toggle nav-link has-dropdown"><span> التقارير </span>
                         <i data-feather="briefcase"></i></a>
                     <ul class="dropdown-menu">
-
                         <li><a class="nav-link" href="#">تقرير الطلبات</a></li>
-
                         <li><a class="nav-link" href="{{ route('auction.report') }}">تقرير المزادات</a></li>
-
-                        <li><a class="nav-link" href="#">تقرير مجمع</a></li>
-
                     </ul>
                 </li>
 

@@ -41,7 +41,7 @@ class AuctionController extends Controller
     {
         $auction = Auction::select()->get(); 
         $city = City::select()->get(); 
-        $assets = Asset::select()->get(); 
+        $assets = Asset::select()->where('status','=',0)->get(); 
         $contract_type = Contract_type::select()->get(); 
         return view('auction.offerCreate',compact('auction','city','assets','contract_type'));
     }
@@ -133,7 +133,7 @@ class AuctionController extends Controller
         $offer = Offer::select()->find($id); 
         $auction = Auction::select()->get(); 
         $city = City::select()->get(); 
-        $assets = Asset::select()->get(); 
+        $assets = Asset::select()->where('status','=',0)->get();
         $contract_type = Contract_type::select()->get(); 
         return view('auction.offerEdit',compact('offer','auction','city','assets','contract_type'));
     }
