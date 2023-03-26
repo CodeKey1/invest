@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 22, 2023 at 01:56 PM
+-- Generation Time: Mar 26, 2023 at 12:38 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -38,7 +38,7 @@ CREATE TABLE `assets` (
   `note` varchar(512) NOT NULL,
   `city_id` int(11) NOT NULL,
   `assets_type_id` int(11) NOT NULL,
-  `contract_type_id` int(11) NOT NULL,
+  `contract_type_id` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -48,7 +48,7 @@ CREATE TABLE `assets` (
 --
 
 INSERT INTO `assets` (`id`, `number`, `name`, `address`, `contract_cost`, `contract_period`, `status`, `note`, `city_id`, `assets_type_id`, `contract_type_id`, `created_at`, `updated_at`) VALUES
-(1, 408, 'قطعة ارض مول', 'اسوان الجديدة-الحي الاول', 232314, '2023-03-16', 1, 'قطعة ارض بمساحة 600م لبناء مول تجاري وخدمي', 1, 1, 2, '2023-03-19 07:33:51', '2023-03-22 10:47:21');
+(1, 408, 'قطعة ارض مول', 'اسوان الجديدة-الحي الاول', NULL, NULL, 1, 'قطعة ارض بمساحة 600م لبناء مول تجاري وخدمي', 1, 1, 2, '2023-03-19 07:33:51', '2023-03-26 08:03:30');
 
 -- --------------------------------------------------------
 
@@ -319,9 +319,12 @@ CREATE TABLE `offer` (
   `status` int(11) NOT NULL,
   `delivery_record` varchar(256) NOT NULL,
   `note` varchar(512) NOT NULL,
+  `contract_cost` float NOT NULL,
+  `contract_period` date NOT NULL,
   `increase_rate` float NOT NULL,
   `assets_id` int(11) NOT NULL,
   `auction_id` int(11) NOT NULL,
+  `contract_type_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -330,9 +333,10 @@ CREATE TABLE `offer` (
 -- Dumping data for table `offer`
 --
 
-INSERT INTO `offer` (`id`, `recived`, `investor`, `phone`, `work_date`, `status`, `delivery_record`, `note`, `increase_rate`, `assets_id`, `auction_id`, `created_at`, `updated_at`) VALUES
-(1, '2023-03-01', 'محمد ياسر عمر', '01010157990', '2023-03-30', 1, '1-delivery_record.pdf', 'سيdas', 1, 1, 2, '2023-03-22 08:45:54', '2023-03-22 10:43:25'),
-(2, '2023-03-17', 'fdsgsdf', '4325345', '2023-03-24', 1, '2-delivery_record.pdf', 'sdagfdfasdfasdfasdf asdfa sdf asdf', 45, 1, 2, '2023-03-22 10:47:20', '2023-03-22 10:47:43');
+INSERT INTO `offer` (`id`, `recived`, `investor`, `phone`, `work_date`, `status`, `delivery_record`, `note`, `contract_cost`, `contract_period`, `increase_rate`, `assets_id`, `auction_id`, `contract_type_id`, `created_at`, `updated_at`) VALUES
+(1, '2023-03-01', 'محمد ياسر عمر', '01010157993', '2023-03-30', 1, '1-delivery_record.pdf', 'سيdas', 150000, '2023-06-16', 1, 1, 2, 1, '2023-03-22 08:45:54', '2023-03-26 08:04:26'),
+(2, '2023-03-17', 'fdsgsdf', '4325345', '2023-03-24', 0, '2-delivery_record.pdf', 'sdagfdfasdfasdfasdf asdfa sdf asdf', 123, '2023-03-01', 45, 1, 2, 3, '2023-03-22 10:47:20', '2023-03-26 08:18:46'),
+(3, '2023-03-16', 'بسيليس', '4352345', '2023-03-24', 1, '1679561298-delivery_record.pdf', 'يبسلبي', 15988800, '2025-01-24', 32, 1, 2, 3, '2023-03-23 06:48:18', '2023-03-23 06:48:18');
 
 -- --------------------------------------------------------
 
@@ -760,7 +764,8 @@ ALTER TABLE `model_has_roles`
 ALTER TABLE `offer`
   ADD PRIMARY KEY (`id`),
   ADD KEY `assets_id` (`assets_id`),
-  ADD KEY `auction_id` (`auction_id`);
+  ADD KEY `auction_id` (`auction_id`),
+  ADD KEY `contract_type_id` (`contract_type_id`);
 
 --
 -- Indexes for table `password_resets`
@@ -940,7 +945,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `offer`
 --
 ALTER TABLE `offer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -1038,7 +1043,8 @@ ALTER TABLE `model_has_roles`
 --
 ALTER TABLE `offer`
   ADD CONSTRAINT `offer_ibfk_1` FOREIGN KEY (`assets_id`) REFERENCES `assets` (`id`),
-  ADD CONSTRAINT `offer_ibfk_2` FOREIGN KEY (`auction_id`) REFERENCES `auction` (`id`);
+  ADD CONSTRAINT `offer_ibfk_2` FOREIGN KEY (`auction_id`) REFERENCES `auction` (`id`),
+  ADD CONSTRAINT `offer_ibfk_3` FOREIGN KEY (`contract_type_id`) REFERENCES `contract_type` (`id`);
 
 --
 -- Constraints for table `place`

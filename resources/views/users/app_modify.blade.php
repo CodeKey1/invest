@@ -974,7 +974,7 @@
                                                                                         <td>{{ $asset1->name }}</td>
                                                                                         <td>{{ $asset1->asset_type->name }}
                                                                                         </td>
-                                                                                        <td>{{ $asset1->contract_type->name }}
+                                                                                        <td>{{ $asset1->contract_type->name ?? '' }}
                                                                                         <td>{{ $asset1->city_name->name }}
                                                                                         <td>{{ $asset1->address }}
                                                                                         <td>
