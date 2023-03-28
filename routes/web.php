@@ -86,12 +86,20 @@ Route::get('/section-create{id1}{id}', [App\Http\Controllers\Admin\SectionContro
 
 /*
 |--------------------------------------------------------------------------
-| Dashboard Auctions Controller ********************    المزادات
+| Dashboard Auctions Controller ********************  اطروحات و مزادات
 |--------------------------------------------------------------------------
 */
-Route::get('/auction', [App\Http\Controllers\Admin\AuctionController::class, 'index'])->name('auction');
-Route::get('/auction-create', [App\Http\Controllers\Admin\AuctionController::class, 'create'])->name('auction.Create');
+Route::get('/auction', [App\Http\Controllers\Auction\AuctionController::class, 'index'])->name('auction');
+Route::get('/auction-create', [App\Http\Controllers\Auction\AuctionController::class, 'create'])->name('auction.Create');
+Route::POST('/auction-insert', [App\Http\Controllers\Auction\AuctionController::class, 'store'])->name('auction.Store');
+Route::get('/auction-edit{id}', [App\Http\Controllers\Auction\AuctionController::class, 'edit'])->name('auction.edit');
+Route::POST('/auction-update{id}', [App\Http\Controllers\Auction\AuctionController::class, 'update'])->name('auction.update');
 
+Route::get('/offer', [App\Http\Controllers\Auction\AuctionController::class, 'offer_index'])->name('offer');
+Route::get('/offer-create', [App\Http\Controllers\Auction\AuctionController::class, 'offer_create'])->name('offer.Create');
+Route::POST('/offer-insert', [App\Http\Controllers\Auction\AuctionController::class, 'offer_store'])->name('offer.Store');
+Route::get('/offer-edit{id}', [App\Http\Controllers\Auction\AuctionController::class, 'offer_edit'])->name('offer.edit');
+Route::POST('/offer-update{id}', [App\Http\Controllers\Auction\AuctionController::class, 'offer_update'])->name('offer.update');
 /*
 |--------------------------------------------------------------------------
 | Dashboard Side Controller ****************************************
@@ -114,10 +122,11 @@ Route::get('/app-modify', [App\Http\Controllers\Admin\AppModifyController::class
 Route::POST('/app-modify-create', [App\Http\Controllers\Admin\AppModifyController::class, 'create'])->name('app.create');
 /*
 |--------------------------------------------------------------------------
-| Dashboard report Controller ****************************************
+| Dashboard report Controller ****************************************  التقارير
 |--------------------------------------------------------------------------
 */
-Route::get('/report', [App\Http\Controllers\Admin\ReportController::class, 'index'])->name('report');
+Route::get('/auction-report', [App\Http\Controllers\Report\ReportController::class, 'index'])->name('auction.report');
+Route::get('/auctionReport', [App\Http\Controllers\Report\ReportController::class, 'acution_report'])->name('auctionReport');
 /*
 |--------------------------------------------------------------------------
 | Dashboard other Controller ****************************************

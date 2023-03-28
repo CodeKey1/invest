@@ -41,11 +41,11 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>المزادات</h4>
+                                        <h4>اطروحات المزادات</h4>
                                         <div class="card-header-action">
-                                            <a href="{{ route('auction.Create') }}"
+                                            <a href="{{ route('offer.Create') }}"
                                                 class="dropdown-item has-icon text-dark btn-warning"><i
-                                                    class="fas fa-plus"></i>اضافة مزاد جديد</a>
+                                                    class="fas fa-plus"></i>اضافة اطروحات جديد</a>
                                         </div>
                                     </div>
                                 </div>
@@ -60,24 +60,40 @@
                                                         <th> # </th>
                                                         <th>اسم المزاد</th>
                                                         <th>تاريخ الجلسة</th>
-                                                        <th>عنوان الجلسة</th>
+                                                        <th>اسم المستفيد</th>
+                                                        <th>اسم الاصل</th>
+                                                        <th>نوع التعاقد</th>
+                                                        <th>تاريخ الاستلام</th>
+                                                        <th>الحالة</th>
                                                         <th>ملاحظات</th>
                                                         <th>تفاصيل</th>
                                                     </tr>
                                                 </thead>
-                                                @isset($auction)
-                                                    @if ($auction && $auction->count() > 0)
-                                                        @foreach ($auction as $auction1)
+                                                @isset($offer)
+                                                    @if ($offer && $offer->count() > 0)
+                                                        @foreach ($offer as $offer1)
                                                             <tbody>
                                                                 <tr>
-                                                                    <td>{{ $auction1->id }}</td>
-                                                                    <td>{{ $auction1->name }}</td>
-                                                                    <td>{{ $auction1->date }}</td>
-                                                                    <td>{{ $auction1->label }}</td>
-                                                                    <td>{{ $auction1->note }}</td>
+                                                                    <td>{{ $offer1->id }}</td>
+                                                                    <td>{{ $offer1->auction_name->name }}</td>
+                                                                    <td>{{ $offer1->auction_name->date }}</td>
+                                                                    <td>{{ $offer1->investor }}</td>
+                                                                    <td>{{ $offer1->asset_name->name }}</td>
+                                                                    <td>{{ $offer1->contract_type->name }}</td>
+                                                                    <td>{{ $offer1->recived }}</td>
+                                                                    <td>
+                                                                        @if ($offer1->status)
+                                                                            <div class="badge badge-success">
+                                                                            </div>
+                                                                        @else
+                                                                            <div class="badge badge-danger">
+                                                                            </div>
+                                                                        @endif
+                                                                    </td>
+                                                                    <td>{{ $offer1->note }}</td>
                                                                     <td>
                                                                         <a class="btn btn-icon btn-success"
-                                                                            href="{{ route('auction.edit', $auction1->id) }}"
+                                                                            href="{{ route('offer.edit', $offer1->id) }}"
                                                                             ata-toggle="tooltip" data-placement="top"
                                                                             title="عرض وتعديل">
                                                                             <i class="fas fa-user"></i>

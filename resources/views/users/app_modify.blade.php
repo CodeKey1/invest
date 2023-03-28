@@ -961,6 +961,7 @@
                                                                             <th>نوع العقد</th>
                                                                             <th>المدينة</th>
                                                                             <th>العنوان</th>
+                                                                            <th>شاغر</th>
                                                                             <th>تفاصيل</th>
                                                                         </tr>
                                                                     </thead>
@@ -973,9 +974,19 @@
                                                                                         <td>{{ $asset1->name }}</td>
                                                                                         <td>{{ $asset1->asset_type->name }}
                                                                                         </td>
-                                                                                        <td>{{ $asset1->contract_type->name }}
+                                                                                        <td>{{ $asset1->contract_type->name ?? '' }}
                                                                                         <td>{{ $asset1->city_name->name }}
                                                                                         <td>{{ $asset1->address }}
+                                                                                        <td>
+                                                                                            @if (!$asset1->status)
+                                                                                                <div
+                                                                                                    class="badge badge-success">
+                                                                                                </div>
+                                                                                            @else
+                                                                                                <div
+                                                                                                    class="badge badge-danger">
+                                                                                                </div>
+                                                                                            @endif
                                                                                         </td>
                                                                                         <td>
                                                                                             <a class="btn btn-icon btn-success"

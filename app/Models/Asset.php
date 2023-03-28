@@ -21,4 +21,8 @@ class Asset extends Model
     public function contract_type(){
         return $this->belongsTo(Contract_type::class ,'contract_type_id');
     }
+
+    public function offer_name(){
+        return $this->hasMany(Offer::class ,'assets_id');
+    }
 }
