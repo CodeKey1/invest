@@ -32,12 +32,8 @@
                 <section class="section">
                     <div class="section-body">
                         <div class="row" style="direction: rtl">
-                            <div class="col-12">
+                            <div class="col-12 col-md-12 col-lg-12">
                                 <div class="card card-secondary">
-
-                                    <div class="card-body">
-                                        <p class="card-text" style="text-align:center;">بحث</p>
-                                    </div>
                                     <div class="card-body">
                                         <div class="form-row">
                                             <div class="form-group col-md-3">
@@ -68,7 +64,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="section-body" >
+                    <div class="section-body" style="display: none;">
                         <div class="row" style="direction: rtl">
                             <div class="col-12">
                                 <div class="card card-secondary">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Side;
 use Illuminate\Http\Request;
 
 class SideController extends Controller
@@ -30,6 +31,16 @@ class SideController extends Controller
     public function store(Request $request)
     {
         //
+        try{
+            Side:: create(([
+            'side_name' => $request['side_name'],
+
+            ]));
+
+           return redirect()->back()-> with(['success' => 'تم التسجيل بنجاح']);
+       }catch(\Exception $ex){
+           return redirect()->back()-> with(['error' => 'خطأ'.$ex]);
+       }
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Import;
+use App\Models\Side;
 use Illuminate\Http\Request;
 
 class ImportController extends Controller
@@ -24,7 +25,8 @@ class ImportController extends Controller
     public function create()
     {
         //
-        return view('import.create');
+        $side = Side::select()->get();
+        return view('import.create',compact('side'));
     }
 
     /**
@@ -52,7 +54,7 @@ class ImportController extends Controller
 
          }
 
-        // try{
+        try{
              Import:: create(([
              'import_name' => $request['import_name'],
              'import_id' => $request['import_id'],
@@ -63,9 +65,9 @@ class ImportController extends Controller
              ]));
 
             return redirect()->route('import')-> with(['success' => 'تم التسجيل بنجاح']);
-        // }catch(\Exception $ex){
-        //     return redirect()->route('import')-> with(['error' => 'خطأ'.$ex]);
-        // }
+        }catch(\Exception $ex){
+            return redirect()->route('import')-> with(['error' => 'خطأ'.$ex]);
+        }
     }
 
     /**
@@ -82,8 +84,9 @@ class ImportController extends Controller
     public function edit(string $id)
     {
         //
+        $side = Side::select()->get();
         $import = Import::select()->find($id);
-        return view('import.edit',compact('import'));
+        return view('import.edit',compact('import','side'));
     }
 
     /**

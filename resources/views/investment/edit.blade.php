@@ -109,63 +109,63 @@
                                                 <div class="form-group col-md-12">
                                                     <label> اسم الشركة / المواطن</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="name" value="{{ $request->name }}"
+                                                        name="name" value="{{ $request->owner_name }}"
                                                         class="form-control"placeholder="" disabled>
                                                 </div>
 
                                                 <div class="form-group col-md-12">
                                                     <label> العنوان</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        value="{{ $request->name }}" class="form-control"placeholder=""
+                                                        value="{{ $request->address }}" class="form-control"placeholder=""
                                                         disabled>
                                                 </div>
 
                                                 <div class="form-group col-md-4">
                                                     <label> اسم المفوض</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        value="{{ $request->name }}" class="form-control"placeholder=""
+                                                        value="{{ $request->representative_name }}" class="form-control"placeholder=""
                                                         disabled>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label> بالتوكيل رقم</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        value="{{ $request->name }}"
+                                                        value="{{ $request->representative_id }}"
                                                         class="form-control"placeholder="" disabled>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label>بطاقة رقم</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        value="{{ $request->name }}"
+                                                        value="{{ $request->NID }}"
                                                         class="form-control"placeholder="" disabled>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label>تليفون</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        value="{{ $request->name }}"
+                                                        value="{{ $request->phone }}"
                                                         class="form-control"placeholder="" disabled>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label> مساحة المشروع</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        value="{{ $request->name }}"
+                                                        value="{{ $request->size }}"
                                                         class="form-control"placeholder="" disabled>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label>المدينة</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        value="{{ $request->name }}"
+                                                        value="{{ $request->capital }}"
                                                         class="form-control"placeholder="" disabled>
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label>براسمال قيمتة</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        value="{{ $request->name }}"
+                                                        value="{{ $request->Self_financing }}"
                                                         class="form-control"placeholder="" disabled>
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label>نسبة التمويل الذاتي</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        value="{{ $request->name }}"
+                                                        value="{{ $request->Self_financing }}"
                                                         class="form-control"placeholder="" disabled>
                                                 </div>
                                                 <div class="form-group col-md-12">
@@ -261,7 +261,7 @@
                                             <a href="#" target="_blank"> {{ $r->L_Lisense->name }} </a>
                                         </div>
 
-                                   
+
                                 @endif
                             @endforeach
                             <button type="submit" class="btn btn-success" style="float: left;"> ارسال </button>

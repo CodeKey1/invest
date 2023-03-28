@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Export;
+use App\Models\Side;
 use Illuminate\Http\Request;
 
 class ExportController extends Controller
@@ -25,7 +26,8 @@ class ExportController extends Controller
     public function create()
     {
         //
-        return view('export.create');
+        $side = Side::select()->get();
+        return view('export.create',compact('side'));
     }
 
     /**
@@ -50,8 +52,9 @@ class ExportController extends Controller
     public function edit(string $id)
     {
         //
+        $side = Side::select()->get();
         $export = Export::select()->find($id);
-        return view('export.edit',compact('export'));
+        return view('export.edit',compact('export','side'));
 
     }
 

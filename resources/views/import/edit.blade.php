@@ -38,22 +38,13 @@
                                 @include('layouts.success')
                                 @include('layouts.error')
                                 <form class="needs-validation" id="work_experience" novalidate=""
-                                    action="{{ route('import.update',$import->id) }}" method="POST" enctype="multipart/form-data">
+                                    action="{{ route('import.update', $import->id) }}" method="POST"
+                                    enctype="multipart/form-data">
                                     @csrf
                                     <div class="card card-primary">
                                         <div class="card-header">
                                             <h4>اضــافة وارد جديــد</h4>
                                             <div class="card-header-action">
-                                                {{-- <div class="dropdown">
-                                                  <a href="#" data-toggle="dropdown" class="btn btn-warning dropdown-toggle">Options</a>
-                                                  <div class="dropdown-menu" style="background-color: rgb(53, 60, 72);">
-                                                    <a href="#" class="dropdown-item has-icon text-success"><i class="fas fa-eye"></i> View</a>
-                                                    <a href="#" class="dropdown-item has-icon text-info"><i class="far fa-edit"></i> Edit</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a href="#" class="dropdown-item has-icon text-danger"><i class="far fa-trash-alt"></i>
-                                                      Delete</a>
-                                                  </div>
-                                                </div> --}}
                                                 <a href="{{ route('import') }}" class="btn btn-warning">كل الوارد</a>
                                                 <a href="{{ route('home') }}" class="btn btn-primary">الرئيسية</a>
                                             </div>
@@ -64,13 +55,29 @@
                                                     <label>رقم الوارد</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="number"
                                                         name="import_id" value="{{ $import->import_id }}"
-                                                        class="form-control"placeholder="">
+                                                        class="form-control" disabled>
+                                                    <input style="height: calc(2.25rem + 6px);" type="number"
+                                                        name="import_id" value="{{ $import->import_id }}"
+                                                        class="form-control">
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label> اسم الجهة الوارد منها</label>
+                                                    <select class="form-control" id="city" name="import_side" disabled>
+                                                        <option value="{{ $import->import_side }}" disabled selected>
+                                                            {{ $import->import_side }}</option>
+                                                    </select>
                                                     <select class="form-control" id="city" name="import_side">
+                                                        <option value="{{ $import->import_side }}" disabled selected>
+                                                            {{ $import->import_side }}</option>
+                                                        @isset($side)
+                                                            @if ($side && $side->count() > 0)
+                                                                @foreach ($side as $sides)
 
-                                                        <option value="{{ $import->import_side }}" disabled selected>{{ $import->import_side }}</option>
+                                                                    <option value="{{ $sides->side_name }}"> {{ $sides->side_name }}
+                                                                    </option>
+                                                                @endforeach
+                                                            @endif
+                                                        @endisset
                                                     </select>
                                                 </div>
 
@@ -78,53 +85,68 @@
                                                     <label>عنوان الملف الوارد</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
                                                         name="import_name" value="{{ $import->import_name }}"
-                                                        class="form-control"placeholder="">
+                                                        class="form-control" disabled>
+                                                    <input style="height: calc(2.25rem + 6px);" type="text"
+                                                        name="import_name" value="{{ $import->import_name }}"
+                                                        class="form-control">
                                                 </div>
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
                                                     <label> الموظف المكلف بالملف</label>
-                                                    <select class="form-control select2" style="width: 100% !important;" multiple="" name="region">
+                                                    <select class="form-control select2" style="width: 100% !important;"
+                                                        multiple="" name="region" disabled>
                                                         <option value="" disabled selected>اختر الموظف</option>
-                                                        <option value="" >1 الموظف</option>
-                                                        <option value="" >2 الموظف</option>
-                                                        <option value="" >3 الموظف</option>
-                                                        <option value="" >4 الموظف</option>
+                                                        <option value="">1 الموظف</option>
+                                                        <option value="">2 الموظف</option>
+                                                        <option value="">3 الموظف</option>
+                                                        <option value="">4 الموظف</option>
+                                                    </select>
+                                                    <select class="form-control select2" style="width: 100% !important;"
+                                                        multiple="" name="region">
+                                                        <option value="" disabled selected>اختر الموظف</option>
+                                                        <option value="">1 الموظف</option>
+                                                        <option value="">2 الموظف</option>
+                                                        <option value="">3 الموظف</option>
+                                                        <option value="">4 الموظف</option>
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label> تاريخ استلام الوارد </label>
                                                     <input style="height: calc(2.25rem + 6px);" type="date"
                                                         name="import_date" value="{{ $import->import_date }}"
-                                                        class="form-control"placeholder="">
+                                                        class="form-control" disabled>
+                                                    <input style="height: calc(2.25rem + 6px);" type="date"
+                                                        name="import_date" value="{{ $import->import_date }}"
+                                                        class="form-control">
                                                 </div>
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group col-md-12">
                                                     <label>اضافة ملاحظات</label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="">
+                                                    <textarea class="form-control" cols="10" rows="5" disabled>{{ $import->import_note }}</textarea>
+                                                    <textarea class="form-control" cols="10" rows="5">{{ $import->import_note }}</textarea>
+
                                                 </div>
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group col-md-12">
                                                     <label>اضافة ملاحظات</label>
-                                                    @if(isset($import -> id) && $import  )
-                                                             @foreach(explode('|', $import ->import_file ) as $file )
+                                                    @if (isset($import->id) && $import)
+                                                        @foreach (explode('|', $import->import_file) as $file)
+                                                            <a href="{{ asset('import-files/' . $file) }}"
+                                                                target="_blank">
+                                                                <span class="text-bold-600">
+                                                                    <img class="gallery-thumbnail card-img-top"
+                                                                        style=" display: block; ">{{ $import->import_file }}</span>
+                                                            </a>
 
-
-                                                                            <a href="{{asset('import-files/'.  $file )}}" target="_blank">
-                                                                               <span class="text-bold-600" >
-                                                                                   <img class="gallery-thumbnail card-img-top" style=" display: block; ">{{($import ->import_file )}}</span>
-                                                                                </a>
-                                                                            </a>
-
-                                                           @endforeach
-                                                        @endif
+                                                        @endforeach
+                                                    @endif
                                                 </div>
                                             </div>
-                                            <button type="submit" class="btn btn-success" style="float: left;" >حفظ</button>
+                                            <button type="submit" class="btn btn-success"
+                                                style="float: left;">حفظ</button>
                                         </div>
                                     </div>
                                 </form>

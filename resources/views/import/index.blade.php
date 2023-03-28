@@ -59,6 +59,8 @@
                                             <a href="{{ route('home') }}" class="btn btn-primary">الرئيسية</a>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="card card-secondary">
                                     <div class="card-body" style="direction: rtl;">
                                         <div class="table-responsive">
                                             <table class="table table-striped table-hover" id="save-stage"

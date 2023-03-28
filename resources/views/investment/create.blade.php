@@ -38,17 +38,7 @@
                                 @include('layouts.success')
                                 @include('layouts.error')
 
-                                <div class="card"
-                                    style="flex-direction: inherit;
-                                    background-color: #fff0;
-                                    border-radius: 10px;
-                                    border: none;
-                                    position: relative;
-                                    margin-bottom: 30px;
-                                    box-shadow: unset;">
-                                    <span class="badge badge-danger" style="border-radius: 4px;">تاريخ اليوم :
-                                        {{ $now }} </span>
-                                </div>
+
                                 <div class="card">
                                     <div class="card-header">
                                         <h4>طلب الحصول علي موافقة لإقامت مشروع</h4>
@@ -75,6 +65,18 @@
                                                     class="nav-link text-white"
                                                     href="#">عودة</a></button> --}}
                                     </div>
+
+                                </div>
+                                <div class="card"
+                                    style="flex-direction: inherit;
+                                    background-color: #fff0;
+                                    border-radius: 10px;
+                                    border: none;
+                                    position: relative;
+                                    margin-bottom: 30px;
+                                    box-shadow: unset;">
+                                    <span class="badge badge-danger" style="border-radius: 4px;">تاريخ اليوم :
+                                        {{ $now }} </span>
                                 </div>
                                 <form class="needs-validation" id="work_experience" novalidate=""
                                     action="{{ route('investment.store') }}" method="POST"

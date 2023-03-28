@@ -106,6 +106,7 @@ Route::POST('/offer-update{id}', [App\Http\Controllers\Auction\AuctionController
 |--------------------------------------------------------------------------
 */
 Route::get('/side', [App\Http\Controllers\Admin\SideController::class, 'index'])->name('side');
+Route::POST('/side_store', [App\Http\Controllers\Admin\SideController::class, 'store'])->name('side.store');
 Route::get('/side-create', [App\Http\Controllers\Admin\SideController::class, 'create'])->name('side.Create');
 
 /*
@@ -132,7 +133,7 @@ Route::get('/auctionReport', [App\Http\Controllers\Report\ReportController::clas
 | Dashboard other Controller ****************************************
 |--------------------------------------------------------------------------
 */
-Route::get('/search', [App\Http\Controllers\Admin\OtherController::class, 'index'])->name('search');
+Route::get('/search', [App\Http\Controllers\Admin\OtherController::class, 'index'])->name('request.search');
 
 /*
 |--------------------------------------------------------------------------

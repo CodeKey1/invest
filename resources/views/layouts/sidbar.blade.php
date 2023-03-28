@@ -151,27 +151,14 @@
                     </ul>
                 </li>
 
-
-
-                <li class="dropdown">
-                    <a href="#" class="menu-toggle nav-link has-dropdown"><span> الجهات </span>
-                        <i data-feather="anchor"></i></a>
-                    <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="{{ route('side.Create') }}">اضافة جهة</a></li>
-                        <li><a class="nav-link" href="">متابعة الجهات</a></li>
-                    </ul>
-                </li>
-
-
-
-                <li class="dropdown">
+                {{-- <li class="dropdown">
                     <a href="#" class="menu-toggle nav-link has-dropdown"><span> القرارات المحافظ </span>
                         <i data-feather="briefcase"></i></a>
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="#">قرارات</a></li>
                         <li><a class="nav-link" href="#">قوانين</a></li>
                     </ul>
-                </li>
+                </li> --}}
 
 
                 <li class="menu-header">
@@ -183,7 +170,7 @@
                     <a href="#" class="menu-toggle nav-link has-dropdown"><span> التقارير </span>
                         <i data-feather="briefcase"></i></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="#">تقرير الطلبات</a></li>
+                        <li><a class="nav-link" href="{{ route('request.search') }}">تقرير الطلبات</a></li>
                         <li><a class="nav-link" href="{{ route('auction.report') }}">تقرير المزادات</a></li>
                     </ul>
                 </li>
@@ -195,11 +182,11 @@
                         <i data-feather="briefcase"></i></a>
                     <ul class="dropdown-menu">
 
-                        <li><a class="nav-link" href="#">تقرير مفصل</a></li>
+                        <li><a class="nav-link" href="#"> الوارد </a></li>
 
-                        <li><a class="nav-link" href="#">تقرير </a></li>
+                        <li><a class="nav-link" href="#"> الصادر </a></li>
 
-                        <li><a class="nav-link" href="#">تقرير مجمع</a></li>
+
 
                     </ul>
                 </li>

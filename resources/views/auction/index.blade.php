@@ -43,10 +43,11 @@
                                     <div class="card-header">
                                         <h4>المزادات</h4>
                                         <div class="card-header-action">
-                                            <a href="{{ route('auction.Create') }}"
-                                                class="dropdown-item has-icon text-dark btn-warning"><i
-                                                    class="fas fa-plus"></i>اضافة مزاد جديد</a>
+                                            
+
+                                            <a href="{{ route('auction.Create') }}" class="btn btn-warning">اضافة مزاد حديد</a>
                                         </div>
+
                                     </div>
                                 </div>
 

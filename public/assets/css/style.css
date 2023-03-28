@@ -6138,7 +6138,7 @@ pre {
 }
 
 .section>*:first-child {
-    margin-top: -50px
+    /* margin-top: -50px */
 }
 
 .section .section-header {

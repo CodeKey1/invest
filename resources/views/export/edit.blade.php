@@ -70,19 +70,29 @@
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label> اسم الجهات الصادر اليها</label>
-                                                    <select class="form-control select2" style="width: 100% !important;" multiple="" name="region">
-                                                        <option value="" disabled selected>اختر الجهات</option>
-                                                        <option value="" >1 الجهة</option>
-                                                        <option value="" >2 الجهة</option>
-                                                        <option value="" >3 الجهة</option>
-                                                        <option value="" >4 الجهة</option>
+                                                    <select class="form-control select2" style="width: 100% !important;" multiple="" disabled name="export_side">
+                                                        <option value="{{ $export->export_side }}" selected> {{ $export->export_side }}
+                                                        </option>
+                                                    </select>
+                                                    <select class="form-control select2" style="width: 100% !important;" multiple="" name="export_side">
+                                                        @isset($side)
+                                                            @if ($side && $side->count() > 0)
+                                                                @foreach ($side as $sides)
+                                                                    <option value="{{ $sides->side_name }}"> {{ $sides->side_name }}
+                                                                    </option>
+                                                                @endforeach
+                                                            @endif
+                                                        @endisset
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-12">
                                                     <label>عنوان الملف الصادر</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="">
+                                                        name="export_name" value="{{ $export->export_name }}"
+                                                        class="form-control" disabled>
+                                                    <input style="height: calc(2.25rem + 6px);" type="text"
+                                                        name="export_name" value="{{ $export->export_name }}"
+                                                        class="form-control">
                                                 </div>
                                             </div>
                                             <div class="form-row">
@@ -99,16 +109,18 @@
                                                 <div class="form-group col-md-6">
                                                     <label> تاريخ استلام الصادر </label>
                                                     <input style="height: calc(2.25rem + 6px);" type="date"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="">
+                                                        name="export_date" value="{{ $export->export_date }}"
+                                                        class="form-control" disabled>
+                                                    <input style="height: calc(2.25rem + 6px);" type="date"
+                                                    name="export_date" value="{{ $export->export_date }}"
+                                                        class="form-control">
                                                 </div>
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group col-md-12">
                                                     <label>اضافة ملاحظات</label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="">
+                                                    <textarea class="form-control" cols="10" rows="5" disabled>{{ $export->export_note }}</textarea>
+                                                    <textarea class="form-control" cols="10" rows="5" >{{ $export->export_note }}</textarea>
                                                 </div>
                                             </div>
                                             <button type="submit" class="btn btn-success" style="float: left;" >حفظ</button>

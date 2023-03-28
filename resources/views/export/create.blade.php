@@ -71,11 +71,14 @@
                                                 <div class="form-group col-md-6">
                                                     <label> اسم الجهات الصادر اليها</label>
                                                     <select class="form-control select2" style="width: 100% !important;" multiple="" name="region">
-                                                        <option value="" disabled selected>اختر الجهات</option>
-                                                        <option value="" >1 الجهة</option>
-                                                        <option value="" >2 الجهة</option>
-                                                        <option value="" >3 الجهة</option>
-                                                        <option value="" >4 الجهة</option>
+                                                        @isset($side)
+                                                            @if ($side && $side->count() > 0)
+                                                                @foreach ($side as $sides)
+                                                                    <option value="{{ $sides->side_name }}"> {{ $sides->side_name }}
+                                                                    </option>
+                                                                @endforeach
+                                                            @endif
+                                                        @endisset
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-12">

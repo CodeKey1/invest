@@ -17,15 +17,15 @@ class AuctionController extends Controller
      */
     public function index()
     {
-        $auction = Auction::select()->get(); 
+        $auction = Auction::select()->get();
         return view('auction.index',compact('auction'));
     }
     public function offer_index()
     {
-        $auction = Auction::select()->get(); 
-        $city = City::select()->get(); 
-        $assets = Asset::select()->get(); 
-        $offer = Offer::select()->get(); 
+        $auction = Auction::select()->get();
+        $city = City::select()->get();
+        $assets = Asset::select()->get();
+        $offer = Offer::select()->get();
         return view('auction.offer',compact('auction','city','assets','offer'));
     }
 
@@ -39,10 +39,10 @@ class AuctionController extends Controller
     }
     public function offer_create()
     {
-        $auction = Auction::select()->get(); 
-        $city = City::select()->get(); 
-        $assets = Asset::select()->where('status','=',0)->get(); 
-        $contract_type = Contract_type::select()->get(); 
+        $auction = Auction::select()->get();
+        $city = City::select()->get();
+        $assets = Asset::select()->where('status','=',0)->get();
+        $contract_type = Contract_type::select()->get();
         return view('auction.offerCreate',compact('auction','city','assets','contract_type'));
     }
 
@@ -52,7 +52,7 @@ class AuctionController extends Controller
         $date = $request['date'];
         $label = $request['label'];
         $note = $request['note'];
-        try{ 
+        // try{
             Auction::create(([
              'name' => $name,
              'date' => $date,
@@ -60,9 +60,9 @@ class AuctionController extends Controller
              'note' => $note,
              ]));
             return redirect()->route('auction')-> with(['success' => 'تم التسجيل بنجاح']);
-        }catch(\Exception $ex){
-            return redirect()->route('auction')-> with(['error' => 'خطأ']);
-        }
+        // }catch(\Exception $ex){
+        //     return redirect()->route('auction')-> with(['error' => 'خطأ']);
+        // }
     }
     public function offer_store(Request $request)
     {
@@ -82,7 +82,7 @@ class AuctionController extends Controller
             }else
                 return redirect()->back()->with(['error' => 'الملف يجب ان يكون pdf او word فقط']);
         }
-        
+
         $auction_id = $request['auction'];
         $asset_id = $request['asset'];
         $recived = $request['recived'];
@@ -93,12 +93,12 @@ class AuctionController extends Controller
         $delivery_record = $file;
         $note = $request['note'];
         $increase_rate = $request['increase_rate'];
-        
+
         $assetStatus = 1;
         $contract_type = $request['contract_type'];
         $contract_period = $request['contract_period'];
         $contract_cost = $request['contract_cost'];
-        try{ 
+        try{
             Offer::create(([
                 'recived' => $recived,
                 'investor' => $investor,
@@ -112,7 +112,7 @@ class AuctionController extends Controller
                 'increase_rate' => $increase_rate,
                 'assets_id' => $asset_id,
                 'auction_id' => $auction_id,
-                'contract_type_id' => $contract_type 
+                'contract_type_id' => $contract_type
              ]));
              Asset::select()->find($asset_id)->update(([
                 'status' => $assetStatus,
@@ -125,16 +125,16 @@ class AuctionController extends Controller
 
     public function edit(string $id)
     {
-        $auction = Auction::select()->find($id); 
+        $auction = Auction::select()->find($id);
         return view('auction.edit',compact('auction'));
     }
     public function offer_edit(string $id)
     {
-        $offer = Offer::select()->find($id); 
-        $auction = Auction::select()->get(); 
-        $city = City::select()->get(); 
+        $offer = Offer::select()->find($id);
+        $auction = Auction::select()->get();
+        $city = City::select()->get();
         $assets = Asset::select()->where('status','=',0)->get();
-        $contract_type = Contract_type::select()->get(); 
+        $contract_type = Contract_type::select()->get();
         return view('auction.offerEdit',compact('offer','auction','city','assets','contract_type'));
     }
 
@@ -144,7 +144,7 @@ class AuctionController extends Controller
         $date = $request['date'];
         $label = $request['label'];
         $note = $request['note'];
-        try{ 
+        try{
             Auction::select()->find($id)->update(([
              'name' => $name,
              'date' => $date,
@@ -188,18 +188,18 @@ class AuctionController extends Controller
                 break;
             default:
                 $offerStatus = 1;
-                break;   
+                break;
         }
         $delivery_record = $file;
         $note = $request['note'];
         $increase_rate = $request['increase_rate'];
-        
+
         $assetStatus = 1;
         $contract_type = $request['contract_type'];
         $contract_period = $request['contract_period'];
         $contract_cost = $request['contract_cost'];
         if($delivery_record!=""){
-            try{ 
+            try{
                 Offer::select()->find($id)->update(([
                     'recived' => $recived,
                     'investor' => $investor,
@@ -216,14 +216,14 @@ class AuctionController extends Controller
                     'contract_type_id' => $contract_type
                  ]));
                  Asset::select()->find($asset_id)->update(([
-                    'status' => $assetStatus, 
+                    'status' => $assetStatus,
                  ]));
                 return redirect()->route('offer')-> with(['success' => 'تم التعديل بنجاح']);
             }catch(\Exception $ex){
                     return redirect()->route('offer')-> with(['error' => ' خطأ\n '.$ex]);
             }
         }else{
-            try{ 
+            try{
                 Offer::select()->find($id)->update(([
                     'recived' => $recived,
                     'investor' => $investor,
@@ -236,11 +236,11 @@ class AuctionController extends Controller
                     'increase_rate' => $increase_rate,
                     'assets_id' => $asset_id,
                     'auction_id' => $auction_id,
-                    'contract_type_id' => $contract_type 
+                    'contract_type_id' => $contract_type
                  ]));
                  Asset::select()->find($asset_id)->update(([
                     'status' => $assetStatus,
-                    
+
                  ]));
                 return redirect()->route('offer')-> with(['success' => 'تم التعديل بنجاح']);
             }catch(\Exception $ex){
