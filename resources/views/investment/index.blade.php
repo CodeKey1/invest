@@ -35,6 +35,8 @@
             <div class="main-content">
                 <section class="section">
                     <div class="section-body">
+                        @include('layouts.success')
+                        @include('layouts.error')
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
@@ -55,7 +57,8 @@
                                         <h4></h4>
                                         <div class="card-header-action">
                                             <div class="dropdown">
-                                                <a href="{{ route('investment.Create') }}" class="btn btn-success"> طلب جديد </a>
+                                                <a href="{{ route('investment.Create') }}" class="btn btn-success"> طلب
+                                                    جديد </a>
                                             </div>
                                         </div>
                                     </div>
@@ -90,11 +93,11 @@
 
                                                                     <td>
                                                                         @foreach ($r_license as $r)
-                                                                        @if ($r->R_Lisense->id == $requests->id )
-                                                                        <div class="badge badge-success"> </div>
-                                                                        @elseif($r->R_Lisense->id != $requests->id)
-                                                                        <div class="badge badge-danger"> </div>
-                                                                        @endif
+                                                                            @if ($r->R_Lisense->id == $requests->id)
+                                                                                <div class="badge badge-success"> </div>
+                                                                            @elseif($r->R_Lisense->id != $requests->id)
+                                                                                <div class="badge badge-danger"> </div>
+                                                                            @endif
                                                                         @endforeach
 
                                                                     </td>
