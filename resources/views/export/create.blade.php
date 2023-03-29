@@ -41,25 +41,18 @@
                                     @csrf
                                     <div class="card card-primary">
                                         <div class="card-header">
-                                            <h4>مـدريــة </h4>
+                                            <h4> اضافة ملف صادر جديد </h4>
                                             <div class="card-header-action">
-                                                <div class="dropdown">
-                                                  <a href="#" data-toggle="dropdown" class="btn btn-warning dropdown-toggle">Options</a>
-                                                  <div class="dropdown-menu" style="background-color: rgb(53, 60, 72);">
-                                                    <a href="#" class="dropdown-item has-icon text-success"><i class="fas fa-eye"></i> View</a>
-                                                    <a href="#" class="dropdown-item has-icon text-info"><i class="far fa-edit"></i> Edit</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a href="#" class="dropdown-item has-icon text-danger"><i class="far fa-trash-alt"></i>
-                                                      Delete</a>
-                                                  </div>
-                                                </div>
-                                                <a href="#" class="btn btn-primary">View All</a>
+                                                <a href="{{ route('export') }}" class="btn btn-warning">كل الوارد</a>
+                                                <a href="{{ route('home') }}" class="btn btn-primary">الرئيسية</a>
                                               </div>
                                             {{-- <button class="btn btn-dark"
                                                 style="position: absolute; left: 10px; top:5px"><a
                                                     class="nav-link text-white"
                                                     href="#">عودة</a></button> --}}
                                         </div>
+                                    </div>
+                                    <div class="card card-secondary">
                                         <div class="card-body">
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">

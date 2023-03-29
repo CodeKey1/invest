@@ -37,21 +37,8 @@
                                     <div class="card-header">
                                         <h4> الجمعيات الزراعية </h4>
                                         <div class="card-header-action">
-                                            <div class="dropdown">
-                                                <a href="#" data-toggle="dropdown"
-                                                    class="btn btn-warning dropdown-toggle">Options</a>
-                                                <div class="dropdown-menu" style="background-color: rgb(53, 60, 72);">
-                                                    <a href="#" class="dropdown-item has-icon text-success"><i
-                                                            class="fas fa-eye"></i> View</a>
-                                                    <a href="#" class="dropdown-item has-icon text-info"><i
-                                                            class="far fa-edit"></i> Edit</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a href="#" class="dropdown-item has-icon text-danger"><i
-                                                            class="far fa-trash-alt"></i>
-                                                        Delete</a>
-                                                </div>
-                                            </div>
-                                            <a href="{{ route('role.Create') }}" class="btn btn-primary">اضافة صلحيات</a>
+                                            <a href="{{ route('role.Create') }}" class="btn btn-warning">اضافة صلحيات</a>
+                                            <a href="{{ route('home') }}" class="btn btn-primary">الرئيسية</a>
                                         </div>
                                     </div>
                                     <div class="card-body" style="direction: rtl;">
@@ -61,10 +48,8 @@
                                                 <thead>
                                                     <tr>
                                                         <th> # </th>
-                                                        <th>اسم المركز</th>
-                                                        <th>اسم المنطقة</th>
-                                                        <th>اسم الجمعية</th>
-                                                        <th>عدد المزارعين</th>
+                                                        <th>اسم الصلحية</th>
+
                                                         <th>تفاصيل</th>
                                                     </tr>
                                                 </thead>
@@ -73,16 +58,6 @@
                                                         <tr>
                                                             <td>{{ $role->id }}</td>
                                                             <td>{{ $role->name }}</td>
-                                                            <td class="mb-2">{{ $role->role }}</td>
-
-                                                            <td class="mb-2">
-                                                                @if ($role->state == 0)
-                                                                    <div class="badge badge-danger"> </div>
-                                                                @elseif($role->state == 1)
-                                                                    <div class="badge badge-success"> </div>
-                                                                @endif
-                                                            </td>
-                                                            <td class="mb-2">{{ $role->email }}</td>
                                                             <td>
                                                                 <a class="btn btn-icon btn-success" href="{{ route('role.edite', $role->id) }}"
                                                                     ata-toggle="tooltip" data-placement="top"

@@ -45,7 +45,7 @@ class AdminController extends Controller
         $role = Role::create(['name' => $request->name]);
         $per =  Permission::whereIn('id', $request->permissions)->get();
         $role->syncPermissions($per);
-        return redirect()->route('Roles')->with(['success' => 'تم التسجيل بنجاح']);
+        return redirect()->route('Role')->with(['success' => 'تم التسجيل بنجاح']);
     }
 
     /**

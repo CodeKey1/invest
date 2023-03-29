@@ -39,22 +39,9 @@
                                     <div class="card-header">
                                         <h4> ادارة المستخدمين </h4>
                                         <div class="card-header-action">
-                                            <div class="dropdown">
-                                                <a href="#" data-toggle="dropdown"
-                                                    class="btn btn-warning dropdown-toggle">Options</a>
-                                                <div class="dropdown-menu" style="background-color: rgb(53, 60, 72);">
-                                                    <a href="{{ route('user.Create') }}"
-                                                        class="dropdown-item has-icon text-success"><i
-                                                            class="fas fa-eye"></i> اضافة</a>
-                                                    <a href="#" class="dropdown-item has-icon text-info"><i
-                                                            class="far fa-edit"></i> Edit</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a href="#" class="dropdown-item has-icon text-danger"><i
-                                                            class="far fa-trash-alt"></i>
-                                                        Delete</a>
-                                                </div>
-                                            </div>
-                                            <a href="#" class="btn btn-primary">View All</a>
+                                            
+                                            <a href="{{ route('user.Create') }}" class="btn btn-warning">اضافة صلحيات</a>
+                                            <a href="{{ route('home') }}" class="btn btn-primary">الرئيسية</a>
                                         </div>
                                     </div>
                                     <div class="card-body" style="direction: rtl;">
