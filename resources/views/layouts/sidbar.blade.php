@@ -99,7 +99,7 @@
                     <a href="#" class="menu-toggle nav-link has-dropdown"><span> المحاضر </span>
                         <i data-feather="briefcase"></i></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="#">الطلبات المقبولة</a></li>
+                        {{-- <li><a class="nav-link" href="#">الطلبات المقبولة</a></li> --}}
                         <li><a class="nav-link" href="{{ route('lecturer') }}"> المحاضر </a></li>
                     </ul>
                 </li>
@@ -177,7 +177,7 @@
 
 
 
-                <li class="dropdown">
+                {{-- <li class="dropdown">
                     <a href="#" class="menu-toggle nav-link has-dropdown"><span>الأرشيف</span>
                         <i data-feather="briefcase"></i></a>
                     <ul class="dropdown-menu">
@@ -189,7 +189,7 @@
 
 
                     </ul>
-                </li>
+                </li> --}}
 
 
                 <li class="menu-header">
@@ -206,10 +206,6 @@
                         <li><a class="nav-link" href="{{ route('app.modify') }}">اعدادات البرنامج</a></li>
                     </ul>
                 </li>
-
-            </ul>
-            </li>
-
             </ul>
         @endif
 
@@ -315,6 +311,34 @@
                 </li>
 
             </ul>
+        @endif
+
+        @if (auth()->user()->hasRole('secretary'))
+        <ul class="sidebar-menu">
+            <li class="dropdown active">
+                <a href="{{ route('home') }}" class="nav-link"><span>الرئيسية</span><i
+                        data-feather="monitor"></i></a>
+            </li>
+            <li class="menu-header"></li>
+            <li class="dropdown">
+                <a href="#" class="menu-toggle nav-link has-dropdown"><span>الوارد
+                    </span>
+                    <i data-feather="chevrons-left"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a class="nav-link" href="{{ route('import.Create') }}"> اضافة وارد</a></li>
+                    <li><a class="nav-link" href="{{ route('import') }}">كل الوارد</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="menu-toggle nav-link has-dropdown"><span>الصادر
+                    </span>
+                    <i data-feather="chevrons-right"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a class="nav-link" href="{{ route('export.Create') }}">اضافة صادر</a></li>
+                    <li><a class="nav-link" href="{{ route('export') }}"> كل الصادر</a></li>
+                </ul>
+            </li>
+        </ul>
         @endif
     </aside>
 </div>

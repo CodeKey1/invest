@@ -44,16 +44,7 @@
                                         <div class="card-header">
                                             <h4>اضــافة وارد جديــد</h4>
                                             <div class="card-header-action">
-                                                {{-- <div class="dropdown">
-                                                  <a href="#" data-toggle="dropdown" class="btn btn-warning dropdown-toggle">Options</a>
-                                                  <div class="dropdown-menu" style="background-color: rgb(53, 60, 72);">
-                                                    <a href="#" class="dropdown-item has-icon text-success"><i class="fas fa-eye"></i> View</a>
-                                                    <a href="#" class="dropdown-item has-icon text-info"><i class="far fa-edit"></i> Edit</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a href="#" class="dropdown-item has-icon text-danger"><i class="far fa-trash-alt"></i>
-                                                      Delete</a>
-                                                  </div>
-                                                </div> --}}
+                                                
                                                 <button type="button" class="btn btn-success" data-toggle="modal"
                                                     data-target="#exampleModal"> اضافة جهة </button>
 

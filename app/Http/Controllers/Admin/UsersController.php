@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Model_has_roles;
+use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UsersController extends Controller
 {
@@ -26,8 +29,9 @@ class UsersController extends Controller
     public function create()
     {
         //
+        $role = Role::select()->get();
 
-        return view('users.create');
+        return view('users.create',compact('role'));
     }
 
     /**
@@ -38,17 +42,23 @@ class UsersController extends Controller
         //
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'role' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
         try{
-              User :: create(([
+            $user = User :: create(([
              'name' => $data['name'],
              'email' =>$data['email'],
+             'role' =>$data['role'],
              'password' => Hash::make($data['password']),
 
              ]));
+             Model_has_roles :: create(([
+                'role_id' => $data['role'],
+                'model_id' => $user->id,
+            ]));
 
             return redirect()->route('user')-> with(['success' => 'تم التسجيل بنجاح']);
         }catch(\Exception $ex){
