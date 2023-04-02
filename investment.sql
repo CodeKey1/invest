@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 26, 2023 at 12:38 PM
+-- Generation Time: Apr 02, 2023 at 03:27 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -449,31 +449,8 @@ CREATE TABLE `place` (
 --
 
 INSERT INTO `place` (`id`, `name`, `status`, `place_category_id`, `city_id`, `created_at`, `updated_at`) VALUES
-(1, 'العلاقي', 1, 1, 2, '2023-03-16 09:08:42', '2023-03-16 09:08:42');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `place_category`
---
-
-CREATE TABLE `place_category` (
-  `id` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `place_category`
---
-
-INSERT INTO `place_category` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'صناعية', '2023-03-16 09:00:44', '2023-03-16 09:00:44'),
-(2, 'زراعية', '2023-03-16 09:01:09', '2023-03-16 09:01:09'),
-(3, 'سياحية', '2023-03-16 09:01:16', '2023-03-16 09:01:16'),
-(4, 'خدمية', '2023-03-16 09:01:33', '2023-03-16 09:01:33'),
-(5, 'مختلفة', '2023-03-16 09:01:39', '2023-03-16 09:01:39');
+(1, 'العلاقي', 1, 1, 2, '2023-03-16 09:08:42', '2023-03-16 09:08:42'),
+(2, 'المدينة الصناعية', 1, 1, 1, '2023-04-02 09:03:15', '2023-04-02 09:03:15');
 
 -- --------------------------------------------------------
 
@@ -485,15 +462,25 @@ CREATE TABLE `project` (
   `id` int(11) NOT NULL,
   `feasibility_study` varchar(128) NOT NULL,
   `financial_capital` varchar(128) NOT NULL,
-  `commercial_register` varchar(128) NOT NULL,
-  `tax_card` varchar(128) NOT NULL,
-  `site_sketch` varchar(128) NOT NULL,
-  `location_string` varchar(128) NOT NULL,
+  `commercial_register` varchar(128) DEFAULT NULL,
+  `tax_card` varchar(128) DEFAULT NULL,
+  `site_sketch` varchar(128) DEFAULT NULL,
+  `company_reg` varchar(128) DEFAULT NULL,
   `status` int(11) NOT NULL,
   `name` varchar(512) NOT NULL,
+  `nid_photo` varchar(128) NOT NULL,
   `request_id` int(11) NOT NULL,
-  `place_id` int(11) NOT NULL
+  `place_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `project`
+--
+
+INSERT INTO `project` (`id`, `feasibility_study`, `financial_capital`, `commercial_register`, `tax_card`, `site_sketch`, `company_reg`, `status`, `name`, `nid_photo`, `request_id`, `place_id`, `created_at`, `updated_at`) VALUES
+(11, '1680439787feasibility_study.jpeg', '1680439787financial_capital.jpg', '', '', '', '', 0, 'مشروع سبيل', '1680439787nid_photo.jpg', 12, NULL, '2023-04-02 10:49:47', '2023-04-02 10:49:47');
 
 -- --------------------------------------------------------
 
@@ -503,23 +490,33 @@ CREATE TABLE `project` (
 
 CREATE TABLE `request` (
   `id` int(11) NOT NULL,
-  `name` int(11) NOT NULL,
-  `owner_type` int(11) NOT NULL,
-  `owner_name` int(11) NOT NULL,
-  `address` int(11) NOT NULL,
-  `representative_name` int(11) NOT NULL,
-  `representative_id` int(11) NOT NULL,
+  `name` varchar(256) NOT NULL,
+  `owner_type` varchar(10) NOT NULL,
+  `owner_name` varchar(256) NOT NULL,
+  `address` varchar(256) NOT NULL,
+  `representative_name` varchar(256) DEFAULT NULL,
+  `representative_id` int(11) DEFAULT NULL,
   `NID` int(11) NOT NULL,
-  `size` int(11) NOT NULL,
-  `size_type` int(11) NOT NULL,
-  `Self_financing` int(11) NOT NULL,
-  `recived_date` int(11) NOT NULL,
-  `capital` int(11) NOT NULL,
+  `size` float NOT NULL,
+  `size_type` varchar(10) NOT NULL,
+  `self_financing` float NOT NULL,
+  `recived_date` date NOT NULL,
+  `capital` float NOT NULL,
   `phone` int(11) NOT NULL,
-  `state` int(11) NOT NULL,
-  `sub_ctegory_id` int(11) NOT NULL,
-  `city_id` int(11) NOT NULL
+  `state` tinyint(1) NOT NULL,
+  `sub_category_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `city_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `request`
+--
+
+INSERT INTO `request` (`id`, `name`, `owner_type`, `owner_name`, `address`, `representative_name`, `representative_id`, `NID`, `size`, `size_type`, `self_financing`, `recived_date`, `capital`, `phone`, `state`, `sub_category_id`, `category_id`, `city_id`, `created_at`, `updated_at`) VALUES
+(12, 'مشروع سبيل', 'شركة', 'سيبل', 'سيبل', 'سبيل', 435, 2435, 2435, 'فدان', 45, '2023-04-20', 2435, 243, 0, 1, 1, 1, '2023-04-02 10:49:47', '2023-04-02 10:49:47');
 
 -- --------------------------------------------------------
 
@@ -540,8 +537,11 @@ CREATE TABLE `request_license` (
 --
 
 CREATE TABLE `request_notes` (
+  `id` int(11) NOT NULL,
   `notes` varchar(512) NOT NULL,
-  `id` int(11) NOT NULL
+  `request_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -551,9 +551,20 @@ CREATE TABLE `request_notes` (
 --
 
 CREATE TABLE `request_suggested_places` (
-  `suggested_places` varchar(250) NOT NULL,
-  `id` int(11) NOT NULL
+  `id` int(11) NOT NULL,
+  `suggested_places` int(11) NOT NULL,
+  `request_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `request_suggested_places`
+--
+
+INSERT INTO `request_suggested_places` (`id`, `suggested_places`, `request_id`, `created_at`, `updated_at`) VALUES
+(3, 1, 12, '2023-04-02 10:49:48', '2023-04-02 10:49:48'),
+(4, 2, 12, '2023-04-02 10:49:48', '2023-04-02 10:49:48');
 
 -- --------------------------------------------------------
 
@@ -799,14 +810,8 @@ ALTER TABLE `personal_access_tokens`
 --
 ALTER TABLE `place`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `place_category_id` (`place_category_id`),
-  ADD KEY `city_id` (`city_id`);
-
---
--- Indexes for table `place_category`
---
-ALTER TABLE `place_category`
-  ADD PRIMARY KEY (`id`);
+  ADD KEY `city_id` (`city_id`),
+  ADD KEY `place_ibfk_1` (`place_category_id`);
 
 --
 -- Indexes for table `project`
@@ -821,8 +826,9 @@ ALTER TABLE `project`
 --
 ALTER TABLE `request`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `sub_ctegory_id` (`sub_ctegory_id`),
-  ADD KEY `city_id` (`city_id`);
+  ADD KEY `sub_ctegory_id` (`sub_category_id`),
+  ADD KEY `city_id` (`city_id`),
+  ADD KEY `category_id` (`category_id`);
 
 --
 -- Indexes for table `request_license`
@@ -841,7 +847,9 @@ ALTER TABLE `request_notes`
 -- Indexes for table `request_suggested_places`
 --
 ALTER TABLE `request_suggested_places`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `request_suggested_places_ibfk_1` (`request_id`),
+  ADD KEY `suggested_places` (`suggested_places`);
 
 --
 -- Indexes for table `roles`
@@ -963,25 +971,31 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `place`
 --
 ALTER TABLE `place`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `place_category`
---
-ALTER TABLE `place_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `project`
 --
 ALTER TABLE `project`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `request_notes`
+--
+ALTER TABLE `request_notes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `request_suggested_places`
+--
+ALTER TABLE `request_suggested_places`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -1050,7 +1064,7 @@ ALTER TABLE `offer`
 -- Constraints for table `place`
 --
 ALTER TABLE `place`
-  ADD CONSTRAINT `place_ibfk_1` FOREIGN KEY (`place_category_id`) REFERENCES `place_category` (`id`),
+  ADD CONSTRAINT `place_ibfk_1` FOREIGN KEY (`place_category_id`) REFERENCES `category` (`id`),
   ADD CONSTRAINT `place_ibfk_2` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`);
 
 --
@@ -1064,8 +1078,9 @@ ALTER TABLE `project`
 -- Constraints for table `request`
 --
 ALTER TABLE `request`
-  ADD CONSTRAINT `request_ibfk_1` FOREIGN KEY (`sub_ctegory_id`) REFERENCES `sub_category` (`id`),
-  ADD CONSTRAINT `request_ibfk_2` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`);
+  ADD CONSTRAINT `request_ibfk_1` FOREIGN KEY (`sub_category_id`) REFERENCES `sub_category` (`id`),
+  ADD CONSTRAINT `request_ibfk_2` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`),
+  ADD CONSTRAINT `request_ibfk_3` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`);
 
 --
 -- Constraints for table `request_license`
@@ -1075,16 +1090,11 @@ ALTER TABLE `request_license`
   ADD CONSTRAINT `request_license_ibfk_2` FOREIGN KEY (`license_id`) REFERENCES `license` (`id`);
 
 --
--- Constraints for table `request_notes`
---
-ALTER TABLE `request_notes`
-  ADD CONSTRAINT `request_notes_ibfk_1` FOREIGN KEY (`id`) REFERENCES `request` (`id`);
-
---
 -- Constraints for table `request_suggested_places`
 --
 ALTER TABLE `request_suggested_places`
-  ADD CONSTRAINT `request_suggested_places_ibfk_1` FOREIGN KEY (`id`) REFERENCES `request` (`id`);
+  ADD CONSTRAINT `request_suggested_places_ibfk_1` FOREIGN KEY (`request_id`) REFERENCES `request` (`id`),
+  ADD CONSTRAINT `request_suggested_places_ibfk_2` FOREIGN KEY (`suggested_places`) REFERENCES `place` (`id`);
 
 --
 -- Constraints for table `role_has_permissions`
