@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="assets/css/app.min.css">
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/bundles/bootstrap-daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="assets/bundles/select2/dist/css/select2.min.css">
     <link rel="stylesheet" href="assets/bundles/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
     <link rel="stylesheet" href="assets/bundles/izitoast/css/iziToast.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -147,7 +148,8 @@
                                                     <label> اسم الشركة / المواطن <span
                                                             style="color: red">*</span></label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="owner_name" class="form-control" placeholder="" required>
+                                                        name="owner_name" class="form-control" placeholder=""
+                                                        required>
                                                 </div>
                                                 <div class="form-group col-md-12">
                                                     <label> العنوان <span style="color: red">*</span></label>
@@ -223,36 +225,17 @@
                                                         @endisset
                                                     </select>
                                                 </div>
-                                                <div class="form-group col-md-4">
-                                                    <label> أختر النشاط <span style="color: red">*</span></label>
-                                                    <select class="form-control" id="city" name="city"
-                                                        required>
-                                                        <option value="" disabled hidden selected>اختر المركز
-                                                        </option>
-                                                        @isset($place_cat)
-                                                            @if ($place_cat && $place_cat->count() > 0)
-                                                                @foreach ($place_cat as $item)
-                                                                    <option value="{{ $item->id }}">
-                                                                        {{ $item->name }}
-                                                                    </option>
-                                                                @endforeach
-                                                            @endif
-                                                        @endisset
-                                                    </select>
-
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label>المواقع المقترحة لإقامة المشروع بالمحافظة</label>
-                                                    <select class="form-control" id="area" name="region"
-                                                        required>
-                                                        <option value="" disabled hidden selected>اختر المنطقة
-                                                        </option>
+                                                <div class="form-group col-md-8">
+                                                    <label>المواقع المقترحة لإقامة المشروع بالمحافظة <span
+                                                            style="color: red">*</span></label>
+                                                    <select class="form-control select2" multiple id="area"
+                                                        name="region[]" style="width: 100%" required>
                                                         @isset($place)
                                                             @if ($place && $place->count() > 0)
                                                                 @foreach ($place as $Place)
                                                                     <option
-                                                                        class="coption city-{{ $Place->catePlace->id }} type-{{ $Place->cityPlace->id }}"
-                                                                        value="{{ $Place->catePlace->id }}">
+                                                                        class="coption city-{{ $Place->cityname->id }} type-{{ $Place->placeCatname->id }}"
+                                                                        value="{{ $Place->id }}">
                                                                         {{ $Place->name }}
                                                                     </option>
                                                                 @endforeach
@@ -364,6 +347,7 @@
     <!-- Custom JS File -->
     <script src="assets/js/custom.js"></script>
     <script src="assets/bundles/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
+    <script src="assets/bundles/select2/dist/js/select2.full.min.js"></script>
     <script src="assets/bundles/bootstrap-daterangepicker/daterangepicker.js"></script>
     <script>
         $('.option').hide();
@@ -376,11 +360,11 @@
 
         $('#city_id').on('change', function(e) {
             $('.coption').hide();
-            $('.type-' + e.target.value).show();
-        });
-        $('#city').on('change', function(e) {
-            $('.coption').hide();
             $('.city-' + e.target.value).show();
+        });
+        $('#project').on('change', function(e) {
+            $('.coption').hide();
+            $('.type-' + e.target.value).show();
         });
     </script>
 

@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\City;
 use App\Models\Place;
 use App\Models\Place_Category;
+use App\Models\Request_places;
 use App\Models\Project;
 use App\Models\R_license;
 use App\Models\SubCategory;
@@ -42,14 +43,13 @@ class InvestmentController extends Controller
     public function create()
     {
         //
-        $place = Place::select()->with('catePlace','cityPlace')->get();
-        $place_cat = Place_Category::select()->with('PC')->get();
+        $place = Place::select()->with('cityPlace')->get();
         $clicense   = C_license::select()->with('license_cate','license')->get();
         $city = City::select()->get();
         $category = Category::select()->get();
         $sub_cat = SubCategory::select()->get();
         $now = Carbon::today()->format('y-m-d');
-        return view('investment.create',compact('now','category','sub_cat','city','clicense','place_cat','place'));
+        return view('investment.create',compact('now','category','sub_cat','city','clicense','place'));
     }
 
     /**
@@ -133,18 +133,10 @@ class InvestmentController extends Controller
             $feasibility_study -> move($path, $feasibility_file);
             $feasibility_study = $feasibility_file ;
         }
-        // else{
-        //     $feasibility_study = "";
-        //     $nid_photo = "";
-        //     $financial_capital = "";
-        //     $commercial_register = "";
-        //     $tax_card = "";
-        //     $site_sketch = "";
-        //     $location_string = "";
-        //  }
 
         try{
-            $request   = RequestP:: create(([
+            
+            $request_id = RequestP:: create(([
                 'name' => $request['name'],
                 'owner_type' =>$request['owner_type'],
                 'owner_name' =>$request['owner_name'],
@@ -174,10 +166,16 @@ class InvestmentController extends Controller
                 'status' => 0,
                 'name' =>$request['name'],
                 'nid_photo' =>$nid_file,
-                'request_id' =>$request->id,
+                'request_id' =>$request_id->id,
              ]));
-
-            return redirect()->route('section.Create',[$request->id , $request->category_id])-> with(['success' => 'تم التسجيل بنجاح']);
+            for($i = 0 ; $i < count($request->region) ; $i++){
+                $region[] = $request->region[$i];    
+                $Request_places = Request_places:: create(([
+                    'suggested_places' => $region[$i],
+                    'request_id' => $request_id->id,
+                ]));
+            }
+             return redirect()->route('section.Create',[$request_id->id , $request_id->category_id])-> with(['success' => 'تم التسجيل بنجاح']);
         }catch(\Exception $ex){
             return redirect()->route('investment')-> with(['error' => 'خطأ'.$ex]);
         }
@@ -188,11 +186,14 @@ class InvestmentController extends Controller
      */
     public function show(string $id)
     {
+        
         //
+        $clicense   = C_license::select()->with('license_cate','license')->get();
         $project = Project::select()->with('request_PJ')->where('request_id',$id)->get();
         $r_license = R_license::select()->with('L_Lisense','R_Lisense')->get();
-        $request = RequestP::select()->with('categoryname','city')->find($id);
-        return view('investment.edit',compact('request','r_license','project'));
+        $request = RequestP::select()->with('req_place','categoryname','city')->find($id);
+        $request_places = Request_places::select()->with('Req_place')->where('request_id',$id)->get();
+        return view('investment.edit',compact('request','clicense','r_license','project','request_places'));
     }
 
     /**
