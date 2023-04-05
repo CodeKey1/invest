@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2023 at 03:27 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: Apr 05, 2023 at 02:48 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,7 +41,7 @@ CREATE TABLE `assets` (
   `contract_type_id` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `assets`
@@ -61,7 +61,7 @@ CREATE TABLE `assets_type` (
   `name` varchar(50) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `assets_type`
@@ -84,7 +84,7 @@ CREATE TABLE `auction` (
   `note` varchar(256) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `auction`
@@ -104,7 +104,7 @@ CREATE TABLE `category` (
   `name` varchar(50) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `category`
@@ -129,7 +129,7 @@ CREATE TABLE `city` (
   `gov_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `city`
@@ -153,7 +153,7 @@ CREATE TABLE `contract_type` (
   `name` varchar(50) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `contract_type`
@@ -175,7 +175,7 @@ CREATE TABLE `c_license` (
   `license_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `c_license`
@@ -190,16 +190,41 @@ INSERT INTO `c_license` (`category_id`, `license_id`, `created_at`, `updated_at`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `export`
+--
+
+CREATE TABLE `export` (
+  `id` int(11) NOT NULL,
+  `export_id` int(11) NOT NULL,
+  `export_name` varchar(255) NOT NULL,
+  `export_side` varchar(255) NOT NULL,
+  `export_date` date NOT NULL,
+  `state` int(11) NOT NULL,
+  `export_note` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `export`
+--
+
+INSERT INTO `export` (`id`, `export_id`, `export_name`, `export_side`, `export_date`, `state`, `export_note`, `created_at`, `updated_at`) VALUES
+(1, 12378780, 'fghfgh', 'fghfgh', '2023-03-22', 1, 'dsdgsdsdfsdfsdfsdfsdfsdsdfsdsdf', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) NOT NULL,
-  `connection` text NOT NULL,
-  `queue` text NOT NULL,
-  `payload` longtext NOT NULL,
-  `exception` longtext NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -214,7 +239,7 @@ CREATE TABLE `gov` (
   `name` varchar(50) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `gov`
@@ -227,6 +252,32 @@ INSERT INTO `gov` (`id`, `name`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `import`
+--
+
+CREATE TABLE `import` (
+  `id` int(11) NOT NULL,
+  `import_id` int(11) DEFAULT NULL,
+  `import_name` varchar(255) DEFAULT NULL,
+  `import_side` varchar(255) DEFAULT NULL,
+  `import_date` date DEFAULT NULL,
+  `import_note` varchar(255) DEFAULT NULL,
+  `state` int(11) NOT NULL DEFAULT 1,
+  `import_file` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `import`
+--
+
+INSERT INTO `import` (`id`, `import_id`, `import_name`, `import_side`, `import_date`, `import_note`, `state`, `import_file`, `created_at`, `updated_at`) VALUES
+(5, 46456456, 'aswan', 'المكتب التحول الرقمي', '2023-03-28', 'ghfghf', 1, '1680001960.image (2).png', '2023-03-28 07:12:40', '2023-03-28 07:12:40');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `license`
 --
 
@@ -235,7 +286,7 @@ CREATE TABLE `license` (
   `name` varchar(50) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `license`
@@ -255,7 +306,7 @@ INSERT INTO `license` (`id`, `name`, `created_at`, `updated_at`) VALUES
 
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -280,7 +331,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `model_has_permissions` (
   `permission_id` bigint(20) UNSIGNED NOT NULL,
-  `model_type` varchar(255) NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `model_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -292,7 +343,7 @@ CREATE TABLE `model_has_permissions` (
 
 CREATE TABLE `model_has_roles` (
   `role_id` bigint(20) UNSIGNED NOT NULL,
-  `model_type` varchar(255) NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `model_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -327,7 +378,7 @@ CREATE TABLE `offer` (
   `contract_type_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `offer`
@@ -345,8 +396,8 @@ INSERT INTO `offer` (`id`, `recived`, `investor`, `phone`, `work_date`, `status`
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -357,8 +408,8 @@ CREATE TABLE `password_resets` (
 --
 
 CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -370,8 +421,8 @@ CREATE TABLE `password_reset_tokens` (
 
 CREATE TABLE `permissions` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `guard_name` varchar(255) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -417,11 +468,11 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at
 
 CREATE TABLE `personal_access_tokens` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `token` varchar(64) NOT NULL,
-  `abilities` text DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -442,7 +493,7 @@ CREATE TABLE `place` (
   `city_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `place`
@@ -466,21 +517,21 @@ CREATE TABLE `project` (
   `tax_card` varchar(128) DEFAULT NULL,
   `site_sketch` varchar(128) DEFAULT NULL,
   `company_reg` varchar(128) DEFAULT NULL,
-  `status` int(11) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 0,
   `name` varchar(512) NOT NULL,
   `nid_photo` varchar(128) NOT NULL,
   `request_id` int(11) NOT NULL,
   `place_id` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `project`
 --
 
 INSERT INTO `project` (`id`, `feasibility_study`, `financial_capital`, `commercial_register`, `tax_card`, `site_sketch`, `company_reg`, `status`, `name`, `nid_photo`, `request_id`, `place_id`, `created_at`, `updated_at`) VALUES
-(11, '1680439787feasibility_study.jpeg', '1680439787financial_capital.jpg', '', '', '', '', 0, 'مشروع سبيل', '1680439787nid_photo.jpg', 12, NULL, '2023-04-02 10:49:47', '2023-04-02 10:49:47');
+(11, '1680439787feasibility_study.jpeg', '1680439787financial_capital.jpg', '', '', '', '', 0, 'مشروع سبيل', '1680439787nid_photo.jpg', 12, 1, '2023-04-02 10:49:47', '2023-04-02 10:49:47');
 
 -- --------------------------------------------------------
 
@@ -503,20 +554,20 @@ CREATE TABLE `request` (
   `recived_date` date NOT NULL,
   `capital` float NOT NULL,
   `phone` int(11) NOT NULL,
-  `state` tinyint(1) NOT NULL,
+  `state` tinyint(1) NOT NULL DEFAULT 0,
   `sub_category_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
   `city_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `request`
 --
 
 INSERT INTO `request` (`id`, `name`, `owner_type`, `owner_name`, `address`, `representative_name`, `representative_id`, `NID`, `size`, `size_type`, `self_financing`, `recived_date`, `capital`, `phone`, `state`, `sub_category_id`, `category_id`, `city_id`, `created_at`, `updated_at`) VALUES
-(12, 'مشروع سبيل', 'شركة', 'سيبل', 'سيبل', 'سبيل', 435, 2435, 2435, 'فدان', 45, '2023-04-20', 2435, 243, 0, 1, 1, 1, '2023-04-02 10:49:47', '2023-04-02 10:49:47');
+(12, 'مشروع سبيل', 'شركة', 'سيبل', 'سيبلdgdfg', 'محمد مختار أحمدdvxvdv', 435, 2435, 2435, 'فدان', 45, '2023-04-05', 2435, 243, 1, 1, 1, 2, '2023-04-02 10:49:47', '2023-04-05 10:29:41');
 
 -- --------------------------------------------------------
 
@@ -525,10 +576,21 @@ INSERT INTO `request` (`id`, `name`, `owner_type`, `owner_name`, `address`, `rep
 --
 
 CREATE TABLE `request_license` (
+  `id` int(11) NOT NULL,
   `file` varchar(64) NOT NULL,
   `request_id` int(11) NOT NULL,
-  `license_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `license_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `request_license`
+--
+
+INSERT INTO `request_license` (`id`, `file`, `request_id`, `license_id`, `created_at`, `updated_at`) VALUES
+(1, '', 12, 1, NULL, NULL),
+(2, '', 12, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -542,7 +604,7 @@ CREATE TABLE `request_notes` (
   `request_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -556,15 +618,15 @@ CREATE TABLE `request_suggested_places` (
   `request_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `request_suggested_places`
 --
 
 INSERT INTO `request_suggested_places` (`id`, `suggested_places`, `request_id`, `created_at`, `updated_at`) VALUES
-(3, 1, 12, '2023-04-02 10:49:48', '2023-04-02 10:49:48'),
-(4, 2, 12, '2023-04-02 10:49:48', '2023-04-02 10:49:48');
+(3, 2, 12, '2023-04-02 10:49:48', '2023-04-05 10:29:41'),
+(4, 2, 12, '2023-04-02 10:49:48', '2023-04-05 10:29:41');
 
 -- --------------------------------------------------------
 
@@ -574,8 +636,8 @@ INSERT INTO `request_suggested_places` (`id`, `suggested_places`, `request_id`, 
 
 CREATE TABLE `roles` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `guard_name` varchar(255) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -635,6 +697,28 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `side`
+--
+
+CREATE TABLE `side` (
+  `id` int(11) NOT NULL,
+  `side_name` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `side`
+--
+
+INSERT INTO `side` (`id`, `side_name`, `created_at`, `updated_at`) VALUES
+(1, 'dfsdf', '2023-03-28 07:06:42', '2023-03-28 07:06:42'),
+(2, 'المكتب التحول الرقمي', '2023-03-28 07:11:40', '2023-03-28 07:11:40'),
+(3, 'يبليبل', '2023-03-29 06:30:15', '2023-03-29 06:30:15');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sub_category`
 --
 
@@ -644,7 +728,7 @@ CREATE TABLE `sub_category` (
   `category_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `sub_category`
@@ -661,12 +745,12 @@ INSERT INTO `sub_category` (`id`, `name`, `category_id`, `created_at`, `updated_
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `role` varchar(100) NOT NULL,
-  `remember_token` varchar(100) DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -731,6 +815,12 @@ ALTER TABLE `c_license`
   ADD KEY `license_id` (`license_id`);
 
 --
+-- Indexes for table `export`
+--
+ALTER TABLE `export`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -741,6 +831,12 @@ ALTER TABLE `failed_jobs`
 -- Indexes for table `gov`
 --
 ALTER TABLE `gov`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `import`
+--
+ALTER TABLE `import`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -834,8 +930,7 @@ ALTER TABLE `request`
 -- Indexes for table `request_license`
 --
 ALTER TABLE `request_license`
-  ADD PRIMARY KEY (`request_id`,`license_id`),
-  ADD KEY `license_id` (`license_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `request_notes`
@@ -864,6 +959,12 @@ ALTER TABLE `roles`
 ALTER TABLE `role_has_permissions`
   ADD PRIMARY KEY (`permission_id`,`role_id`),
   ADD KEY `role_has_permissions_role_id_foreign` (`role_id`);
+
+--
+-- Indexes for table `side`
+--
+ALTER TABLE `side`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `sub_category`
@@ -926,6 +1027,12 @@ ALTER TABLE `c_license`
   MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `export`
+--
+ALTER TABLE `export`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -936,6 +1043,12 @@ ALTER TABLE `failed_jobs`
 --
 ALTER TABLE `gov`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `import`
+--
+ALTER TABLE `import`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `license`
@@ -977,13 +1090,19 @@ ALTER TABLE `place`
 -- AUTO_INCREMENT for table `project`
 --
 ALTER TABLE `project`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `request_license`
+--
+ALTER TABLE `request_license`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `request_notes`
@@ -995,13 +1114,19 @@ ALTER TABLE `request_notes`
 -- AUTO_INCREMENT for table `request_suggested_places`
 --
 ALTER TABLE `request_suggested_places`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `side`
+--
+ALTER TABLE `side`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `sub_category`
@@ -1081,13 +1206,6 @@ ALTER TABLE `request`
   ADD CONSTRAINT `request_ibfk_1` FOREIGN KEY (`sub_category_id`) REFERENCES `sub_category` (`id`),
   ADD CONSTRAINT `request_ibfk_2` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`),
   ADD CONSTRAINT `request_ibfk_3` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`);
-
---
--- Constraints for table `request_license`
---
-ALTER TABLE `request_license`
-  ADD CONSTRAINT `request_license_ibfk_1` FOREIGN KEY (`request_id`) REFERENCES `request` (`id`),
-  ADD CONSTRAINT `request_license_ibfk_2` FOREIGN KEY (`license_id`) REFERENCES `license` (`id`);
 
 --
 -- Constraints for table `request_suggested_places`

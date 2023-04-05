@@ -96,6 +96,10 @@
                                         @endif
                                     @endforeach
                                 </div>
+                                <form class="needs-validation" id="work_experience" novalidate=""
+                                    action="{{ route('investment.update', $request->id) }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
                                 <div class="card card-primary">
                                     <div class="card-body">
                                         <div class="form-row">
@@ -104,16 +108,23 @@
                                                 <input style="height: calc(2.25rem + 6px);" type="text"
                                                     class="form-control" value="{{ $request->categoryname->name }}"
                                                     disabled>
+                                                <input style="height: calc(2.25rem + 6px);" type="number"
+                                                    class="form-control" name="category_id" value="{{ $request->categoryname->name }}"
+                                                    hidden>
                                             </div>
                                             <div class="form-group col-md-2">
                                                 <label>الفئة الفرعية </label>
                                                 <input style="height: calc(2.25rem + 6px);" type="text"
                                                     class="form-control" value="{{ $request->subCat->name }}" disabled>
+                                                <input style="height: calc(2.25rem + 6px);" type="number"
+                                                    class="form-control" name="sub_category_id" value="{{ $request->subCat->name }}" hidden>
                                             </div>
                                             <div class="form-group col-md-8">
                                                 <label> اسم المشروع </label>
                                                 <input style="height: calc(2.25rem + 6px);" type="text"
-                                                    class="form-control" value="{{ $request->name }}" disabled>
+                                                    class="form-control" name="name" value="{{ $request->name }}" disabled>
+                                                <input style="height: calc(2.25rem + 6px);" type="text"
+                                                    class="form-control" name="name" value="{{ $request->name }}" hidden>
                                             </div>
                                             <div class="form-group col-md-12">
                                                 <label> الجهات للموافة علي المشرع </label>
@@ -131,71 +142,110 @@
                                             <div class="form-group col-md-4">
                                                 <label>نوع مقدم الطلب </label>
                                                 <input style="height: calc(2.25rem + 6px);" type="text"
-                                                    class="form-control" value="{{ $request->owner_type }}" disabled>
+                                                    class="form-control" name="owner_type" value="{{ $request->owner_type }}" disabled>
+                                                <input style="height: calc(2.25rem + 6px);" type="text"
+                                                    class="form-control" name="owner_type" value="{{ $request->owner_type }}" hidden>
                                             </div>
                                             <div class="form-group col-md-8">
                                                 <label> اسم الشركة / المواطن </label>
                                                 <input style="height: calc(2.25rem + 6px);" type="text"
-                                                    class="form-control" value="{{ $request->owner_name }}" disabled>
+                                                    class="form-control" name="owner_name" value="{{ $request->owner_name }}" disabled>
+                                                <input style="height: calc(2.25rem + 6px);" type="text"
+                                                    class="form-control" name="owner_name" value="{{ $request->owner_name }}" hidden>
                                             </div>
                                             <div class="form-group col-md-12">
                                                 <label> العنوان </label>
                                                 <input style="height: calc(2.25rem + 6px);" type="text"
                                                     class="form-control" value="{{ $request->address }}" disabled>
+                                                <input style="height: calc(2.25rem + 6px);" type="text"
+                                                    class="form-control" name="address" value="{{ $request->address }}" >
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label> اسم المفوض </label>
                                                 <input style="height: calc(2.25rem + 6px);" type="text"
                                                     class="form-control"
                                                     value="{{ $request->representative_name ?? 'لا يوجد' }}" disabled>
+                                                <input style="height: calc(2.25rem + 6px);" type="text"
+                                                    class="form-control"
+                                                    name="representative_name" value="{{ $request->representative_name ?? 'لا يوجد' }}" >
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label> بالتوكيل رقم </label>
                                                 <input style="height: calc(2.25rem + 6px);" type="text"
                                                     class="form-control"
                                                     value="{{ $request->representative_id ?? 'لا يوجد' }}" disabled>
+                                                <input style="height: calc(2.25rem + 6px);" type="text"
+                                                    class="form-control"
+                                                    name="representative_id" value="{{ $request->representative_id ?? 'لا يوجد' }}" >
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label>بطاقة رقم </label>
                                                 <input style="height: calc(2.25rem + 6px);" type="text"
                                                     class="form-control" value="{{ $request->NID }}" disabled>
+                                                <input style="height: calc(2.25rem + 6px);" type="text"
+                                                    class="form-control" name="NID" value="{{ $request->NID }}" >
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label>تليفون </label>
                                                 <input style="height: calc(2.25rem + 6px);" type="text"
                                                     class="form-control" value="{{ $request->phone }}" disabled>
+                                                <input style="height: calc(2.25rem + 6px);" type="text"
+                                                    class="form-control" name="phone" value="{{ $request->phone }}" >
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label> مساحة المشروع </label>
                                                 <input style="height: calc(2.25rem + 6px);" type="text"
                                                     class="form-control" value="{{ $request->size }}" disabled>
+                                                <input style="height: calc(2.25rem + 6px);" type="text"
+                                                    class="form-control" name="size" value="{{ $request->size }}" >
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label>نوع المساحة </label>
                                                 <input style="height: calc(2.25rem + 6px);" type="text"
                                                     class="form-control" value="{{ $request->size_type }}" disabled>
+                                                <input style="height: calc(2.25rem + 6px);" type="text"
+                                                    class="form-control" name="size_type" value="{{ $request->size_type }}" >
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label>برأسمال قيمته </label>
                                                 <input style="height: calc(2.25rem + 6px);" type="text"
                                                     class="form-control" value="{{ $request->capital }}" disabled>
+                                                <input style="height: calc(2.25rem + 6px);" type="text"
+                                                    class="form-control" name="capital" value="{{ $request->capital }}" >
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label>نسبة التمويل الذاتي </label>
                                                 <input style="height: calc(2.25rem + 6px);" type="text"
                                                     class="form-control" value="{{ $request->self_financing }}"
                                                     disabled>
+                                                <input style="height: calc(2.25rem + 6px);" type="number"
+                                                    class="form-control" name="Self_financing" value="{{ $request->self_financing }}">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label>تاريخ تقديم الطلب </label>
-                                                <input style="height: calc(2.25rem + 6px);" type="text"
+                                                <input style="height: calc(2.25rem + 6px);" type="date"
                                                     class="form-control" value="{{ $request->recived_date }}"
                                                     disabled>
+                                                <input style="height: calc(2.25rem + 6px);" type="date"
+                                                    class="form-control" name="recived_date" value="{{ $request->recived_date }}"
+                                                    >
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label>المدينة </label>
-                                                <input style="height: calc(2.25rem + 6px);" type="text"
+                                                <input style="height: calc(2.25rem + 6px);" type="number"
                                                     class="form-control" value="{{ $request->city->name }}" disabled>
+                                                    <select class="form-control" id="city_id" name="city_id">
+                                                        <option disabled selected>اختر المدينة</option>
+                                                        @isset($city)
+                                                            @if ($city && $city->count() > 0)
+                                                                @foreach ($city as $City)
+                                                                    <option value="{{ $City->id }}">
+                                                                        {{ $City->name }}
+                                                                    </option>
+                                                                @endforeach
+                                                            @endif
+                                                        @endisset
+                                                    </select>
                                             </div>
                                             <div class="form-group col-md-8">
                                                 <label>المواقع المقترحة لإقامة المشروع بالمحافظة</label>
@@ -205,6 +255,15 @@
                                                         @if ($request_places && $request_places->count() > 0)
                                                             @foreach ($request_places as $item)
                                                                 <option selected>{{ $item->Req_place->name }}</option>
+                                                            @endforeach
+                                                        @endif
+                                                    @endisset
+                                                </select>
+                                                <select class="form-control select2" name="region[]" multiple style="width: 100%">
+                                                    @isset($request_places)
+                                                        @if ($request_places && $request_places->count() > 0)
+                                                            @foreach ($request_places as $item)
+                                                                <option value="{{ $item->Req_place->id }}" selected>{{ $item->Req_place->name }}</option>
                                                             @endforeach
                                                         @endif
                                                     @endisset
@@ -249,6 +308,30 @@
                                                                         <td><a href="{{ asset('attatcment_project/' . $PRG->feasibility_study) }}"
                                                                                 target="_blank">اضغط هنا</a></td>
                                                                     </tr>
+                                                                    <tr>
+                                                                        <td>2</td>
+                                                                        <td>
+                                                                            <input type="file" name="feasibility_study" class="form-control" >
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="file" name="tax_card" class="form-control" >
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="file" name="commercial_register" class="form-control" >
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="file" name="nid_photo" class="form-control" >
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="file" name="feasibility_study" class="form-control" >
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="file" name="site_sketch" class="form-control" >
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="file" name="feasibility_study" class="form-control" >
+                                                                        </td>
+                                                                    </tr>
 
                                                                 </tbody>
                                                             @endforeach
@@ -257,8 +340,11 @@
                                                 </table>
                                             </div>
                                         </div>
+                                        <button type="submit" class="btn btn-success"
+                                                style="float: left;">حفظ</button>
                                     </div>
                                 </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -328,6 +414,20 @@
     <script src="assets/bundles/select2/dist/js/select2.full.min.js"></script>
     <script>
         $('.option').hide();
+        $('.coption').hide();
+        $('#project').on('change', function(e) {
+            $('.option').hide();
+            $('.license-' + e.target.value).show();
+            $('.cat-' + e.target.value).show();
+        });
+
+        $('#city_id').on('change', function(e) {
+            $('.coption').hide();
+            $('.city-' + e.target.value).show();
+        });
+        $('#project').on('change', function(e) {
+            $('.coption').hide();
+            $('.type-' + e.target.value).show();
         $('.license-' + {{ $request->categoryname->id }}).show();
     </script>
 

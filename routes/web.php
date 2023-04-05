@@ -64,6 +64,7 @@ Route::get('/import-delete{id}', [App\Http\Controllers\Admin\ImportController::c
 */
 Route::get('/investment', [App\Http\Controllers\Admin\InvestmentController::class, 'index'])->name('investment');
 Route::get('/investment-show{id}', [App\Http\Controllers\Admin\InvestmentController::class, 'show'])->name('investment.show');
+Route::post('/investment-update{id}', [App\Http\Controllers\Admin\InvestmentController::class, 'update'])->name('investment.update');
 Route::get('/investment-create', [App\Http\Controllers\Admin\InvestmentController::class, 'create'])->name('investment.Create');
 Route::Post('/investment-store', [App\Http\Controllers\Admin\InvestmentController::class, 'store'])->name('investment.store');
 Route::get('/investment-delete{id}', [App\Http\Controllers\Admin\InvestmentController::class, 'destroy'])->name('investment.delete');
