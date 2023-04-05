@@ -132,48 +132,37 @@ class InvestmentController extends Controller
             $location_string -> move($path, $file7);
             $location_string = $file7 ;
         }
-        // else{
-        //     $feasibility_study = "";
-        //     $nid_photo = "";
-        //     $financial_capital = "";
-        //     $commercial_register = "";
-        //     $tax_card = "";
-        //     $site_sketch = "";
-        //     $location_string = "";
-        //  }
-
         try{
             $request   = RequestP:: create(([
-             'name' => $request['name'],
-             'category_id' => $request['category_id'],
-             'sub_ctegory_id' => $request['sub_ctegory_id'],
-             'owner_type' =>$request['email'],
-             'owner_name' =>$request['owner_name'],
-             'address' =>$request['address'],
-             'representative_name' =>$request['representative_name'],
-             'representative_id' =>$request['representative_id'],
-             'NID' =>$request['NID'],
-             'size' =>$request['size'],
-             'size_type' =>$request['size_type'],
-             'Self_financing' =>$request['Self_financing'],
-             'recived_date' => $now ,
-             'city_id' =>$request['city_id'],
-             'phone' =>$request['phone'],
-             'state' =>$request['state'],
+                'name' => $request['name'],
+                'category_id' => $request['category_id'],
+                'sub_ctegory_id' => $request['sub_ctegory_id'],
+                'owner_type' =>$request['email'],
+                'owner_name' =>$request['owner_name'],
+                'address' =>$request['address'],
+                'representative_name' =>$request['representative_name'],
+                'representative_id' =>$request['representative_id'],
+                'NID' =>$request['NID'],
+                'size' =>$request['size'],
+                'size_type' =>$request['size_type'],
+                'Self_financing' =>$request['Self_financing'],
+                'recived_date' => $now ,
+                'city_id' =>$request['city_id'],
+                'phone' =>$request['phone'],
+                'state' =>$request['state'],
 
              ]));
 
-             $project = Project::create(([
-                'feasibility_study' =>$file1,
-                'financial_capital' =>$file2,
+             Project::create(([
+                'feasibility_study'   =>$file1,
+                'financial_capital'   =>$file2,
                 'commercial_register' =>$file3,
-                'tax_card' =>$file4,
-                'site_sketch' =>$file5,
-                'location_string' =>$file6,
-                'nid_photo' =>$file7,
-                'name' =>$request['name'],
-                'request_id' =>$request->id,
-
+                'tax_card'            =>$file4,
+                'site_sketch'         =>$file5,
+                'location_string'     =>$file6,
+                'nid_photo'           =>$file7,
+                'name'                =>$request['name'],
+                'request_id'          =>$request->id,
              ]));
 
             return redirect()->route('section.Create',[$request->id , $request->category_id])-> with(['success' => 'تم التسجيل بنجاح']);
