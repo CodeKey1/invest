@@ -26,9 +26,10 @@ class InvestmentController extends Controller
     {
         //
         $r_license = R_license::select()->with('L_Lisense','R_Lisense')->get();
-        $request   = RequestP::select()->with('categoryname','city','rl','subCat')->where('state',1)->get();
+        $request   = RequestP::select()->with('categoryname','city','rl','subCat')->get();
         return view('investment.index',compact('request','r_license'));
     }
+
     public function lecturer()
     {
         //
@@ -186,7 +187,6 @@ class InvestmentController extends Controller
      */
     public function show(string $id)
     {
-        
         //
         $clicense   = C_license::select()->with('license_cate','license')->get();
         $project = Project::select()->with('request_PJ')->where('request_id',$id)->get();

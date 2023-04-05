@@ -70,11 +70,11 @@
                                                     <tr>
                                                         <th> # </th>
                                                         <th> مشروع </th>
-                                                        {{-- <th> فئة المشروع </th> --}}
+                                                        <th> اسم المشروع </th>
                                                         <th>اسم المتقدم</th>
                                                         <th> مواطن / شركة </th>
                                                         <th>المدينة</th>
-
+                                                        <th>الحالة</th>
                                                         <th> موافقات الجهات </th>
                                                         <th>تفاصيل</th>
                                                     </tr>
@@ -85,12 +85,18 @@
                                                             <tbody>
                                                                 <tr>
                                                                     <td>{{ $requests->id }}</td>
-                                                                    <td>{{ $requests->categoryname->name }}</td>
-                                                                    {{-- <td>{{ $requests->subCat->name }}</td> --}}
                                                                     <td>{{ $requests->name }}</td>
+                                                                    <td>{{ $requests->subCat->name }}</td>
+                                                                    <td>{{ $requests->owner_name }}</td>
                                                                     <td>{{ $requests->owner_type }}</td>
                                                                     <td>{{ $requests->city->name }}</td>
-
+                                                                    <td>
+                                                                        @if ($requests->state)
+                                                                            <div class="badge badge-success"> </div>
+                                                                        @elseif(!$requests->state)
+                                                                            <div class="badge badge-danger"> </div>
+                                                                        @endif
+                                                                    </td>
                                                                     <td>
                                                                         @foreach ($r_license as $r)
                                                                             @if ($r->R_Lisense->id == $requests->id)
