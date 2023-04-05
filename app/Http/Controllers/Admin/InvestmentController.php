@@ -147,7 +147,7 @@ class InvestmentController extends Controller
                 'NID' =>$request['NID'],
                 'size' =>$request['size'],
                 'size_type' =>$request['size_type'],
-                'Self_financing' =>$request['Self_financing'],
+                'self_financing' =>$request['Self_financing'],
                 'recived_date' => $now ,
                 'city_id' =>$request['city_id'],
                 'phone' =>$request['phone'],
