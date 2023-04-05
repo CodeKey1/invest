@@ -22,12 +22,12 @@ class RequestP extends Model
         'NID',
         'size',
         'size_type',
-        'Self_financing',
+        'self_financing',
         'recived_date',
         'capital',
         'phone',
         'state',
-        'sub_ctegory_id',
+        'sub_category_id',
         'category_id',
         'city_id',
         'created_at',
@@ -38,7 +38,7 @@ class RequestP extends Model
         return  $this->belongsTo(Category::class ,'category_id');
     }
     public function subCat(){
-        return  $this->belongsTo(SubCategory::class ,'sub_ctegory_id');
+        return  $this->belongsTo(SubCategory::class ,'sub_category_id');
     }
     public function city(){
         return  $this->belongsTo(City::class ,'city_id');
@@ -49,4 +49,8 @@ class RequestP extends Model
     public function Project_Rq(){
         return  $this->hasMany(Project::class ,'request_id');
     }
+    public function req_place(){
+        return  $this->hasMany(Request_places::class ,'request_id');
+    }
+
 }

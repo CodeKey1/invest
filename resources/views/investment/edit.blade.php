@@ -13,6 +13,7 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/bundles/bootstrap-daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="assets/bundles/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
+    <link rel="stylesheet" href="assets/bundles/select2/dist/css/select2.min.css">
     <link rel="stylesheet" href="assets/bundles/izitoast/css/iziToast.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/components.css">
@@ -35,194 +36,234 @@
                             <div class="col-12 col-md-12 col-lg-12">
                                 @include('layouts.success')
                                 @include('layouts.error')
-                                <form class="needs-validation" id="work_experience" novalidate="" action="#"
-                                    method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h4> عرض طلب الإسثمار / {{ $request->name }}</h4>
-                                            <div class="card-header-action">
-                                                <div class="dropdown">
-                                                    <a href="#" data-toggle="dropdown"
-                                                        class="btn btn-warning dropdown-toggle">Options</a>
-                                                    <div class="dropdown-menu"
-                                                        style="background-color: rgb(53, 60, 72);">
-                                                        <a href="#" class="dropdown-item has-icon text-success"><i
-                                                                class="fas fa-eye"></i> View</a>
-                                                        <a href="#" class="dropdown-item has-icon text-info"><i
-                                                                class="far fa-edit"></i> Edit</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a href="#" class="dropdown-item has-icon text-danger"><i
-                                                                class="far fa-trash-alt"></i>
-                                                            Delete</a>
-                                                    </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4> عرض طلب الإسثمار / {{ $request->name }}</h4>
+                                        <div class="card-header-action">
+                                            <div class="dropdown">
+                                                <a href="#" data-toggle="dropdown"
+                                                    class="btn btn-warning dropdown-toggle">Options</a>
+                                                <div class="dropdown-menu" style="background-color: rgb(53, 60, 72);">
+                                                    <a href="#" class="dropdown-item has-icon text-success"><i
+                                                            class="fas fa-eye"></i> View</a>
+                                                    <a href="#" class="dropdown-item has-icon text-info"><i
+                                                            class="far fa-edit"></i> Edit</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a href="#" class="dropdown-item has-icon text-danger"><i
+                                                            class="far fa-trash-alt"></i>
+                                                        Delete</a>
                                                 </div>
-                                                <a href="{{ route('investment') }}" class="btn btn-primary">ادارة
-                                                    الطلبات</a>
                                             </div>
-                                            {{-- <button class="btn btn-dark"
+                                            <a href="{{ route('investment') }}" class="btn btn-primary">ادارة
+                                                الطلبات</a>
+                                        </div>
+                                        {{-- <button class="btn btn-dark"
                                                 style="position: absolute; left: 10px; top:5px"><a
                                                     class="nav-link text-white"
                                                     href="#">عودة</a></button> --}}
-                                        </div>
-                                        <div class="card-body">
-                                            <p class="card-text" style="text-align:center;">الجهات المنتظر منها الرد</p>
-                                        </div>
                                     </div>
-                                    <div class="row">
-
-                                        @foreach ($r_license as $r)
-                                            @if ($r->R_Lisense->id == $request->id)
-                                                <div class="col-12 col-md-6 col-lg-2">
-                                                    <div class="card card-primary">
-                                                        <div class="card-header">
-                                                            <i class="fas fa-check-double" style="color: green;"></i>
-                                                            <h4 style="font-size: 12px;"> <a href="#"
-                                                                data-toggle="modal"
-                                                                data-target=".bd-example-modal-lg">
+                                    <div class="card-body">
+                                        <p class="card-text" style="text-align:center;">الجهات المنتظر منها الرد</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    @foreach ($r_license as $r)
+                                        @if ($r->R_Lisense->id == $request->id)
+                                            <div class="col-12 col-md-6 col-lg-2">
+                                                <div class="card card-primary">
+                                                    <div class="card-header">
+                                                        <i class="fas fa-check-double" style="color: green;"></i>
+                                                        <h4 style="font-size: 12px;"> <a href="#"
+                                                                data-toggle="modal" data-target=".bd-example-modal-lg">
                                                                 {{ $r->L_Lisense->name }} </a> </a>
-                                                            </h4>
-                                                        </div>
-
+                                                        </h4>
                                                     </div>
-                                                </div>
-                                            @elseif($r->R_Lisense->id != $request->id)
-                                                <div class="col-12 col-md-6 col-lg-2">
-                                                    <div class="card card-primary">
-                                                        <div class="card-header">
-                                                            <i class="fas fa-times" style="color: red;"></i>
-                                                            <h4 style="font-size: 12px;"><a href="#"
-                                                                    data-toggle="modal"
-                                                                    data-target=".bd-example-modal-lg">
-                                                                    {{ $r->L_Lisense->name }} </a></h4>
-                                                        </div>
 
+                                                </div>
+                                            </div>
+                                        @elseif($r->R_Lisense->id != $request->id)
+                                            <div class="col-12 col-md-6 col-lg-2">
+                                                <div class="card card-primary">
+                                                    <div class="card-header">
+                                                        <i class="fas fa-times" style="color: red;"></i>
+                                                        <h4 style="font-size: 12px;"><a href="#"
+                                                                data-toggle="modal" data-target=".bd-example-modal-lg">
+                                                                {{ $r->L_Lisense->name }} </a></h4>
                                                     </div>
-                                                </div>
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                    <div class="card card-primary">
 
-                                        <div class="card-body">
-                                            <div class="form-row">
-                                                <div class="form-group col-md-12">
-                                                    <label> اسم الشركة / المواطن</label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="name" value="{{ $request->owner_name }}"
-                                                        class="form-control"placeholder="" disabled>
                                                 </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                                <div class="card card-primary">
+                                    <div class="card-body">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-2">
+                                                <label>فئة المشروع </label>
+                                                <input style="height: calc(2.25rem + 6px);" type="text"
+                                                    class="form-control" value="{{ $request->categoryname->name }}"
+                                                    disabled>
+                                            </div>
+                                            <div class="form-group col-md-2">
+                                                <label>الفئة الفرعية </label>
+                                                <input style="height: calc(2.25rem + 6px);" type="text"
+                                                    class="form-control" value="{{ $request->subCat->name }}" disabled>
+                                            </div>
+                                            <div class="form-group col-md-8">
+                                                <label> اسم المشروع </label>
+                                                <input style="height: calc(2.25rem + 6px);" type="text"
+                                                    class="form-control" value="{{ $request->name }}" disabled>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label> الجهات للموافة علي المشرع </label>
+                                                @isset($clicense)
+                                                    @if ($clicense && $clicense->count() > 0)
+                                                        @foreach ($clicense as $lice)
+                                                            <div
+                                                                class="option license-{{ $lice->license_cate->id }} badge badge-danger">
+                                                                {{ $lice->license->name }}</div>
+                                                            {{-- <input class="option license-{{ $lice->license_cate->id }}" type="text" value="{{ $lice->license_cate->id }}" name="sub_ctegory_id"> --}}
+                                                        @endforeach
+                                                    @endif
+                                                @endisset
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>نوع مقدم الطلب </label>
+                                                <input style="height: calc(2.25rem + 6px);" type="text"
+                                                    class="form-control" value="{{ $request->owner_type }}" disabled>
+                                            </div>
+                                            <div class="form-group col-md-8">
+                                                <label> اسم الشركة / المواطن </label>
+                                                <input style="height: calc(2.25rem + 6px);" type="text"
+                                                    class="form-control" value="{{ $request->owner_name }}" disabled>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label> العنوان </label>
+                                                <input style="height: calc(2.25rem + 6px);" type="text"
+                                                    class="form-control" value="{{ $request->address }}" disabled>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label> اسم المفوض </label>
+                                                <input style="height: calc(2.25rem + 6px);" type="text"
+                                                    class="form-control"
+                                                    value="{{ $request->representative_name ?? 'لا يوجد' }}" disabled>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label> بالتوكيل رقم </label>
+                                                <input style="height: calc(2.25rem + 6px);" type="text"
+                                                    class="form-control"
+                                                    value="{{ $request->representative_id ?? 'لا يوجد' }}" disabled>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>بطاقة رقم </label>
+                                                <input style="height: calc(2.25rem + 6px);" type="text"
+                                                    class="form-control" value="{{ $request->NID }}" disabled>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>تليفون </label>
+                                                <input style="height: calc(2.25rem + 6px);" type="text"
+                                                    class="form-control" value="{{ $request->phone }}" disabled>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label> مساحة المشروع </label>
+                                                <input style="height: calc(2.25rem + 6px);" type="text"
+                                                    class="form-control" value="{{ $request->size }}" disabled>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>نوع المساحة </label>
+                                                <input style="height: calc(2.25rem + 6px);" type="text"
+                                                    class="form-control" value="{{ $request->size_type }}" disabled>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>برأسمال قيمته </label>
+                                                <input style="height: calc(2.25rem + 6px);" type="text"
+                                                    class="form-control" value="{{ $request->capital }}" disabled>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>نسبة التمويل الذاتي </label>
+                                                <input style="height: calc(2.25rem + 6px);" type="text"
+                                                    class="form-control" value="{{ $request->self_financing }}"
+                                                    disabled>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>تاريخ تقديم الطلب </label>
+                                                <input style="height: calc(2.25rem + 6px);" type="text"
+                                                    class="form-control" value="{{ $request->recived_date }}"
+                                                    disabled>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>المدينة </label>
+                                                <input style="height: calc(2.25rem + 6px);" type="text"
+                                                    class="form-control" value="{{ $request->city->name }}" disabled>
+                                            </div>
+                                            <div class="form-group col-md-8">
+                                                <label>المواقع المقترحة لإقامة المشروع بالمحافظة</label>
+                                                <select class="form-control select2" multiple style="width: 100%"
+                                                    disabled>
+                                                    @isset($request_places)
+                                                        @if ($request_places && $request_places->count() > 0)
+                                                            @foreach ($request_places as $item)
+                                                                <option selected>{{ $item->Req_place->name }}</option>
+                                                            @endforeach
+                                                        @endif
+                                                    @endisset
+                                                </select>
+                                            </div>
+                                            <div
+                                                class="form-group
+                                                                col-md-12">
+                                                <hr style="border-top-color: #00000063 !important;" />
+                                                <label>مرفقات الطلب</label>
+                                                <table class="table table-bordered" style="margin-top: 10px;">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col"> عقد نأسيس </th>
+                                                            <th scope="col"> السجل التجاري </th>
+                                                            <th scope="col"> البطاقة الضريبية </th>
+                                                            <th scope="col"> صورة البطاقة </th>
+                                                            <th scope="col"> مستنادات الملاءة المالية </th>
+                                                            <th scope="col"> كروكي الموقع </th>
+                                                            <th scope="col"> دراسة جدوي </th>
+                                                        </tr>
+                                                    </thead>
+                                                    @isset($project)
+                                                        @if ($project && $project->count() > 0)
+                                                            @foreach ($project as $PRG)
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>1</td>
+                                                                        <td><a href="{{ asset('attatcment_project/' . $PRG->feasibility_study) }}"
+                                                                                target="_blank">اضغط هنا</a></td>
+                                                                        <td><a href="{{ asset('attatcment_project/' . $PRG->tax_card) }}"
+                                                                                target="_blank">اضغط هنا</a></td>
+                                                                        <td><a href="{{ asset('attatcment_project/' . $PRG->commercial_register) }}"
+                                                                                target="_blank">اضغط هنا</a></td>
+                                                                        <td><a href="{{ asset('attatcment_project/' . $PRG->nid_photo) }}"
+                                                                                target="_blank">اضغط هنا</a></td>
+                                                                        <td><a href="{{ asset('attatcment_project/' . $PRG->feasibility_study) }}"
+                                                                                target="_blank">اضغط هنا</a></td>
+                                                                        <td><a href="{{ asset('attatcment_project/' . $PRG->site_sketch) }}"
+                                                                                target="_blank">اضغط هنا</a></td>
+                                                                        <td><a href="{{ asset('attatcment_project/' . $PRG->feasibility_study) }}"
+                                                                                target="_blank">اضغط هنا</a></td>
+                                                                    </tr>
 
-                                                <div class="form-group col-md-12">
-                                                    <label> العنوان</label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        value="{{ $request->address }}" class="form-control"placeholder=""
-                                                        disabled>
-                                                </div>
-
-                                                <div class="form-group col-md-4">
-                                                    <label> اسم المفوض</label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        value="{{ $request->representative_name }}" class="form-control"placeholder=""
-                                                        disabled>
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label> بالتوكيل رقم</label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        value="{{ $request->representative_id }}"
-                                                        class="form-control"placeholder="" disabled>
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label>بطاقة رقم</label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        value="{{ $request->NID }}"
-                                                        class="form-control"placeholder="" disabled>
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label>تليفون</label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        value="{{ $request->phone }}"
-                                                        class="form-control"placeholder="" disabled>
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label> مساحة المشروع</label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        value="{{ $request->size }}"
-                                                        class="form-control"placeholder="" disabled>
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label>المدينة</label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        value="{{ $request->capital }}"
-                                                        class="form-control"placeholder="" disabled>
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label>براسمال قيمتة</label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        value="{{ $request->Self_financing }}"
-                                                        class="form-control"placeholder="" disabled>
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label>نسبة التمويل الذاتي</label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        value="{{ $request->Self_financing }}"
-                                                        class="form-control"placeholder="" disabled>
-                                                </div>
-                                                <div class="form-group col-md-12">
-                                                    <label>المواقع المقترحة لإقامة المشروع بالمحافظة</label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        value="{{ $request->name }}"
-                                                        class="form-control"placeholder="" disabled>
-                                                </div>
-                                                <div class="form-group col-md-12">
-                                                    <hr style="border-top-color: #00000063 !important;" />
-                                                    <label>مرفقات الطلب</label>
-                                                    <table class="table table-bordered" style="margin-top: 10px;">
-                                                        <thead>
-                                                            <tr>
-                                                                <th scope="col">#</th>
-                                                                <th scope="col"> عقد نأسيس </th>
-                                                                <th scope="col"> السجل التجاري </th>
-                                                                <th scope="col"> البطاقة الضريبية </th>
-                                                                <th scope="col"> صورة البطاقة </th>
-                                                                <th scope="col"> مستنادات الملاءة المالية </th>
-                                                                <th scope="col"> كروكي الموقع </th>
-                                                                <th scope="col"> دراسة جدوي </th>
-                                                            </tr>
-                                                        </thead>
-                                                        @isset($project)
-                                                            @if ($project && $project->count() > 0)
-                                                                @foreach ($project as $PRG)
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <td>1</td>
-                                                                            <td><a href="{{asset('attatcment_project/'. $PRG ->feasibility_study )}}" target="_blank">اضغط هنا</a></td>
-                                                                            <td><a href="{{asset('attatcment_project/'. $PRG ->tax_card )}}" target="_blank">اضغط هنا</a></td>
-                                                                            <td><a href="{{asset('attatcment_project/'. $PRG ->commercial_register )}}" target="_blank">اضغط هنا</a></td>
-                                                                            <td><a href="{{asset('attatcment_project/'. $PRG ->nid_photo )}}" target="_blank">اضغط هنا</a></td>
-                                                                            <td><a href="{{asset('attatcment_project/'. $PRG ->feasibility_study )}}" target="_blank">اضغط هنا</a></td>
-                                                                            <td><a href="{{asset('attatcment_project/'. $PRG ->site_sketch )}}" target="_blank">اضغط هنا</a></td>
-                                                                            <td><a href="{{asset('attatcment_project/'. $PRG ->feasibility_study )}}" target="_blank">اضغط هنا</a></td>
-                                                                        </tr>
-
-                                                                    </tbody>
-                                                                @endforeach
-                                                            @endif
-                                                        @endisset
-                                                    </table>
-                                                </div>
+                                                                </tbody>
+                                                            @endforeach
+                                                        @endif
+                                                    @endisset
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
-                                </form>
+                                </div>
                             </div>
-                            {{-- <a href="javascript:void(0)" style="padding: 5px 10px 5px 10px;" id="addWork-btn"
-                                class="btn btn-primary form-label" onclick="addWorkRow()">+ اضف مستحق
-                            </a> --}}
                         </div>
                     </div>
+                </section>
             </div>
-            </section>
             <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
                 aria-labelledby="myLargeModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
@@ -254,14 +295,11 @@
                                                 class="form-control">
                                         </div>
                                     </div>
-                                    @elseif($r->R_Lisense->id == $request->id)
-
-                                        <div class="form-group col-md-4">
-                                            <label for=""> ملف موافقة الجهة </label>
-                                            <a href="#" target="_blank"> {{ $r->L_Lisense->name }} </a>
-                                        </div>
-
-
+                                @elseif($r->R_Lisense->id == $request->id)
+                                    <div class="form-group col-md-4">
+                                        <label for=""> ملف موافقة الجهة </label>
+                                        <a href="#" target="_blank"> {{ $r->L_Lisense->name }} </a>
+                                    </div>
                                 @endif
                             @endforeach
                             <button type="submit" class="btn btn-success" style="float: left;"> ارسال </button>
@@ -287,12 +325,10 @@
     <script src="assets/js/custom.js"></script>
     <script src="assets/bundles/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
     <script src="assets/bundles/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="assets/bundles/select2/dist/js/select2.full.min.js"></script>
     <script>
         $('.option').hide();
-        $('#city').on('change', function(e) {
-            $('.option').hide();
-            $('.city-' + e.target.value).show();
-        });
+        $('.license-' + {{ $request->categoryname->id }}).show();
     </script>
 
 </body>
