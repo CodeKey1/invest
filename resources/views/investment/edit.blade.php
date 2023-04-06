@@ -293,7 +293,11 @@
                                                                 <tbody>
                                                                     <tr>
                                                                         <td>1</td>
-                                                                        <td><a href="{{ asset('attatcment_project/' . $PRG->feasibility_study) }}"
+                                                                        <td>
+                                                                            <input style="height: calc(2.25rem + 6px);" type="text"
+                                                                            class="form-control" value="{{ asset('attatcment_project/' . $PRG->feasibility_study) }}" disabled>
+
+                                                                            <a href="{{ asset('attatcment_project/' . $PRG->feasibility_study) }}"
                                                                                 target="_blank">اضغط هنا</a></td>
                                                                         <td><a href="{{ asset('attatcment_project/' . $PRG->tax_card) }}"
                                                                                 target="_blank">اضغط هنا</a></td>

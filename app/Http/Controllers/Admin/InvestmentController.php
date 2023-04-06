@@ -11,6 +11,7 @@ use App\Models\Place_Category;
 use App\Models\Request_places;
 use App\Models\Project;
 use App\Models\R_license;
+use App\Models\Request_not;
 use App\Models\SubCategory;
 use App\Models\RequestP;
 use Illuminate\Http\Request;
@@ -314,6 +315,8 @@ class InvestmentController extends Controller
         //
         $project = Project::where('request_id',$id)->delete('request_id');
         $request_suggested_places = Request_places::where('request_id',$id)->delete('request_id');
+        $request_license = R_license::where('request_id',$id)->delete('request_id');
+        $request_note = Request_not::where('request_id',$id)->delete('request_id');
         $user = RequestP::with('Project_Rq')->find($id);
 
 
@@ -334,6 +337,10 @@ class InvestmentController extends Controller
     // public function project_create(){
     //     return view('investment.project.create');
     // }
+
+    public function record(string $id){
+
+    }
 
 
 }

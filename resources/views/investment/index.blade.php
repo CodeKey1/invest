@@ -98,6 +98,7 @@
                                                                         @endif
                                                                     </td>
                                                                     <td>
+
                                                                         @foreach ($r_license as $r)
                                                                             @if ($r->R_Lisense->id == $requests->id)
                                                                                 <div class="badge badge-success"> </div>
@@ -117,6 +118,9 @@
                                                                         <a class="btn btn-icon btn-danger"
                                                                             href="{{ route('investment.delete', $requests->id) }}"><i
                                                                                 class="fas fa-times"></i></a>
+                                                                        <a class="btn btn-icon btn-info"
+                                                                            href="{{ route('investment.Record', $requests->id) }}"><i
+                                                                                class="fas fa-comment-dots"></i></a>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
