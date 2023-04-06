@@ -106,17 +106,21 @@ class ReportController extends Controller
         $owner_type =  $request['owner_type'];
         $city_id =  $request['city'];
         
-        $request_detail = RequestP::where('category_id', $cat_id)
-            ->where('sub_category_id',$sub_cat_id)
-            ->where('owner_type',$owner_type)
-            ->where('city_id',$city_id)->get(); 
-        //$request_places = Request_places::where('request_id',$request_detail->id)->get();
+        $request_detail = RequestP::whereRaw('category_id '. $cat_id)
+            ->whereRaw('sub_category_id '. $sub_cat_id)
+            ->whereRaw('owner_type '. $owner_type)
+            ->whereRaw('city_id '. $city_id)->get(); 
 
         $request = RequestP::select()->get(); 
         $category = Category::select()->get(); 
         $sub_cat = SubCategory::select()->get(); 
         $city = City::select()->get(); 
 
-        return view('report.request_report',compact('category','request','sub_cat','city','request_detail'));
+        $category_name = Category::select()->whereRaw('id '.$cat_id)->get(); 
+        $sub_cat_name = SubCategory::select()->whereRaw('id '.$sub_cat_id)->get(); 
+        $city_name = City::select()->whereRaw('id '.$city_id)->get(); 
+        $owner_type = str_replace(array("'","'","="), '', $owner_type);
+
+        return view('report.request_report',compact('category','request','sub_cat','city','request_detail','category_name','sub_cat_name','city_name','owner_type'));
     }
 }

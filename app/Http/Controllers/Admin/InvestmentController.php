@@ -166,6 +166,7 @@ class InvestmentController extends Controller
                 'nid_photo'           =>$nid_file,
                 'name'                =>$request['name'],
                 'request_id'          =>$request_id->id,
+                'status'              =>0,
              ]));
             for($i = 0 ; $i < count($request->region) ; $i++){
                 $region[] = $request->region[$i];
@@ -291,8 +292,6 @@ class InvestmentController extends Controller
                  'site_sketch'         =>$site_file,
                  'company_reg'         =>$company_file,
                  'nid_photo'           =>$nid_file,
-                 'name'                =>$request['name'],
-                 'request_id'          =>$request->id,
               ]));
              for($i = 0 ; $i < count($request->region) ; $i++){
                  $region[] = $request->region[$i];

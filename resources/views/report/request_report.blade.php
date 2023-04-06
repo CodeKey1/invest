@@ -56,7 +56,10 @@
                             <form action="{{ route('req_report') }}" method="GET" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row" style="display: flex; justify-content: space-around ">
-                                    <button type="submit" class="text-white btn-dark col-2">عرض</button>
+                                    {{-- <button type="submit" name='action' value='all'
+                                        class="text-white btn-dark col-1">عرض الكل</button> --}}
+                                    <button type="submit" name='action' value='some'
+                                        class="btn-dark col-3">عرض</button>
                                     <select class="form-control col-2" name="city" required>
                                         <option value="" hidden disabled selected>
                                             اختر
@@ -68,7 +71,7 @@
                                         @isset($city)
                                             @if ($city && $city->count() > 0)
                                                 @foreach ($city as $item)
-                                                    <option value="{{ $item->id }}">
+                                                    <option value="={{ $item->id }}">
                                                         {{ $item->name }}
                                                     </option>
                                                 @endforeach
@@ -81,13 +84,13 @@
                                             فئة المالك
                                         </option>
                                         <option style="font-weight: bolder" value="IS NOT NULL">كل الفئات</option>
-                                        <option value="شركة">شركات</option>
-                                        <option value="مواطن">افراد</option>
+                                        <option value="='شركة'">شركات</option>
+                                        <option value="='مواطن'">افراد</option>
                                     </select>
                                     <select class="form-control col-2" name="sub_cat" required>
                                         <option value="" hidden disabled selected>
                                             اختر
-                                            الفئة
+                                            الفئة الفرعية
                                         </option>
                                         <option style="font-weight: bolder" class="option all_option"
                                             value="IS NOT NULL">
@@ -97,7 +100,7 @@
                                             @if ($sub_cat && $sub_cat->count() > 0)
                                                 @foreach ($sub_cat as $item)
                                                     <option class="option cat-{{ $item->category_id }}"
-                                                        value="{{ $item->id }}">
+                                                        value="={{ $item->id }}">
                                                         {{ $item->name }}
                                                     </option>
                                                 @endforeach
@@ -115,7 +118,7 @@
                                         @isset($category)
                                             @if ($category && $category->count() > 0)
                                                 @foreach ($category as $item)
-                                                    <option value="{{ $item->id }}">
+                                                    <option value="={{ $item->id }}">
                                                         {{ $item->name }}
                                                     </option>
                                                 @endforeach
@@ -142,7 +145,7 @@
                                     @include('layouts.error')
                                     <div class="card card-primary work-xp">
                                         <div class="card-header">
-                                            <h3>تقرير لمزاد ""
+                                            <h3>تقرير الطلبات
                                             </h3>
                                         </div>
                                         <div class="card-body">
@@ -150,58 +153,42 @@
                                                 <tbody>
                                                     <tr style="height: 50px;">
                                                         <th scope="row" style="text-align: inherit;width: 130px; ">
-                                                            اسم المزاد : </th>
+                                                            الفئة:</th>
                                                         <td style="text-align: inherit;">
-                                                            @isset($offerDetail)
-                                                                @foreach ($offerDetail as $offerDetail1)
-                                                                    {{ $offerDetail1->name }}
+                                                            @isset($category_name)
+                                                                @foreach ($category_name as $item)
+                                                                    {{ $item->name }} -
                                                                 @endforeach
                                                             @endisset
                                                         </td>
                                                     </tr>
                                                     <tr style="height: 50px;">
                                                         <th scope="row" style="text-align: inherit;width: 130px; ">
-                                                            تاريخ المزاد : </th>
+                                                            الفئة الفرعية:</th>
                                                         <td style="text-align: inherit;">
-                                                            @isset($offerDetail)
-                                                                @foreach ($offerDetail as $offerDetail1)
-                                                                    {{ $offerDetail1->date }}
+                                                            @isset($sub_cat_name)
+                                                                @foreach ($sub_cat_name as $item)
+                                                                    {{ $item->name }} -
                                                                 @endforeach
                                                             @endisset
-                                                        </td>
-                                                    </tr>
-                                                    <tr style="height: 50px;">
-                                                        <th scope="row" style="text-align: inherit;width: 130px; ">
-                                                            عدد الاطروحات :</th>
-                                                        <td style="text-align: inherit;">
-                                                            @isset($offerDetail)
-                                                                @foreach ($offerDetail as $offerDetail1)
-                                                                    {{ $offerDetail1->offer_count }}
-                                                                @endforeach
-                                                            @endisset
-                                                        </td>
-                                                    </tr>
-                                                    <tr style="height: 50px;">
-                                                        <th scope="row" style="text-align: inherit;width: 130px; ">
-                                                            اجمالي المبلغ :</th>
-                                                        <td style="text-align: inherit;">
-                                                            @isset($offerDetail)
-                                                                @foreach ($offerDetail as $offerDetail1)
-                                                                    {{ $offerDetail1->cost_sum }}
-                                                                @endforeach
-                                                            @endisset
-                                                            جنيه
                                                         </td>
                                                     </tr>
                                                     <tr style="height: 50px;">
                                                         <th scope="row" style="text-align: inherit;width: 130px;">
-                                                            عدد الاصول :</th>
+                                                            المدينة:</th>
                                                         <td style="text-align: inherit;">
-                                                            @isset($offerDetail)
-                                                                @foreach ($offerDetail as $offerDetail1)
-                                                                    {{ $offerDetail1->asset_count }}
+                                                            @isset($city_name)
+                                                                @foreach ($city_name as $item)
+                                                                    {{ $item->name }} -
                                                                 @endforeach
                                                             @endisset
+                                                        </td>
+                                                    </tr>
+                                                    <tr style="height: 50px;">
+                                                        <th scope="row" style="text-align: inherit;width: 130px;">
+                                                            فئة مقدم الطلب:</th>
+                                                        <td style="text-align: inherit;">
+                                                            {{ $owner_type }} -
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -212,15 +199,18 @@
                                                     <tr>
                                                         <th>الطلب</th>
                                                         <th>مقدم الطلب</th>
+                                                        {{-- <th>نوع المقدم</th> --}}
                                                         <th>الهاتف</th>
                                                         <th>المساحة</th>
                                                         <th>نوع المساحة</th>
                                                         <th>راس المال</th>
                                                         <th>نسبة التمويل</th>
                                                         <th>ت. الطلب</th>
-                                                        <th>المدينة</th>
                                                         <th>المواقع المقترحة</th>
                                                         <th>الحالة</th>
+                                                        {{-- <th>الفئة</th>
+                                                        <th>الفئة الفرعية</th>
+                                                        <th>المدينة</th> --}}
                                                     </tr>
                                                 </thead>
                                                 @isset($request_detail)
@@ -230,13 +220,13 @@
                                                                 <tr>
                                                                     <td>{{ $item->name }}</td>
                                                                     <td>{{ $item->owner_name }}</td>
+                                                                    {{-- <td>{{ $item->owner_type }}</td> --}}
                                                                     <td>{{ $item->phone }}</td>
                                                                     <td>{{ $item->size }}</td>
                                                                     <td>{{ $item->size_type }}</td>
                                                                     <td>{{ $item->capital }}</td>
                                                                     <td>{{ $item->self_financing }}</td>
                                                                     <td>{{ $item->recived_date }}</td>
-                                                                    <td>{{ $item->city->name }}</td>
                                                                     <td>
                                                                         @foreach (App\Models\Request_places::where('request_id', $item->id)->get() as $item1)
                                                                             {{ $item1->Req_place->name }} -
@@ -249,6 +239,9 @@
                                                                             <span style="color: red">غير فعال</span>
                                                                         @endif
                                                                     </td>
+                                                                    {{-- <td>{{ $item->categoryname->name }}</td>
+                                                                    <td>{{ $item->subCat->name }}</td>
+                                                                    <td>{{ $item->city->name }}</td> --}}
                                                                 </tr>
                                                             </tbody>
                                                         @endforeach
@@ -297,7 +290,9 @@
         $('.option').hide();
         $('#cat_select').on('change', function(e) {
             $('.option').hide();
-            $('.cat-' + e.target.value).show();
+            var value = e.target.value;
+            value = value.replace('=', '')
+            $('.cat-' + value).show();
             $('.all_option').show();
             //$("div.id_100 select").val("all").change();
         });
