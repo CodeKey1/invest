@@ -268,7 +268,7 @@ class InvestmentController extends Controller
              $feasibility_study = $feasibility_file ;
          }
          try{
-             $request_id   = RequestP::where('id',$id)-> update(([
+            $request_id   = RequestP::where('id',$id)-> update(([
 
                  'address' =>$request['address'],
                  'representative_name' =>$request['representative_name'],
@@ -284,7 +284,7 @@ class InvestmentController extends Controller
 
               ]));
 
-              Project::where('id',$id)->update(([
+            Project::where('id',$id)->update(([
                  'feasibility_study'   =>$feasibility_file,
                  'financial_capital'   =>$financial_file,
                  'commercial_register' =>$commercial_file,
