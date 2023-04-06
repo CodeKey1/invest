@@ -130,6 +130,9 @@ Route::POST('/app-modify-create', [App\Http\Controllers\Admin\AppModifyControlle
 */
 Route::get('/auction-report', [App\Http\Controllers\Report\ReportController::class, 'index'])->name('auction.report');
 Route::get('/auctionReport', [App\Http\Controllers\Report\ReportController::class, 'acution_report'])->name('auctionReport');
+
+Route::get('/request-report', [App\Http\Controllers\Report\ReportController::class, 'request_index'])->name('request.report');
+Route::get('/requestReport', [App\Http\Controllers\Report\ReportController::class, 'request_report'])->name('req_report');
 /*
 |--------------------------------------------------------------------------
 | Dashboard other Controller ****************************************

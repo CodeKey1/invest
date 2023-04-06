@@ -10,6 +10,11 @@ use App\Models\Asset;
 use App\Models\Offer;
 use App\Models\contract_type;
 
+use App\Models\RequestP;
+use App\Models\Category;
+use App\Models\SubCategory;
+use App\Models\Request_places;
+
 use Illuminate\Support\Facades\DB as DB;
 
 class ReportController extends Controller
@@ -22,6 +27,15 @@ class ReportController extends Controller
         $auction = Auction::select()->get(); 
         $offer = Offer::where('auction_id','=',2)->get(); 
         return view('report.report',compact('auction'));
+    }
+
+    public function request_index()
+    {
+        $request = RequestP::select()->get(); 
+        $category = Category::select()->get(); 
+        $sub_cat = SubCategory::select()->get(); 
+        $city = City::select()->get(); 
+        return view('report.request_report',compact('category','request','sub_cat','city'));
     }
     /**
      * Display the specified resource.
@@ -83,8 +97,30 @@ class ReportController extends Controller
                 return view('report.report',compact('auction','offer','offerDetail','type'));
                 break;
         }
+        //return redirect()->route('offer') -> with(['success' => $offerDetail]); 
+    }
+    public function request_report(Request $request)
+    {
+        $cat_id =  $request['category'];
+        $sub_cat_id =  $request['sub_cat'];
+        $owner_type =  $request['owner_type'];
+        $city_id =  $request['city'];
         
-        //return redirect()->route('offer') -> with(['success' => $offerDetail]);
-        
+        $request_detail = RequestP::whereRaw('category_id '. $cat_id)
+            ->whereRaw('sub_category_id '. $sub_cat_id)
+            ->whereRaw('owner_type '. $owner_type)
+            ->whereRaw('city_id '. $city_id)->get(); 
+
+        $request = RequestP::select()->get(); 
+        $category = Category::select()->get(); 
+        $sub_cat = SubCategory::select()->get(); 
+        $city = City::select()->get(); 
+
+        $category_name = Category::select()->whereRaw('id '.$cat_id)->get(); 
+        $sub_cat_name = SubCategory::select()->whereRaw('id '.$sub_cat_id)->get(); 
+        $city_name = City::select()->whereRaw('id '.$city_id)->get(); 
+        $owner_type = str_replace(array("'","'","="), '', $owner_type);
+
+        return view('report.request_report',compact('category','request','sub_cat','city','request_detail','category_name','sub_cat_name','city_name','owner_type'));
     }
 }

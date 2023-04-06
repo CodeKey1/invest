@@ -66,11 +66,6 @@
                                             <a class="nav-link" id="place-tab" data-toggle="tab" href="#place"
                                                 role="tab" aria-controls="place" aria-selected="false">مناطق</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="Pcategory-tab" data-toggle="tab" href="#Pcategory"
-                                                role="tab" aria-controls="Pcategory" aria-selected="false">نوع
-                                                المناطق</a>
-                                        </li>
                                     </ul>
                                     <div class="tab-content">
                                         <div class="tab-pane fade show active" id="gov" role="tabpanel"
@@ -271,11 +266,11 @@
                                                                         اختر
                                                                         نوع المنطقة
                                                                     </option>
-                                                                    @isset($placeCat)
-                                                                        @if ($placeCat && $placeCat->count() > 0)
-                                                                            @foreach ($placeCat as $placeCat1)
-                                                                                <option value="{{ $placeCat1->id }}">
-                                                                                    {{ $placeCat1->name }}
+                                                                    @isset($category)
+                                                                        @if ($category && $category->count() > 0)
+                                                                            @foreach ($category as $cat)
+                                                                                <option value="{{ $cat->id }}">
+                                                                                    {{ $cat->name }}
                                                                                 </option>
                                                                             @endforeach
                                                                         @endif
@@ -313,67 +308,6 @@
                                                                                         </td>
                                                                                         <td>{{ $place1->name }}</td>
                                                                                         <td>{{ $place1->placeCatname->name }}
-                                                                                        </td>
-                                                                                        <td>
-                                                                                            <a class="btn btn-icon btn-success"
-                                                                                                href=""
-                                                                                                ata-toggle="tooltip"
-                                                                                                data-placement="top"
-                                                                                                title="عرض وتعديل"><i
-                                                                                                    class="fas fa-user"></i></a>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                @endforeach
-                                                                            @endif
-                                                                        @endisset
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="Pcategory" role="tabpanel"
-                                            aria-labelledby="Clicense-tab">
-                                            <div class="card">
-                                                <div class="card-header">
-                                                    <h4>فئات المناطق</h4>
-                                                </div>
-                                                <div class="card-body" style="direction: rtl">
-                                                    <div class="row">
-                                                        <div class="col-lg-6">
-                                                            <div class="form-group col-md-12">
-                                                                <label> اسم الفئة</label>
-                                                                <input style="height: calc(2.25rem + 6px);"
-                                                                    type="text" name="p_category_name"
-                                                                    class="form-control"placeholder="">
-                                                            </div>
-                                                            <button type="submit" name="actionbtn"
-                                                                class="btn btn-success" value="placeCategorybtn"
-                                                                style="float: left;">حفظ</button>
-                                                        </div>
-                                                        <div class="col-lg-6">
-                                                            <div class="table-responsive">
-                                                                <h6> جدول الفئات</h6>
-                                                                <table class="table table-striped table-hover"
-                                                                    style="width:100%;">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th> # </th>
-                                                                            <th>اسم الفئة</th>
-                                                                            <th>عدد المناطق</th>
-                                                                            <th>تفاصيل</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        @isset($placeCat)
-                                                                            @if ($placeCat && $placeCat->count() > 0)
-                                                                                @foreach ($placeCat as $placeCat1)
-                                                                                    <tr>
-                                                                                        <td>{{ $placeCat1->id }}</td>
-                                                                                        <td>{{ $placeCat1->name }}</td>
-                                                                                        <td>{{ $placeCat1->placename->count() }}
                                                                                         </td>
                                                                                         <td>
                                                                                             <a class="btn btn-icon btn-success"
@@ -454,7 +388,7 @@
                                                                             <th>اسم الفئة</th>
                                                                             <th>عدد الفئات الفرعية</th>
                                                                             <th>عدد الموافقات</th>
-                                                                            {{-- <th>عدد المشاريع</th> --}}
+                                                                            <th>عدد المناطق</th>
                                                                             <th>تفاصيل</th>
                                                                         </tr>
                                                                     </thead>
@@ -469,8 +403,8 @@
                                                                                         </td>
                                                                                         <td>{{ $category1->cat_license->count() }}
                                                                                         </td>
-                                                                                        {{-- <td>{{ $category1->cat_request->count() }}
-                                                                                        </td> --}}
+                                                                                        <td>{{ $category1->placename->count() }}
+                                                                                        </td>
                                                                                         <td>
                                                                                             <a class="btn btn-icon btn-success"
                                                                                                 href=""

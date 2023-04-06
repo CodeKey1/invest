@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Gov;
 use App\Models\City;
 use App\Models\Place;
-use App\Models\Place_Category as PCat;
 
 use App\Models\Category;
 use App\Models\SubCategory as scat;
@@ -27,7 +26,6 @@ class AppModifyController extends Controller
         $gov = Gov::select()->with('cityname')->get();
         $city = City::select()->with('govname')->get();
         $place = Place::select()->get();
-        $placeCat = PCat::select()->get();
 
         $category = category::select()->get();
         $subcategory = scat::select()->get();
@@ -37,7 +35,7 @@ class AppModifyController extends Controller
         $contract = Contract_type::select()->get();
         $assets = Asset_type::select()->get();
         $asset = Asset::select()->get();
-        return view('users.app_modify',compact('gov','city','place','placeCat','category','subcategory','license','clicense','contract','assets','asset'));
+        return view('users.app_modify',compact('gov','city','place','category','subcategory','license','clicense','contract','assets','asset'));
     }
 
     public function create(Request $request){
@@ -79,17 +77,6 @@ class AppModifyController extends Controller
                      'status' => $status,
                      'place_category_id' => $areaType,
                      'city_id' => $city,
-                     ]));
-                    return redirect()->route('app.modify')-> with(['success' => 'تم التسجيل بنجاح']);
-                }catch(\Exception $ex){
-                    return redirect()->route('app.modify')-> with(['error' => 'خطأ']);
-                }
-                break;
-            case 'placeCategorybtn':
-                $areaType = $request['p_category_name'];
-                try{ 
-                    PCat::create(([
-                     'name' => $areaType,
                      ]));
                     return redirect()->route('app.modify')-> with(['success' => 'تم التسجيل بنجاح']);
                 }catch(\Exception $ex){
