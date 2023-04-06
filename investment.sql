@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2023 at 03:06 PM
+-- Generation Time: Apr 06, 2023 at 03:20 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -91,7 +91,7 @@ CREATE TABLE `auction` (
 --
 
 INSERT INTO `auction` (`id`, `name`, `date`, `label`, `note`, `created_at`, `updated_at`) VALUES
-(2, 'مزاد 1', '2023-03-01', 'بيع وشعرض اراضي', 'شسيبشسيب', '2023-03-22 08:43:34', '2023-03-22 08:43:34');
+(2, 'مزاد 1', '2023-03-01', 'بيع وشعرض اراضي', 'fdg', '2023-03-22 08:43:34', '2023-04-06 11:18:45');
 
 -- --------------------------------------------------------
 
@@ -972,7 +972,8 @@ ALTER TABLE `role_has_permissions`
 -- Indexes for table `side`
 --
 ALTER TABLE `side`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`,`side_name`);
 
 --
 -- Indexes for table `sub_category`
