@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2023 at 01:07 PM
+-- Generation Time: Apr 06, 2023 at 03:06 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -498,7 +498,8 @@ CREATE TABLE `place` (
 
 INSERT INTO `place` (`id`, `name`, `status`, `place_category_id`, `city_id`, `created_at`, `updated_at`) VALUES
 (1, 'العلاقي', 1, 1, 2, '2023-03-16 09:08:42', '2023-03-16 09:08:42'),
-(2, 'المدينة الصناعية', 1, 1, 1, '2023-04-02 09:03:15', '2023-04-02 09:03:15');
+(2, 'المدينة الصناعية', 1, 1, 1, '2023-04-02 09:03:15', '2023-04-02 09:03:15'),
+(3, 'ابريم', 1, 1, 3, '2023-04-06 09:13:07', '2023-04-06 09:13:07');
 
 -- --------------------------------------------------------
 
@@ -510,7 +511,7 @@ CREATE TABLE `project` (
   `id` int(11) NOT NULL,
   `feasibility_study` varchar(128) NOT NULL,
   `financial_capital` varchar(128) NOT NULL,
-  `commercial_register` varchar(128) DEFAULT NULL,
+  `commercial_register` varchar(128) DEFAULT 'NULL',
   `tax_card` varchar(128) DEFAULT NULL,
   `site_sketch` varchar(128) DEFAULT NULL,
   `company_reg` varchar(128) DEFAULT NULL,
@@ -528,8 +529,7 @@ CREATE TABLE `project` (
 --
 
 INSERT INTO `project` (`id`, `feasibility_study`, `financial_capital`, `commercial_register`, `tax_card`, `site_sketch`, `company_reg`, `status`, `name`, `nid_photo`, `request_id`, `place_id`, `created_at`, `updated_at`) VALUES
-(11, '1680439787feasibility_study.jpeg', '1680439787financial_capital.jpg', '', '', '', '', 0, 'مشروع سبيل', '1680439787nid_photo.jpg', 12, NULL, '2023-04-02 10:49:47', '2023-04-02 10:49:47'),
-(12, '1680771453feasibility_study.jpg', '1680771453financial_capital.jpg', '', '', '', '', 0, 'يسلسي', '1680771453nid_photo.jpg', 14, NULL, '2023-04-06 06:57:33', '2023-04-06 06:57:33');
+(14, '16feasibility_study.png', '16financial_capital.jpeg', '', '', '', '', 0, 'hkgvdgs', '16nid_photo.png', 16, NULL, '2023-04-06 11:01:19', '2023-04-06 11:01:19');
 
 -- --------------------------------------------------------
 
@@ -565,9 +565,7 @@ CREATE TABLE `request` (
 --
 
 INSERT INTO `request` (`id`, `name`, `owner_type`, `owner_name`, `address`, `representative_name`, `representative_id`, `NID`, `size`, `size_type`, `self_financing`, `recived_date`, `capital`, `phone`, `state`, `sub_category_id`, `category_id`, `city_id`, `created_at`, `updated_at`) VALUES
-(12, 'مشروع سبيل', 'شركة', 'سيبل', 'سيبل', 'سبيل', 435, 2435, 2435, 'فدان', 45, '2023-04-20', 2435, 243, 0, 1, 1, 1, '2023-04-02 10:49:47', '2023-04-02 10:49:47'),
-(13, 'yhwrte', 'مواطن', 'aef', 'fdsg', 'asdf', 234, 234, 234, 'فدان', 324, '2023-04-06', 432143, 324, 0, 1, 1, 2, '2023-04-06 06:53:27', '2023-04-06 06:53:27'),
-(14, 'يسلسي', 'مواطن', 'سبيل', 'سيبل', 'سيبل', 43523, 432534, 2345, 'متر', 43534, '2023-04-06', 2345230, 2435234, 0, 1, 1, 3, '2023-04-06 06:57:33', '2023-04-06 06:57:33');
+(16, 'hkgvdgs', 'شركة', 'asdfasdf', 'asdfasd', 'fasdf', 435, 2452345, 2345, 'متر', 2345, '2023-04-06', 2345, 52345, 0, 1, 1, 1, '2023-04-06 11:01:19', '2023-04-06 11:01:19');
 
 -- --------------------------------------------------------
 
@@ -577,9 +575,13 @@ INSERT INTO `request` (`id`, `name`, `owner_type`, `owner_name`, `address`, `rep
 
 CREATE TABLE `request_license` (
   `id` int(11) NOT NULL,
-  `file` varchar(64) NOT NULL,
+  `file` varchar(64) DEFAULT NULL,
+  `send_date` date DEFAULT NULL,
   `request_id` int(11) NOT NULL,
   `license_id` int(11) NOT NULL,
+  `point` int(11) DEFAULT NULL,
+  `response_file` varchar(128) DEFAULT NULL,
+  `recived_date` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -588,9 +590,11 @@ CREATE TABLE `request_license` (
 -- Dumping data for table `request_license`
 --
 
-INSERT INTO `request_license` (`id`, `file`, `request_id`, `license_id`, `created_at`, `updated_at`) VALUES
-(1, '', 12, 1, NULL, NULL),
-(2, '', 12, 1, NULL, NULL);
+INSERT INTO `request_license` (`id`, `file`, `send_date`, `request_id`, `license_id`, `point`, `response_file`, `recived_date`, `created_at`, `updated_at`) VALUES
+(7, NULL, NULL, 16, 1, NULL, NULL, NULL, '2023-04-06 11:01:19', '2023-04-06 11:01:19'),
+(8, NULL, NULL, 16, 2, NULL, NULL, NULL, '2023-04-06 11:01:19', '2023-04-06 11:01:19'),
+(9, NULL, NULL, 16, 3, NULL, NULL, NULL, '2023-04-06 11:01:19', '2023-04-06 11:01:19'),
+(10, NULL, NULL, 16, 4, NULL, NULL, NULL, '2023-04-06 11:01:20', '2023-04-06 11:01:20');
 
 -- --------------------------------------------------------
 
@@ -625,10 +629,9 @@ CREATE TABLE `request_suggested_places` (
 --
 
 INSERT INTO `request_suggested_places` (`id`, `suggested_places`, `request_id`, `created_at`, `updated_at`) VALUES
-(3, 1, 12, '2023-04-02 10:49:48', '2023-04-02 10:49:48'),
-(4, 2, 12, '2023-04-02 10:49:48', '2023-04-02 10:49:48'),
-(5, 1, 14, '2023-04-06 06:57:33', '2023-04-06 06:57:33'),
-(6, 2, 14, '2023-04-06 06:57:33', '2023-04-06 06:57:33');
+(10, 1, 16, '2023-04-06 11:01:19', '2023-04-06 11:01:19'),
+(11, 2, 16, '2023-04-06 11:01:19', '2023-04-06 11:01:19'),
+(12, 3, 16, '2023-04-06 11:01:19', '2023-04-06 11:01:19');
 
 -- --------------------------------------------------------
 
@@ -940,7 +943,8 @@ ALTER TABLE `request_license`
 -- Indexes for table `request_notes`
 --
 ALTER TABLE `request_notes`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `request_id` (`request_id`);
 
 --
 -- Indexes for table `request_suggested_places`
@@ -1088,25 +1092,25 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `place`
 --
 ALTER TABLE `place`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `project`
 --
 ALTER TABLE `project`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `request_license`
 --
 ALTER TABLE `request_license`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `request_notes`
@@ -1118,7 +1122,7 @@ ALTER TABLE `request_notes`
 -- AUTO_INCREMENT for table `request_suggested_places`
 --
 ALTER TABLE `request_suggested_places`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `roles`

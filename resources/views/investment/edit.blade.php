@@ -317,15 +317,15 @@
                                                                     <tbody>
                                                                         <tr>
                                                                             <td>1</td>
-                                                                            <td><a href="{{ asset('attatcment_project/' . $PRG->feasibility_study) }}"
-                                                                                    target="_blank">اضغط هنا</a></td>
-                                                                            <td><a href="{{ asset('attatcment_project/' . $PRG->tax_card) }}"
+                                                                            <td><a href="{{ asset('attatcment_project/' . $PRG->company_reg) }}"
                                                                                     target="_blank">اضغط هنا</a></td>
                                                                             <td><a href="{{ asset('attatcment_project/' . $PRG->commercial_register) }}"
                                                                                     target="_blank">اضغط هنا</a></td>
+                                                                            <td><a href="{{ asset('attatcment_project/' . $PRG->tax_card) }}"
+                                                                                    target="_blank">اضغط هنا</a></td>
                                                                             <td><a href="{{ asset('attatcment_project/' . $PRG->nid_photo) }}"
                                                                                     target="_blank">اضغط هنا</a></td>
-                                                                            <td><a href="{{ asset('attatcment_project/' . $PRG->feasibility_study) }}"
+                                                                            <td><a href="{{ asset('attatcment_project/' . $PRG->financial_capital) }}"
                                                                                     target="_blank">اضغط هنا</a></td>
                                                                             <td><a href="{{ asset('attatcment_project/' . $PRG->site_sketch) }}"
                                                                                     target="_blank">اضغط هنا</a></td>
@@ -335,17 +335,15 @@
                                                                         <tr>
                                                                             <td>2</td>
                                                                             <td>
-                                                                                <input type="file"
-                                                                                    name="feasibility_study"
-                                                                                    class="form-control">
-                                                                            </td>
-                                                                            <td>
-                                                                                <input type="file" name="tax_card"
+                                                                                <input type="file" name="company_reg"
                                                                                     class="form-control">
                                                                             </td>
                                                                             <td>
                                                                                 <input type="file"
                                                                                     name="commercial_register"
+                                                                                    class="form-control">
+                                                                            <td>
+                                                                                <input type="file" name="tax_card"
                                                                                     class="form-control">
                                                                             </td>
                                                                             <td>
@@ -354,7 +352,7 @@
                                                                             </td>
                                                                             <td>
                                                                                 <input type="file"
-                                                                                    name="feasibility_study"
+                                                                                    name="financial_capital"
                                                                                     class="form-control">
                                                                             </td>
                                                                             <td>
@@ -396,7 +394,7 @@
                         </div>
                         <div class="modal-body" style="direction: rtl">
                             @foreach ($r_license as $r)
-                                @if ($r->R_Lisense->id != $request->id)
+                                @if ($r->R_Lisense->id == $request->id)
                                     <div class="form-row" id="work_experience">
                                         <div class="form-group col-md-4">
                                             <label for=""> الجهات المطلوب موافقتها </label>
@@ -416,7 +414,7 @@
                                                 class="form-control">
                                         </div>
                                     </div>
-                                @elseif($r->R_Lisense->id == $request->id)
+                                @elseif($r->R_Lisense->id != $request->id)
                                     <div class="form-group col-md-4">
                                         <label for=""> ملف موافقة الجهة </label>
                                         <a href="#" target="_blank"> {{ $r->L_Lisense->name }} </a>
