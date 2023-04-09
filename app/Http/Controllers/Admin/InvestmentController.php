@@ -34,8 +34,8 @@ class InvestmentController extends Controller
     public function lecturer()
     {
         //
-        $r_license = R_license::select()->with('L_Lisense','R_Lisense')->get();
         $request   = RequestP::select()->with('categoryname','city','rl','subCat')->where('state',0)->get();
+        $r_license = R_license::select()->with('L_Lisense','R_Lisense')->get();
         return view('investment.lecturer.index',compact('request','r_license'));
     }
 
@@ -199,10 +199,22 @@ class InvestmentController extends Controller
         $city = City::select()->get();
         $clicense   = C_license::select()->with('license_cate','license')->get();
         $project = Project::select()->with('request_PJ')->where('request_id',$id)->get();
-        $r_license = R_license::select()->with('L_Lisense','R_Lisense')->get();
+        $r_license = R_license::select()->with('L_Lisense','R_Lisense')->where('request_id',$id)->get();
         $request = RequestP::select()->with('req_place','categoryname','city')->find($id);
-        $request_places = Request_note::select()->with('Req_place')->where('request_id',$id)->get();
+        $request_places = Request_places::select()->with('Req_place')->where('request_id',$id)->get();
         return view('investment.edit',compact('request','city','clicense','r_license','project','request_places'));
+    }
+
+    public function record(string $id)
+    {
+        //
+        $city = City::select()->get();
+        $clicense   = C_license::select()->get();
+        $project = Project::select()->where('request_id',$id)->get();
+        $r_license = R_license::select()->where('request_id',$id)->get();
+        $request = RequestP::select()->find($id);
+        $request_places = Request_places::select()->where('request_id',$id)->get();
+        return view('investment.lecturer.create',compact('request','city','clicense','r_license','project','request_places'));
     }
 
     /**

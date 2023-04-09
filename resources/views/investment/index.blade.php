@@ -98,14 +98,13 @@
                                                                         @endif
                                                                     </td>
                                                                     <td>
-                                                                        @foreach ($r_license as $r)
-                                                                            @if ($r->R_Lisense->id == $requests->id)
+                                                                        @foreach ($r_license->where('request_id', $requests->id) as $r)
+                                                                            @if ($r->response_file != null)
                                                                                 <div class="badge badge-success"> </div>
-                                                                            @elseif($r->R_Lisense->id != $requests->id)
+                                                                            @elseif($r->response_file == null)
                                                                                 <div class="badge badge-danger"> </div>
                                                                             @endif
                                                                         @endforeach
-
                                                                     </td>
                                                                     <td>
                                                                         <a class="btn btn-icon btn-success"

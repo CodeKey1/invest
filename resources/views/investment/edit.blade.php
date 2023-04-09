@@ -40,20 +40,6 @@
                                     <div class="card-header">
                                         <h4> عرض طلب الإسثمار / {{ $request->name }}</h4>
                                         <div class="card-header-action">
-                                            <div class="dropdown">
-                                                <a href="#" data-toggle="dropdown"
-                                                    class="btn btn-warning dropdown-toggle">Options</a>
-                                                <div class="dropdown-menu" style="background-color: rgb(53, 60, 72);">
-                                                    <a href="#" class="dropdown-item has-icon text-success"><i
-                                                            class="fas fa-eye"></i> View</a>
-                                                    <a href="#" class="dropdown-item has-icon text-info"><i
-                                                            class="far fa-edit"></i> Edit</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a href="#" class="dropdown-item has-icon text-danger"><i
-                                                            class="far fa-trash-alt"></i>
-                                                        Delete</a>
-                                                </div>
-                                            </div>
                                             <a href="{{ route('investment') }}" class="btn btn-primary">ادارة
                                                 الطلبات</a>
                                         </div>
@@ -63,34 +49,29 @@
                                                     href="#">عودة</a></button> --}}
                                     </div>
                                     <div class="card-body">
-                                        <p class="card-text" style="text-align:center;">الجهات المنتظر منها الرد</p>
+                                        <p class="card-text" style="text-align:center;">الجهات المختصة للرد</p>
                                     </div>
                                 </div>
                                 <div class="row">
                                     @foreach ($r_license as $r)
-                                        @if ($r->R_Lisense->id == $request->id)
+                                        @if ($r->response_file != null)
                                             <div class="col-12 col-md-6 col-lg-2">
                                                 <div class="card card-primary">
                                                     <div class="card-header">
                                                         <i class="fas fa-check-double" style="color: green;"></i>
-                                                        <h4 style="font-size: 12px;"> <a href="#"
-                                                                data-toggle="modal" data-target=".bd-example-modal-lg">
-                                                                {{ $r->L_Lisense->name }} </a> </a>
-                                                        </h4>
+                                                        <h4 style="font-size: 12px;color: green;">
+                                                            {{ $r->L_Lisense->name }}</h4>
                                                     </div>
-
                                                 </div>
                                             </div>
-                                        @elseif($r->R_Lisense->id != $request->id)
+                                        @elseif($r->response_file == null)
                                             <div class="col-12 col-md-6 col-lg-2">
                                                 <div class="card card-primary">
                                                     <div class="card-header">
                                                         <i class="fas fa-times" style="color: red;"></i>
-                                                        <h4 style="font-size: 12px;"><a href="#"
-                                                                data-toggle="modal" data-target=".bd-example-modal-lg">
-                                                                {{ $r->L_Lisense->name }} </a></h4>
+                                                        <h4 style="font-size: 12px;color: red;">
+                                                            {{ $r->L_Lisense->name }}</h4>
                                                     </div>
-
                                                 </div>
                                             </div>
                                         @endif
@@ -124,8 +105,8 @@
                                                 <div class="form-group col-md-8">
                                                     <label> اسم المشروع </label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        class="form-control" name="name"
-                                                        value="{{ $request->name }}" disabled>
+                                                        class="form-control" name="name" value="{{ $request->name }}"
+                                                        disabled>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
                                                         class="form-control" name="name"
                                                         value="{{ $request->name }}" hidden>
@@ -316,21 +297,49 @@
                                                                 @foreach ($project as $PRG)
                                                                     <tbody>
                                                                         <tr>
-                                                                            <td>1</td>
-                                                                            <td><a href="{{ asset('attatcment_project/' . $PRG->company_reg) }}"
-                                                                                    target="_blank">اضغط هنا</a></td>
-                                                                            <td><a href="{{ asset('attatcment_project/' . $PRG->commercial_register) }}"
-                                                                                    target="_blank">اضغط هنا</a></td>
-                                                                            <td><a href="{{ asset('attatcment_project/' . $PRG->tax_card) }}"
-                                                                                    target="_blank">اضغط هنا</a></td>
-                                                                            <td><a href="{{ asset('attatcment_project/' . $PRG->nid_photo) }}"
-                                                                                    target="_blank">اضغط هنا</a></td>
-                                                                            <td><a href="{{ asset('attatcment_project/' . $PRG->financial_capital) }}"
-                                                                                    target="_blank">اضغط هنا</a></td>
-                                                                            <td><a href="{{ asset('attatcment_project/' . $PRG->site_sketch) }}"
-                                                                                    target="_blank">اضغط هنا</a></td>
-                                                                            <td><a href="{{ asset('attatcment_project/' . $PRG->feasibility_study) }}"
-                                                                                    target="_blank">اضغط هنا</a></td>
+                                                                            <td>{{ $PRG->request_id }}</td>
+                                                                            @if ($PRG->company_reg)
+                                                                                <td><a href="{{ asset('attatcment_project/' . $PRG->company_reg) }}"
+                                                                                        target="_blank">اضغط هنا</a></td>
+                                                                            @elseif(!$PRG->company_reg)
+                                                                                <td>لا يوجد</td>
+                                                                            @endif
+                                                                            @if ($PRG->commercial_register)
+                                                                                <td><a href="{{ asset('attatcment_project/' . $PRG->commercial_register) }}"
+                                                                                        target="_blank">اضغط هنا</a></td>
+                                                                            @elseif(!$PRG->commercial_register)
+                                                                                <td>لا يوجد</td>
+                                                                            @endif
+                                                                            @if ($PRG->tax_card)
+                                                                                <td><a href="{{ asset('attatcment_project/' . $PRG->tax_card) }}"
+                                                                                        target="_blank">اضغط هنا</a></td>
+                                                                            @elseif(!$PRG->tax_card)
+                                                                                <td>لا يوجد</td>
+                                                                            @endif
+                                                                            @if ($PRG->nid_photo)
+                                                                                <td><a href="{{ asset('attatcment_project/' . $PRG->nid_photo) }}"
+                                                                                        target="_blank">اضغط هنا</a></td>
+                                                                            @elseif(!$PRG->nid_photo)
+                                                                                <td>لا يوجد</td>
+                                                                            @endif
+                                                                            @if ($PRG->financial_capital)
+                                                                                <td><a href="{{ asset('attatcment_project/' . $PRG->financial_capital) }}"
+                                                                                        target="_blank">اضغط هنا</a></td>
+                                                                            @elseif(!$PRG->financial_capital)
+                                                                                <td>لا يوجد</td>
+                                                                            @endif
+                                                                            @if ($PRG->site_sketch)
+                                                                                <td><a href="{{ asset('attatcment_project/' . $PRG->site_sketch) }}"
+                                                                                        target="_blank">اضغط هنا</a></td>
+                                                                            @elseif(!$PRG->site_sketch)
+                                                                                <td>لا يوجد</td>
+                                                                            @endif
+                                                                            @if ($PRG->feasibility_study)
+                                                                                <td><a href="{{ asset('attatcment_project/' . $PRG->feasibility_study) }}"
+                                                                                        target="_blank">اضغط هنا</a></td>
+                                                                            @elseif(!$PRG->feasibility_study)
+                                                                                <td>لا يوجد</td>
+                                                                            @endif
                                                                         </tr>
                                                                         <tr>
                                                                             <td>2</td>
@@ -383,7 +392,7 @@
                     </div>
                 </section>
             </div>
-            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+            {{-- <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
                 aria-labelledby="myLargeModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -405,13 +414,13 @@
                                         <div class="form-group col-md-4">
                                             <label for="">تاريخ الإرسال للجهة </label>
                                             <input style="height: calc(2.25rem + 6px);" type="date"
-                                                name="owner_name" value="" class="form-control"placeholder="">
+                                                name="record_send_date" value=""
+                                                class="form-control"placeholder="">
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for=""> الملف المرفق </label>
                                             <input style="height: calc(2.25rem + 6px);" type="file"
-                                                name="owner_name" value="{{ $r->L_Lisense->name }}"
-                                                class="form-control">
+                                                name="record_file" class="form-control">
                                         </div>
                                     </div>
                                 @elseif($r->R_Lisense->id != $request->id)
@@ -425,7 +434,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             @include('layouts.setting')
         </div>
         @include('layouts.footer')
@@ -459,9 +468,10 @@
             $('.city-' + e.target.value).show();
         });
         $('#project').on('change', function(e) {
-                    $('.coption').hide();
-                    $('.type-' + e.target.value).show();
-                    $('.license-' + {{ $request->categoryname->id }}).show();
+            $('.coption').hide();
+            $('.type-' + e.target.value).show();
+            $('.license-' + {{ $request->categoryname->id }}).show();
+        });
     </script>
 
 </body>
