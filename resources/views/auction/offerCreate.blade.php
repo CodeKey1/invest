@@ -128,7 +128,7 @@
                                                     <label>محضر الاستلام <span style="color: red">pdf او word بحد اقصي 1
                                                             ميجا</span></label>
                                                     <input style="height: calc(2.25rem + 6px);" type="file"
-                                                        name="delivery_record" accept=",.doc, .docx, .pdf"
+                                                        name="delivery_record" accept=",.doc, .docx, .pdf, image/*"
                                                         class="form-control" required>
                                                 </div>
                                                 <div class="form-group col-md-4">

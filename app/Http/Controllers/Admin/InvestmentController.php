@@ -197,10 +197,10 @@ class InvestmentController extends Controller
     {
         //
         $city = City::select()->get();
-        $clicense   = C_license::select()->with('license_cate','license')->get();
         $project = Project::select()->with('request_PJ')->where('request_id',$id)->get();
         $r_license = R_license::select()->with('L_Lisense','R_Lisense')->where('request_id',$id)->get();
         $request = RequestP::select()->with('req_place','categoryname','city')->find($id);
+        $clicense   = C_license::select()->with('license_cate','license')->where('category_id',$request->category_id)->get();
         $request_places = Request_places::select()->with('Req_place')->where('request_id',$id)->get();
         return view('investment.edit',compact('request','city','clicense','r_license','project','request_places'));
     }

@@ -40,6 +40,9 @@
                                     <div class="card-header">
                                         <h4> محاضر طلب الإسثمار / {{ $request->name }}</h4>
                                         <div class="card-header-action">
+                                            <a href="{{ route('investment.show', $request->id) }}"
+                                                class="btn btn-warning">تعديل
+                                                الطلب</a>
                                             <a href="{{ route('lecturer') }}" class="btn btn-primary">ادارة
                                                 المحاضر</a>
                                         </div>
@@ -251,29 +254,33 @@
                                 <div class="card card-primary">
                                     <div class="card-body">
                                         <div class="form-group col-md-12">
-                                            @foreach ($r_license as $r)
-                                                @if ($r->response_file == null && $r->file == null)
-                                                    <div class="form-row">
-                                                        <div class="form-group col-md-4">
-                                                            <label for=""> الجهات المطلوب موافقتها </label>
-                                                            <input style="height: calc(2.25rem + 6px);" type="text"
-                                                                name="owner_name" value="{{ $r->L_Lisense->name }}"
-                                                                class="form-control" disabled>
-                                                        </div>
-                                                        <div class="form-group col-md-4">
-                                                            <label for="">تاريخ الإرسال للجهة </label>
-                                                            <input style="height: calc(2.25rem + 6px);" type="date"
-                                                                name="record_send_date" value=""
-                                                                class="form-control"placeholder="">
-                                                        </div>
-                                                        <div class="form-group col-md-4">
-                                                            <label for=""> الملف المرفق </label>
-                                                            <input style="height: calc(2.25rem + 6px);" type="file"
-                                                                name="record_file" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                @endif
-                                            @endforeach
+                                            <h4>الجهات التي لم يتم التواصل معها</h4>
+                                            <table class="table table-bordered" style="margin-top: 10px;">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col"> # </th>
+                                                        <th scope="col"> اسم الجهة</th>
+                                                        <th scope="col"> الملف المرسل</th>
+                                                        <th scope="col"> تاريخ الارسال </th>
+                                                    </tr>
+                                                </thead>
+                                                @foreach ($r_license as $r)
+                                                    @if ($r->file == null)
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>{{ $r->id }}</td>
+                                                                <td>{{ $r->L_Lisense->name }}</td>
+                                                                <td><input type="file" name="send_file"
+                                                                        accept=",.doc, .docx, .pdf, image/*">
+                                                                </td>
+                                                                <td><input class="form-control" type="date"
+                                                                        name="send_date"></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    @endif
+                                                @endforeach
+                                            </table>
+                                            <h4>الجهات التي تم التواصل معها</h4>
                                             <table class="table table-bordered" style="margin-top: 10px;">
                                                 <thead>
                                                     <tr>
@@ -292,13 +299,17 @@
                                                                 <td>{{ $r->id }}</td>
                                                                 <td>{{ $r->L_Lisense->name }}</td>
                                                                 <td><a href="{{ asset('project_inquiry_file/' . $r->file) }}"
-                                                                        target="_blank">اضغط هنا</a></td>
+                                                                        target="_blank">اضغط هنا</a> | او تغير |
+                                                                    <input type="file"
+                                                                        accept=",.doc, .docx, .pdf, image/*"
+                                                                        name="send_file">
+                                                                </td>
                                                                 <td>{{ $r->send_date }}</td>
                                                                 @if ($r->response_file != null)
                                                                     <td><a href="{{ asset('project_response_file/' . $r->response_file) }}"
                                                                             target="_blank">اضغط هنا</a></td>
                                                                 @elseif($r->response_file == null)
-                                                                    <td><a href="#">تعزيز</a></td>
+                                                                    <td>لا يوجد</td>
                                                                 @endif
                                                                 <td>{{ $r->recived_date }}</td>
                                                             </tr>
@@ -307,7 +318,7 @@
                                                 @endforeach
                                             </table>
                                             <button type="submit" class="btn btn-success" style="float: left;">
-                                                ارسال
+                                                ارسال وتعزيز
                                             </button>
                                         </div>
                                     </div>

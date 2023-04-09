@@ -40,6 +40,9 @@
                                     <div class="card-header">
                                         <h4> عرض طلب الإسثمار / {{ $request->name }}</h4>
                                         <div class="card-header-action">
+                                            <a href="{{ route('investment.record', $request->id) }}"
+                                                class="btn btn-warning">
+                                                محاضر الطلب</a>
                                             <a href="{{ route('investment') }}" class="btn btn-primary">ادارة
                                                 الطلبات</a>
                                         </div>
@@ -59,8 +62,11 @@
                                                 <div class="card card-primary">
                                                     <div class="card-header">
                                                         <i class="fas fa-check-double" style="color: green;"></i>
-                                                        <h4 style="font-size: 12px;color: green;">
-                                                            {{ $r->L_Lisense->name }}</h4>
+                                                        <h4>
+                                                            <a style="font-size: 12px;color: green;"
+                                                                href="{{ asset('project_response_file/' . $r->response_file) }}"
+                                                                target="_blank">{{ $r->L_Lisense->name }}</a>
+                                                        </h4>
                                                     </div>
                                                 </div>
                                             </div>
@@ -105,8 +111,8 @@
                                                 <div class="form-group col-md-8">
                                                     <label> اسم المشروع </label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        class="form-control" name="name" value="{{ $request->name }}"
-                                                        disabled>
+                                                        class="form-control" name="name"
+                                                        value="{{ $request->name }}" disabled>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
                                                         class="form-control" name="name"
                                                         value="{{ $request->name }}" hidden>
@@ -116,8 +122,7 @@
                                                     @isset($clicense)
                                                         @if ($clicense && $clicense->count() > 0)
                                                             @foreach ($clicense as $lice)
-                                                                <div
-                                                                    class="option license-{{ $lice->license_cate->id }} badge badge-danger">
+                                                                <div class="badge badge-danger">
                                                                     {{ $lice->license->name }}</div>
                                                                 {{-- <input class="option license-{{ $lice->license_cate->id }}" type="text" value="{{ $lice->license_cate->id }}" name="sub_ctegory_id"> --}}
                                                             @endforeach
