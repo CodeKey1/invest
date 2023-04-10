@@ -11,11 +11,13 @@
     <!-- General CSS Files -->
     <link rel="stylesheet" href="assets/css/app.min.css" />
     <link rel="stylesheet" href="assets/bundles/datatables/datatables.min.css" />
-    <link rel="stylesheet" href="assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css"/>
+    <link rel="stylesheet" href="assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css" />
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="assets/css/components.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+        integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <!-- Custom style CSS -->
@@ -23,18 +25,17 @@
     <link rel='shortcut icon' type='image/x-icon' href='assets/img/favicon.ico' />
     <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
     <script>
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
 
-      // Enable pusher logging - don't include this in production
-      Pusher.logToConsole = true;
+        var pusher = new Pusher('2dbd33348671a769597f', {
+            cluster: 'ap1'
+        });
 
-      var pusher = new Pusher('2dbd33348671a769597f', {
-        cluster: 'ap1'
-      });
-
-      var channel = pusher.subscribe('user-notification');
-      channel.bind('my-notification', function(data) {
-        toastr.success(JSON.stringify(data));
-      });
+        var channel = pusher.subscribe('user-notification');
+        channel.bind('my-notification', function(data) {
+            toastr.success(JSON.stringify(data));
+        });
     </script>
 </head>
 
@@ -54,9 +55,8 @@
                                         <div class="row ">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
                                                 <div class="card-content">
-                                                    <h5 class="font-15">المحصل&nbsp;&nbsp;&nbsp;</h5>
-                                                    <h2 class="mb-3 font-18">
-                                                        &nbsp;&nbsp;&nbsp;</h2>
+                                                    <h5 class="font-15">الإطروحات</h5>
+                                                    <h2 class="mb-3 font-18">{{ $offers->count() }}</h2>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
@@ -76,9 +76,9 @@
                                         <div class="row ">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
                                                 <div class="card-content">
-                                                    <h5 class="font-14">اجمالي التكلفة&nbsp;&nbsp;&nbsp;</h5>
+                                                    <h5 class="font-14">اجمالي المزادات</h5>
                                                     <h2 class="mb-3 font-18">
-                                                        &nbsp;&nbsp;&nbsp;
+                                                        {{ $auctions->count() }}
                                                     </h2>
                                                 </div>
                                             </div>
@@ -100,7 +100,8 @@
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
                                                 <div class="card-content">
                                                     <h5 class="font-14">المشاريع المنتهية</h5>
-                                                    <h2 class="mb-3 font-18"></h2>
+                                                    <h2 class="mb-3 font-18">{{ $req->where('state', 1)->count() }}
+                                                    </h2>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
@@ -120,8 +121,8 @@
                                         <div class="row ">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
                                                 <div class="card-content">
-                                                    <h5 class="font-14">اجمالي المشاريع&nbsp;</h5>
-                                                    <h2 class="mb-3 font-18">
+                                                    <h5 class="font-14"> طلبات الإستثمار</h5>
+                                                    <h2 class="mb-3 font-18">{{ $req->count() }}
                                                     </h2>
                                                 </div>
                                             </div>
@@ -143,8 +144,8 @@
                                 <div class="card-header">
                                     <h4>المشاريع</h4>
 
-                                <div class="card-header-action">
-                                    <div class="dropdown">
+                                    <div class="card-header-action">
+                                        {{-- <div class="dropdown">
                                       <a href="#" data-toggle="dropdown" class="btn btn-warning dropdown-toggle">Options</a>
                                       <div class="dropdown-menu">
                                         <a href="#" class="dropdown-item has-icon"><i class="fas fa-eye"></i> View</a>
@@ -153,25 +154,56 @@
                                         <a href="#" class="dropdown-item has-icon text-danger"><i class="far fa-trash-alt"></i>
                                           Delete</a>
                                       </div>
+                                    </div> --}}
+                                        <a href="{{ route('investment') }}" class="btn btn-primary">كل طلبات
+                                            الإستثمار</a>
                                     </div>
-                                    <a href="#" class="btn btn-primary">View All</a>
-                                  </div>
                                 </div>
                                 <div class="card-body">
-                                    {{-- <canvas id="lineChartFill"></canvas>
+                                    <canvas id="lineChartFill"></canvas>
                                     <input type="hidden" name="users" value="{{ $users['user'] }}">
                                     <input type="hidden" name="service" value="{{ $users['service'] }}">
-                                    <input type="hidden" name="month" value="{{ $users['month'] }}"> --}}
+                                    <input type="hidden" name="month" value="{{ $users['month'] }}">
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="card">
-                                <div class="card-header">
-                                    <h4>الطلبات</h4>
-                                </div>
-                                <div class="card-body" style="direction: rtl;">
 
+                                <div class="card-body" style="direction: rtl;">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-hover"
+                                            >
+                                            <thead>
+                                                <tr>
+                                                    <th>المزاد</th>
+                                                    <th> الاطرحة </th>
+                                                    <th>ن المئوية </th>
+
+                                                </tr>
+                                            </thead>
+                                            @isset($auctions)
+                                                @if ($auctions && $auctions->count() > 0)
+                                                    @foreach ($auctions as $offer1)
+                                                        <tbody>
+                                                            <tr>
+                                                                <td> {{ $offer1->name }} </td>
+                                                                <td> {{ $offer1->offer_name->count() }} </td>
+                                                                <td>
+                                                                    <div class="progress-text">50%</div>
+                                                                    <div class="progress" data-height="6">
+                                                                        <div class="progress-bar bg-danger"
+                                                                            data-width="50%">
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    @endforeach
+                                                @endif
+                                            @endisset
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -181,10 +213,10 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>الطلبات</h4>
+                                    <h4>طلبات الإستثمار المتأخرة</h4>
 
-                                <div class="card-header-action">
-                                    <div class="dropdown">
+                                    <div class="card-header-action">
+                                        {{-- <div class="dropdown">
                                       <a href="#" data-toggle="dropdown" class="btn btn-warning dropdown-toggle">Options</a>
                                       <div class="dropdown-menu">
                                         <a href="#" class="dropdown-item has-icon"><i class="fas fa-eye"></i> View</a>
@@ -193,14 +225,13 @@
                                         <a href="#" class="dropdown-item has-icon text-danger"><i class="far fa-trash-alt"></i>
                                           Delete</a>
                                       </div>
+                                    </div> --}}
+                                        <a href="#" class="btn btn-primary">View All</a>
                                     </div>
-                                    <a href="#" class="btn btn-primary">View All</a>
-                                  </div>
                                 </div>
                                 <div class="card-body" style="direction: rtl;">
                                     <div class="table-responsive">
-                                        <table class="table" id="save-stage"
-                                            style="width:100%;">
+                                        <table class="table" id="save-stage" style="width:100%;">
                                             <thead>
                                                 <tr>
                                                     <th> # </th>
@@ -211,22 +242,24 @@
 
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>طلب الاول</td>
-                                                    <td><div class="badge badge-danger"> </div></td>
-                                                    <td> 3 ايام</td>
-                                                    <td> 29-2-2023</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>طلب الاول</td>
-                                                    <td><div class="badge badge-success"> </div></td>
-                                                    <td> 0 ايام</td>
-                                                    <td> 8-3-2023</td>
-                                                </tr>
-                                            </tbody>
+                                            @isset($delaiy_req)
+                                                @if ($delaiy_req && $delaiy_req->count() > 0)
+                                                    @foreach ($delaiy_req as $delaiy)
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>{{ $delaiy -> id }}</td>
+                                                                <td> {{ $delaiy->name }} </td>
+                                                                <td>
+                                                                    <div class="badge badge-danger"> </div>
+                                                                </td>
+                                                                <td> {{ $delaiy->created_at->diffForHumans($now) }} </td>
+                                                                <td> {{ $delaiy->recived_date }} </td>
+                                                            </tr>
+
+                                                        </tbody>
+                                                    @endforeach
+                                                @endif
+                                            @endisset
                                         </table>
                                     </div>
                                 </div>
@@ -288,7 +321,9 @@
     <script src="assets/js/scripts.js"></script>
     <!-- Custom JS File -->
     <script src="assets/js/custom.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
 </body>

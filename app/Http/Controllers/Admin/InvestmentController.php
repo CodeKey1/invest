@@ -358,9 +358,6 @@ class InvestmentController extends Controller
     //     return view('investment.project.create');
     // }
 
-    public function record(string $id){
-
-    }
 
 
 }

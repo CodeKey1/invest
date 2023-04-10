@@ -116,9 +116,9 @@
                                                                         <a class="btn btn-icon btn-danger"
                                                                             href="{{ route('investment.delete', $requests->id) }}"><i
                                                                                 class="fas fa-times"></i></a>
-                                                                        <a class="btn btn-icon btn-info"
+                                                                        {{-- <a class="btn btn-icon btn-info"
                                                                             href="{{ route('investment.Record', $requests->id) }}"><i
-                                                                                class="fas fa-comment-dots"></i></a>
+                                                                                class="fas fa-comment-dots"></i></a> --}}
                                                                     </td>
                                                                 </tr>
                                                             </tbody>

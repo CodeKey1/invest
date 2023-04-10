@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Auction;
+use App\Models\Offer;
+use App\Models\RequestP;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -25,9 +28,14 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $now = Carbon::today();
+        $offers = Offer::select()->get();
+        $auctions = Auction::select()->get()->take(11);
+        $req = RequestP::select()->get();
+        $delaiy_req = RequestP::select()->where('state',0)->get();
         $now = Carbon::today()->format('y-m-d');
         $users = $this->userChart();
-        return view('home',compact('users'));
+        return view('home',compact('users','req','auctions','offers','delaiy_req','now'));
 
     }
     public function userChart()
@@ -38,8 +46,8 @@ class HomeController extends Controller
         $user = [];
         for ($i = 0; $i < 12; $i++)
         {
-            $end =  User::whereMonth('created_at', $now->month)->whereYear('created_at', $now->year)->get();
-            $start =  User::whereMonth('created_at', $now->month)->whereYear('created_at', $now->year)->get();
+            $end =  RequestP::whereMonth('created_at', $now->month)->whereYear('created_at', $now->year)->where('state',1)->get();
+            $start =  RequestP::whereMonth('created_at', $now->month)->whereYear('created_at', $now->year)->get();
             array_push($month, $now->format('M').' '.$now->format('Y'));
             array_push($service, $end->count());
             array_push($user, $start->count());
