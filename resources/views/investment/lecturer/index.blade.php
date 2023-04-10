@@ -42,15 +42,13 @@
                                         <h4>ادارة جميع محاضر لطلبات الإستثمار</h4>
                                         <div class="card-header-action">
                                             <div class="dropdown">
-                                                <a href="{{ route('investment') }}" class="btn btn-warning"> كل طلبات الإستثمار </a>
-
+                                                <a href="{{ route('investment') }}" class="btn btn-warning"> كل طلبات
+                                                    الإستثمار </a>
                                             </div>
-
                                             <a href="{{ route('home') }}" class="btn btn-primary">الرئيسية</a>
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="card card-secondary">
                                     <div class="card-body" style="direction: rtl;">
                                         <div class="table-responsive">
@@ -60,11 +58,10 @@
                                                     <tr>
                                                         <th> # </th>
                                                         <th> مشروع </th>
-                                                        {{-- <th> فئة المشروع </th> --}}
+                                                        <th> اسم المشروع </th>
                                                         <th>اسم المتقدم</th>
                                                         <th> مواطن / شركة </th>
                                                         <th>المدينة</th>
-
                                                         <th> موافقات الجهات </th>
                                                         <th>تفاصيل</th>
                                                     </tr>
@@ -76,31 +73,26 @@
                                                                 <tr>
                                                                     <td>{{ $requests->id }}</td>
                                                                     <td>{{ $requests->categoryname->name }}</td>
-                                                                    {{-- <td>{{ $requests->subCat->name }}</td> --}}
+                                                                    <td>{{ $requests->name }}</td>
                                                                     <td>{{ $requests->name }}</td>
                                                                     <td>{{ $requests->owner_type }}</td>
                                                                     <td>{{ $requests->city->name }}</td>
-
                                                                     <td>
-                                                                        @foreach ($r_license as $r)
-                                                                        @if ($r->R_Lisense->id == $requests->id )
-                                                                        <div class="badge badge-success"> </div>
-                                                                        @elseif($r->R_Lisense->id != $requests->id)
-                                                                        <div class="badge badge-danger"> </div>
-                                                                        @endif
+                                                                        @foreach ($r_license->where('request_id', $requests->id) as $r)
+                                                                            @if ($r->response_file != null)
+                                                                                <div class="badge badge-success"> </div>
+                                                                            @elseif($r->response_file == null)
+                                                                                <div class="badge badge-danger"> </div>
+                                                                            @endif
                                                                         @endforeach
-
                                                                     </td>
                                                                     <td>
                                                                         <a class="btn btn-icon btn-success"
-                                                                            href="{{ route('investment.show', $requests->id) }}"
+                                                                            href="{{ route('investment.record', $requests->id) }}"
                                                                             ata-toggle="tooltip" data-placement="top"
-                                                                            title="عرض وتعديل">
+                                                                            title="عرض">
                                                                             <i class="fas fa-user"></i>
                                                                         </a>
-                                                                        <a class="btn btn-icon btn-danger"
-                                                                            href="{{ route('investment.delete', $requests->id) }}"><i
-                                                                                class="fas fa-times"></i></a>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>

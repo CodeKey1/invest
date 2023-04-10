@@ -148,7 +148,8 @@
                                                         style="height: calc(2.25rem + 6px);"><a target="_blank"
                                                             href="auctionOffer-files/{{ $offer->delivery_record }}">{{ $offer->delivery_record }}</a></label>
                                                     <input style="height: calc(2.25rem + 6px);" type="file"
-                                                        name="delivery_record" value="null" class="form-control">
+                                                        name="delivery_record" value="null"
+                                                        accept=",.doc, .docx, .pdf, image/*" class="form-control">
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label>تاريخ الاشغال</label>
