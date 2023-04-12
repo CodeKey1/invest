@@ -191,18 +191,7 @@ class InvestmentController extends Controller
         }
     }
 
-    public function record_store(Request $request,string $id)
-    {
 
-        $r_license = R_license::select('send_date')->where('request_id',$id)->get();
-            for($i = 0 ; $i < count($r_license) ; $i++){
-                $S_file[] = $r_license[$i];
-                R_license::where('request_id',$id)->update([
-                    'send_date' =>$S_file[$i]
-                ]);
-            }
-            return view('investment.index');
-    }
 
     /**
      * Display the specified resource.
@@ -248,17 +237,17 @@ class InvestmentController extends Controller
                     $path = 'project_inquiry_file';
                     $file -> move($path, $file_name);
                 }
-                
+
                 $r_license = R_license::where('id', $request->r_id[$i])-> update(([
                     'send_date' => $region[$i],
                     'file' => $file_name,
                 ]));
             }
             return redirect()->route('lecturer')-> with(['success' => 'نجح']);
-        }catch( Exeption $ex){
+        }catch(\Exception $ex){
             return redirect()->route('lecturer')-> with(['error' => ' خطأ '.$ex]);
         }
-            
+
     }
 
     /**
