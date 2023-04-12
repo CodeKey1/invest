@@ -226,16 +226,19 @@ class InvestmentController extends Controller
         try{
             for($i = 0 ; $i < count($request->r_id) ; $i++){
                 $region[] = $request->send_date[$i];
+                $record_name = R_license::select()->where('id',$request->r_id[$i])->first();
+                $file_name = $record_name->file;
+
                 if($file = $request->send_file[$i]){
                     $file_extension = $file->getclientoriginalExtension();
-                    $file_name = $request->r_id[$i].'send_file'. '.' . $file_extension;
+                    $file_name = $request->r_id[$i].' send_file'. '.' . $file_extension;
                     $path = 'project_inquiry_file';
                     $file -> move($path, $file_name);
-                    $send_file[] = $file_name ;
                 }
+                
                 $r_license = R_license::where('id', $request->r_id[$i])-> update(([
                     'send_date' => $region[$i],
-                    'file' => $send_file[$i],
+                    'file' => $file_name,
                 ]));
             }
             return redirect()->route('lecturer')-> with(['success' => 'نجح']);
