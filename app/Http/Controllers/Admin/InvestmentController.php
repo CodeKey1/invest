@@ -185,7 +185,7 @@ class InvestmentController extends Controller
                     'license_id' => $licnes[$i]->license_id,
                 ]);
             }
-             return redirect()->route('section.Create',[$request_id->id , $request_id->category_id])-> with(['success' => 'تم التسجيل بنجاح']);
+            return $this->record($request_id->id);
         }catch(\Exception $ex){
             return redirect()->route('investment')-> with(['error' => 'خطأ'.$ex]);
         }

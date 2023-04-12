@@ -43,9 +43,10 @@
                                     <div class="card-header">
                                         <h4>المزادات</h4>
                                         <div class="card-header-action">
-                                            
 
-                                            <a href="{{ route('auction.Create') }}" class="btn btn-warning">اضافة مزاد حديد</a>
+
+                                            <a href="{{ route('auction.Create') }}" class="btn btn-warning">اضافة مزاد
+                                                حديد</a>
                                         </div>
 
                                     </div>
@@ -66,10 +67,10 @@
                                                         <th>تفاصيل</th>
                                                     </tr>
                                                 </thead>
-                                                @isset($auction)
-                                                    @if ($auction && $auction->count() > 0)
-                                                        @foreach ($auction as $auction1)
-                                                            <tbody>
+                                                <tbody>
+                                                    @isset($auction)
+                                                        @if ($auction && $auction->count() > 0)
+                                                            @foreach ($auction as $auction1)
                                                                 <tr>
                                                                     <td>{{ $auction1->id }}</td>
                                                                     <td>{{ $auction1->name }}</td>
@@ -85,10 +86,10 @@
                                                                         </a>
                                                                     </td>
                                                                 </tr>
-                                                            </tbody>
-                                                        @endforeach
-                                                    @endif
-                                                @endisset
+                                                            @endforeach
+                                                        @endif
+                                                    @endisset
+                                                </tbody>
                                             </table>
                                         </div>
                                     </div>

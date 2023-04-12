@@ -42,7 +42,8 @@
                                         <h4> الجمعيات الزراعية </h4>
                                         <div class="card-header-action">
                                             <div class="dropdown">
-                                                <a href="{{ route('export.Create') }}" class="btn btn-warning "> صادر جديد </a>
+                                                <a href="{{ route('export.Create') }}" class="btn btn-warning "> صادر
+                                                    جديد </a>
 
                                             </div>
                                             <a href="{{ route('home') }}" class="btn btn-primary">الرئيسية</a>
@@ -63,10 +64,10 @@
                                                         <th>تفاصيل</th>
                                                     </tr>
                                                 </thead>
-                                                @isset($export)
-                                                    @if ($export && $export->count() > 0)
-                                                        @foreach ($export as $exports)
-                                                            <tbody>
+                                                <tbody>
+                                                    @isset($export)
+                                                        @if ($export && $export->count() > 0)
+                                                            @foreach ($export as $exports)
                                                                 <tr>
                                                                     <td>{{ $exports->id }}</td>
                                                                     <td>{{ $exports->export_id }}</td>
@@ -91,10 +92,10 @@
                                                                                 class="fas fa-times"></i></a>
                                                                     </td>
                                                                 </tr>
-                                                            </tbody>
-                                                        @endforeach
-                                                    @endif
-                                                @endisset
+                                                            @endforeach
+                                                        @endif
+                                                    @endisset
+                                                </tbody>
                                             </table>
                                         </div>
                                     </div>

@@ -79,10 +79,10 @@
                                                         <th>تفاصيل</th>
                                                     </tr>
                                                 </thead>
-                                                @isset($request)
-                                                    @if ($request && $request->count() > 0)
-                                                        @foreach ($request as $requests)
-                                                            <tbody>
+                                                <tbody>
+                                                    @isset($request)
+                                                        @if ($request && $request->count() > 0)
+                                                            @foreach ($request as $requests)
                                                                 <tr>
                                                                     <td>{{ $requests->id }}</td>
                                                                     <td>{{ $requests->name }}</td>
@@ -121,10 +121,10 @@
                                                                                 class="fas fa-comment-dots"></i></a> --}}
                                                                     </td>
                                                                 </tr>
-                                                            </tbody>
-                                                        @endforeach
-                                                    @endif
-                                                @endisset
+                                                            @endforeach
+                                                        @endif
+                                                    @endisset
+                                                </tbody>
                                             </table>
                                         </div>
                                     </div>
