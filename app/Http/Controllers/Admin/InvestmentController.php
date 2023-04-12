@@ -242,7 +242,7 @@ class InvestmentController extends Controller
                 ]));
             }
             return redirect()->route('lecturer')-> with(['success' => 'نجح']);
-        }catch( Exeption $ex){
+        }catch( \Exception $ex){
             return redirect()->route('lecturer')-> with(['error' => ' خطأ '.$ex]);
         }
             
