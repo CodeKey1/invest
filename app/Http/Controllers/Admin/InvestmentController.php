@@ -191,6 +191,19 @@ class InvestmentController extends Controller
         }
     }
 
+    public function record_store(Request $request,string $id)
+    {
+
+        $r_license = R_license::select('send_date')->where('request_id',$id)->get();
+            for($i = 0 ; $i < count($r_license) ; $i++){
+                $S_file[] = $r_license[$i];
+                R_license::where('request_id',$id)->update([
+                    'send_date' =>$S_file[$i]
+                ]);
+            }
+            return view('investment.index');
+    }
+
     /**
      * Display the specified resource.
      */

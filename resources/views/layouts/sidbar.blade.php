@@ -247,13 +247,6 @@
                         <li><a class="nav-link" href="{{ route('auction.Create') }}">اضافة اطرحة</a></li>
                     </ul>
                 </li>
-
-                <li class="dropdown">
-                    <a href="{{ route('search') }}" class="nav-link"><span>بحــث</span>
-                        <i data-feather="briefcase"></i></a>
-
-                </li>
-
                 <li class="menu-header">
                     <hr />
                 </li>
@@ -289,7 +282,7 @@
 
                         <li><a class="nav-link" href="#">تقرير مفصل</a></li>
 
-                        <li><a class="nav-link" href="{{ route('report') }}">تقرير </a></li>
+                        <li><a class="nav-link" href="#">تقرير </a></li>
 
                         <li><a class="nav-link" href="#">تقرير مجمع</a></li>
 

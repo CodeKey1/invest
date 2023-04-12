@@ -250,6 +250,10 @@
                                     </div>
                                 </div>
                             </div>
+                            <form class="needs-validation" id="work_experience" novalidate=""
+                                    action="{{ route('record.store' ,$request->id) }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
                             <div class="col-12 col-md-12 col-lg-12" style="direction: rtl">
                                 <div class="card card-primary">
                                     <div class="card-body">
@@ -274,7 +278,7 @@
                                                                         accept=",.doc, .docx, .pdf, image/*">
                                                                 </td>
                                                                 <td><input class="form-control" type="date"
-                                                                        name="send_date"></td>
+                                                                        name="send_date[]"></td>
                                                             </tr>
                                                         </tbody>
                                                     @endif
@@ -324,6 +328,7 @@
                                     </div>
                                 </div>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </section>
