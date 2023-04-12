@@ -221,9 +221,28 @@ class InvestmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function record_store(Request $request)
     {
-        //
+        try{
+            for($i = 0 ; $i < count($request->r_id) ; $i++){
+                $region[] = $request->send_date[$i];
+                if($file = $request->send_file[$i]){
+                    $file_extension = $file->getclientoriginalExtension();
+                    $file_name = $request->r_id[$i].'send_file'. '.' . $file_extension;
+                    $path = 'project_inquiry_file';
+                    $file -> move($path, $file_name);
+                    $send_file[] = $file_name ;
+                }
+                $r_license = R_license::where('id', $request->r_id[$i])-> update(([
+                    'send_date' => $region[$i],
+                    'file' => $send_file[$i],
+                ]));
+            }
+            return redirect()->route('lecturer')-> with(['success' => 'نجح']);
+        }catch( Exeption $ex){
+            return redirect()->route('lecturer')-> with(['error' => ' خطأ '.$ex]);
+        }
+            
     }
 
     /**
