@@ -79,7 +79,7 @@ Route::get('/lecturer', [App\Http\Controllers\Admin\InvestmentController::class,
 Route::get('/lecturer-create', [App\Http\Controllers\Admin\InvestmentController::class, 'lecturer_create'])->name('project.create');
 Route::get('/investment-record{id}', [App\Http\Controllers\Admin\InvestmentController::class, 'record'])->name('investment.record');
 Route::get('/record_update{id}', [App\Http\Controllers\Admin\InvestmentController::class, 'record_update'])->name('record.update');
-Route::post('/record_store{id}', [App\Http\Controllers\Admin\InvestmentController::class, 'record_store'])->name('record.store');
+Route::POST('/recordstore', [App\Http\Controllers\Admin\InvestmentController::class, 'record_store'])->name('record.store');
 
 /*
 |--------------------------------------------------------------------------
