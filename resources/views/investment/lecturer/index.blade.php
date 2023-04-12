@@ -31,12 +31,15 @@
     <div id="app">
         <div class="main-wrapper main-wrapper-1">
             @include('layouts.sidbar')
+
             <!-- Main Content -->
             <div class="main-content">
                 <section class="section">
                     <div class="section-body">
                         <div class="row">
                             <div class="col-12">
+                                @include('layouts.success')
+                                @include('layouts.error')
                                 <div class="card">
                                     <div class="card-header">
                                         <h4>ادارة جميع محاضر لطلبات الإستثمار</h4>
