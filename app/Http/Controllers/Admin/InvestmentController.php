@@ -11,7 +11,6 @@ use App\Models\Place_Category;
 use App\Models\Request_places;
 use App\Models\Project;
 use App\Models\R_license;
-use App\Models\Request_not;
 use App\Models\SubCategory;
 use App\Models\RequestP;
 use App\Models\Request_note;
@@ -185,7 +184,7 @@ class InvestmentController extends Controller
                     'license_id' => $licnes[$i]->license_id,
                 ]);
             }
-             return redirect()->route('section.Create',[$request_id->id , $request_id->category_id])-> with(['success' => 'تم التسجيل بنجاح']);
+            return $this->record($request_id->id);
         }catch(\Exception $ex){
             return redirect()->route('investment')-> with(['error' => 'خطأ'.$ex]);
         }
@@ -215,9 +214,10 @@ class InvestmentController extends Controller
         $clicense   = C_license::select()->get();
         $project = Project::select()->where('request_id',$id)->get();
         $r_license = R_license::select()->where('request_id',$id)->get();
+        $r_note = Request_note::select()->where('request_id',$id)->get();
         $request = RequestP::select()->find($id);
         $request_places = Request_places::select()->where('request_id',$id)->get();
-        return view('investment.lecturer.create',compact('request','city','clicense','r_license','project','request_places'));
+        return view('investment.lecturer.create',compact('request','city','clicense','r_license','r_note','project','request_places'));
     }
 
     /**
@@ -241,6 +241,7 @@ class InvestmentController extends Controller
                 $r_license = R_license::where('id', $request->r_id[$i])-> update(([
                     'send_date' => $region[$i],
                     'file' => $file_name,
+                    'point' => ($record_name->point)+1,
                 ]));
             }
             return redirect()->route('lecturer')-> with(['success' => 'نجح']);
@@ -250,6 +251,21 @@ class InvestmentController extends Controller
 
     }
 
+    public function note_store(Request $request, string $id){
+        try{
+            for($i = 0 ; $i < count($request->l_name) ; $i++){
+                Request_note::create([
+                    'notes' => $request->note,
+                    'request_id' => $id,
+                    'license_id' => $request->l_name[$i],
+                ]);
+            }
+            return redirect()->back();
+        }catch(\Exception $ex){
+            return redirect()->route('lecturer')-> with(['error' => ' خطأ '.$ex]);
+        }
+
+    }
     /**
      * Update the specified resource in storage.
      */
@@ -367,6 +383,11 @@ class InvestmentController extends Controller
         $user->delete();
 
         return redirect()->route('investment')->with(['success' => 'تم الحذف بنجاح']);
+    }
+    public function note_delete(string $id)
+    {
+        $request_notes = Request_note::find($id)->delete();
+        return redirect()->back();
     }
 
     /**

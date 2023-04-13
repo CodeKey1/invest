@@ -69,10 +69,10 @@
                                                         <th>تفاصيل</th>
                                                     </tr>
                                                 </thead>
-                                                @isset($offer)
-                                                    @if ($offer && $offer->count() > 0)
-                                                        @foreach ($offer as $offer1)
-                                                            <tbody>
+                                                <tbody>
+                                                    @isset($offer)
+                                                        @if ($offer && $offer->count() > 0)
+                                                            @foreach ($offer as $offer1)
                                                                 <tr>
                                                                     <td>{{ $offer1->id }}</td>
                                                                     <td>{{ $offer1->auction_name->name }}</td>
@@ -100,10 +100,10 @@
                                                                         </a>
                                                                     </td>
                                                                 </tr>
-                                                            </tbody>
-                                                        @endforeach
-                                                    @endif
-                                                @endisset
+                                                            @endforeach
+                                                        @endif
+                                                    @endisset
+                                                </tbody>
                                             </table>
                                         </div>
                                     </div>

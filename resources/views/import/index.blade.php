@@ -42,7 +42,8 @@
                                         <h4> الملفات الواردة </h4>
                                         <div class="card-header-action">
                                             <div class="dropdown">
-                                                <a href="{{ route('import.Create') }}" class="btn btn-warning "> وارد جديد </a>
+                                                <a href="{{ route('import.Create') }}" class="btn btn-warning "> وارد
+                                                    جديد </a>
 
                                             </div>
                                             <a href="{{ route('home') }}" class="btn btn-primary">الرئيسية</a>
@@ -65,10 +66,10 @@
                                                         <th>تفاصيل</th>
                                                     </tr>
                                                 </thead>
-                                                @isset($import)
-                                                    @if ($import && $import->count() > 0)
-                                                        @foreach ($import as $imports)
-                                                            <tbody>
+                                                <tbody>
+                                                    @isset($import)
+                                                        @if ($import && $import->count() > 0)
+                                                            @foreach ($import as $imports)
                                                                 <tr>
                                                                     <td>{{ $imports->id }}</td>
                                                                     <td>{{ $imports->import_id }}</td>
@@ -83,18 +84,20 @@
                                                                         @endif
                                                                     </td>
                                                                     <td>
-                                                                        <a class="btn btn-icon btn-success" href="{{ route('import.edit',$imports->id) }}"
+                                                                        <a class="btn btn-icon btn-success"
+                                                                            href="{{ route('import.edit', $imports->id) }}"
                                                                             ata-toggle="tooltip" data-placement="top"
                                                                             title="عرض وتعديل"><i
                                                                                 class="fas fa-user"></i></a>
-                                                                        <a class="btn btn-icon btn-danger" href="{{ route('import.delete',$imports->id) }}"><i
+                                                                        <a class="btn btn-icon btn-danger"
+                                                                            href="{{ route('import.delete', $imports->id) }}"><i
                                                                                 class="fas fa-times"></i></a>
                                                                     </td>
                                                                 </tr>
-                                                            </tbody>
-                                                        @endforeach
-                                                    @endif
-                                                @endisset
+                                                            @endforeach
+                                                        @endif
+                                                    @endisset
+                                                </tbody>
                                             </table>
                                         </div>
                                     </div>

@@ -80,6 +80,8 @@ Route::get('/lecturer-create', [App\Http\Controllers\Admin\InvestmentController:
 Route::get('/investment-record{id}', [App\Http\Controllers\Admin\InvestmentController::class, 'record'])->name('investment.record');
 Route::get('/record_update{id}', [App\Http\Controllers\Admin\InvestmentController::class, 'record_update'])->name('record.update');
 Route::POST('/recordstore', [App\Http\Controllers\Admin\InvestmentController::class, 'record_store'])->name('record.store');
+Route::POST('/recordstore_note{id}', [App\Http\Controllers\Admin\InvestmentController::class, 'note_store'])->name('record.store.note');
+Route::get('/delete_note{id}', [App\Http\Controllers\Admin\InvestmentController::class, 'note_delete'])->name('note.delete');
 
 /*
 |--------------------------------------------------------------------------
