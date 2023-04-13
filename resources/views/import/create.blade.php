@@ -44,10 +44,6 @@
                                         <div class="card-header">
                                             <h4>اضــافة وارد جديــد</h4>
                                             <div class="card-header-action">
-                                                
-                                                <button type="button" class="btn btn-success" data-toggle="modal"
-                                                    data-target="#exampleModal"> اضافة جهة </button>
-
                                                 <a href="{{ route('import') }}" class="btn btn-warning">كل الوارد</a>
                                                 <a href="{{ route('home') }}" class="btn btn-primary">الرئيسية</a>
                                             </div>
@@ -76,28 +72,17 @@
                                                     </select>
                                                 </div>
 
-                                                <div class="form-group col-md-8">
+                                                <div class="form-group col-md-12">
                                                     <label>عنوان الملف الوارد</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
                                                         name="import_name" class="form-control"placeholder="">
                                                 </div>
-                                                <div class="form-group col-md-4">
-                                                    <label> الملف المرفق</label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="file" multiple
-                                                        name="import_file[]" class="form-control">
-                                                </div>
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
-                                                    <label> الموظف المكلف بالملف</label>
-                                                    <select class="form-control select2" style="width: 100% !important;"
-                                                        multiple="" name="region">
-                                                        <option value="" disabled selected>اختر الموظف</option>
-                                                        <option value="">1 الموظف</option>
-                                                        <option value="">2 الموظف</option>
-                                                        <option value="">3 الموظف</option>
-                                                        <option value="">4 الموظف</option>
-                                                    </select>
+                                                    <label> الملف المرفق</label>
+                                                    <input style="height: calc(2.25rem + 6px);" type="file" multiple
+                                                        name="import_file[]" class="form-control">
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label> تاريخ استلام الوارد </label>
@@ -125,34 +110,7 @@
                     </div>
             </div>
             </section>
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="formModal"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
 
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form class="" action="{{ route('side.store') }}" method="POST"
-                                enctype="multipart/form-data">
-                                @csrf
-                                <div class="form-group">
-                                    <label>اسم الجهة</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="اسم الجهة"
-                                            name="side_name">
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-success m-t-15 waves-effect"
-                                    style="float: left;"> حفظ </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
             @include('layouts.setting')
         </div>
         @include('layouts.footer')

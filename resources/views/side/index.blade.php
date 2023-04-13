@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <!-- datatables.html  21 Nov 2019 03:55:21 GMT -->
+
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
@@ -13,7 +14,9 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <!-- Custom style CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+        integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 
@@ -22,38 +25,34 @@
     <link rel="stylesheet" href="assets/css/custom.css">
     <link rel='shortcut icon' type='image/x-icon' href='assets/img/favicon.ico' />
 </head>
+
 <body class="light theme-white dark-sidebar">
     <div class="loader"></div>
     <div id="app">
         <div class="main-wrapper main-wrapper-1">
             @include('layouts.sidbar')
+
             <!-- Main Content -->
             <div class="main-content">
                 <section class="section">
                     <div class="section-body">
                         <div class="row">
                             <div class="col-12">
-                                <div class="card card-secondary">
+                                @include('layouts.success')
+                                @include('layouts.error')
+                                <div class="card">
                                     <div class="card-header">
-                                        <h4> الجمعيات الزراعية </h4>
+                                        <h4>ادارة جميع محاضر لطلبات الإستثمار</h4>
                                         <div class="card-header-action">
                                             <div class="dropdown">
-                                                <a href="#" data-toggle="dropdown"
-                                                    class="btn btn-warning dropdown-toggle">Options</a>
-                                                <div class="dropdown-menu" style="background-color: rgb(53, 60, 72);">
-                                                    <a href="#" class="dropdown-item has-icon text-success"><i
-                                                            class="fas fa-eye"></i> View</a>
-                                                    <a href="#" class="dropdown-item has-icon text-info"><i
-                                                            class="far fa-edit"></i> Edit</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a href="#" class="dropdown-item has-icon text-danger"><i
-                                                            class="far fa-trash-alt"></i>
-                                                        Delete</a>
-                                                </div>
+                                                {{-- <a href="{{ route('investment') }}" class="btn btn-warning"> كل طلبات
+                                                    الإستثمار </a> --}}
                                             </div>
-                                            <a href="#" class="btn btn-primary">View All</a>
+                                            <a href="{{ route('home') }}" class="btn btn-primary">الرئيسية</a>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="card card-secondary">
                                     <div class="card-body" style="direction: rtl;">
                                         <div class="table-responsive">
                                             <table class="table table-striped table-hover" id="save-stage"
@@ -61,25 +60,47 @@
                                                 <thead>
                                                     <tr>
                                                         <th> # </th>
-                                                        <th>اسم المركز</th>
-                                                        <th>اسم المنطقة</th>
-                                                        <th>اسم الجمعية</th>
-                                                        <th>عدد المزارعين</th>
+                                                        <th> مشروع </th>
+                                                        <th> اسم المشروع </th>
+                                                        <th>اسم المتقدم</th>
+                                                        <th> مواطن / شركة </th>
+                                                        <th>المدينة</th>
+                                                        <th> موافقات الجهات </th>
                                                         <th>تفاصيل</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td>
-                                                            <a class="btn btn-icon btn-success" href="#" ata-toggle="tooltip" data-placement="top" title="عرض وتعديل" ><i class="fas fa-user"></i></a>
-                                                            <a class="btn btn-icon btn-danger" href="#"><i class="fas fa-times"></i></a>
-                                                        </td>
-                                                    </tr>
+                                                    @isset($request)
+                                                        @if ($request && $request->count() > 0)
+                                                            @foreach ($request as $requests)
+                                                                <tr>
+                                                                    <td>{{ $requests->id }}</td>
+                                                                    <td>{{ $requests->categoryname->name }}</td>
+                                                                    <td>{{ $requests->name }}</td>
+                                                                    <td>{{ $requests->name }}</td>
+                                                                    <td>{{ $requests->owner_type }}</td>
+                                                                    <td>{{ $requests->city->name }}</td>
+                                                                    <td>
+                                                                        @foreach ($r_license->where('request_id', $requests->id) as $r)
+                                                                            @if ($r->response_file != null)
+                                                                                <div class="badge badge-success"> </div>
+                                                                            @elseif($r->response_file == null)
+                                                                                <div class="badge badge-danger"> </div>
+                                                                            @endif
+                                                                        @endforeach
+                                                                    </td>
+                                                                    <td>
+                                                                        <a class="btn btn-icon btn-success"
+                                                                            href="{{ route('side.Create', $requests->id) }}"
+                                                                            ata-toggle="tooltip" data-placement="top"
+                                                                            title="عرض">
+                                                                            <i class="fas fa-user"></i>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
+                                                        @endif
+                                                    @endisset
                                                 </tbody>
                                             </table>
                                         </div>
@@ -104,11 +125,17 @@
     <script src="assets/js/page/datatables.js"></script>
     <!-- Template JS File -->
     <script src="assets/js/scripts.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @if (Session::has('success'))
-    <script>
-         toastr.success("{{ Session::get('success') }}");
-    </script>
+        <script>
+            toastr.success("{{ Session::get('success') }}");
+        </script>
+    @elseif (Session::has('error'))
+        <script>
+            toastr.error("{{ Session::get('error') }}");
+        </script>
     @endif
     <script>
         $(document).ready(function() {

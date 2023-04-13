@@ -251,7 +251,8 @@ class InvestmentController extends Controller
 
     }
 
-    public function note_store(Request $request, string $id){
+    public function note_store(Request $request, string $id)
+    {
         try{
             for($i = 0 ; $i < count($request->l_name) ; $i++){
                 Request_note::create([

@@ -4,6 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Side;
+use App\Models\C_license;
+use App\Models\Category;
+use App\Models\City;
+use App\Models\Place;
+use App\Models\Place_Category;
+use App\Models\Request_places;
+use App\Models\Project;
+use App\Models\R_license;
+use App\Models\SubCategory;
+use App\Models\RequestP;
+use App\Models\Request_note;
+
 use Illuminate\Http\Request;
 
 class SideController extends Controller
@@ -14,33 +26,75 @@ class SideController extends Controller
     public function index()
     {
         //
+        $request   = RequestP::select()->with('categoryname','city','rl','subCat')->where('state',0)->get();
+        $r_license = R_license::select()->with('L_Lisense','R_Lisense')->get();
+        return view('side.index',compact('request','r_license'));
+
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(string $id)
     {
         //
-        return view('side.create');
+        $city = City::select()->get();
+        $clicense   = C_license::select()->get();
+        $project = Project::select()->where('request_id',$id)->get();
+        $r_license = R_license::select()->where('request_id',$id)->get();
+        $r_note = Request_note::select()->where('request_id',$id)->get();
+        $request = RequestP::select()->find($id);
+        $request_places = Request_places::select()->where('request_id',$id)->get();
+        return view('side.create',compact('request','city','clicense','r_license','r_note','project','request_places'));
+
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function side_store(Request $request)
     {
-        //
         try{
-            Side:: create(([
-            'side_name' => $request['side_name'],
+            for($i = 0 ; $i < count($request->r_id) ; $i++){
+                $region[] = $request->send_date[$i];
+                $record_name = R_license::select()->where('id',$request->r_id[$i])->first();
+                $file_name = $record_name->file;
+                try{
+                    if($file = $request->send_file[$i]){
+                        $file_extension = $file->getclientoriginalExtension();
+                        $file_name = $request->r_id[$i].' send_file'. '.' . $file_extension;
+                        $path = 'project_inquiry_file';
+                        $file -> move($path, $file_name);
+                    }
+                }catch( \Exception $ex){}
+                $r_license = R_license::where('id', $request->r_id[$i])-> update(([
+                    'send_date' => $region[$i],
+                    'file' => $file_name,
+                    'point' => ($record_name->point)+1,
+                ]));
+            }
+            return redirect()->route('lecturer')-> with(['success' => 'نجح']);
+        }catch( \Exception $ex){
+            return redirect()->route('lecturer')-> with(['error' => ' خطأ '.$ex]);
+        }
 
-            ]));
+    }
 
-           return redirect()->back()-> with(['success' => 'تم التسجيل بنجاح']);
-       }catch(\Exception $ex){
-           return redirect()->back()-> with(['error' => 'خطأ'.$ex]);
-       }
+    public function side_note(Request $request, string $id)
+    {
+        try{
+            for($i = 0 ; $i < count($request->l_name) ; $i++){
+                Request_note::create([
+                    'notes' => $request->note,
+                    'request_id' => $id,
+                    'license_id' => $request->l_name[$i],
+                ]);
+            }
+            return redirect()->back();
+        }catch(\Exception $ex){
+            return redirect()->route('lecturer')-> with(['error' => ' خطأ '.$ex]);
+        }
+
     }
 
     /**
@@ -57,6 +111,7 @@ class SideController extends Controller
     public function edit(string $id)
     {
         //
+        return view('side.edit');
     }
 
     /**
@@ -74,4 +129,6 @@ class SideController extends Controller
     {
         //
     }
+
+
 }

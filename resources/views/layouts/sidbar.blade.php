@@ -306,11 +306,20 @@
             </ul>
         @endif
 
-        @if (auth()->user()->hasRole('secretary'))
+        @if (auth()->user()->hasRole('side'))
             <ul class="sidebar-menu">
                 <li class="dropdown active">
                     <a href="{{ route('home') }}" class="nav-link"><span>الرئيسية</span><i
                             data-feather="monitor"></i></a>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><span>  طلبات الإستثمار</span>
+                        <i data-feather="briefcase"></i></a>
+                    <ul class="dropdown-menu">
+                        {{-- <li><a class="nav-link" href="#">الطلبات المقبولة</a></li> --}}
+                        <li><a class="nav-link" href="{{ route('side') }}"> الطلبات </a></li>
+                    </ul>
                 </li>
                 <li class="menu-header"></li>
                 <li class="dropdown">

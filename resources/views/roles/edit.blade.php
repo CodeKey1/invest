@@ -37,7 +37,7 @@
                             <div class="col-12 col-md-12 col-lg-12">
                                 @include('layouts.success')
                                 @include('layouts.error')
-                                <form class="needs-validation" id="work_experience" novalidate="" action="#"
+                                <form class="needs-validation" id="work_experience" novalidate="" action="{{ route('role.update',$roles->id) }}"
                                     method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="card card-primary">
@@ -66,7 +66,7 @@
                                                 </div>
                                                 <div class="form-group col-md-12">
                                                     <label>Tags</label>
-                                                    <select class="form-control select2" multiple="" style="direction: rtl;width: 100%;">
+                                                    <select class="form-control select2" multiple="" style="direction: rtl;width: 100%;" name="permissions[]">
                                                         @isset($permissions)
                                                             @if ($permissions && $permissions->count() > 0)
                                                                 @foreach ($permissions as $permission)

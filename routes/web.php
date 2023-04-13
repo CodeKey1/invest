@@ -113,8 +113,9 @@ Route::POST('/offer-update{id}', [App\Http\Controllers\Auction\AuctionController
 |--------------------------------------------------------------------------
 */
 Route::get('/side', [App\Http\Controllers\Admin\SideController::class, 'index'])->name('side');
-Route::POST('/side_store', [App\Http\Controllers\Admin\SideController::class, 'store'])->name('side.store');
-Route::get('/side-create', [App\Http\Controllers\Admin\SideController::class, 'create'])->name('side.Create');
+Route::POST('/side_store', [App\Http\Controllers\Admin\SideController::class, 'side_store'])->name('side.store');
+Route::POST('/side_note{id}', [App\Http\Controllers\Admin\SideController::class, 'side_note'])->name('side.note');
+Route::get('/side-create{id}', [App\Http\Controllers\Admin\SideController::class, 'create'])->name('side.Create');
 
 /*
 |--------------------------------------------------------------------------
@@ -155,5 +156,6 @@ Route::get('/role-create', [App\Http\Controllers\Admin\AdminController::class, '
 Route::POST('/role-store', [App\Http\Controllers\Admin\AdminController::class, 'store'])->name('role.store');
 Route::get('/role-delete{id}', [App\Http\Controllers\Admin\AdminController::class, 'destroy'])->name('role.delete');
 Route::get('/role-edit{id}', [App\Http\Controllers\Admin\AdminController::class, 'edit'])->name('role.edite');
+Route::post('/role-update{id}', [App\Http\Controllers\Admin\AdminController::class, 'update'])->name('role.update');
 
 });

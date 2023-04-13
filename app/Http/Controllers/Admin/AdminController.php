@@ -43,9 +43,9 @@ class AdminController extends Controller
         ]);
 
         $role = Role::create(['name' => $request->name]);
-        $per =  Permission::whereIn('id', $request->permissions)->get();
+        $per =  Role::whereIn('id', $request->permissions)->get();
         $role->syncPermissions($per);
-        return redirect()->route('Role')->with(['success' => 'تم التسجيل بنجاح']);
+        return redirect()->route('role')->with(['success' => 'تم التسجيل بنجاح']);
     }
 
     /**
@@ -62,7 +62,7 @@ class AdminController extends Controller
     public function edit(string $id)
     {
         //
-        $permissions = Permission::get();
+        $permissions = Permission::select()->where('role_id',$id)->get();
         $roles = Role::with('permissions')->find($id);
         return view('roles.edit',compact('roles','permissions'));
     }
@@ -73,6 +73,10 @@ class AdminController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $roles = Role::whereIn('id', $id)->update(['name' => $request->name]);
+        $per =  Permission::whereIn('id', $id)->update(['permissions' => $request->permissions]);
+        $roles->syncPermissions($per);
+        return redirect()->route('role')->with(['success' => 'تم التعديل بنجاح']);
     }
 
     /**
