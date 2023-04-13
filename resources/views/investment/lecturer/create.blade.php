@@ -17,13 +17,15 @@
     <link rel="stylesheet" href="assets/bundles/izitoast/css/iziToast.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/bundles/datatables/datatables.min.css">
+    <link rel="stylesheet" href="assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
     <!-- Custom style CSS -->
     <link rel="stylesheet" href="assets/css/custom.css">
     <link rel='shortcut icon' type='image/x-icon' href='assets/img/favicon.ico' />
 </head>
 
 <body class="light theme-white dark-sidebar">
-    <div class="loader"></div>E
+    <div class="loader"></div>
     <div id="app">
         <div class="main-wrapper main-wrapper-1">
 
@@ -75,6 +77,7 @@
                                 </div> --}}
                                 <div class="card card-primary">
                                     <div class="card-body">
+                                        <h4>بيانات المشروع</h4>
                                         <div class="form-row">
                                             <div class="form-group col-md-2">
                                                 <label>فئة المشروع </label>
@@ -253,6 +256,7 @@
                             <div class="col-12 col-md-12 col-lg-12" style="direction: rtl">
                                 <div class="card card-primary">
                                     <div class="card-body">
+                                        <h4>جهات الموافقات</h4>
                                         <div class="form-group col-md-12">
                                             <form class="needs-validation" novalidate=""
                                                 action="{{ route('record.store') }}" method="POST"
@@ -309,6 +313,79 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-6 col-md-6 col-lg-6" style="direction: rtl">
+                                <div class="card card-primary">
+                                    <div class="card-body">
+                                        <h4> انشاء ملاحظة</h4>
+                                        <form class="needs-validation" novalidate=""
+                                            action="{{ route('record.store.note', $request->id) }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="form-group col-md-12">
+                                                <label>اختر الجهة <span style="color: red">*</span></label>
+                                                <select class="form-control select2" style="width: 100%" multiple
+                                                    name="l_name[]">
+                                                    @isset($r_license)
+                                                        @if ($r_license && $r_license->count() > 0)
+                                                            @foreach ($r_license as $item)
+                                                                <option value="{{ $item->license_id }}">
+                                                                    {{ $item->L_Lisense->name }}
+                                                                </option>
+                                                            @endforeach
+                                                        @endif
+                                                    @endisset
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label> الملاحظة<span style="color: red">*</span></label>
+                                                <textarea class="form-control" name="note" cols="10" rows="5"> </textarea>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <button type="submit" class="btn btn-success" style="float: left;">
+                                                    ارسال
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-6 col-lg-6">
+                                <div class="card card-primary">
+                                    <div class="card-body">
+                                        <div class="form-group col-md-12">
+                                            <h4>الملاحظات</h4>
+                                            <table class="table table-striped table-hover" id="notes"
+                                                style="margin-top: 10px;">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col"> # </th>
+                                                        <th scope="col"> الجهة </th>
+                                                        <th scope="col"> الملاحظة </th>
+                                                        <th scope="col"> تاريخ الارسال </th>
+                                                        <th scope="col"> خيارات </th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @isset($r_note)
+                                                        @foreach ($r_note as $note)
+                                                            <tr>
+                                                                <td>{{ $note->id }}</td>
+                                                                <td>{{ $note->note_license->name }}</td>
+                                                                <td>{{ $note->notes }}</td>
+                                                                <td>{{ $note->created_at }}</td>
+                                                                <td><a class="btn btn-icon btn-danger"
+                                                                        href="{{ route('note.delete', $note->id) }}"><i
+                                                                            class="fas fa-times"></i></a></td>
+                                                            </tr>
+                                                        @endforeach
+                                                    @endisset
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -334,6 +411,13 @@
     <script src="assets/bundles/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
     <script src="assets/bundles/bootstrap-daterangepicker/daterangepicker.js"></script>
     <script src="assets/bundles/select2/dist/js/select2.full.min.js"></script>
+    <script src="assets/bundles/datatables/datatables.min.js"></script>
+    <script src="assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#notes').DataTable();
+        });
+    </script>
 
 </body>
 

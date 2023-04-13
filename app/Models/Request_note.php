@@ -11,10 +11,14 @@ class Request_note extends Model
 
     protected $table  = 'request_notes';
 
-    protected $fillable = ['id','notes','request_id','created_at','updated_at'];
+    protected $fillable = ['id','notes','request_id','license_id','created_at','updated_at'];
 
     public function R_note(){
         return  $this->belongsTo(RequestP::class ,'request_id');
+    }
+
+    public function note_license(){
+        return  $this->belongsTo(License::class ,'license_id');
     }
 
 }
