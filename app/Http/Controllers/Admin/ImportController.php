@@ -121,7 +121,6 @@ class ImportController extends Controller
     public function destroy(string $id)
     {
         //
-        
         $import = Import::find($id);
         $import->delete();
         return redirect()->route('import')->with(['success' => 'تم الحذف بنجاح']);
