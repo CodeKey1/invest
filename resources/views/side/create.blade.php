@@ -282,12 +282,11 @@
                                                                     <td>
                                                                         @if ($r->file != null)
                                                                             <a href="{{ asset('project_inquiry_file/' . $r->file) }}"
-                                                                                target="_blank">اضغط هنا</a> | او تغير
-                                                                            |
+                                                                                target="_blank">اضغط هنا</a>
+                                                                                @elseif($r->file == null)
+                                                                            <p>لا يوجد</p>
                                                                         @endif
-                                                                        <input type="file"
-                                                                            accept=",.doc, .docx, .pdf, image/*"
-                                                                            name="send_file[]">
+
                                                                     </td>
                                                                     <td>
                                                                         <input type="date"
@@ -295,12 +294,20 @@
                                                                             name="send_date[]">
                                                                     </td>
                                                                     @if ($r->response_file != null)
-                                                                        <td><a href="{{ asset('project_response_file/' . $r->response_file) }}"
+                                                                        <td><a href="{{ asset('project_inquiry_file/' . $r->response_file) }}"
                                                                                 target="_blank">اضغط هنا</a></td>
                                                                     @elseif($r->response_file == null)
-                                                                        <td>لا يوجد</td>
+                                                                        <td>
+                                                                            <input type="file"
+                                                                            accept=",.doc, .docx, .pdf, image/*"
+                                                                            name="response_file[]">
+                                                                         </td>
                                                                     @endif
-                                                                    <td>{{ $r->recived_date }}</td>
+                                                                    <td>
+                                                                        <input type="date"
+                                                                            value="{{ $r->recived_date }}"
+                                                                            name="recived_date[]">
+                                                                        </td>
                                                                 </tr>
 
                                                             </tbody>

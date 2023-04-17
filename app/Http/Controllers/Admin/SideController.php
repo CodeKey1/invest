@@ -56,26 +56,26 @@ class SideController extends Controller
     {
         try{
             for($i = 0 ; $i < count($request->r_id) ; $i++){
-                $region[] = $request->send_date[$i];
+                $region[] = $request->recived_date[$i];
                 $record_name = R_license::select()->where('id',$request->r_id[$i])->first();
-                $file_name = $record_name->file;
+                $file_name = $record_name->response_file;
                 try{
-                    if($file = $request->send_file[$i]){
+                    if($file = $request->response_file[$i]){
                         $file_extension = $file->getclientoriginalExtension();
-                        $file_name = $request->r_id[$i].' send_file'. '.' . $file_extension;
+                        $file_name = $request->r_id[$i].' response_file'. '.' . $file_extension;
                         $path = 'project_inquiry_file';
                         $file -> move($path, $file_name);
                     }
                 }catch( \Exception $ex){}
                 $r_license = R_license::where('id', $request->r_id[$i])-> update(([
-                    'send_date' => $region[$i],
-                    'file' => $file_name,
+                    'recived_date' => $region[$i],
+                    'response_file' => $file_name,
                     'point' => ($record_name->point)+1,
                 ]));
             }
-            return redirect()->route('lecturer')-> with(['success' => 'نجح']);
+            return redirect()->route('side')-> with(['success' => 'نجح']);
         }catch( \Exception $ex){
-            return redirect()->route('lecturer')-> with(['error' => ' خطأ '.$ex]);
+            return redirect()->route('side')-> with(['error' => ' خطأ '.$ex]);
         }
 
     }
