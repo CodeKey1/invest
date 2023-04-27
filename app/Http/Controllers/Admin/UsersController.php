@@ -77,9 +77,12 @@ class UsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
         //
+        $roles = Role::select()->get();
+        $user = User ::select()->find($id);
+        return view('users.edit',compact('user','roles'));
     }
 
     /**
@@ -87,7 +90,19 @@ class UsersController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try{
+            User :: where('id',$id)->update(([
+                'name' => $request['name'],
+                'email' =>$request['email'],
+                'password' => Hash::make($request['password']),
+                'role' => $request['role'],
+                //'state' => $request['state'],
+            ]));
+            return redirect()->route('user')-> with(['success' => 'تم التسجيل بنجاح']);
+        }catch(\Exception $ex){
+            return redirect()->route('user')-> with(['error' => 'خطا'. $ex]);
+
+        }
     }
 
     /**

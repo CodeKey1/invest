@@ -125,6 +125,8 @@ Route::get('/side-create{id}', [App\Http\Controllers\Admin\SideController::class
 Route::get('/users', [App\Http\Controllers\Admin\UsersController::class, 'index'])->name('user');
 Route::get('/user-create', [App\Http\Controllers\Admin\UsersController::class, 'create'])->name('user.Create');
 Route::POST('/user-store', [App\Http\Controllers\Admin\UsersController::class, 'store'])->name('user.store');
+Route::get('/user-update{id}', [App\Http\Controllers\Admin\UsersController::class, 'update'])->name('user.update');
+Route::get('/user-edit{id}', [App\Http\Controllers\Admin\UsersController::class, 'edit'])->name('user.edit');
 Route::get('/user-delete{id}', [App\Http\Controllers\Admin\UsersController::class, 'destroy'])->name('user.delete');
 
 Route::get('/app-modify', [App\Http\Controllers\Admin\AppModifyController::class, 'index'])->name('app.modify');

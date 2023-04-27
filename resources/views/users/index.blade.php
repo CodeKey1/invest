@@ -77,7 +77,8 @@
                                                             </td>
                                                             <td class="mb-2">{{ $user->email }}</td>
                                                             <td>
-                                                                <a class="btn btn-icon btn-success" href="#"
+                                                                <a class="btn btn-icon btn-success"
+                                                                    href="{{ route('user.edit', $user->id) }}"
                                                                     ata-toggle="tooltip" data-placement="top"
                                                                     title="عرض وتعديل"><i class="fas fa-user"></i></a>
                                                                 <a class="btn btn-icon btn-danger"
