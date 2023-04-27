@@ -172,13 +172,11 @@
 
                                 <div class="card-body" style="direction: rtl;">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered table-hover"
-                                            >
+                                        <table class="table table-bordered table-hover">
                                             <thead>
                                                 <tr>
                                                     <th>المزاد</th>
                                                     <th> الاطرحة </th>
-                                                    <th>ن المئوية </th>
 
                                                 </tr>
                                             </thead>
@@ -189,14 +187,6 @@
                                                             <tr>
                                                                 <td> {{ $offer1->name }} </td>
                                                                 <td> {{ $offer1->offer_name->count() }} </td>
-                                                                <td>
-                                                                    <div class="progress-text">50%</div>
-                                                                    <div class="progress" data-height="6">
-                                                                        <div class="progress-bar bg-danger"
-                                                                            data-width="50%">
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
                                                             </tr>
                                                         </tbody>
                                                     @endforeach
@@ -247,7 +237,7 @@
                                                     @foreach ($delaiy_req as $delaiy)
                                                         <tbody>
                                                             <tr>
-                                                                <td>{{ $delaiy -> id }}</td>
+                                                                <td>{{ $delaiy->id }}</td>
                                                                 <td> {{ $delaiy->name }} </td>
                                                                 <td>
                                                                     <div class="badge badge-danger"> </div>

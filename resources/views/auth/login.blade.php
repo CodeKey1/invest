@@ -231,7 +231,7 @@
     <div class="container">
         <button class="btn btn-primary" onclick="showInfo()"
             style="position: absolute; border-radius: 50%; margin-top: 15px;">?</button>
-        <h2 class="text-center pt-5">متابعة مشاريع الصرف المغطى</h2>
+        <h2 class="text-center pt-5">منظومة الاستثمار</h2>
         <div id="login-col">
             <div class="col-lg-6" id="inner-logo">
                 <img src="images/logo/logo.png">
@@ -304,11 +304,11 @@
                                           </div>
                                       <div id='gover'>
                     <img src='images/ashraf.jpg'>
-                    <h4 class='text-center text-info'>تم انشاء وتطوير الموقع في عهد <br><br> محافظ اسوان اللواء الوزير / أشرف عطية عبدالباري <br><br> فبراير 2022م</h4>
+                    <h4 class='text-center text-info'>تم انشاء وتطوير الموقع في عهد <br><br> محافظ اسوان اللواء الوزير / أشرف عطية عبدالباري <br><br> ابريل 2023م</h4>
                   </div>
                                       <div class='panel-body text-right'>
                                           <h3 class='text-center text-info'>عن الموقع</h3>
-                                          <h4 class='text-center'>متابعة دورة العمل الخاصة بالمشاريع التابعة لهيئة الصرف المغطى وهيئة المساحة والضرائب العقارية <br> طباعة التقارير ومتابعة عمليات السداد الخاصة بالمشاريع لكل جهة</h4>
+                                          <h4 class='text-center'>.متابعة طلبات الاستثمار الخاصة بالمواطنين والشراكات، المزادات والاطروحات الخاصة بكل مزاد<br> طباعة التقارير ومتابعة ردود الجهات الخاصة بطلبات الاستثمار</h4>
                                       </div>
                   <footer class='text-center' style='background-color:#279c96; color:white; border-radius:0 0 10px 10px'>
                   <h5 style='padding:5px;'>ادارة نظم المعلومات والتحول الرقمي</h5>
