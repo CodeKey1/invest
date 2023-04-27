@@ -14,5 +14,7 @@ class Model_has_roles extends Model
         'role_id',
         'model_type',
         'model_id',
+        'created_at',
+        'updated_at',
     ];
 }

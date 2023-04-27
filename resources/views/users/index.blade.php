@@ -66,7 +66,15 @@
                                                         <tr>
                                                             <td>{{ $user->id }}</td>
                                                             <td>{{ $user->name }}</td>
-                                                            <td class="mb-2">{{ $user->role }}</td>
+                                                            <td class="mb-2">
+                                                                @if ($user->role == 3)
+                                                                    ادمن
+                                                                @elseif($user->role == 4)
+                                                                    مستخدم
+                                                                @elseif($user->role == 5)
+                                                                    جهات
+                                                                @endif
+                                                            </td>
 
                                                             <td class="mb-2">
                                                                 @if ($user->state == 0)

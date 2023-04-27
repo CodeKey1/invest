@@ -98,6 +98,9 @@ class UsersController extends Controller
                 'role' => $request['role'],
                 //'state' => $request['state'],
             ]));
+            Model_has_roles :: where('model_id',$id)->update(([
+                'role_id' => $request['role'],
+            ]));
             return redirect()->route('user')-> with(['success' => 'تم التسجيل بنجاح']);
         }catch(\Exception $ex){
             return redirect()->route('user')-> with(['error' => 'خطا'. $ex]);
