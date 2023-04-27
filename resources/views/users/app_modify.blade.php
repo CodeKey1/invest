@@ -70,24 +70,26 @@
                                     <div class="tab-content">
                                         <div class="tab-pane fade show active" id="gov" role="tabpanel"
                                             aria-labelledby="gov-tab">
-                                            <div class="card">
+                                            <div>
                                                 <div class="card-header">
                                                     <h4>المحافظات</h4>
                                                 </div>
-                                                <div class="card-body" style="direction: rtl">
+                                                <div style="direction: rtl">
                                                     <div class="row">
-                                                        <div class="col-lg-6">
-                                                            <div class="form-group col-md-12">
-                                                                <label> اسم المحافظة</label>
-                                                                <input style="height: calc(2.25rem + 6px);"
+
+                                                            <div class="form-group col-md-6">
+
+                                                                <input
                                                                     type="text" name="gov_name"
-                                                                    class="form-control" placeholder="">
+                                                                    class="form-control" placeholder="اسم المحافظة">
                                                             </div>
-                                                            <button type="submit" name="actionbtn"
-                                                                class="btn btn-success" value="govbtn"
-                                                                style="float: left;">حفظ</button>
-                                                        </div>
-                                                        <div class="col-lg-6">
+                                                            <div class="form-group col-md-1">
+                                                                <button type="submit" name="actionbtn"
+                                                                class="btn btn-primary" value="govbtn"
+                                                                    style="float: left;">حفظ</button>
+                                                            </div>
+
+                                                        <div class="col-lg-12">
                                                             <div class="table-responsive">
                                                                 <h6> جدول المحافظة</h6>
                                                                 <table class="table table-striped table-hover"
@@ -126,11 +128,11 @@
                                         </div>
                                         <div class="tab-pane fade" id="city" role="tabpanel"
                                             aria-labelledby="city-tab">
-                                            <div class="card">
+                                            <div>
                                                 <div class="card-header">
                                                     <h4>المدن</h4>
                                                 </div>
-                                                <div class="card-body" style="direction: rtl">
+                                                <div style="direction: rtl">
                                                     <div class="row">
                                                         <div class="col-lg-6">
                                                             <div class="form-group col-md-12">
@@ -207,11 +209,11 @@
                                         </div>
                                         <div class="tab-pane fade" id="place" role="tabpanel"
                                             aria-labelledby="place-tab">
-                                            <div class="card">
+                                            <div>
                                                 <div class="card-header">
                                                     <h4>المدن</h4>
                                                 </div>
-                                                <div class="card-body" style="direction: rtl">
+                                                <div style="direction: rtl">
                                                     <div class="row">
                                                         <div class="col-lg-6">
                                                             <div class="form-group col-md-12">
@@ -360,11 +362,11 @@
                                     <div class="tab-content">
                                         <div class="tab-pane fade show active" id="category" role="tabpanel"
                                             aria-labelledby="category-tab">
-                                            <div class="card">
+                                            <div>
                                                 <div class="card-header">
                                                     <h4>فئات المشاريع</h4>
                                                 </div>
-                                                <div class="card-body" style="direction: rtl">
+                                                <div style="direction: rtl">
                                                     <div class="row">
                                                         <div class="col-lg-6">
                                                             <div class="form-group col-md-12">
@@ -427,7 +429,7 @@
                                         </div>
                                         <div class="tab-pane fade" id="subCategory" role="tabpanel"
                                             aria-labelledby="subCategory-tab">
-                                            <div class="card">
+                                            <div>
                                                 <div class="card-header">
                                                     <h4>الفئات الفرعية</h4>
                                                 </div>
@@ -505,7 +507,7 @@
                                         </div>
                                         <div class="tab-pane fade" id="license" role="tabpanel"
                                             aria-labelledby="license-tab">
-                                            <div class="card">
+                                            <div>
                                                 <div class="card-header">
                                                     <h4>الموافقات</h4>
                                                 </div>
@@ -563,7 +565,7 @@
                                         </div>
                                         <div class="tab-pane fade" id="Clicense" role="tabpanel"
                                             aria-labelledby="Clicense-tab">
-                                            <div class="card">
+                                            <div>
                                                 <div class="card-header">
                                                     <h4>موافقات كل فئة</h4>
                                                 </div>
@@ -676,7 +678,7 @@
                                     <div class="tab-content">
                                         <div class="tab-pane fade show active" id="contract" role="tabpanel"
                                             aria-labelledby="category-tab">
-                                            <div class="card">
+                                            <div>
                                                 <div class="card-header">
                                                     <h4>فئات العقود</h4>
                                                 </div>
@@ -734,7 +736,7 @@
                                         </div>
                                         <div class="tab-pane" id="assets" role="tabpanel"
                                             aria-labelledby="category-tab">
-                                            <div class="card">
+                                            <div>
                                                 <div class="card-header">
                                                     <h4>فئات الاصول</h4>
                                                 </div>
@@ -795,7 +797,7 @@
                                         </div>
                                         <div class="tab-pane" id="newAssets" role="tabpanel"
                                             aria-labelledby="category-tab">
-                                            <div class="card">
+                                            <div>
                                                 <div class="card-header">
                                                     <h4>اضافة اصول</h4>
                                                 </div>
