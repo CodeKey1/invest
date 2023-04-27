@@ -45,13 +45,13 @@
 
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
                                                         value="{{ $user->name }}" name="name"
-                                                        class="form-control"placeholder=" اسم المستخدم  ">
+                                                        class="form-control"placeholder=" اسم المستخدم  " required>
                                                 </div>
                                                 <div class="form-group col-md-6">
 
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
                                                         value="{{ $user->email }}" name="email"
-                                                        class="form-control"placeholder=" البريد الإلكتروني ">
+                                                        class="form-control"placeholder=" البريد الإلكتروني " required>
                                                 </div>
 
                                             </div>
