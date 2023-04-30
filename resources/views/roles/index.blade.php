@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <!-- datatables.html  21 Nov 2019 03:55:21 GMT -->
+
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
@@ -13,7 +14,9 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <!-- Custom style CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+        integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 
@@ -22,6 +25,7 @@
     <link rel="stylesheet" href="assets/css/custom.css">
     <link rel='shortcut icon' type='image/x-icon' href='assets/img/favicon.ico' />
 </head>
+
 <body class="light theme-white dark-sidebar">
     <div class="loader"></div>
     <div id="app">
@@ -35,9 +39,10 @@
                             <div class="col-12">
                                 <div class="card card-secondary">
                                     <div class="card-header">
-                                        <h4> الجمعيات الزراعية </h4>
+                                        <h4> صلاحيات المستخدمين</h4>
                                         <div class="card-header-action">
-                                            <a href="{{ route('role.Create') }}" class="btn btn-warning">اضافة صلحيات</a>
+                                            <a href="{{ route('role.Create') }}" class="btn btn-warning">اضافة
+                                                صلحيات</a>
                                             <a href="{{ route('home') }}" class="btn btn-primary">الرئيسية</a>
                                         </div>
                                     </div>
@@ -59,7 +64,8 @@
                                                             <td>{{ $role->id }}</td>
                                                             <td>{{ $role->name }}</td>
                                                             <td>
-                                                                <a class="btn btn-icon btn-success" href="{{ route('role.edite', $role->id) }}"
+                                                                <a class="btn btn-icon btn-success"
+                                                                    href="{{ route('role.edite', $role->id) }}"
                                                                     ata-toggle="tooltip" data-placement="top"
                                                                     title="عرض وتعديل"><i class="fas fa-user"></i></a>
                                                                 <a class="btn btn-icon btn-danger"
@@ -93,11 +99,13 @@
     <script src="assets/js/page/datatables.js"></script>
     <!-- Template JS File -->
     <script src="assets/js/scripts.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @if (Session::has('success'))
-    <script>
-         toastr.success("{{ Session::get('success') }}");
-    </script>
+        <script>
+            toastr.success("{{ Session::get('success') }}");
+        </script>
     @endif
     <script>
         $(document).ready(function() {
