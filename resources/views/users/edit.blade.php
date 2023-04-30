@@ -65,7 +65,7 @@
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <select class="form-control" name="role">
-                                                        <option value="{{ $user->id }}" hidden>{{ $user->role }}
+                                                        <option value="{{ $user->role }}" hidden>{{ $user->role }}
                                                         </option>
                                                         @isset($roles)
                                                             @if ($roles && $roles->count() > 0)

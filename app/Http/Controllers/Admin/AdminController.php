@@ -15,7 +15,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        if (auth()->user()->hasRole('user') || auth()->user()->hasRole('side'))
+            abort(403, 'user doesn\'t have access');
         $roles = Role::select()->get();
         return view('roles.index',compact('roles'));
     }
@@ -25,7 +26,8 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        if (auth()->user()->hasRole('user') || auth()->user()->hasRole('side'))
+            abort(403, 'user doesn\'t have access');
         $roles = Role::select()->get();
         $permissions = Permission::select()->get();
         return view('roles.create',compact('roles','permissions'));
@@ -36,7 +38,8 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (auth()->user()->hasRole('user') || auth()->user()->hasRole('side'))
+            abort(403, 'user doesn\'t have access');
         $request->validate([
             'name' => 'bail|required|unique:roles',
             'permissions' => 'bail|required',
@@ -61,8 +64,10 @@ class AdminController extends Controller
      */
     public function edit(string $id)
     {
-        //
-        $permissions = Permission::select()->where('role_id',$id)->get();
+        if (auth()->user()->hasRole('user') || auth()->user()->hasRole('side'))
+            abort(403, 'user doesn\'t have access');
+        //$permissions = Permission::select()->where('role_id',$id)->get();
+        $permissions = Permission::select()->get();
         $roles = Role::with('permissions')->find($id);
         return view('roles.edit',compact('roles','permissions'));
     }
@@ -72,7 +77,8 @@ class AdminController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        if (auth()->user()->hasRole('user') || auth()->user()->hasRole('side'))
+            abort(403, 'user doesn\'t have access');
         $roles = Role::whereIn('id', $id)->update(['name' => $request->name]);
         $per =  Permission::whereIn('id', $id)->update(['permissions' => $request->permissions]);
         $roles->syncPermissions($per);
@@ -84,7 +90,8 @@ class AdminController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        if (auth()->user()->hasRole('user') || auth()->user()->hasRole('side'))
+            abort(403, 'user doesn\'t have access');
         $role = Role::find($id);
         $role->delete();
         return redirect()->route('role')->with(['success' => 'تم الحذف بنجاح']);

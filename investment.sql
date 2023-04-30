@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 13, 2023 at 01:36 PM
+-- Generation Time: Apr 30, 2023 at 12:49 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -43,14 +43,6 @@ CREATE TABLE `assets` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `assets`
---
-
-INSERT INTO `assets` (`id`, `number`, `name`, `address`, `contract_cost`, `contract_period`, `status`, `note`, `city_id`, `assets_type_id`, `contract_type_id`, `created_at`, `updated_at`) VALUES
-(1, 408, 'قطعة ارض مول', 'اسوان الجديدة-الحي الاول', NULL, NULL, 1, 'قطعة ارض بمساحة 600م لبناء مول تجاري وخدمي', 1, 1, 2, '2023-03-19 07:33:51', '2023-03-26 08:03:30'),
-(2, 23, 'شقة سكنية', 'لس', NULL, NULL, 0, 'شسيبسيب', 1, 1, 2, '2023-04-12 11:16:22', '2023-04-12 11:16:22');
-
 -- --------------------------------------------------------
 
 --
@@ -63,13 +55,6 @@ CREATE TABLE `assets_type` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `assets_type`
---
-
-INSERT INTO `assets_type` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'اراضي', '2023-03-16 11:00:19', '2023-03-16 11:00:19');
 
 -- --------------------------------------------------------
 
@@ -87,13 +72,6 @@ CREATE TABLE `auction` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `auction`
---
-
-INSERT INTO `auction` (`id`, `name`, `date`, `label`, `note`, `created_at`, `updated_at`) VALUES
-(2, 'مزاد 1', '2023-03-01', 'بيع وشعرض اراضي', 'fdg', '2023-03-22 08:43:34', '2023-04-06 11:18:45');
-
 -- --------------------------------------------------------
 
 --
@@ -106,17 +84,6 @@ CREATE TABLE `category` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `category`
---
-
-INSERT INTO `category` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'صناعي', '2023-03-16 09:32:40', '2023-03-16 09:32:40'),
-(2, 'زراعي', '2023-03-16 09:33:20', '2023-03-16 09:33:20'),
-(3, 'سياحي', '2023-03-16 09:33:29', '2023-03-16 09:33:29'),
-(4, 'خدمي', '2023-03-16 09:33:35', '2023-03-16 09:33:35'),
-(5, 'اخرى', '2023-03-16 09:33:42', '2023-03-16 09:33:42');
 
 -- --------------------------------------------------------
 
@@ -132,15 +99,6 @@ CREATE TABLE `city` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `city`
---
-
-INSERT INTO `city` (`id`, `name`, `gov_id`, `created_at`, `updated_at`) VALUES
-(1, 'اسوان', 1, '2023-03-16 07:45:03', '2023-03-16 07:45:03'),
-(2, 'دراو', 1, '2023-03-16 07:45:19', '2023-03-16 07:45:19'),
-(3, 'نصر النوبة', 1, '2023-03-16 08:22:40', '2023-03-16 08:22:40');
-
 -- --------------------------------------------------------
 
 --
@@ -154,15 +112,6 @@ CREATE TABLE `contract_type` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `contract_type`
---
-
-INSERT INTO `contract_type` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'تمليك', '2023-03-16 10:46:01', '2023-03-16 10:46:01'),
-(2, 'ايجار', '2023-03-16 10:59:22', '2023-03-16 10:59:22'),
-(3, 'حق انتفاع', '2023-03-19 10:56:04', '2023-03-19 10:56:04');
-
 -- --------------------------------------------------------
 
 --
@@ -175,16 +124,6 @@ CREATE TABLE `c_license` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `c_license`
---
-
-INSERT INTO `c_license` (`category_id`, `license_id`, `created_at`, `updated_at`) VALUES
-(1, 1, '2023-03-16 10:32:00', '2023-03-16 10:32:00'),
-(1, 2, '2023-03-16 10:32:00', '2023-03-16 10:32:00'),
-(1, 3, '2023-03-16 10:41:25', '2023-03-16 10:41:25'),
-(1, 4, '2023-03-16 10:41:25', '2023-03-16 10:41:25');
 
 -- --------------------------------------------------------
 
@@ -203,13 +142,6 @@ CREATE TABLE `export` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `export`
---
-
-INSERT INTO `export` (`id`, `export_id`, `export_name`, `export_side`, `export_date`, `state`, `export_note`, `created_at`, `updated_at`) VALUES
-(1, 12378780, 'fghfgh', 'fghfgh', '2023-03-22', 1, 'dsdgsdsdfsdfsdfsdfsdfsdsdfsdsdf', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -240,13 +172,6 @@ CREATE TABLE `gov` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `gov`
---
-
-INSERT INTO `gov` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'اسوان', '2023-03-16 07:34:56', '2023-03-16 07:34:56');
-
 -- --------------------------------------------------------
 
 --
@@ -266,13 +191,6 @@ CREATE TABLE `import` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `import`
---
-
-INSERT INTO `import` (`id`, `import_id`, `import_name`, `import_side`, `import_date`, `import_note`, `state`, `import_file`, `created_at`, `updated_at`) VALUES
-(5, 46456456, 'aswan', 'المكتب التحول الرقمي', '2023-03-28', 'ghfghf', 1, '1680001960.image (2).png', '2023-03-28 05:12:40', '2023-03-28 05:12:40');
-
 -- --------------------------------------------------------
 
 --
@@ -285,16 +203,6 @@ CREATE TABLE `license` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `license`
---
-
-INSERT INTO `license` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'المحافظ', '2023-03-16 10:14:05', '2023-03-16 10:14:05'),
-(2, 'ادارة املاك الدولة', '2023-03-16 10:16:34', '2023-03-16 10:16:34'),
-(3, 'الوحدة المحلية لمركز ومدينة اسوان', '2023-03-16 10:39:41', '2023-03-16 10:39:41'),
-(4, 'التنمية الحضارية', '2023-03-16 10:41:12', '2023-03-16 10:41:12');
 
 -- --------------------------------------------------------
 
@@ -341,17 +249,21 @@ CREATE TABLE `model_has_permissions` (
 
 CREATE TABLE `model_has_roles` (
   `role_id` bigint(20) UNSIGNED NOT NULL,
-  `model_type` varchar(255) NOT NULL,
-  `model_id` bigint(20) UNSIGNED NOT NULL
+  `model_type` varchar(255) NOT NULL DEFAULT 'App\\Models\\User',
+  `model_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `model_has_roles`
 --
 
-INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
-(3, 'App\\Models\\User', 2),
-(4, 'App\\Models\\User', 27);
+INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`, `created_at`, `updated_at`) VALUES
+(3, 'App\\Models\\User', 2, NULL, '2023-04-27 10:12:05'),
+(3, 'App\\Models\\User', 27, NULL, '2023-04-30 07:35:16'),
+(3, 'App\\Models\\User', 29, '2023-04-27 09:43:30', '2023-04-27 09:43:30'),
+(4, 'App\\Models\\User', 30, '2023-04-30 07:08:40', '2023-04-30 07:08:40');
 
 -- --------------------------------------------------------
 
@@ -377,15 +289,6 @@ CREATE TABLE `offer` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `offer`
---
-
-INSERT INTO `offer` (`id`, `recived`, `investor`, `phone`, `work_date`, `status`, `delivery_record`, `note`, `contract_cost`, `contract_period`, `increase_rate`, `assets_id`, `auction_id`, `contract_type_id`, `created_at`, `updated_at`) VALUES
-(1, '2023-03-01', 'محمد ياسر عمر', '01010157993', '2023-03-30', 1, '1-delivery_record.pdf', 'سيdas', 150000, '2023-06-16', 1, 1, 2, 1, '2023-03-22 08:45:54', '2023-03-26 08:04:26'),
-(2, '2023-03-17', 'fdsgsdf', '4325345', '2023-03-24', 0, '2-delivery_record.pdf', 'sdagfdfasdfasdfasdf asdfa sdf asdf', 123, '2023-03-01', 45, 1, 2, 3, '2023-03-22 10:47:20', '2023-03-26 08:18:46'),
-(3, '2023-03-16', 'بسيليس', '4352345', '2023-03-24', 1, '1679561298-delivery_record.pdf', 'يبسلبي', 15988800, '2025-01-24', 32, 1, 2, 3, '2023-03-23 06:48:18', '2023-03-23 06:48:18');
 
 -- --------------------------------------------------------
 
@@ -493,15 +396,6 @@ CREATE TABLE `place` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `place`
---
-
-INSERT INTO `place` (`id`, `name`, `status`, `place_category_id`, `city_id`, `created_at`, `updated_at`) VALUES
-(1, 'العلاقي', 1, 1, 2, '2023-03-16 09:08:42', '2023-03-16 09:08:42'),
-(2, 'المدينة الصناعية', 1, 1, 1, '2023-04-02 09:03:15', '2023-04-02 09:03:15'),
-(3, 'ابريم', 1, 1, 3, '2023-04-06 09:13:07', '2023-04-06 09:13:07');
-
 -- --------------------------------------------------------
 
 --
@@ -524,16 +418,6 @@ CREATE TABLE `project` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `project`
---
-
-INSERT INTO `project` (`id`, `feasibility_study`, `financial_capital`, `commercial_register`, `tax_card`, `site_sketch`, `company_reg`, `status`, `name`, `nid_photo`, `request_id`, `place_id`, `created_at`, `updated_at`) VALUES
-(14, '16feasibility_study.png', '16financial_capital.jpeg', '', '', '', '', 0, 'hkgvdgs', '16nid_photo.png', 16, NULL, '2023-04-06 11:01:19', '2023-04-06 11:01:19'),
-(16, '18feasibility_study.png', '18financial_capital.png', '', '', '', '', 0, 'asdf', '18nid_photo.png', 18, NULL, '2023-04-12 11:06:54', '2023-04-12 11:06:54'),
-(17, '19feasibility_study.jpg', '19financial_capital.jpg', '', '', '', '', 0, 'dfgh', '19nid_photo.jpg', 19, NULL, '2023-04-12 11:10:14', '2023-04-12 11:10:14'),
-(18, '20feasibility_study.jpg', '20financial_capital.jpg', '', '', '', '', 0, 'dfgh', '20nid_photo.jpg', 20, NULL, '2023-04-12 11:11:19', '2023-04-12 11:11:19');
 
 -- --------------------------------------------------------
 
@@ -564,16 +448,6 @@ CREATE TABLE `request` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `request`
---
-
-INSERT INTO `request` (`id`, `name`, `owner_type`, `owner_name`, `address`, `representative_name`, `representative_id`, `NID`, `size`, `size_type`, `self_financing`, `recived_date`, `capital`, `phone`, `state`, `sub_category_id`, `category_id`, `city_id`, `created_at`, `updated_at`) VALUES
-(16, 'hkgvdgs', 'شركة', 'asdfasdf', 'asdfasd', 'fasdf', 435, 2452345, 2345, 'متر', 2345, '2023-04-06', 2345, 52345, 0, 1, 1, 1, '2023-04-06 11:01:19', '2023-04-06 11:01:19'),
-(18, 'asdf', 'شركة', 'asdf', 'asdf', 'asdf', 3425, 435234, 2435, 'متر', 2345, '2023-04-12', 2345, 52345, 0, 1, 1, 1, '2023-04-12 11:06:54', '2023-04-12 11:06:54'),
-(19, 'dfgh', 'مواطن', 'dfgh', 'dfgh', 'dfgh', 54, 46, 456, 'متر', 456, '2023-04-12', 546, 546, 0, 1, 1, 1, '2023-04-12 11:10:14', '2023-04-12 11:10:14'),
-(20, 'dfgh', 'مواطن', 'dfgh', 'dfgh', 'dfgh', 54, 46, 456, 'متر', 456, '2023-04-12', 546, 546, 0, 1, 1, 1, '2023-04-12 11:11:19', '2023-04-12 11:11:19');
-
 -- --------------------------------------------------------
 
 --
@@ -593,28 +467,6 @@ CREATE TABLE `request_license` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `request_license`
---
-
-INSERT INTO `request_license` (`id`, `file`, `send_date`, `request_id`, `license_id`, `point`, `response_file`, `recived_date`, `created_at`, `updated_at`) VALUES
-(7, '7 send_file.png', '2023-04-01', 16, 1, 2, NULL, NULL, '2023-04-06 11:01:19', '2023-04-13 09:35:23'),
-(8, '8 send_file.pdf', '2023-04-02', 16, 2, 2, NULL, NULL, '2023-04-06 11:01:19', '2023-04-13 09:35:23'),
-(9, '9 send_file.pdf', '2023-04-03', 16, 3, 2, NULL, NULL, '2023-04-06 11:01:19', '2023-04-13 09:35:23'),
-(10, '10 send_file.pdf', '2023-04-04', 16, 4, 2, NULL, NULL, '2023-04-06 11:01:20', '2023-04-13 09:35:23'),
-(15, NULL, NULL, 18, 1, 0, NULL, NULL, '2023-04-12 11:06:54', '2023-04-12 11:06:54'),
-(16, NULL, NULL, 18, 2, 0, NULL, NULL, '2023-04-12 11:06:54', '2023-04-12 11:06:54'),
-(17, NULL, NULL, 18, 3, 0, NULL, NULL, '2023-04-12 11:06:54', '2023-04-12 11:06:54'),
-(18, NULL, NULL, 18, 4, 0, NULL, NULL, '2023-04-12 11:06:54', '2023-04-12 11:06:54'),
-(19, NULL, NULL, 19, 1, 0, NULL, NULL, '2023-04-12 11:10:15', '2023-04-12 11:10:15'),
-(20, NULL, NULL, 19, 2, 0, NULL, NULL, '2023-04-12 11:10:15', '2023-04-12 11:10:15'),
-(21, NULL, NULL, 19, 3, 0, NULL, NULL, '2023-04-12 11:10:15', '2023-04-12 11:10:15'),
-(22, NULL, NULL, 19, 4, 0, NULL, NULL, '2023-04-12 11:10:15', '2023-04-12 11:10:15'),
-(23, NULL, NULL, 20, 1, 0, NULL, NULL, '2023-04-12 11:11:19', '2023-04-12 11:11:19'),
-(24, NULL, NULL, 20, 2, 0, NULL, NULL, '2023-04-12 11:11:19', '2023-04-12 11:11:19'),
-(25, NULL, NULL, 20, 3, 0, NULL, NULL, '2023-04-12 11:11:20', '2023-04-12 11:11:20'),
-(26, NULL, NULL, 20, 4, 0, NULL, NULL, '2023-04-12 11:11:20', '2023-04-12 11:11:20');
-
 -- --------------------------------------------------------
 
 --
@@ -630,16 +482,6 @@ CREATE TABLE `request_notes` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `request_notes`
---
-
-INSERT INTO `request_notes` (`id`, `notes`, `request_id`, `license_id`, `created_at`, `updated_at`) VALUES
-(20, 'gdfasd', 16, 2, '2023-04-13 09:20:49', '2023-04-13 09:20:49'),
-(21, 'gdfasd', 16, 3, '2023-04-13 09:20:49', '2023-04-13 09:20:49'),
-(22, 'gdfasd', 16, 4, '2023-04-13 09:20:49', '2023-04-13 09:20:49'),
-(23, 'jcfthul', 16, 1, '2023-04-13 09:31:44', '2023-04-13 09:31:44');
-
 -- --------------------------------------------------------
 
 --
@@ -653,23 +495,6 @@ CREATE TABLE `request_suggested_places` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `request_suggested_places`
---
-
-INSERT INTO `request_suggested_places` (`id`, `suggested_places`, `request_id`, `created_at`, `updated_at`) VALUES
-(10, 1, 16, '2023-04-06 11:01:19', '2023-04-06 11:01:19'),
-(11, 2, 16, '2023-04-06 11:01:19', '2023-04-06 11:01:19'),
-(12, 3, 16, '2023-04-06 11:01:19', '2023-04-06 11:01:19'),
-(16, 1, 18, '2023-04-12 11:06:54', '2023-04-12 11:06:54'),
-(17, 2, 18, '2023-04-12 11:06:54', '2023-04-12 11:06:54'),
-(18, 1, 19, '2023-04-12 11:10:15', '2023-04-12 11:10:15'),
-(19, 2, 19, '2023-04-12 11:10:15', '2023-04-12 11:10:15'),
-(20, 3, 19, '2023-04-12 11:10:15', '2023-04-12 11:10:15'),
-(21, 1, 20, '2023-04-12 11:11:19', '2023-04-12 11:11:19'),
-(22, 2, 20, '2023-04-12 11:11:19', '2023-04-12 11:11:19'),
-(23, 3, 20, '2023-04-12 11:11:19', '2023-04-12 11:11:19');
 
 -- --------------------------------------------------------
 
@@ -691,7 +516,8 @@ CREATE TABLE `roles` (
 
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
 (3, 'super_admin', 'web', '2023-03-06 08:56:15', '2023-03-06 08:56:15'),
-(4, 'user', 'web', NULL, NULL);
+(4, 'user', 'web', NULL, NULL),
+(5, 'side', 'web', '2023-04-13 11:02:46', '2023-04-13 11:02:46');
 
 -- --------------------------------------------------------
 
@@ -710,7 +536,9 @@ CREATE TABLE `role_has_permissions` (
 
 INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (1, 3),
+(1, 5),
 (2, 3),
+(2, 5),
 (3, 3),
 (4, 3),
 (5, 3),
@@ -750,15 +578,6 @@ CREATE TABLE `side` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `side`
---
-
-INSERT INTO `side` (`id`, `side_name`, `created_at`, `updated_at`) VALUES
-(1, 'dfsdf', '2023-03-28 05:06:42', '2023-03-28 05:06:42'),
-(2, 'المكتب التحول الرقمي', '2023-03-28 05:11:40', '2023-03-28 05:11:40'),
-(3, 'يبليبل', '2023-03-29 04:30:15', '2023-03-29 04:30:15');
-
 -- --------------------------------------------------------
 
 --
@@ -773,13 +592,6 @@ CREATE TABLE `sub_category` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `sub_category`
---
-
-INSERT INTO `sub_category` (`id`, `name`, `category_id`, `created_at`, `updated_at`) VALUES
-(1, 'غذائية', 1, '2023-03-16 10:02:53', '2023-03-16 10:02:53');
-
 -- --------------------------------------------------------
 
 --
@@ -792,7 +604,7 @@ CREATE TABLE `users` (
   `email` varchar(255) NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) NOT NULL,
-  `role` varchar(100) NOT NULL,
+  `role` bigint(20) NOT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -803,8 +615,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(2, 'mokhtar', 'mmelnobey92@gmail.com', NULL, '$2y$10$8FBw3XxfWzHu5Ow8vhxdFOzSt85RuG7JgJxgC4TaS7qT5h35vv0Vu', 'super_admin', NULL, '2023-01-25 07:40:38', '2023-02-27 07:40:38'),
-(27, 'MoHaridy', 'moharidy98@gmail.com', NULL, '$2y$10$kowYeGTvHeeleREYmNb6q.EISAiVwvw/OM7X9PNJd6e3jMC63dwvi', 'super_admin', NULL, '2023-03-06 08:56:16', '2023-03-06 08:56:16');
+(2, 'mokhtar', 'mmelnobey92@gmail.com', NULL, '$2y$10$RovC5bNuc624.BfK4rB6qudF71tSW934Jr/mA0bCHK29LKZITRe3i', 3, NULL, '2023-01-25 07:40:38', '2023-04-27 10:12:05'),
+(27, 'MoHaridy', 'moharidy98@gmail.com', NULL, '$2y$10$cYBsvNUfxLkxkjQU7PzjveY/d3OTIz.rzPsS4iQSoMMG4nEemhCX6', 3, NULL, '2023-03-06 08:56:16', '2023-04-30 07:35:16'),
+(29, 'Ahmed Danash', 'invest@isdt.gov', NULL, '$2y$10$xzlAb5Z6c5wi6qrs2vmT.ej.3tG4/kPwd1KUg9uDHREuzP0Z4Xsay', 3, NULL, '2023-04-27 09:43:30', '2023-04-27 09:43:30'),
+(30, 'مستخدم الاستثمار', 'user.invest@isdt.gov', NULL, '$2y$10$1f9F9urgdm3XdV7EZmlztuvUqUZC3IpsDPEmJY9G8X0GEmd2MyZda', 4, NULL, '2023-04-30 07:08:39', '2023-04-30 07:08:39');
 
 --
 -- Indexes for dumped tables
@@ -1036,43 +850,43 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `assets`
 --
 ALTER TABLE `assets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `assets_type`
 --
 ALTER TABLE `assets_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `auction`
 --
 ALTER TABLE `auction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `city`
 --
 ALTER TABLE `city`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `contract_type`
 --
 ALTER TABLE `contract_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `c_license`
 --
 ALTER TABLE `c_license`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `export`
@@ -1090,7 +904,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `gov`
 --
 ALTER TABLE `gov`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `import`
@@ -1102,7 +916,7 @@ ALTER TABLE `import`
 -- AUTO_INCREMENT for table `license`
 --
 ALTER TABLE `license`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -1114,7 +928,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `offer`
 --
 ALTER TABLE `offer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -1162,31 +976,31 @@ ALTER TABLE `request_notes`
 -- AUTO_INCREMENT for table `request_suggested_places`
 --
 ALTER TABLE `request_suggested_places`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `side`
 --
 ALTER TABLE `side`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `sub_category`
 --
 ALTER TABLE `sub_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- Constraints for dumped tables
@@ -1223,6 +1037,7 @@ ALTER TABLE `model_has_permissions`
 -- Constraints for table `model_has_roles`
 --
 ALTER TABLE `model_has_roles`
+  ADD CONSTRAINT `model_has_roles_ibfk_1` FOREIGN KEY (`model_id`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `model_has_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
 
 --

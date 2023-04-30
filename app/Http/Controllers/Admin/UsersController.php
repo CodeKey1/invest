@@ -18,7 +18,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+        if (auth()->user()->hasRole('user') || auth()->user()->hasRole('side'))
+            abort(403, 'user doesn\'t have access');
         $users = User::select()->get();
         return view('users.index',compact('users'));
     }
@@ -28,9 +29,9 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        if (auth()->user()->hasRole('user') || auth()->user()->hasRole('side'))
+            abort(403, 'user doesn\'t have access');
         $role = Role::select()->get();
-
         return view('users.create',compact('role'));
     }
 
@@ -39,7 +40,8 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (auth()->user()->hasRole('user') || auth()->user()->hasRole('side'))
+            abort(403, 'user doesn\'t have access');
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'role' => ['required', 'string', 'max:255'],
@@ -79,7 +81,8 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        if (auth()->user()->hasRole('user') || auth()->user()->hasRole('side'))
+            abort(403, 'user doesn\'t have access');
         $roles = Role::select()->get();
         $user = User ::select()->find($id);
         return view('users.edit',compact('user','roles'));
@@ -90,6 +93,8 @@ class UsersController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        if (auth()->user()->hasRole('user') || auth()->user()->hasRole('side'))
+            abort(403, 'user doesn\'t have access');
         try{
             User :: where('id',$id)->update(([
                 'name' => $request['name'],
@@ -113,7 +118,8 @@ class UsersController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        if (auth()->user()->hasRole('user') || auth()->user()->hasRole('side'))
+            abort(403, 'user doesn\'t have access');
         $user = User::find($id);
         $user->delete();
         return redirect()->route('user')->with(['success' => 'تم الحذف بنجاح']);

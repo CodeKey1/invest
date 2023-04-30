@@ -70,7 +70,7 @@
                                                         @isset($permissions)
                                                             @if ($permissions && $permissions->count() > 0)
                                                                 @foreach ($permissions as $permission)
-                                                                    <option value="{{ $permission->id }}" selected>
+                                                                    <option value="{{ $permission->id }}">
                                                                         {{ $permission->name }}
                                                                     </option>
                                                                 @endforeach
