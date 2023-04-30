@@ -36,8 +36,8 @@
                             <div class="col-12 col-md-12 col-lg-12">
                                 @include('layouts.success')
                                 @include('layouts.error')
-                                <form class="needs-validation" id="work_experience" novalidate=""
-                                    action="#" method="POST" enctype="multipart/form-data">
+                                <form class="needs-validation" id="work_experience" novalidate="" action="#"
+                                    method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="card card-primary">
                                         <div class="card-header">
@@ -45,7 +45,7 @@
                                             <div class="card-header-action">
                                                 <a href="{{ route('export') }}" class="btn btn-warning">كل الوارد</a>
                                                 <a href="{{ route('home') }}" class="btn btn-primary">الرئيسية</a>
-                                              </div>
+                                            </div>
                                             {{-- <button class="btn btn-dark"
                                                 style="position: absolute; left: 10px; top:5px"><a
                                                     class="nav-link text-white"
@@ -58,16 +58,17 @@
                                                 <div class="form-group col-md-6">
                                                     <label>رقم الصادر</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="number"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="">
+                                                        name="export_id" class="form-control"placeholder="">
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label> اسم الجهات الصادر اليها</label>
-                                                    <select class="form-control select2" style="width: 100% !important;" multiple="" name="region">
+                                                    <select class="form-control select2" style="width: 100% !important;"
+                                                        multiple="" name="export_side">
                                                         @isset($side)
                                                             @if ($side && $side->count() > 0)
                                                                 @foreach ($side as $sides)
-                                                                    <option value="{{ $sides->side_name }}"> {{ $sides->side_name }}
+                                                                    <option value="{{ $sides->side_name }}">
+                                                                        {{ $sides->side_name }}
                                                                     </option>
                                                                 @endforeach
                                                             @endif
@@ -77,37 +78,27 @@
                                                 <div class="form-group col-md-12">
                                                     <label>عنوان الملف الصادر</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="">
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-md-6">
-                                                    <label> الموظف المكلف بالملف</label>
-                                                    <select class="form-control select2" style="width: 100% !important;" multiple="" name="region">
-                                                        <option value="" disabled selected>اختر الموظف</option>
-                                                        <option value="" >1 الموظف</option>
-                                                        <option value="" >2 الموظف</option>
-                                                        <option value="" >3 الموظف</option>
-                                                        <option value="" >4 الموظف</option>
-                                                    </select>
+                                                        name="export_name" class="form-control"placeholder="">
                                                 </div>
                                                 <div class="form-group col-md-6">
-                                                    <label> تاريخ استلام الصادر </label>
+                                                    <label> الملف الصادر</label>
+                                                    <input style="height: calc(2.25rem + 6px);" type="file" multiple
+                                                        name="export_file[]" class="form-control">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label> تاريخ ارسال الصادر </label>
                                                     <input style="height: calc(2.25rem + 6px);" type="date"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="">
+                                                        name="export_date" class="form-control"placeholder="">
                                                 </div>
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group col-md-12">
                                                     <label>اضافة ملاحظات</label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="agr_name"
-                                                        class="form-control"placeholder="">
+                                                    <textarea class="form-control" cols="10" rows="5" name="export_note"> </textarea>
                                                 </div>
                                             </div>
-                                            <button type="submit" class="btn btn-success" style="float: left;" >حفظ</button>
+                                            <button type="submit" class="btn btn-success"
+                                                style="float: left;">حفظ</button>
                                         </div>
                                     </div>
                                 </form>
