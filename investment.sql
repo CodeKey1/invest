@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 30, 2023 at 12:49 PM
+-- Generation Time: Apr 30, 2023 at 04:48 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -137,8 +137,9 @@ CREATE TABLE `export` (
   `export_name` varchar(255) NOT NULL,
   `export_side` varchar(255) NOT NULL,
   `export_date` date NOT NULL,
-  `state` int(11) NOT NULL,
+  `state` bit(1) NOT NULL DEFAULT b'1',
   `export_note` varchar(255) NOT NULL,
+  `export_file` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -185,7 +186,7 @@ CREATE TABLE `import` (
   `import_side` varchar(255) DEFAULT NULL,
   `import_date` date DEFAULT NULL,
   `import_note` varchar(255) DEFAULT NULL,
-  `state` int(11) NOT NULL DEFAULT 1,
+  `state` bit(1) NOT NULL DEFAULT b'1',
   `import_file` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL

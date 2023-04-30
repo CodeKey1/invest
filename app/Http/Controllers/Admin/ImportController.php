@@ -39,31 +39,26 @@ class ImportController extends Controller
         $import_attatch[]="";
 
         if ($files = $request->file('import_file')){
-         foreach ($files as $ctr=>$file){
-            $ext = strtolower($file->getClientOriginalName());
-            $file_name = time().'.'.$ext;
-            $path = 'import-files';
-            $file -> move($path, $file_name);
-            $import_attatch[$ctr]= $file_name;
-         }
-
+            foreach ($files as $ctr=>$file){
+                $ext = strtolower($file->getClientOriginalName());
+                $file_name = time().'.'.$ext;
+                $path = 'import-files';
+                $file -> move($path, $file_name);
+                $import_attatch[$ctr]= $file_name;
+            }
         }
         else{
-
             $import_attatch[] = "";
-
-         }
-
+        }
         try{
-             Import:: create(([
-             'import_name' => $request['import_name'],
-             'import_id' => $request['import_id'],
-             'import_date' => $request['import_date'],
-             'import_side' =>$request['import_side'],
-             'import_note' =>$request['import_note'],
-             'import_file' => implode('|',$import_attatch)
-             ]));
-
+            Import:: create(([
+            'import_name' => $request['import_name'],
+            'import_id' => $request['import_id'],
+            'import_date' => $request['import_date'],
+            'import_side' =>$request['import_side'],
+            'import_note' =>$request['import_note'],
+            'import_file' => implode('|',$import_attatch)
+            ]));
             return redirect()->route('import')-> with(['success' => 'تم التسجيل بنجاح']);
         }catch(\Exception $ex){
             return redirect()->route('import')-> with(['error' => 'خطأ'.$ex]);

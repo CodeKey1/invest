@@ -35,7 +35,31 @@ class ExportController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $file = array();
+        $export_attatch[]="";
+
+        if ($files = $request->file('export_file')){
+            foreach ($files as $ctr=>$file){
+                $ext = strtolower($file->getClientOriginalName());
+                $file_name = time().'.'.$ext;
+                $path = 'export-files';
+                $file -> move($path, $file_name);
+                $export_attatch[$ctr]= $file_name;
+            }
+        }
+        try{
+            Export:: create(([
+            'export_name' => $request['export_name'],
+            'export_id' => $request['export_id'],
+            'export_date' => $request['export_date'],
+            'export_side' =>$request['export_side'],
+            'export_note' =>$request['export_note'],
+            'export_file' => implode('|',$export_attatch)
+            ]));
+            return redirect()->route('export')-> with(['success' => 'تم التسجيل بنجاح']);
+        }catch(\Exception $ex){
+            return redirect()->route('export')-> with(['error' => 'خطأ'.$ex]);
+        }
     }
 
     /**

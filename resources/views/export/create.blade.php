@@ -36,8 +36,8 @@
                             <div class="col-12 col-md-12 col-lg-12">
                                 @include('layouts.success')
                                 @include('layouts.error')
-                                <form class="needs-validation" id="work_experience" novalidate="" action="#"
-                                    method="POST" enctype="multipart/form-data">
+                                <form class="needs-validation" id="work_experience" novalidate=""
+                                    action="{{ route('export.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="card card-primary">
                                         <div class="card-header">
