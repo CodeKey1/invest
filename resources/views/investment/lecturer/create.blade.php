@@ -174,6 +174,10 @@
                                                     @endisset
                                                 </select>
                                             </div>
+                                            <div class="form-group col-md-12">
+                                                <label> وصف المشروع </label>
+                                                <textarea class="form-control" name="description" cols="30" rows="5" maxlength="200" disabled>{{ $request->description }}</textarea>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -253,122 +257,124 @@
                                     </div>
                                 </div>
                             </div>
-                                <div class="col-12 col-md-12 col-lg-12" style="direction: rtl; width:100%">
-                                    <div class="card card-primary">
-                                        <div class="card-body">
-                                            <h4>جهات الموافقات</h4>
-                                            <div class="form-group col-md-12">
-                                                <form class="needs-validation" novalidate=""
-                                                    action="{{ route('record.store') }}" method="POST"
-                                                    enctype="multipart/form-data">
-                                                    @csrf
-                                                    <table class="table table-bordered" style="margin-top: 10px;">
-                                                        <thead>
-                                                            <tr>
-                                                                <th scope="col"> # </th>
-                                                                <th scope="col"> اسم الجهة</th>
-                                                                <th scope="col"> الملف المرسل</th>
-                                                                <th scope="col"> تاريخ الارسال </th>
-                                                                <th scope="col"> ملف الرد </th>
-                                                                <th scope="col"> تاريخ الرد </th>
-                                                            </tr>
-                                                        </thead>
-                                                        @foreach ($r_license as $r)
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>{{ $r->id }}<input type="text"
-                                                                            name="r_id[]"
-                                                                            value="{{ $r->id }}" hidden
-                                                                            readonly></td>
-                                                                    <td>{{ $r->L_Lisense->name }}</td>
-                                                                    <td>
-                                                                        @if ($r->file != null)
-                                                                            <a href="{{ asset('project_inquiry_file/' . $r->file) }}"
-                                                                                target="_blank">اضغط هنا</a> | او تغير
-                                                                            |
-                                                                        @endif
-                                                                        <input type="file"
-                                                                            accept=",.doc, .docx, .pdf, image/*"
-                                                                            name="send_file[]">
-                                                                    </td>
-                                                                    <td>
-                                                                        <input type="date"
-                                                                            value="{{ $r->send_date }}"
-                                                                            name="send_date[]">
-                                                                    </td>
-                                                                    @if ($r->response_file != null)
-                                                                        <td><a href="{{ asset('project_response_file/' . $r->response_file) }}"
-                                                                                target="_blank">اضغط هنا</a></td>
-                                                                    @elseif($r->response_file == null)
-                                                                        <td>لا يوجد</td>
-                                                                    @endif
-                                                                    <td>{{ $r->recived_date }}</td>
-                                                                </tr>
-
-                                                            </tbody>
-                                                        @endforeach
-                                                    </table>
-                                                    <button type="submit" class="btn btn-success"
-                                                        style="float: left;">
-                                                        ارسال وتعزيز
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-6 col-md-6 col-lg-6" style="direction: rtl">
-                                    <div class="card card-primary">
-                                        <div class="card-body">
-                                            <h4> انشاء ملاحظة</h4>
+                            <div class="col-12 col-md-12 col-lg-12" style="direction: rtl; width:100%">
+                                <div class="card card-primary">
+                                    <div class="card-body">
+                                        <h4>جهات الموافقات</h4>
+                                        <div class="form-group col-md-12">
                                             <form class="needs-validation" novalidate=""
-                                                action="{{ route('record.store.note', $request->id) }}"
-                                                method="POST" enctype="multipart/form-data">
+                                                action="{{ route('record.store') }}" method="POST"
+                                                enctype="multipart/form-data">
                                                 @csrf
-                                                <div class="form-group col-md-12">
-                                                    <label>اختر الجهة <span style="color: red">*</span></label>
-                                                    <select class="form-control select2" style="width: 100%" multiple
-                                                        name="l_name[]">
-                                                        @isset($r_license)
-                                                            @if ($r_license && $r_license->count() > 0)
-                                                                @foreach ($r_license as $item)
-                                                                    <option value="{{ $item->license_id }}">
-                                                                        {{ $item->L_Lisense->name }}
-                                                                    </option>
-                                                                @endforeach
-                                                            @endif
-                                                        @endisset
-                                                    </select>
-                                                </div>
-                                                <div class="form-group col-md-12">
-                                                    <label> الملاحظة<span style="color: red">*</span></label>
-                                                    <textarea class="form-control" name="note" cols="10" rows="5"> </textarea>
-                                                </div>
-                                                <div class="form-group col-md-12">
-                                                    <button type="submit" class="btn btn-success"
-                                                        style="float: left;">
-                                                        ارسال
-                                                    </button>
-                                                </div>
+                                                <table class="table table-bordered" style="margin-top: 10px;">
+                                                    <thead>
+                                                        <tr>
+                                                            {{-- <th scope="col"> # </th> --}}
+                                                            <th scope="col"> اسم الجهة</th>
+                                                            <th scope="col"> الملف المرسل</th>
+                                                            <th scope="col"> تاريخ الارسال </th>
+                                                            <th scope="col"> ملف الرد </th>
+                                                            <th scope="col"> تاريخ الرد </th>
+                                                        </tr>
+                                                    </thead>
+                                                    @foreach ($r_license as $r)
+                                                        <tbody>
+                                                            <tr>
+                                                                <input type="text" name="r_id[]"
+                                                                    value="{{ $r->id }}" hidden readonly>
+
+                                                                <td>{{ $r->L_Lisense->name }}</td>
+                                                                <td>
+                                                                    @if ($r->file != null)
+                                                                        <a href="{{ asset('project_inquiry_file/' . $r->file) }}"
+                                                                            target="_blank">اضغط هنا</a> | او تغير
+                                                                        |
+                                                                    @endif
+                                                                    <input type="file"
+                                                                        accept=",.doc, .docx, .pdf, image/*"
+                                                                        name="send_file[]">
+                                                                </td>
+                                                                {{-- <td>
+                                                                    <input type="date" value="{{ $r->send_date }}"
+                                                                        name="send_date[]">
+                                                                </td> --}}
+                                                                <td>
+                                                                    @if ($r->send_date != null)
+                                                                        {{ $r->send_date }}
+                                                                    @endif
+                                                                </td>
+                                                                @if ($r->response_file != null)
+                                                                    <td><a href="{{ asset('project_response_file/' . $r->response_file) }}"
+                                                                            target="_blank">اضغط هنا</a></td>
+                                                                @elseif($r->response_file == null)
+                                                                    <td>لا يوجد</td>
+                                                                @endif
+                                                                <td>{{ $r->recived_date }}</td>
+                                                            </tr>
+
+                                                        </tbody>
+                                                    @endforeach
+                                                </table>
+                                                <button type="submit" class="btn btn-success" style="float: left;">
+                                                    ارسال وتعزيز
+                                                </button>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-6 col-md-6 col-lg-6">
-                                    <div class="card card-primary">
-                                        <div class="card-body">
+                            </div>
+                            <div class="col-6 col-md-6 col-lg-6" style="direction: rtl">
+                                <div class="card card-primary">
+                                    <div class="card-body">
+                                        <h4> انشاء ملاحظة</h4>
+                                        <form class="needs-validation" novalidate=""
+                                            action="{{ route('record.store.note', $request->id) }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
                                             <div class="form-group col-md-12">
-                                                <h4>الملاحظات</h4>
+                                                <label>اختر الجهة <span style="color: red">*</span></label>
+                                                <select class="form-control select2" style="width: 100%" multiple
+                                                    name="l_name[]">
+                                                    @isset($r_license)
+                                                        @if ($r_license && $r_license->count() > 0)
+                                                            @foreach ($r_license as $item)
+                                                                <option value="{{ $item->license_id }}">
+                                                                    {{ $item->L_Lisense->name }}
+                                                                </option>
+                                                            @endforeach
+                                                        @endif
+                                                    @endisset
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label> الملاحظة<span style="color: red">*</span></label>
+                                                <textarea class="form-control" name="note" cols="10" rows="5"> </textarea>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <button type="submit" class="btn btn-success" style="float: left;">
+                                                    ارسال
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-6 col-lg-6">
+                                <div class="card card-primary">
+                                    <div class="card-body">
+                                        <div class="form-group col-md-12">
+                                            <h4>الملاحظات</h4>
+                                            <div class="table-responsive">
                                                 <table class="table table-striped table-hover" id="notes"
                                                     style="margin-top: 10px;">
                                                     <thead>
                                                         <tr>
                                                             <th scope="col"> # </th>
+                                                            <th scope="col"> الراسل </th>
                                                             <th scope="col"> الجهة </th>
                                                             <th scope="col"> الملاحظة </th>
                                                             <th scope="col"> تاريخ الارسال </th>
                                                             <th scope="col"> خيارات </th>
-
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -376,6 +382,7 @@
                                                             @foreach ($r_note as $note)
                                                                 <tr>
                                                                     <td>{{ $note->id }}</td>
+                                                                    <td>{{ $note->sender_name->name }}</td>
                                                                     <td>{{ $note->note_license->name }}</td>
                                                                     <td>{{ $note->notes }}</td>
                                                                     <td>{{ $note->created_at }}</td>
@@ -391,6 +398,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                         </div>
                     </div>
                 </section>

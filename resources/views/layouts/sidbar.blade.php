@@ -60,21 +60,16 @@
                     <a href="{{ route('home') }}" class="nav-link"><span>الرئيسية</span><i
                             data-feather="monitor"></i></a>
                 </li>
-
                 <li class="menu-header"></li>
                 <li class="dropdown">
                     <a href="#" class="menu-toggle nav-link has-dropdown"><span> الطلبات </span>
                         <i data-feather="briefcase"></i></a>
                     <ul class="dropdown-menu">
-
                         {{-- <li><a class="nav-link" href="{{ route('section') }}">الجهات المختصة</a></li> --}}
                         <li><a class="nav-link" href="{{ route('investment.Create') }}">اضافة طلب</a></li>
                         <li><a class="nav-link" href="{{ route('investment') }}">طلبات</a></li>
-
                     </ul>
                 </li>
-
-
                 <li class="dropdown">
                     <a href="#" class="menu-toggle nav-link has-dropdown"><span> المحاضر </span>
                         <i data-feather="briefcase"></i></a>
@@ -83,9 +78,6 @@
                         <li><a class="nav-link" href="{{ route('lecturer') }}"> المحاضر </a></li>
                     </ul>
                 </li>
-
-
-
                 <li class="dropdown">
                     <a href="#" class="menu-toggle nav-link has-dropdown"><span> المزادات </span>
                         <i data-feather="briefcase"></i></a>
@@ -94,21 +86,9 @@
                         <li><a class="nav-link" href="{{ route('offer') }}">اطروحات</a></li>
                     </ul>
                 </li>
-
-
-
-                {{-- <li class="dropdown">
-                    <a href="{{ route('search') }}" class="nav-link"><span>بحــث</span>
-                        <i data-feather="briefcase"></i></a>
-
-                </li> --}}
-
-
                 <li class="menu-header">
                     <hr />
                 </li>
-
-
                 <li class="dropdown">
                     <a href="#" class="menu-toggle nav-link has-dropdown"><span>الوارد
                         </span>
@@ -118,9 +98,6 @@
                         <li><a class="nav-link" href="{{ route('import') }}">كل الوارد</a></li>
                     </ul>
                 </li>
-
-
-
                 <li class="dropdown">
                     <a href="#" class="menu-toggle nav-link has-dropdown"><span>الصادر
                         </span>
@@ -130,22 +107,9 @@
                         <li><a class="nav-link" href="{{ route('export') }}"> كل الصادر</a></li>
                     </ul>
                 </li>
-
-                {{-- <li class="dropdown">
-                    <a href="#" class="menu-toggle nav-link has-dropdown"><span> القرارات المحافظ </span>
-                        <i data-feather="briefcase"></i></a>
-                    <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="#">قرارات</a></li>
-                        <li><a class="nav-link" href="#">قوانين</a></li>
-                    </ul>
-                </li> --}}
-
-
                 <li class="menu-header">
                     <hr />
                 </li>
-
-
                 <li class="dropdown">
                     <a href="#" class="menu-toggle nav-link has-dropdown"><span> التقارير </span>
                         <i data-feather="briefcase"></i></a>
@@ -154,29 +118,9 @@
                         <li><a class="nav-link" href="{{ route('auction.report') }}">تقرير المزادات</a></li>
                     </ul>
                 </li>
-
-
-
-                {{-- <li class="dropdown">
-                    <a href="#" class="menu-toggle nav-link has-dropdown"><span>الأرشيف</span>
-                        <i data-feather="briefcase"></i></a>
-                    <ul class="dropdown-menu">
-
-                        <li><a class="nav-link" href="#"> الوارد </a></li>
-
-                        <li><a class="nav-link" href="#"> الصادر </a></li>
-
-
-
-                    </ul>
-                </li> --}}
-
-
                 <li class="menu-header">
                     <hr />
                 </li>
-
-
                 <li class="dropdown">
                     <a href="#" class="menu-toggle nav-link has-dropdown"><span>الإعدادات</span>
                         <i data-feather="user-check"></i></a>
@@ -196,41 +140,25 @@
                     <a href="{{ route('home') }}" class="nav-link"><span>الرئيسية</span><i
                             data-feather="monitor"></i></a>
                 </li>
-
-                {{-- <li class="menu-header"></li>
-            <li class="dropdown">
-                <a href="#" class="menu-toggle nav-link has-dropdown"><span> الطلبات </span>
-                    <i data-feather="briefcase"></i></a>
-                    <ul class="dropdown-menu">
-
-                    <li><a class="nav-link" href="{{ route('investment.Create') }}">اضافة طلب</a></li>
-                    <li><a class="nav-link" href="{{ route('investment') }}">طلبات</a></li>
-                    <li><a class="nav-link" href="{{ route('section') }}">القطاعات</a></li>
-
-                </ul>
-            </li> --}}
-
-
                 <li class="dropdown">
                     <a href="#" class="menu-toggle nav-link has-dropdown"><span> المحاضر </span>
                         <i data-feather="briefcase"></i></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="#">الطلبات المقبولة</a></li>
-                        <li><a class="nav-link" href="#">طلبات </a></li>
+                        <li><a class="nav-link" href="{{ route('investment.Create') }}">اضافة طلب</a></li>
+                        <li><a class="nav-link" href="{{ route('investment') }}">طلبات</a></li>
                     </ul>
                 </li>
-
                 <li class="dropdown">
                     <a href="#" class="menu-toggle nav-link has-dropdown"><span> المزادات </span>
                         <i data-feather="briefcase"></i></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="{{ route('auction.Create') }}">اضافة اطرحة</a></li>
+                        <li><a class="nav-link" href="{{ route('auction') }}">مزادات</a></li>
+                        <li><a class="nav-link" href="{{ route('offer') }}">اطروحات</a></li>
                     </ul>
                 </li>
                 <li class="menu-header">
                     <hr />
                 </li>
-
                 <li class="dropdown">
                     <a href="#" class="menu-toggle nav-link has-dropdown"><span>الوارد
                         </span>
@@ -240,7 +168,6 @@
                         <li><a class="nav-link" href="{{ route('import') }}">كل الوارد</a></li>
                     </ul>
                 </li>
-
                 <li class="dropdown">
                     <a href="#" class="menu-toggle nav-link has-dropdown"><span>الصادر
                         </span>
@@ -250,39 +177,18 @@
                         <li><a class="nav-link" href="{{ route('export') }}"> كل الصادر</a></li>
                     </ul>
                 </li>
-
                 <li class="menu-header">
                     <hr />
                 </li>
-
                 <li class="dropdown">
                     <a href="#" class="menu-toggle nav-link has-dropdown"><span> تقارير الطلبات</span>
                         <i data-feather="briefcase"></i></a>
                     <ul class="dropdown-menu">
-
                         <li><a class="nav-link" href="#">تقرير مفصل</a></li>
-
                         <li><a class="nav-link" href="#">تقرير </a></li>
-
                         <li><a class="nav-link" href="#">تقرير مجمع</a></li>
-
                     </ul>
                 </li>
-
-                <li class="dropdown">
-                    <a href="#" class="menu-toggle nav-link has-dropdown"><span>الأرشيف</span>
-                        <i data-feather="briefcase"></i></a>
-                    <ul class="dropdown-menu">
-
-                        <li><a class="nav-link" href="#">تقرير مفصل</a></li>
-
-                        <li><a class="nav-link" href="#">تقرير </a></li>
-
-                        <li><a class="nav-link" href="#">تقرير مجمع</a></li>
-
-                    </ul>
-                </li>
-
             </ul>
         @endif
 

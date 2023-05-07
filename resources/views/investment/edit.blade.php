@@ -279,6 +279,16 @@
                                                         @endisset
                                                     </select>
                                                 </div>
+                                                <div class="form-group col-md-6">
+                                                    <label> وصف المشروع </label>
+                                                    <textarea class="form-control" name="description" cols="30" rows="5" maxlength="200" disabled>{{ $request->description }}</textarea>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label> وصف المشروع <span style="color: rgba(255, 0, 0, 0.486)">بحد
+                                                            اقصى 200
+                                                            كلمة</span></label>
+                                                    <textarea class="form-control" name="description" cols="30" rows="5" maxlength="200">{{ $request->description }}</textarea>
+                                                </div>
                                                 <div
                                                     class="form-group
                                                                 col-md-12">

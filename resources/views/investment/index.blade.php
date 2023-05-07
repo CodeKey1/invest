@@ -110,8 +110,14 @@
                                                                         <a class="btn btn-icon btn-success"
                                                                             href="{{ route('investment.show', $requests->id) }}"
                                                                             ata-toggle="tooltip" data-placement="top"
-                                                                            title="عرض وتعديل">
-                                                                            <i class="fas fa-user"></i>
+                                                                            title="تعديل">
+                                                                            <i class="fas fa-edit"></i>
+                                                                        </a>
+                                                                        <a class="btn btn-icon btn-info"
+                                                                            href="{{ route('investment.record', $requests->id) }}"
+                                                                            ata-toggle="tooltip" data-placement="top"
+                                                                            title="عرض">
+                                                                            <i class="fas fa-info"></i>
                                                                         </a>
                                                                         <a class="btn btn-icon btn-danger"
                                                                             href="{{ route('investment.delete', $requests->id) }}"><i

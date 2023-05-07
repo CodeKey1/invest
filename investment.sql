@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 30, 2023 at 04:48 PM
+-- Generation Time: May 07, 2023 at 03:08 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -85,6 +85,13 @@ CREATE TABLE `category` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'صناعي', '2023-05-07 08:34:09', '2023-05-07 08:34:09');
+
 -- --------------------------------------------------------
 
 --
@@ -98,6 +105,17 @@ CREATE TABLE `city` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `city`
+--
+
+INSERT INTO `city` (`id`, `name`, `gov_id`, `created_at`, `updated_at`) VALUES
+(1, 'اسوان', 1, '2023-05-07 06:58:13', '2023-05-07 06:58:13'),
+(2, 'دراو', 1, '2023-05-07 06:58:24', '2023-05-07 06:58:24'),
+(3, 'كوم امبو', 1, '2023-05-07 06:58:39', '2023-05-07 06:58:39'),
+(4, 'نصر النوبة', 1, '2023-05-07 06:58:48', '2023-05-07 06:58:48'),
+(5, 'ادفو', 1, '2023-05-07 06:59:00', '2023-05-07 06:59:00');
 
 -- --------------------------------------------------------
 
@@ -124,6 +142,18 @@ CREATE TABLE `c_license` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `c_license`
+--
+
+INSERT INTO `c_license` (`category_id`, `license_id`, `created_at`, `updated_at`) VALUES
+(1, 1, '2023-05-07 08:35:38', '2023-05-07 08:35:38'),
+(1, 2, '2023-05-07 08:35:38', '2023-05-07 08:35:38'),
+(1, 10, '2023-05-07 08:35:38', '2023-05-07 08:35:38'),
+(1, 12, '2023-05-07 08:35:38', '2023-05-07 08:35:38'),
+(1, 16, '2023-05-07 08:35:38', '2023-05-07 08:35:38'),
+(1, 19, '2023-05-07 08:35:38', '2023-05-07 08:35:38');
 
 -- --------------------------------------------------------
 
@@ -173,6 +203,13 @@ CREATE TABLE `gov` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `gov`
+--
+
+INSERT INTO `gov` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'أسوان', '2023-05-07 06:57:24', '2023-05-07 06:57:24');
+
 -- --------------------------------------------------------
 
 --
@@ -204,6 +241,34 @@ CREATE TABLE `license` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `license`
+--
+
+INSERT INTO `license` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'ادارة املاك الدولة الخاصة', '2023-05-07 07:25:49', '2023-05-07 07:25:49'),
+(2, 'الوحدة المحلية لمدينة ومركز اسوان', '2023-05-07 07:26:06', '2023-05-07 07:26:06'),
+(3, 'الهيئة العامة للسد العالي وخزان اسوان', '2023-05-07 07:26:30', '2023-05-07 07:26:30'),
+(4, 'هيئة تنمية بحيرة ناصر', '2023-05-07 07:29:17', '2023-05-07 07:29:17'),
+(5, 'الادارة المركزية لري اسوان', '2023-05-07 07:29:53', '2023-05-07 07:29:53'),
+(6, 'الادارة العامة لشؤون البيئة بالمحافظة', '2023-05-07 07:30:18', '2023-05-07 07:30:18'),
+(7, 'المنطقة العاشرة - هيئة الطرق والكباري والنقل البري', '2023-05-07 07:30:44', '2023-05-07 07:30:44'),
+(8, 'مديرية الزراعة', '2023-05-07 07:30:58', '2023-05-07 07:30:58'),
+(9, 'ادارة المحاجر بالمحافظة', '2023-05-07 07:31:14', '2023-05-07 07:31:14'),
+(10, 'التنمية الحضارية', '2023-05-07 07:31:27', '2023-05-07 07:31:27'),
+(11, 'الهيئة العامة للتنمية السياحية باسوان', '2023-05-07 07:31:51', '2023-05-07 07:31:51'),
+(12, 'هيئة التخطيط العمراني', '2023-05-07 07:32:10', '2023-05-07 07:32:10'),
+(13, 'منطقة اثار اسوان والنوبة', '2023-05-07 07:32:27', '2023-05-07 07:32:27'),
+(14, 'الهيئة العامة للابنية التعليمية', '2023-05-07 07:32:44', '2023-05-07 07:32:44'),
+(15, 'مديرية التربية والتعليم', '2023-05-07 07:33:04', '2023-05-07 07:33:04'),
+(16, 'المركز الوطني لتخطيط استخدامات اراضي الدولة', '2023-05-07 07:33:39', '2023-05-07 07:33:39'),
+(17, 'هيئة عمليات القوات المسلحة', '2023-05-07 07:33:55', '2023-05-07 07:33:55'),
+(18, 'الهيئة العامة لمشروعات التعمير والتنمية الزراعية', '2023-05-07 07:34:20', '2023-05-07 07:34:20'),
+(19, 'الهيئة العامة للتنمية الصناعية', '2023-05-07 07:34:42', '2023-05-07 07:34:42'),
+(20, 'الهيئة العامة للثروة المعدنية', '2023-05-07 07:35:09', '2023-05-07 07:35:09'),
+(21, 'جهاز تنظيم مرفق الكهرباء وحماية المستهلك', '2023-05-07 07:35:40', '2023-05-07 07:35:40'),
+(22, 'وزارة التعليم العالي', '2023-05-07 07:35:51', '2023-05-07 07:35:51');
 
 -- --------------------------------------------------------
 
@@ -264,7 +329,8 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`, `created_at`
 (3, 'App\\Models\\User', 2, NULL, '2023-04-27 10:12:05'),
 (3, 'App\\Models\\User', 27, NULL, '2023-04-30 07:35:16'),
 (3, 'App\\Models\\User', 29, '2023-04-27 09:43:30', '2023-04-27 09:43:30'),
-(4, 'App\\Models\\User', 30, '2023-04-30 07:08:40', '2023-04-30 07:08:40');
+(3, 'App\\Models\\User', 31, '2023-04-30 11:53:24', '2023-04-30 11:53:24'),
+(4, 'App\\Models\\User', 30, '2023-04-30 07:08:40', '2023-04-30 11:53:56');
 
 -- --------------------------------------------------------
 
@@ -397,6 +463,13 @@ CREATE TABLE `place` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `place`
+--
+
+INSERT INTO `place` (`id`, `name`, `status`, `place_category_id`, `city_id`, `created_at`, `updated_at`) VALUES
+(4, 'المدينة الصناعية الجديدة (العلاقي)', 1, 1, 1, '2023-05-07 08:39:10', '2023-05-07 08:39:10');
+
 -- --------------------------------------------------------
 
 --
@@ -420,6 +493,13 @@ CREATE TABLE `project` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `project`
+--
+
+INSERT INTO `project` (`id`, `feasibility_study`, `financial_capital`, `commercial_register`, `tax_card`, `site_sketch`, `company_reg`, `status`, `name`, `nid_photo`, `request_id`, `place_id`, `created_at`, `updated_at`) VALUES
+(20, '22feasibility_study.png', '22financial_capital.pdf', '', '', '', '', 0, 'مشروع تجريبي', '22nid_photo.png', 22, NULL, '2023-05-07 09:02:03', '2023-05-07 09:25:43');
+
 -- --------------------------------------------------------
 
 --
@@ -434,7 +514,7 @@ CREATE TABLE `request` (
   `address` varchar(256) NOT NULL,
   `representative_name` varchar(256) DEFAULT NULL,
   `representative_id` int(11) DEFAULT NULL,
-  `NID` int(11) NOT NULL,
+  `NID` bigint(20) NOT NULL,
   `size` float NOT NULL,
   `size_type` varchar(10) NOT NULL,
   `self_financing` float NOT NULL,
@@ -445,9 +525,17 @@ CREATE TABLE `request` (
   `sub_category_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
   `city_id` int(11) NOT NULL,
+  `description` varchar(256) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `request`
+--
+
+INSERT INTO `request` (`id`, `name`, `owner_type`, `owner_name`, `address`, `representative_name`, `representative_id`, `NID`, `size`, `size_type`, `self_financing`, `recived_date`, `capital`, `phone`, `state`, `sub_category_id`, `category_id`, `city_id`, `description`, `created_at`, `updated_at`) VALUES
+(22, 'مشروع تجريبي', 'شركة', 'شركة تجريبي', 'اسوان - الشارع الجديد', 'محمد ياسر', 159872, 29805162800001, 500, 'متر', 152010, '2023-05-07', 1000000, 1120535000, 1, 1, 1, 1, 'صضيسيصضث بسيب يسبل سيبل', '2023-05-07 09:02:03', '2023-05-07 09:25:43');
 
 -- --------------------------------------------------------
 
@@ -458,7 +546,7 @@ CREATE TABLE `request` (
 CREATE TABLE `request_license` (
   `id` int(11) NOT NULL,
   `file` varchar(64) DEFAULT NULL,
-  `send_date` date DEFAULT NULL,
+  `send_date` date DEFAULT current_timestamp(),
   `request_id` int(11) NOT NULL,
   `license_id` int(11) NOT NULL,
   `point` int(11) DEFAULT 0,
@@ -467,6 +555,18 @@ CREATE TABLE `request_license` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `request_license`
+--
+
+INSERT INTO `request_license` (`id`, `file`, `send_date`, `request_id`, `license_id`, `point`, `response_file`, `recived_date`, `created_at`, `updated_at`) VALUES
+(33, '33 send_file.pdf', '2023-05-07', 22, 1, 1, NULL, NULL, '2023-05-07 09:02:03', '2023-05-07 09:29:51'),
+(34, NULL, NULL, 22, 2, 1, NULL, NULL, '2023-05-07 09:02:04', '2023-05-07 09:29:51'),
+(35, NULL, NULL, 22, 10, 1, NULL, NULL, '2023-05-07 09:02:04', '2023-05-07 09:29:51'),
+(36, NULL, NULL, 22, 12, 1, NULL, NULL, '2023-05-07 09:02:04', '2023-05-07 09:29:51'),
+(37, NULL, NULL, 22, 16, 1, NULL, NULL, '2023-05-07 09:02:04', '2023-05-07 09:29:51'),
+(38, NULL, NULL, 22, 19, 1, NULL, NULL, '2023-05-07 09:02:04', '2023-05-07 09:29:51');
 
 -- --------------------------------------------------------
 
@@ -479,9 +579,17 @@ CREATE TABLE `request_notes` (
   `notes` varchar(512) NOT NULL,
   `request_id` int(11) NOT NULL,
   `license_id` int(11) NOT NULL,
+  `sender` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `request_notes`
+--
+
+INSERT INTO `request_notes` (`id`, `notes`, `request_id`, `license_id`, `sender`, `created_at`, `updated_at`) VALUES
+(25, 'asda', 22, 1, 27, '2023-05-07 09:17:20', '2023-05-07 09:17:20');
 
 -- --------------------------------------------------------
 
@@ -496,6 +604,13 @@ CREATE TABLE `request_suggested_places` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `request_suggested_places`
+--
+
+INSERT INTO `request_suggested_places` (`id`, `suggested_places`, `request_id`, `created_at`, `updated_at`) VALUES
+(2, 4, 22, '2023-05-07 09:02:03', '2023-05-07 09:25:43');
 
 -- --------------------------------------------------------
 
@@ -593,6 +708,13 @@ CREATE TABLE `sub_category` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `sub_category`
+--
+
+INSERT INTO `sub_category` (`id`, `name`, `category_id`, `created_at`, `updated_at`) VALUES
+(1, 'غذائي', 1, '2023-05-07 08:34:23', '2023-05-07 08:34:23');
+
 -- --------------------------------------------------------
 
 --
@@ -619,7 +741,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `ro
 (2, 'mokhtar', 'mmelnobey92@gmail.com', NULL, '$2y$10$RovC5bNuc624.BfK4rB6qudF71tSW934Jr/mA0bCHK29LKZITRe3i', 3, NULL, '2023-01-25 07:40:38', '2023-04-27 10:12:05'),
 (27, 'MoHaridy', 'moharidy98@gmail.com', NULL, '$2y$10$cYBsvNUfxLkxkjQU7PzjveY/d3OTIz.rzPsS4iQSoMMG4nEemhCX6', 3, NULL, '2023-03-06 08:56:16', '2023-04-30 07:35:16'),
 (29, 'Ahmed Danash', 'invest@isdt.gov', NULL, '$2y$10$xzlAb5Z6c5wi6qrs2vmT.ej.3tG4/kPwd1KUg9uDHREuzP0Z4Xsay', 3, NULL, '2023-04-27 09:43:30', '2023-04-27 09:43:30'),
-(30, 'مستخدم الاستثمار', 'user.invest@isdt.gov', NULL, '$2y$10$1f9F9urgdm3XdV7EZmlztuvUqUZC3IpsDPEmJY9G8X0GEmd2MyZda', 4, NULL, '2023-04-30 07:08:39', '2023-04-30 07:08:39');
+(30, 'مستخدم الاستثمار', 'user@invest.gov', NULL, '$2y$10$RovC5bNuc624.BfK4rB6qudF71tSW934Jr/mA0bCHK29LKZITRe3i', 4, NULL, '2023-04-30 07:08:39', '2023-04-30 11:53:56'),
+(31, 'Abeer', 'abeer@invest.gov', NULL, '$2y$10$5QQPuvxCTVK7Wowm/.zeNexdS3Ab2eWxiH6Uy3iZYHMLycPSX8NMC', 3, NULL, '2023-04-30 11:53:24', '2023-04-30 11:53:24');
 
 --
 -- Indexes for dumped tables
@@ -798,7 +921,8 @@ ALTER TABLE `request_license`
 ALTER TABLE `request_notes`
   ADD PRIMARY KEY (`id`),
   ADD KEY `request_id` (`request_id`),
-  ADD KEY `license_id` (`license_id`);
+  ADD KEY `license_id` (`license_id`),
+  ADD KEY `sender` (`sender`);
 
 --
 -- Indexes for table `request_suggested_places`
@@ -869,13 +993,13 @@ ALTER TABLE `auction`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `city`
 --
 ALTER TABLE `city`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `contract_type`
@@ -887,7 +1011,7 @@ ALTER TABLE `contract_type`
 -- AUTO_INCREMENT for table `c_license`
 --
 ALTER TABLE `c_license`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `export`
@@ -905,7 +1029,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `gov`
 --
 ALTER TABLE `gov`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `import`
@@ -917,7 +1041,7 @@ ALTER TABLE `import`
 -- AUTO_INCREMENT for table `license`
 --
 ALTER TABLE `license`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -947,37 +1071,37 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `place`
 --
 ALTER TABLE `place`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `project`
 --
 ALTER TABLE `project`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `request_license`
 --
 ALTER TABLE `request_license`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `request_notes`
 --
 ALTER TABLE `request_notes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `request_suggested_places`
 --
 ALTER TABLE `request_suggested_places`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -995,13 +1119,13 @@ ALTER TABLE `side`
 -- AUTO_INCREMENT for table `sub_category`
 --
 ALTER TABLE `sub_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- Constraints for dumped tables
@@ -1083,7 +1207,8 @@ ALTER TABLE `request_license`
 --
 ALTER TABLE `request_notes`
   ADD CONSTRAINT `request_notes_ibfk_1` FOREIGN KEY (`request_id`) REFERENCES `request` (`id`),
-  ADD CONSTRAINT `request_notes_ibfk_2` FOREIGN KEY (`license_id`) REFERENCES `license` (`id`);
+  ADD CONSTRAINT `request_notes_ibfk_2` FOREIGN KEY (`license_id`) REFERENCES `license` (`id`),
+  ADD CONSTRAINT `request_notes_ibfk_3` FOREIGN KEY (`sender`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `request_suggested_places`

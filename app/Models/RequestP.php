@@ -30,6 +30,7 @@ class RequestP extends Model
         'sub_category_id',
         'category_id',
         'city_id',
+        'description',
         'created_at',
         'updated_at',
     ];

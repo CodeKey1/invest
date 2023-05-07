@@ -99,7 +99,7 @@ class InvestmentController extends Controller
                 'phone' =>$request['phone'],
                 'state' =>0,
                 'capital' =>$request['capital'],
-
+                'description' => $request['description'],
              ]));
             $company_file = "";
             if($company_reg = $request->file('company_reg')){
@@ -239,7 +239,7 @@ class InvestmentController extends Controller
                     }
                 }catch( \Exception $ex){}
                 $r_license = R_license::where('id', $request->r_id[$i])-> update(([
-                    'send_date' => $region[$i],
+                    // 'send_date' => $region[$i],
                     'file' => $file_name,
                     'point' => ($record_name->point)+1,
                 ]));
@@ -259,6 +259,7 @@ class InvestmentController extends Controller
                     'notes' => $request->note,
                     'request_id' => $id,
                     'license_id' => $request->l_name[$i],
+                    'sender' => auth()->user()->id,
                 ]);
             }
             return redirect()->back();
@@ -343,7 +344,8 @@ class InvestmentController extends Controller
                  'recived_date' => $now ,
                  'city_id' =>$request['city_id'],
                  'phone' =>$request['phone'],
-                 'state' =>1,
+                 'description' =>$request['description'],
+                 'state' =>0,
 
               ]));
 

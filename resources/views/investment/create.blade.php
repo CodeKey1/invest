@@ -169,13 +169,15 @@
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label>بطاقة رقم <span style="color: red">*</span></label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="number"
-                                                        name="NID" class="form-control" placeholder="" required>
+                                                    <input style="height: calc(2.25rem + 6px);" type="text"
+                                                        pattern="\d*" name="NID" class="form-control"
+                                                        maxlength="14" minlength="14" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label>تليفون <span style="color: red">*</span></label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="number"
-                                                        name="phone" class="form-control" placeholder="" required>
+                                                    <input style="height: calc(2.25rem + 6px);" type="text"
+                                                        pattern="\d*" name="phone" maxlength="11" minlength="10"
+                                                        class="form-control" placeholder="" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label> مساحة المشروع <span style="color: red">*</span></label>
@@ -243,7 +245,12 @@
                                                         @endisset
                                                     </select>
                                                 </div>
-
+                                                <div class="form-group col-md-12">
+                                                    <label> وصف المشروع <span style="color: rgba(255, 0, 0, 0.486)">بحد
+                                                            اقصى 200
+                                                            كلمة</span></label>
+                                                    <textarea class="form-control" name="description" cols="30" rows="5" maxlength="200"></textarea>
+                                                </div>
                                             </div>
 
                                         </div>
