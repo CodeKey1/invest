@@ -76,12 +76,23 @@ Route::get('/investment-delete{id}', [App\Http\Controllers\Admin\InvestmentContr
 |--------------------------------------------------------------------------
 */
 Route::get('/lecturer', [App\Http\Controllers\Admin\InvestmentController::class, 'lecturer'])->name('lecturer');
-Route::get('/lecturer-create', [App\Http\Controllers\Admin\InvestmentController::class, 'lecturer_create'])->name('project.create');
 Route::get('/investment-record{id}', [App\Http\Controllers\Admin\InvestmentController::class, 'record'])->name('investment.record');
+Route::POST('/record_approve{id}', [App\Http\Controllers\Admin\InvestmentController::class, 'request_approve'])->name('record.approve');
 Route::get('/record_update{id}', [App\Http\Controllers\Admin\InvestmentController::class, 'record_update'])->name('record.update');
 Route::POST('/recordstore', [App\Http\Controllers\Admin\InvestmentController::class, 'record_store'])->name('record.store');
 Route::POST('/recordstore_note{id}', [App\Http\Controllers\Admin\InvestmentController::class, 'note_store'])->name('record.store.note');
 Route::get('/delete_note{id}', [App\Http\Controllers\Admin\InvestmentController::class, 'note_delete'])->name('note.delete');
+
+/*
+|--------------------------------------------------------------------------
+| technical commit Controller *****************    لجنة البت الفني الإستثمارية
+|--------------------------------------------------------------------------
+*/
+Route::get('/tech', [App\Http\Controllers\Admin\InvestmentController::class, 'tech'])->name('tech');
+Route::get('/tech-create{id}', [App\Http\Controllers\Admin\InvestmentController::class, 'tech_create'])->name('tech.create');
+Route::POST('/tech-approve{id}', [App\Http\Controllers\Admin\InvestmentController::class, 'tech_approve'])->name('tech.approve');
+Route::POST('/tech-note{id}', [App\Http\Controllers\Admin\InvestmentController::class, 'tech_note'])->name('tech.note');
+Route::get('/tech-delete{id}', [App\Http\Controllers\Admin\InvestmentController::class, 'tech_delete'])->name('tech.delete');
 
 /*
 |--------------------------------------------------------------------------

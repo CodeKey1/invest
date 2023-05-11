@@ -78,6 +78,10 @@
                         <li><a class="nav-link" href="{{ route('lecturer') }}"> المحاضر </a></li>
                     </ul>
                 </li>
+                <li dir="rtl">
+                    <a href="{{ route('tech') }}" class="nav-link"><i data-feather="briefcase"></i> لجنة البت الفني
+                    </a>
+                </li>
                 <li class="dropdown">
                     <a href="#" class="menu-toggle nav-link has-dropdown"><span> المزادات </span>
                         <i data-feather="briefcase"></i></a>

@@ -27,6 +27,7 @@ class RequestP extends Model
         'capital',
         'phone',
         'state',
+        'technical_state',
         'sub_category_id',
         'category_id',
         'city_id',

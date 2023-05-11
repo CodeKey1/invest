@@ -42,7 +42,7 @@
                                 @include('layouts.error')
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>ادارة جميع محاضر لطلبات الإستثمار</h4>
+                                        <h4>ادارة جميع طلبات الإستثمار المرسلة</h4>
                                         <div class="card-header-action">
                                             <div class="dropdown">
                                                 <a href="{{ route('investment') }}" class="btn btn-warning"> كل طلبات
@@ -111,20 +111,20 @@
                                     <div class="card-body">
                                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                                             <li class="nav-item">
-                                                <a class="nav-link active" id="home-tab" data-toggle="tab"
-                                                    href="#home" role="tab" aria-controls="home"
+                                                <a class="nav-link active" id="profile-tab" data-toggle="tab"
+                                                    href="#profile" role="tab" aria-controls="profile"
                                                     aria-selected="true">طلبات
-                                                    مرسلة</a>
+                                                    معلقة</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile"
-                                                    role="tab" aria-controls="profile" aria-selected="false">طلبات
-                                                    معلقة</a>
+                                                <a class="nav-link" id="home-tab" data-toggle="tab" href="#home"
+                                                    role="tab" aria-controls="home" aria-selected="false">طلبات
+                                                    تم الرد</a>
                                             </li>
                                         </ul>
                                         <div class="tab-content" id="myTabContent">
-                                            <div class="tab-pane fade show active" id="home" role="tabpanel"
-                                                aria-labelledby="home-tab">
+                                            <div class="tab-pane fade  show active" id="profile" role="tabpanel"
+                                                aria-labelledby="profile-tab">
                                                 <div class="card-body" style="direction: rtl;">
                                                     <div class="table-responsive">
                                                         <table class="table table-striped table-hover" id="save-stage"
@@ -137,7 +137,6 @@
                                                                     <th>اسم المتقدم</th>
                                                                     <th> مواطن / شركة </th>
                                                                     <th>المدينة</th>
-                                                                    <th> موافقات الجهات </th>
                                                                     <th>تفاصيل</th>
                                                                 </tr>
                                                             </thead>
@@ -145,7 +144,7 @@
                                                                 @isset($request)
                                                                     @if ($request && $request->count() > 0)
                                                                         @foreach ($request as $requests)
-                                                                            @if ($requests->state)
+                                                                            @if ($requests->technical_state == 2)
                                                                                 <tr>
                                                                                     <td>{{ $requests->id }}</td>
                                                                                     <td>{{ $requests->categoryname->name }}
@@ -155,21 +154,8 @@
                                                                                     <td>{{ $requests->owner_type }}</td>
                                                                                     <td>{{ $requests->city->name }}</td>
                                                                                     <td>
-                                                                                        @foreach ($r_license->where('request_id', $requests->id) as $r)
-                                                                                            @if ($r->response_file != null)
-                                                                                                <div
-                                                                                                    class="badge badge-success">
-                                                                                                </div>
-                                                                                            @elseif($r->response_file == null)
-                                                                                                <div
-                                                                                                    class="badge badge-danger">
-                                                                                                </div>
-                                                                                            @endif
-                                                                                        @endforeach
-                                                                                    </td>
-                                                                                    <td>
                                                                                         <a class="btn btn-icon btn-success"
-                                                                                            href="{{ route('investment.record', $requests->id) }}"
+                                                                                            href="{{ route('tech.create', $requests->id) }}"
                                                                                             ata-toggle="tooltip"
                                                                                             data-placement="top"
                                                                                             title="عرض">
@@ -186,8 +172,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="tab-pane fade" id="profile" role="tabpanel"
-                                                aria-labelledby="profile-tab">
+                                            <div class="tab-pane fade" id="home" role="tabpanel"
+                                                aria-labelledby="home-tab">
                                                 <div class="card-body" style="direction: rtl;">
                                                     <div class="table-responsive">
                                                         <table class="table table-striped table-hover" id="save-stage"
@@ -200,7 +186,7 @@
                                                                     <th>اسم المتقدم</th>
                                                                     <th> مواطن / شركة </th>
                                                                     <th>المدينة</th>
-                                                                    <th> موافقات الجهات </th>
+                                                                    <th> الرد </th>
                                                                     <th>تفاصيل</th>
                                                                 </tr>
                                                             </thead>
@@ -208,7 +194,7 @@
                                                                 @isset($request)
                                                                     @if ($request && $request->count() > 0)
                                                                         @foreach ($request as $requests)
-                                                                            @if (!$requests->state)
+                                                                            @if ($requests->technical_state != 2)
                                                                                 <tr>
                                                                                     <td>{{ $requests->id }}</td>
                                                                                     <td>{{ $requests->categoryname->name }}
@@ -218,21 +204,20 @@
                                                                                     <td>{{ $requests->owner_type }}</td>
                                                                                     <td>{{ $requests->city->name }}</td>
                                                                                     <td>
-                                                                                        @foreach ($r_license->where('request_id', $requests->id) as $r)
-                                                                                            @if ($r->response_file != null)
-                                                                                                <div
-                                                                                                    class="badge badge-success">
-                                                                                                </div>
-                                                                                            @elseif($r->response_file == null)
-                                                                                                <div
-                                                                                                    class="badge badge-danger">
-                                                                                                </div>
-                                                                                            @endif
-                                                                                        @endforeach
+                                                                                        @if ($requests->technical_state)
+                                                                                            <div
+                                                                                                class="badge badge-success">
+                                                                                                قبول
+                                                                                            </div>
+                                                                                        @else
+                                                                                            <div class="badge badge-danger">
+                                                                                                رفض
+                                                                                            </div>
+                                                                                        @endif
                                                                                     </td>
                                                                                     <td>
                                                                                         <a class="btn btn-icon btn-success"
-                                                                                            href="{{ route('investment.record', $requests->id) }}"
+                                                                                            href="{{ route('tech.create', $requests->id) }}"
                                                                                             ata-toggle="tooltip"
                                                                                             data-placement="top"
                                                                                             title="عرض">

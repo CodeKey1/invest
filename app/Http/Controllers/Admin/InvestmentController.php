@@ -9,6 +9,7 @@ use App\Models\City;
 use App\Models\Place;
 use App\Models\Place_Category;
 use App\Models\Request_places;
+use App\Models\Request_technical as r_tech;
 use App\Models\Project;
 use App\Models\R_license;
 use App\Models\SubCategory;
@@ -21,7 +22,7 @@ use Carbon\Carbon;
 class InvestmentController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * investment request.
      */
     public function index()
     {
@@ -30,18 +31,6 @@ class InvestmentController extends Controller
         $request   = RequestP::select()->with('categoryname','city','rl','subCat')->get();
         return view('investment.index',compact('request','r_license'));
     }
-
-    public function lecturer()
-    {
-        //
-        $request   = RequestP::select()->with('categoryname','city','rl','subCat')->where('state',0)->get();
-        $r_license = R_license::select()->with('L_Lisense','R_Lisense')->get();
-        return view('investment.lecturer.index',compact('request','r_license'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
@@ -54,9 +43,6 @@ class InvestmentController extends Controller
         return view('investment.create',compact('now','category','sub_cat','city','clicense','place'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         //
@@ -190,11 +176,6 @@ class InvestmentController extends Controller
         }
     }
 
-
-
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         //
@@ -207,70 +188,6 @@ class InvestmentController extends Controller
         return view('investment.edit',compact('request','city','clicense','r_license','project','request_places'));
     }
 
-    public function record(string $id)
-    {
-        //
-        $city = City::select()->get();
-        $clicense   = C_license::select()->get();
-        $project = Project::select()->where('request_id',$id)->get();
-        $r_license = R_license::select()->where('request_id',$id)->get();
-        $r_note = Request_note::select()->where('request_id',$id)->get();
-        $request = RequestP::select()->find($id);
-        $request_places = Request_places::select()->where('request_id',$id)->get();
-        return view('investment.lecturer.create',compact('request','city','clicense','r_license','r_note','project','request_places'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function record_store(Request $request)
-    {
-        try{
-            for($i = 0 ; $i < count($request->r_id) ; $i++){
-                $region[] = $request->send_date[$i];
-                $record_name = R_license::select()->where('id',$request->r_id[$i])->first();
-                $file_name = $record_name->file;
-                try{
-                    if($file = $request->send_file[$i]){
-                        $file_extension = $file->getclientoriginalExtension();
-                        $file_name = $request->r_id[$i].' send_file'. '.' . $file_extension;
-                        $path = 'project_inquiry_file';
-                        $file -> move($path, $file_name);
-                    }
-                }catch( \Exception $ex){}
-                $r_license = R_license::where('id', $request->r_id[$i])-> update(([
-                    // 'send_date' => $region[$i],
-                    'file' => $file_name,
-                    'point' => ($record_name->point)+1,
-                ]));
-            }
-            return redirect()->route('lecturer')-> with(['success' => 'نجح']);
-        }catch( \Exception $ex){
-            return redirect()->route('lecturer')-> with(['error' => ' خطأ '.$ex]);
-        }
-
-    }
-
-    public function note_store(Request $request, string $id)
-    {
-        try{
-            for($i = 0 ; $i < count($request->l_name) ; $i++){
-                Request_note::create([
-                    'notes' => $request->note,
-                    'request_id' => $id,
-                    'license_id' => $request->l_name[$i],
-                    'sender' => auth()->user()->id,
-                ]);
-            }
-            return redirect()->back();
-        }catch(\Exception $ex){
-            return redirect()->route('lecturer')-> with(['error' => ' خطأ '.$ex]);
-        }
-
-    }
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         $project_name = Project::select()->where('request_id',$id)->first();
@@ -370,9 +287,6 @@ class InvestmentController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         //
@@ -387,6 +301,100 @@ class InvestmentController extends Controller
 
         return redirect()->route('investment')->with(['success' => 'تم الحذف بنجاح']);
     }
+
+    /**
+     * record request.
+     */
+
+    public function lecturer()
+    {
+        //
+        $request   = RequestP::select()->with('categoryname','city','rl','subCat')->get();
+        $r_license = R_license::select()->with('L_Lisense','R_Lisense')->get();
+        return view('investment.lecturer.index',compact('request','r_license'));
+    }
+
+    public function record(string $id)
+    {
+        //
+        $city = City::select()->get();
+        $clicense   = C_license::select()->get();
+        $project = Project::select()->where('request_id',$id)->get();
+        $r_license = R_license::select()->where('request_id',$id)->get();
+        $r_note = Request_note::select()->where('request_id',$id)->get();
+        $request = RequestP::select()->find($id);
+        $request_places = Request_places::select()->where('request_id',$id)->get();
+        return view('investment.lecturer.create',compact('request','city','clicense','r_license','r_note','project','request_places'));
+    }
+
+    public function record_store(Request $request)
+    {
+        try{
+            for($i = 0 ; $i < count($request->r_id) ; $i++){
+                $region[] = $request->send_date[$i];
+                $record_name = R_license::select()->where('id',$request->r_id[$i])->first();
+                $file_name = $record_name->file;
+                try{
+                    if($file = $request->send_file[$i]){
+                        $file_extension = $file->getclientoriginalExtension();
+                        $file_name = $request->r_id[$i].' send_file'. '.' . $file_extension;
+                        $path = 'project_inquiry_file';
+                        $file -> move($path, $file_name);
+                    }
+                }catch( \Exception $ex){}
+                $r_license = R_license::where('id', $request->r_id[$i])-> update(([
+                    // 'send_date' => $region[$i],
+                    'file' => $file_name,
+                    'point' => ($record_name->point)+1,
+                ]));
+            }
+            return redirect()->route('lecturer')-> with(['success' => 'نجح']);
+        }catch( \Exception $ex){
+            return redirect()->route('lecturer')-> with(['error' => ' خطأ '.$ex]);
+        }
+
+    }
+
+    public function request_approve(Request $request,string $id)
+    {
+        echo "<script>";
+        echo "if (!confirm('هل انت متأكد من تعزيز الطلب'))return false;";
+        echo "</script>";
+        switch($request['actionBTN']){
+            case 'approve':
+                RequestP::where('id',$id)-> update(([
+                    'state' =>1,
+                    'technical_state'=>2
+                ]));
+                break;
+            case 'dissApprove':
+                RequestP::where('id',$id)-> update(([
+                    'state' =>0,
+                    'technical_state'=>2
+                ]));
+                break;
+        }
+         return redirect()->back();
+    }
+
+    public function note_store(Request $request, string $id)
+    {
+        try{
+            for($i = 0 ; $i < count($request->l_name) ; $i++){
+                Request_note::create([
+                    'notes' => $request->note,
+                    'request_id' => $id,
+                    'license_id' => $request->l_name[$i],
+                    'sender' => auth()->user()->id,
+                ]);
+            }
+            return redirect()->back();
+        }catch(\Exception $ex){
+            return redirect()->route('lecturer')-> with(['error' => ' خطأ '.$ex]);
+        }
+
+    }
+
     public function note_delete(string $id)
     {
         $request_notes = Request_note::find($id)->delete();
@@ -394,18 +402,71 @@ class InvestmentController extends Controller
     }
 
     /**
-     * Display a listing of the projects of investment.
+     * technical request.
      */
-    // public function project(){
-    //     return view('investment.project.index');
-    // }
-    // /**
-    //  * Show the form for creating a new projects of investment.
-    //  */
-    // public function project_create(){
-    //     return view('investment.project.create');
-    // }
 
+    public function tech()
+    {
+        //
+        $request   = RequestP::select()->where('state',1)->get();
+        //$r_license = R_license::select()->with('L_Lisense','R_Lisense')->get();
+        return view('investment.tech.index',compact('request'));
+    }
 
+    public function tech_create(string $id){
+        $project = Project::select()->where('request_id',$id)->get();
+        $tech = r_tech::select()->where('request_id',$id)->get();
+        $request = RequestP::select()->find($id);
+        $request_places = Request_places::select()->where('request_id',$id)->get();
+        return view('investment.tech.create',compact('request','project','request_places','tech'));
+    }
 
+    public function tech_approve(Request $request,string $id)
+    {
+        echo "<script>";
+        echo "if (!confirm('هل انت متأكد من تعزيز الطلب'))return false;";
+        echo "</script>";
+        switch($request['actionBTN']){
+            case 'approve':
+                RequestP::where('id',$id)-> update(([
+                    'technical_state' =>1,
+                ]));
+                break;
+            case 'dissApprove':
+                RequestP::where('id',$id)-> update(([
+                    'technical_state' =>0,
+                ]));
+                break;
+        }
+         return redirect()->back();
+    }
+
+    public function tech_note(Request $request, string $id)
+    {
+        try{
+            r_tech::create([
+                'note' => $request->note,
+                'request_id' => $id,
+            ]);
+            if($request->isConfirmed){
+                RequestP::where('id',$id)-> update(([
+                    'technical_state' =>1,
+                ]));
+            }else{
+                RequestP::where('id',$id)-> update(([
+                    'technical_state' =>0,
+                ]));
+            }
+        
+            return redirect()->back();
+        }catch(\Exception $ex){
+            return redirect()->route('tech')-> with(['error' => ' خطأ '.$ex]);
+        }
+    }
+
+    public function tech_delete(string $id)
+    {
+        r_tech::find($id)->delete();
+        return redirect()->back();
+    }
 }

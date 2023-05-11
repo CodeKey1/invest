@@ -35,9 +35,9 @@
                 <section class="section">
                     <div class="section-body">
                         <div class="row" style="direction: rtl">
+                            @include('layouts.success')
+                            @include('layouts.error')
                             <div class="col-12 col-md-12 col-lg-12">
-                                @include('layouts.success')
-                                @include('layouts.error')
                                 <div class="card card-primary">
                                     <div class="card-header">
                                         <h4> محاضر طلب الإسثمار / {{ $request->name }}</h4>
@@ -77,9 +77,17 @@
                                 </div> --}}
                                 <div class="card card-primary">
                                     <div class="card-body">
-                                        <h4>بيانات المشروع</h4>
+                                        <h4>بيانات المشروع
+                                            @if ($request->technical_state == 1)
+                                                <span style="color: green"> المعتمدة </span>
+                                            @elseif($request->technical_state == 2)
+                                                <span style="color: darkslategrey"> المعلقة </span>
+                                            @else
+                                                <span style="color: red"> المرفوضة </span>
+                                            @endif
+                                        </h4>
                                         <form class="needs-validation" novalidate=""
-                                            action="{{ route('record.approve', $request->id) }}" method="POST"
+                                            action="{{ route('tech.approve', $request->id) }}" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
                                             <div class="form-row">
@@ -188,11 +196,11 @@
                                                     <label> وصف المشروع </label>
                                                     <textarea class="form-control" name="description" cols="30" rows="5" maxlength="200" disabled>{{ $request->description }}</textarea>
                                                 </div>
-                                                @if ($request->state == 0)
+                                                @if ($request->technical_state == 0)
                                                     <div class="form-group col-md-12">
                                                         <button type="submit" class="btn btn-success"
                                                             style="float: left;" name="actionBTN" value="approve">
-                                                            اعتماد وارسال للجنة البت الفني
+                                                            اعتماد
                                                         </button>
                                                     </div>
                                                 @else
@@ -284,98 +292,35 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-md-12 col-lg-12" style="direction: rtl; width:100%">
-                                <div class="card card-primary">
-                                    <div class="card-body">
-                                        <h4>جهات الموافقات</h4>
-                                        <div class="form-group col-md-12">
-                                            <form class="needs-validation" novalidate=""
-                                                action="{{ route('record.store') }}" method="POST"
-                                                enctype="multipart/form-data">
-                                                @csrf
-                                                <table class="table table-bordered" style="margin-top: 10px;">
-                                                    <thead>
-                                                        <tr>
-                                                            {{-- <th scope="col"> # </th> --}}
-                                                            <th scope="col"> اسم الجهة</th>
-                                                            <th scope="col"> الملف المرسل</th>
-                                                            <th scope="col"> تاريخ الارسال </th>
-                                                            <th scope="col"> ملف الرد </th>
-                                                            <th scope="col"> تاريخ الرد </th>
-                                                        </tr>
-                                                    </thead>
-                                                    @foreach ($r_license as $r)
-                                                        <tbody>
-                                                            <tr>
-                                                                <input type="text" name="r_id[]"
-                                                                    value="{{ $r->id }}" hidden readonly>
-
-                                                                <td>{{ $r->L_Lisense->name }}</td>
-                                                                <td>
-                                                                    @if ($r->file != null)
-                                                                        <a href="{{ asset('project_inquiry_file/' . $r->file) }}"
-                                                                            target="_blank">اضغط هنا</a> | او تغير
-                                                                        |
-                                                                    @endif
-                                                                    <input type="file"
-                                                                        accept=",.doc, .docx, .pdf, image/*"
-                                                                        name="send_file[]">
-                                                                </td>
-                                                                {{-- <td>
-                                                                    <input type="date" value="{{ $r->send_date }}"
-                                                                        name="send_date[]">
-                                                                </td> --}}
-                                                                <td>
-                                                                    @if ($r->send_date != null)
-                                                                        {{ $r->send_date }}
-                                                                    @endif
-                                                                </td>
-                                                                @if ($r->response_file != null)
-                                                                    <td><a href="{{ asset('project_response_file/' . $r->response_file) }}"
-                                                                            target="_blank">اضغط هنا</a></td>
-                                                                @elseif($r->response_file == null)
-                                                                    <td>لا يوجد</td>
-                                                                @endif
-                                                                <td>{{ $r->recived_date }}</td>
-                                                            </tr>
-
-                                                        </tbody>
-                                                    @endforeach
-                                                </table>
-                                                <button type="submit" class="btn btn-success" style="float: left;">
-                                                    ارسال وتعزيز
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="col-6 col-md-6 col-lg-6" style="direction: rtl">
                                 <div class="card card-primary">
                                     <div class="card-body">
                                         <h4> انشاء ملاحظة</h4>
                                         <form class="needs-validation" novalidate=""
-                                            action="{{ route('record.store.note', $request->id) }}" method="POST"
+                                            action="{{ route('tech.note', $request->id) }}" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
                                             <div class="form-group col-md-12">
-                                                <label>اختر الجهة <span style="color: red">*</span></label>
-                                                <select class="form-control select2" style="width: 100%" multiple
-                                                    name="l_name[]">
-                                                    @isset($r_license)
-                                                        @if ($r_license && $r_license->count() > 0)
-                                                            @foreach ($r_license as $item)
-                                                                <option value="{{ $item->license_id }}">
-                                                                    {{ $item->L_Lisense->name }}
-                                                                </option>
-                                                            @endforeach
-                                                        @endif
-                                                    @endisset
-                                                </select>
+                                                <label> التعليق<span style="color: red">*</span></label>
+                                                <textarea class="form-control" name="note" cols="10" rows="5" required> </textarea>
                                             </div>
-                                            <div class="form-group col-md-12">
-                                                <label> الملاحظة<span style="color: red">*</span></label>
-                                                <textarea class="form-control" name="note" cols="10" rows="5"> </textarea>
+                                            <div class="form-group">
+                                                @if (!$request->technical_state)
+                                                    <input class="form-check-input" name="isConfirmed"
+                                                        type="checkbox" value="1" id="defaultCheck1">
+                                                    <label style="color: green" class="form-check-label"
+                                                        for="defaultCheck1">
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;اعتماد المشروع&nbsp;&nbsp;
+                                                    </label>
+                                                @else
+                                                    <input class="form-check-input" name="isConfirmed"
+                                                        type="checkbox" value="0" id="defaultCheck1">
+                                                    <label style="color: red" class="form-check-label"
+                                                        for="defaultCheck1">
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;الغاء اعتماد
+                                                        المشروع&nbsp;&nbsp;
+                                                    </label>
+                                                @endif
                                             </div>
                                             <div class="form-group col-md-12">
                                                 <button type="submit" class="btn btn-success" style="float: left;">
@@ -396,25 +341,21 @@
                                                     style="margin-top: 10px;">
                                                     <thead>
                                                         <tr>
-                                                            <th scope="col"> # </th>
-                                                            <th scope="col"> الراسل </th>
-                                                            <th scope="col"> الجهة </th>
-                                                            <th scope="col"> الملاحظة </th>
-                                                            <th scope="col"> تاريخ الارسال </th>
-                                                            <th scope="col"> خيارات </th>
+                                                            <th> # </th>
+                                                            <th> الملاحظة </th>
+                                                            <th> تاريخ الارسال </th>
+                                                            <th> خيارات </th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @isset($r_note)
-                                                            @foreach ($r_note as $note)
+                                                        @isset($tech)
+                                                            @foreach ($tech as $note)
                                                                 <tr>
                                                                     <td>{{ $note->id }}</td>
-                                                                    <td>{{ $note->sender_name->name }}</td>
-                                                                    <td>{{ $note->note_license->name }}</td>
-                                                                    <td>{{ $note->notes }}</td>
-                                                                    <td>{{ $note->created_at }}</td>
+                                                                    <td>{{ $note->note }}</td>
+                                                                    <td>{{ $note->date }}</td>
                                                                     <td><a class="btn btn-icon btn-danger"
-                                                                            href="{{ route('note.delete', $note->id) }}"><i
+                                                                            href="{{ route('tech.delete', $note->id) }}"><i
                                                                                 class="fas fa-times"></i></a></td>
                                                                 </tr>
                                                             @endforeach
