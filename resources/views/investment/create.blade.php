@@ -152,10 +152,10 @@
                                                         name="representative_id" class="form-control" value="">
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label>بطاقة رقم <span style="color: red">*</span></label>
+                                                    <label>بطاقة رقم </label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
                                                         pattern="\d*" name="NID" class="form-control"
-                                                        maxlength="14" minlength="14" required>
+                                                        maxlength="14" minlength="14">
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label>تليفون <span style="color: red">*</span></label>
@@ -179,18 +179,16 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label>برأسمال قيمته <span style="color: red">*</span></label>
+                                                    <label>برأسمال قيمته </label>
                                                     <input style="height: calc(2.25rem + 6px);" step="0.1"
                                                         type="number" name="capital" class="form-control"
-                                                        placeholder="" required>
+                                                        placeholder="">
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label>نسبة التمويل الذاتي <span
-                                                            style="color: red">*</span></label>
+                                                    <label>نسبة التمويل الذاتي </label>
                                                     <input style="height: calc(2.25rem + 6px);" type="number"
                                                         min="0" max="100" step="0.1"
-                                                        name="Self_financing" class="form-control" placeholder=""
-                                                        required>
+                                                        name="Self_financing" class="form-control" placeholder="">
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label>تاريخ تقديم الطلب <span style="color: red">*</span></label>
