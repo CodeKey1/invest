@@ -155,13 +155,14 @@ class InvestmentController extends Controller
                'request_id'          =>$request_id->id,
                'status'              =>0,
             ]));
-            for($i = 0 ; $i < count($request->region) ; $i++){
-                $region[] = $request->region[$i];
-                $Request_places = Request_places:: create(([
-                    'suggested_places' => $region[$i],
-                    'request_id' => $request_id->id,
-                ]));
-            }
+            if($request->region)
+                for($i = 0 ; $i < count($request->region) ; $i++){
+                    $region[] = $request->region[$i];
+                    $Request_places = Request_places:: create(([
+                        'suggested_places' => $region[$i],
+                        'request_id' => $request_id->id,
+                    ]));
+                }
             $clicense = C_license::select()->where('category_id',$request['category_id'])->get();
             for($i = 0 ; $i < count($clicense) ; $i++){
                 $licnes[] = $clicense[$i];

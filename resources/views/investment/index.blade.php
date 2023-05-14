@@ -86,7 +86,7 @@
                                                                 <tr>
                                                                     <td>{{ $requests->id }}</td>
                                                                     <td>{{ $requests->name }}</td>
-                                                                    <td>{{ $requests->subCat->name }}</td>
+                                                                    <td>{{ $requests->subCat->name ?? 'لا يوجد' }}</td>
                                                                     <td>{{ $requests->owner_name }}</td>
                                                                     <td>{{ $requests->owner_type }}</td>
                                                                     <td>{{ $requests->city->name }}</td>

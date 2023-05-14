@@ -44,20 +44,6 @@
                                     <div class="card-header">
                                         <h4>طلب الحصول علي موافقة لإقامت مشروع</h4>
                                         <div class="card-header-action">
-                                            <div class="dropdown">
-                                                <a href="#" data-toggle="dropdown"
-                                                    class="btn btn-warning dropdown-toggle">Options</a>
-                                                <div class="dropdown-menu" style="background-color: rgb(53, 60, 72);">
-                                                    <a href="#" class="dropdown-item has-icon text-success"><i
-                                                            class="fas fa-eye"></i> View</a>
-                                                    <a href="#" class="dropdown-item has-icon text-info"><i
-                                                            class="far fa-edit"></i> Edit</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a href="#" class="dropdown-item has-icon text-danger"><i
-                                                            class="far fa-trash-alt"></i>
-                                                        Delete</a>
-                                                </div>
-                                            </div>
                                             <a href="{{ route('investment') }}" class="btn btn-primary">ادارة
                                                 الطلبات</a>
                                         </div>
@@ -90,7 +76,7 @@
                                                     <label>فئة المشروع <span style="color: red">*</span></label>
                                                     <select class="form-control" id="project" name="category_id"
                                                         required>
-                                                        <option disabled selected>اختر المشروع</option>
+                                                        <option disabled selected value="">اختر المشروع</option>
                                                         @isset($category)
                                                             @if ($category && $category->count() > 0)
                                                                 @foreach ($category as $cat)
@@ -102,9 +88,8 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-2">
-                                                    <label>الفئة الفرعية <span style="color: red">*</span></label>
-                                                    <select class="form-control" id="sub_cat" name="sub_category_id"
-                                                        required>
+                                                    <label>الفئة الفرعية</label>
+                                                    <select class="form-control" id="sub_cat" name="sub_category_id">
                                                         <option disabled selected>اختر الفئة الفرعية</option>
                                                         @isset($sub_cat)
                                                             @if ($sub_cat && $sub_cat->count() > 0)
@@ -139,7 +124,8 @@
                                                 <div class="form-group col-md-4">
                                                     <label>نوع مقدم الطلب <span style="color: red">*</span></label>
                                                     <select class="form-control" name="owner_type" required>
-                                                        <option disabled selected>اختر مقدم الطلب</option>
+                                                        <option disabled selected value="">اختر مقدم الطلب
+                                                        </option>
                                                         <option value="شركة">شركة</option>
                                                         <option value="مواطن">مواطن</option>
                                                     </select>
@@ -148,8 +134,7 @@
                                                     <label> اسم الشركة / المواطن <span
                                                             style="color: red">*</span></label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="owner_name" class="form-control" placeholder=""
-                                                        required>
+                                                        name="owner_name" class="form-control" placeholder="" required>
                                                 </div>
                                                 <div class="form-group col-md-12">
                                                     <label> العنوان <span style="color: red">*</span></label>
@@ -159,8 +144,7 @@
                                                 <div class="form-group col-md-4">
                                                     <label> اسم المفوض </label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        name="representative_name" class="form-control"
-                                                        value="">
+                                                        name="representative_name" class="form-control" value="">
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label> بالتوكيل رقم </label>
@@ -188,7 +172,8 @@
                                                 <div class="form-group col-md-4">
                                                     <label>نوع المساحة <span style="color: red">*</span></label>
                                                     <select class="form-control" name="size_type" required>
-                                                        <option disabled selected>اختر نوع المساحة</option>
+                                                        <option disabled selected value="">اختر نوع المساحة
+                                                        </option>
                                                         <option value="متر">متر مربع</option>
                                                         <option value="فدان">فدان</option>
                                                     </select>
@@ -202,9 +187,10 @@
                                                 <div class="form-group col-md-4">
                                                     <label>نسبة التمويل الذاتي <span
                                                             style="color: red">*</span></label>
-                                                    <input style="height: calc(2.25rem + 6px);" step="0.1"
-                                                        type="number" name="Self_financing" class="form-control"
-                                                        placeholder="" required>
+                                                    <input style="height: calc(2.25rem + 6px);" type="number"
+                                                        min="0" max="100" step="0.1"
+                                                        name="Self_financing" class="form-control" placeholder=""
+                                                        required>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label>تاريخ تقديم الطلب <span style="color: red">*</span></label>
@@ -214,8 +200,9 @@
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label>المدينة <span style="color: red">*</span></label>
-                                                    <select class="form-control" id="city_id" name="city_id">
-                                                        <option disabled selected>اختر المدينة</option>
+                                                    <select class="form-control" id="city_id" name="city_id"
+                                                        required>
+                                                        <option disabled selected value="">اختر المدينة</option>
                                                         @isset($city)
                                                             @if ($city && $city->count() > 0)
                                                                 @foreach ($city as $City)
@@ -228,10 +215,9 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-8">
-                                                    <label>المواقع المقترحة لإقامة المشروع بالمحافظة <span
-                                                            style="color: red">*</span></label>
+                                                    <label>المواقع المقترحة لإقامة المشروع بالمحافظة</label>
                                                     <select class="form-control select2" multiple id="area"
-                                                        name="region[]" style="width: 100%" required>
+                                                        name="region[]" style="width: 100%">
                                                         @isset($place)
                                                             @if ($place && $place->count() > 0)
                                                                 @foreach ($place as $Place)
@@ -281,17 +267,14 @@
                                                         class="form-control" style="height: calc(2.25rem + 6px);">
                                                 </div>
                                                 <div class="form-group col-md-3">
-                                                    <label for=""> صورة البطاقة <span
-                                                            style="color: red">*</span></label>
+                                                    <label for=""> صورة البطاقة </label>
                                                     <input type="file" name="nid_photo" class="form-control"
-                                                        style="height: calc(2.25rem + 6px);" required>
+                                                        style="height: calc(2.25rem + 6px);">
                                                 </div>
                                                 <div class="form-group col-md-3">
-                                                    <label for=""> مستنادات الملاءة المالية <span
-                                                            style="color: red">*</span></label>
+                                                    <label for=""> مستنادات الملاءة المالية </label>
                                                     <input type="file" name="financial_capital"
-                                                        class="form-control" style="height: calc(2.25rem + 6px);"
-                                                        required>
+                                                        class="form-control" style="height: calc(2.25rem + 6px);">
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for=""> كروكي الموقع المختار واحداثياته
@@ -300,11 +283,9 @@
                                                         style="height: calc(2.25rem + 6px);">
                                                 </div>
                                                 <div class="form-group col-md-3">
-                                                    <label for=""> دراسة جدوي للمشروع <span
-                                                            style="color: red">*</span> </label>
+                                                    <label for=""> دراسة جدوي للمشروع </label>
                                                     <input type="file" name="feasibility_study"
-                                                        class="form-control" style="height: calc(2.25rem + 6px);"
-                                                        required>
+                                                        class="form-control" style="height: calc(2.25rem + 6px);">
                                                 </div>
                                             </div>
                                             <button type="submit" class="btn btn-success"

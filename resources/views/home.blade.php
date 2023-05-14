@@ -143,18 +143,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4>المشاريع</h4>
-
                                     <div class="card-header-action">
-                                        {{-- <div class="dropdown">
-                                      <a href="#" data-toggle="dropdown" class="btn btn-warning dropdown-toggle">Options</a>
-                                      <div class="dropdown-menu">
-                                        <a href="#" class="dropdown-item has-icon"><i class="fas fa-eye"></i> View</a>
-                                        <a href="#" class="dropdown-item has-icon"><i class="far fa-edit"></i> Edit</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a href="#" class="dropdown-item has-icon text-danger"><i class="far fa-trash-alt"></i>
-                                          Delete</a>
-                                      </div>
-                                    </div> --}}
                                         <a href="{{ route('investment') }}" class="btn btn-primary">كل طلبات
                                             الإستثمار</a>
                                     </div>

@@ -102,11 +102,11 @@
                                                 <div class="form-group col-md-2">
                                                     <label>الفئة الفرعية </label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        class="form-control" value="{{ $request->subCat->name }}"
-                                                        disabled>
+                                                        class="form-control"
+                                                        value="{{ $requests->subCat->name ?? 'لا يوجد' }}" disabled>
                                                     <input style="height: calc(2.25rem + 6px);" type="number"
                                                         class="form-control" name="sub_category_id"
-                                                        value="{{ $request->subCat->name }}" hidden>
+                                                        value="{{ $requests->subCat->name ?? 'لا يوجد' }}" hidden>
                                                 </div>
                                                 <div class="form-group col-md-8">
                                                     <label> اسم المشروع </label>

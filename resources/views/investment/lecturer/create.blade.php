@@ -101,8 +101,8 @@
                                                 <div class="form-group col-md-2">
                                                     <label>الفئة الفرعية </label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        class="form-control" value="{{ $request->subCat->name }}"
-                                                        disabled>
+                                                        class="form-control"
+                                                        value="{{ $request->subCat->name ?? 'لا يوجد' }}" disabled>
                                                 </div>
                                                 <div class="form-group col-md-2">
                                                     <label>نوع مقدم الطلب </label>
