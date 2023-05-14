@@ -77,6 +77,15 @@
                                 </div> --}}
                                 <div class="card card-primary">
                                     <div class="card-body">
+                                        <h4>حالة لجنة البت الفني
+                                            @if ($request->technical_state == 2)
+                                                <span style="color: darkslategray"> معلق </span>
+                                            @elseif($request->technical_state == 1)
+                                                <span style="color: green"> الموافقة </span>
+                                            @elseif($request->technical_state == 0)
+                                                <span style="color: red"> الرفض </span>
+                                            @endif
+                                        </h4>
                                         <h4>بيانات المشروع</h4>
                                         <form class="needs-validation" novalidate=""
                                             action="{{ route('record.approve', $request->id) }}" method="POST"
@@ -426,6 +435,36 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-12 col-md-12 col-lg-12">
+                                <div class="card card-primary">
+                                    <div class="card-body">
+                                        <h3 class="text-center">ملاحظات لجنة البت الفني</h3>
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-hover" id="notes"
+                                                style="margin-top: 10px;">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col"> # </th>
+                                                        <th scope="col"> الملاحظة </th>
+                                                        <th scope="col"> تاريخ الارسال </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @isset($r_tech)
+                                                        @foreach ($r_tech as $note)
+                                                            <tr>
+                                                                <td>{{ $note->id }}</td>
+                                                                <td>{{ $note->note }}</td>
+                                                                <td>{{ $note->date }}</td>
+                                                            </tr>
+                                                        @endforeach
+                                                    @endisset
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -455,7 +494,7 @@
     <script src="assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#notes').DataTable();
+            $('table.table').DataTable();
         });
 
         /*function formConfirm() {

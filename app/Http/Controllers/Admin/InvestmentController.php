@@ -324,7 +324,8 @@ class InvestmentController extends Controller
         $r_note = Request_note::select()->where('request_id',$id)->get();
         $request = RequestP::select()->find($id);
         $request_places = Request_places::select()->where('request_id',$id)->get();
-        return view('investment.lecturer.create',compact('request','city','clicense','r_license','r_note','project','request_places'));
+        $r_tech = r_tech::select()->where('request_id',$id)->get();
+        return view('investment.lecturer.create',compact('request','city','clicense','r_license','r_note','project','request_places','r_tech'));
     }
 
     public function record_store(Request $request)
