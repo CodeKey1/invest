@@ -294,6 +294,7 @@ class InvestmentController extends Controller
         $request_suggested_places = Request_places::where('request_id',$id)->delete ('request_id');
         $request_notes = Request_note::where('request_id',$id)->delete ('request_id');
         $request_license = R_license::where('request_id',$id)->delete('request_id');
+        $r_tech = r_tech::where('request_id',$id)->delete('request_id');
         $user = RequestP::with('Project_Rq')->find($id);
 
 
