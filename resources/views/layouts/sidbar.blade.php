@@ -3,10 +3,9 @@
 <nav class="navbar navbar-expand-lg main-navbar sticky">
     <ul class="navbar-nav navbar-left">
         <li class="dropdown"><a href="#" data-toggle="dropdown"
-                class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="assets/img/user.png"
-                    class="user-img-radious-style"> <span class="d-sm-none d-lg-inline-block"></span></a>
+                class="nav-link dropdown-toggle nav-link-lg nav-link-user"> {{ Auth::user()->name }} مرحبا <span
+                    class="d-sm-none d-lg-inline-block"></span></a>
             <div class="dropdown-menu dropdown-menu-left pullDown">
-                <div class="dropdown-title"> {{ Auth::user()->name }} : مرحبا</div>
                 <a href="{{ route('user.edit', Auth::user()->id) }}" class="dropdown-item has-icon"> <i
                         class="fas fa-cog"></i>
                     الإعدادات
@@ -87,7 +86,7 @@
                         <i data-feather="briefcase"></i></a>
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="{{ route('auction') }}">مزادات</a></li>
-                        <li><a class="nav-link" href="{{ route('offer') }}">اطروحات</a></li>
+                        <li><a class="nav-link" href="{{ route('offer') }}">الاطروحات</a></li>
                     </ul>
                 </li>
                 <li class="menu-header">
@@ -131,7 +130,7 @@
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="{{ route('user') }}"> المستخدمين</a></li>
                         <li><a class="nav-link" href="{{ route('role') }}">الصلحيات</a></li>
-                        <li><a class="nav-link" href="{{ route('app.modify') }}">اعدادات البرنامج</a></li>
+                        <li><a class="nav-link" href="{{ route('app.modify') }}">بيانات اساسية</a></li>
                     </ul>
                 </li>
             </ul>
@@ -157,7 +156,7 @@
                         <i data-feather="briefcase"></i></a>
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="{{ route('auction') }}">مزادات</a></li>
-                        <li><a class="nav-link" href="{{ route('offer') }}">اطروحات</a></li>
+                        <li><a class="nav-link" href="{{ route('offer') }}">الاطروحات</a></li>
                     </ul>
                 </li>
                 <li class="menu-header">

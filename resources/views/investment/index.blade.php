@@ -68,10 +68,9 @@
                                                 style="width:100%;">
                                                 <thead>
                                                     <tr>
-                                                        <th> # </th>
-                                                        <th> مشروع </th>
+                                                        <th>فئة مشروع </th>
                                                         <th> اسم المشروع </th>
-                                                        <th>اسم المتقدم</th>
+                                                        <th>اسم المقدم</th>
                                                         <th> مواطن / شركة </th>
                                                         <th>المدينة</th>
                                                         <th>الحالة</th>
@@ -84,9 +83,9 @@
                                                         @if ($request && $request->count() > 0)
                                                             @foreach ($request as $requests)
                                                                 <tr>
-                                                                    <td>{{ $requests->id }}</td>
+                                                                    <td>{{ $requests->categoryname->name ?? 'لا يوجد' }}
+                                                                    </td>
                                                                     <td>{{ $requests->name }}</td>
-                                                                    <td>{{ $requests->subCat->name ?? 'لا يوجد' }}</td>
                                                                     <td>{{ $requests->owner_name }}</td>
                                                                     <td>{{ $requests->owner_type }}</td>
                                                                     <td>{{ $requests->city->name }}</td>
@@ -107,24 +106,23 @@
                                                                         @endforeach
                                                                     </td>
                                                                     <td>
-                                                                        <a class="btn btn-icon btn-success"
-                                                                            href="{{ route('investment.show', $requests->id) }}"
-                                                                            ata-toggle="tooltip" data-placement="top"
-                                                                            title="تعديل">
-                                                                            <i class="fas fa-edit"></i>
-                                                                        </a>
                                                                         <a class="btn btn-icon btn-info"
                                                                             href="{{ route('investment.record', $requests->id) }}"
                                                                             ata-toggle="tooltip" data-placement="top"
                                                                             title="عرض">
                                                                             <i class="fas fa-info"></i>
                                                                         </a>
-                                                                        <a class="btn btn-icon btn-danger"
-                                                                            href="{{ route('investment.delete', $requests->id) }}"><i
-                                                                                class="fas fa-times"></i></a>
-                                                                        {{-- <a class="btn btn-icon btn-info"
-                                                                            href="{{ route('investment.Record', $requests->id) }}"><i
-                                                                                class="fas fa-comment-dots"></i></a> --}}
+                                                                        @if (auth()->user()->hasRole('super_admin'))
+                                                                            <a class="btn btn-icon btn-success"
+                                                                                href="{{ route('investment.show', $requests->id) }}"
+                                                                                ata-toggle="tooltip" data-placement="top"
+                                                                                title="تعديل">
+                                                                                <i class="fas fa-edit"></i>
+                                                                            </a>
+                                                                            <a class="btn btn-icon btn-danger"
+                                                                                href="{{ route('investment.delete', $requests->id) }}"><i
+                                                                                    class="fas fa-times"></i></a>
+                                                                        @endif
                                                                     </td>
                                                                 </tr>
                                                             @endforeach

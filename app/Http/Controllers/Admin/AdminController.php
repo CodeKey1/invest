@@ -15,10 +15,11 @@ class AdminController extends Controller
      */
     public function index()
     {
-        if (auth()->user()->hasRole('user') || auth()->user()->hasRole('side'))
+        if (auth()->user()->hasRole('super_admin')){
+            $roles = Role::select()->get();
+            return view('roles.index',compact('roles'));
+        }else
             abort(403, 'user doesn\'t have access');
-        $roles = Role::select()->get();
-        return view('roles.index',compact('roles'));
     }
 
     /**
@@ -26,11 +27,12 @@ class AdminController extends Controller
      */
     public function create()
     {
-        if (auth()->user()->hasRole('user') || auth()->user()->hasRole('side'))
+        if (auth()->user()->hasRole('super_admin')){
+            $roles = Role::select()->get();
+            $permissions = Permission::select()->get();
+            return view('roles.create',compact('roles','permissions'));
+        }else
             abort(403, 'user doesn\'t have access');
-        $roles = Role::select()->get();
-        $permissions = Permission::select()->get();
-        return view('roles.create',compact('roles','permissions'));
     }
 
     /**
@@ -38,62 +40,52 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        if (auth()->user()->hasRole('user') || auth()->user()->hasRole('side'))
+        if (auth()->user()->hasRole('super_admin')){
+            $request->validate([
+                'name' => 'bail|required|unique:roles',
+                'permissions' => 'bail|required',
+            ]);
+    
+            $role = Role::create(['name' => $request->name]);
+            $per =  Role::whereIn('id', $request->permissions)->get();
+            $role->syncPermissions($per);
+            return redirect()->route('role')->with(['success' => 'تم التسجيل بنجاح']);
+        }else
             abort(403, 'user doesn\'t have access');
-        $request->validate([
-            'name' => 'bail|required|unique:roles',
-            'permissions' => 'bail|required',
-        ]);
-
-        $role = Role::create(['name' => $request->name]);
-        $per =  Role::whereIn('id', $request->permissions)->get();
-        $role->syncPermissions($per);
-        return redirect()->route('role')->with(['success' => 'تم التسجيل بنجاح']);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
-        if (auth()->user()->hasRole('user') || auth()->user()->hasRole('side'))
+        if (auth()->user()->hasRole('super_admin')){
+            //$permissions = Permission::select()->where('role_id',$id)->get();
+            $permissions = Permission::select()->get();
+            $roles = Role::with('permissions')->find($id);
+            return view('roles.edit',compact('roles','permissions'));
+        }else
             abort(403, 'user doesn\'t have access');
-        //$permissions = Permission::select()->where('role_id',$id)->get();
-        $permissions = Permission::select()->get();
-        $roles = Role::with('permissions')->find($id);
-        return view('roles.edit',compact('roles','permissions'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        if (auth()->user()->hasRole('user') || auth()->user()->hasRole('side'))
+        if (auth()->user()->hasRole('super_admin')){
+            $roles = Role::whereIn('id', $id)->update(['name' => $request->name]);
+            $per =  Permission::whereIn('id', $id)->update(['permissions' => $request->permissions]);
+            $roles->syncPermissions($per);
+            return redirect()->route('role')->with(['success' => 'تم التعديل بنجاح']);
+        }else
             abort(403, 'user doesn\'t have access');
-        $roles = Role::whereIn('id', $id)->update(['name' => $request->name]);
-        $per =  Permission::whereIn('id', $id)->update(['permissions' => $request->permissions]);
-        $roles->syncPermissions($per);
-        return redirect()->route('role')->with(['success' => 'تم التعديل بنجاح']);
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
+        
+        /**
+         * Remove the specified resource from storage.
+         */
     public function destroy(string $id)
     {
-        if (auth()->user()->hasRole('user') || auth()->user()->hasRole('side'))
+        if (auth()->user()->hasRole('super_admin')){
+            $role = Role::find($id);
+            $role->delete();
+            return redirect()->route('role')->with(['success' => 'تم الحذف بنجاح']);
+        }else
             abort(403, 'user doesn\'t have access');
-        $role = Role::find($id);
-        $role->delete();
-        return redirect()->route('role')->with(['success' => 'تم الحذف بنجاح']);
     }
 }

@@ -18,10 +18,11 @@ class UsersController extends Controller
      */
     public function index()
     {
-        if (auth()->user()->hasRole('user') || auth()->user()->hasRole('side'))
+        if (auth()->user()->hasRole('super_admin')){
+            $users = User::select()->get();
+            return view('users.index',compact('users'));
+        }else
             abort(403, 'user doesn\'t have access');
-        $users = User::select()->get();
-        return view('users.index',compact('users'));
     }
 
     /**
@@ -29,10 +30,11 @@ class UsersController extends Controller
      */
     public function create()
     {
-        if (auth()->user()->hasRole('user') || auth()->user()->hasRole('side'))
+        if (auth()->user()->hasRole('super_admin')){
+            $role = Role::select()->get();
+            return view('users.create',compact('role'));
+        }else
             abort(403, 'user doesn\'t have access');
-        $role = Role::select()->get();
-        return view('users.create',compact('role'));
     }
 
     /**
@@ -40,32 +42,32 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        if (auth()->user()->hasRole('user') || auth()->user()->hasRole('side'))
+        if (auth()->user()->hasRole('super_admin')){
+            $data = $request->validate([
+                'name' => ['required', 'string', 'max:255'],
+                'role' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+            ]);
+            try{
+                $user = User :: create(([
+                 'name' => $data['name'],
+                 'email' =>$data['email'],
+                 'role' =>$data['role'],
+                 'password' => Hash::make($data['password']),
+    
+                 ]));
+                 Model_has_roles :: create(([
+                    'role_id' => $data['role'],
+                    'model_id' => $user->id,
+                ]));
+    
+                return redirect()->route('user')-> with(['success' => 'تم التسجيل بنجاح']);
+            }catch(\Exception $ex){
+                return redirect()->route('user')-> with(['error' => 'خطأ'.$ex]);
+            }
+        }else
             abort(403, 'user doesn\'t have access');
-        $data = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'role' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-
-        try{
-            $user = User :: create(([
-             'name' => $data['name'],
-             'email' =>$data['email'],
-             'role' =>$data['role'],
-             'password' => Hash::make($data['password']),
-
-             ]));
-             Model_has_roles :: create(([
-                'role_id' => $data['role'],
-                'model_id' => $user->id,
-            ]));
-
-            return redirect()->route('user')-> with(['success' => 'تم التسجيل بنجاح']);
-        }catch(\Exception $ex){
-            return redirect()->route('user')-> with(['error' => 'خطأ'.$ex]);
-        }
     }
 
     /**
@@ -81,11 +83,12 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        if (auth()->user()->hasRole('user') || auth()->user()->hasRole('side'))
+        if (auth()->user()->id==$id || auth()->user()->hasRole('super_admin')){
+            $roles = Role::select()->get();
+            $user = User ::select()->find($id);
+            return view('users.edit',compact('user','roles'));
+        }else
             abort(403, 'user doesn\'t have access');
-        $roles = Role::select()->get();
-        $user = User ::select()->find($id);
-        return view('users.edit',compact('user','roles'));
     }
 
     /**
@@ -93,24 +96,24 @@ class UsersController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        if (auth()->user()->hasRole('user') || auth()->user()->hasRole('side'))
+        if (auth()->user()->id==$id || auth()->user()->hasRole('super_admin')){
+            try{
+                User :: where('id',$id)->update(([
+                    'name' => $request['name'],
+                    'email' =>$request['email'],
+                    'password' => Hash::make($request['password']),
+                    'role' => $request['role'],
+                    //'state' => $request['state'],
+                ]));
+                Model_has_roles :: where('model_id',$id)->update(([
+                    'role_id' => $request['role'],
+                ]));
+                return redirect()->route('user')-> with(['success' => 'تم التسجيل بنجاح']);
+            }catch(\Exception $ex){
+                return redirect()->route('user')-> with(['error' => 'خطا'. $ex]);
+            }
+        }else
             abort(403, 'user doesn\'t have access');
-        try{
-            User :: where('id',$id)->update(([
-                'name' => $request['name'],
-                'email' =>$request['email'],
-                'password' => Hash::make($request['password']),
-                'role' => $request['role'],
-                //'state' => $request['state'],
-            ]));
-            Model_has_roles :: where('model_id',$id)->update(([
-                'role_id' => $request['role'],
-            ]));
-            return redirect()->route('user')-> with(['success' => 'تم التسجيل بنجاح']);
-        }catch(\Exception $ex){
-            return redirect()->route('user')-> with(['error' => 'خطا'. $ex]);
-
-        }
     }
 
     /**
@@ -118,10 +121,11 @@ class UsersController extends Controller
      */
     public function destroy(string $id)
     {
-        if (auth()->user()->hasRole('user') || auth()->user()->hasRole('side'))
+        if (auth()->user()->hasRole('super_admin')){
+            $user = User::find($id);
+            $user->delete();
+            return redirect()->route('user')->with(['success' => 'تم الحذف بنجاح']);
+        }else
             abort(403, 'user doesn\'t have access');
-        $user = User::find($id);
-        $user->delete();
-        return redirect()->route('user')->with(['success' => 'تم الحذف بنجاح']);
     }
 }

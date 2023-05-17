@@ -132,9 +132,9 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th> # </th>
-                                                                    <th> مشروع </th>
+                                                                    <th>فئة مشروع </th>
                                                                     <th> اسم المشروع </th>
-                                                                    <th>اسم المتقدم</th>
+                                                                    <th>اسم المقدم</th>
                                                                     <th> مواطن / شركة </th>
                                                                     <th>المدينة</th>
                                                                     <th> موافقات الجهات </th>
@@ -151,7 +151,7 @@
                                                                                     <td>{{ $requests->categoryname->name }}
                                                                                     </td>
                                                                                     <td>{{ $requests->name }}</td>
-                                                                                    <td>{{ $requests->name }}</td>
+                                                                                    <td>{{ $requests->owner_name }}</td>
                                                                                     <td>{{ $requests->owner_type }}</td>
                                                                                     <td>{{ $requests->city->name }}</td>
                                                                                     <td>
