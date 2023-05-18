@@ -12,7 +12,7 @@ class R_license extends Model
 
     protected $table  = 'request_license';
 
-    protected $fillable = ['id','file','send_date','request_id','license_id','point','response_file','recived_date','created_at','updated_at'];
+    protected $fillable = ['id','file','send_date','request_id','license_id','point','response_file','recived_date','state','created_at','updated_at'];
 
     public function L_Lisense(){
 

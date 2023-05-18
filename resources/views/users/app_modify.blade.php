@@ -77,17 +77,16 @@
                                                 <div style="direction: rtl">
                                                     <div class="row">
 
-                                                            <div class="form-group col-md-6">
+                                                        <div class="form-group col-md-6">
 
-                                                                <input
-                                                                    type="text" name="gov_name"
-                                                                    class="form-control" placeholder="اسم المحافظة">
-                                                            </div>
-                                                            <div class="form-group col-md-1">
-                                                                <button type="submit" name="actionbtn"
+                                                            <input type="text" name="gov_name"
+                                                                class="form-control" placeholder="اسم المحافظة">
+                                                        </div>
+                                                        <div class="form-group col-md-1">
+                                                            <button type="submit" name="actionbtn"
                                                                 class="btn btn-primary" value="govbtn"
-                                                                    style="float: left;">حفظ</button>
-                                                            </div>
+                                                                style="float: left;">حفظ</button>
+                                                        </div>
 
                                                         <div class="col-lg-12">
                                                             <div class="table-responsive">
@@ -352,12 +351,12 @@
                                                 role="tab" aria-controls="license"
                                                 aria-selected="false">موافقات</a>
                                         </li>
-                                        <li class="nav-item">
+                                        {{-- <li class="nav-item">
                                             <a class="nav-link" id="Clicense-tab" data-toggle="tab" href="#Clicense"
                                                 role="tab" aria-controls="Clicense" aria-selected="false">موافقة
                                                 كل
                                                 فئة</a>
-                                        </li>
+                                        </li> --}}
                                     </ul>
                                     <div class="tab-content">
                                         <div class="tab-pane fade show active" id="category" role="tabpanel"
@@ -563,7 +562,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="tab-pane fade" id="Clicense" role="tabpanel"
+                                        {{-- <div class="tab-pane fade" id="Clicense" role="tabpanel"
                                             aria-labelledby="Clicense-tab">
                                             <div>
                                                 <div class="card-header">
@@ -594,9 +593,6 @@
                                                                 <label> اختر الموافقات</label>
                                                                 <select class="form-control select2" multiple=""
                                                                     name="category_license[]" style="width: 100%">
-                                                                    {{-- <option value="" hidden disabled selected>اختر
-                                                                    الموافقات
-                                                                </option> --}}
                                                                     @isset($license)
                                                                         @if ($license && $license->count() > 0)
                                                                             @foreach ($license as $license1)
@@ -652,7 +648,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="other" role="tabpanel"

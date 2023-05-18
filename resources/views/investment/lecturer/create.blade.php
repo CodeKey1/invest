@@ -79,7 +79,7 @@
                                     <div class="card-body">
                                         <h4>حالة لجنة البت الفني
                                             @if ($request->technical_state == 2)
-                                                <span style="color: darkslategray"> معلق </span>
+                                                <span style="color: darkslategray"> جاري </span>
                                             @elseif($request->technical_state == 1)
                                                 <span style="color: green"> الموافقة </span>
                                             @elseif($request->technical_state == 0)
@@ -156,10 +156,16 @@
                                                         class="form-control" value="{{ $request->size_type }}"
                                                         disabled>
                                                 </div>
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-2">
                                                     <label>برأسمال قيمته </label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
                                                         class="form-control" value="{{ $request->capital }}"
+                                                        disabled>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <label>فئة العملة</label>
+                                                    <input style="height: calc(2.25rem + 6px);" type="text"
+                                                        class="form-control" value="{{ $request->currency_type }}"
                                                         disabled>
                                                 </div>
                                                 <div class="form-group col-md-4">
@@ -226,14 +232,14 @@
                                         <table class="table table-bordered" style="margin-top: 10px;">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">#</th>
                                                     <th scope="col"> عقد نأسيس </th>
                                                     <th scope="col"> السجل التجاري </th>
                                                     <th scope="col"> البطاقة الضريبية </th>
                                                     <th scope="col"> صورة البطاقة </th>
-                                                    <th scope="col"> مستنادات الملاءة المالية </th>
+                                                    <th scope="col"> الملاءة المالية </th>
                                                     <th scope="col"> كروكي الموقع </th>
                                                     <th scope="col"> دراسة جدوي </th>
+                                                    <th scope="col"> محضر الطلب</th>
                                                 </tr>
                                             </thead>
                                             @isset($project)
@@ -241,7 +247,6 @@
                                                     @foreach ($project as $PRG)
                                                         <tbody>
                                                             <tr>
-                                                                <td>{{ $PRG->request_id }}</td>
                                                                 @if ($PRG->company_reg)
                                                                     <td><a href="{{ asset('attatcment_project/' . $PRG->company_reg) }}"
                                                                             target="_blank">اضغط هنا</a></td>
@@ -282,6 +287,12 @@
                                                                     <td><a href="{{ asset('attatcment_project/' . $PRG->feasibility_study) }}"
                                                                             target="_blank">اضغط هنا</a></td>
                                                                 @elseif(!$PRG->feasibility_study)
+                                                                    <td>لا يوجد</td>
+                                                                @endif
+                                                                @if ($PRG->record)
+                                                                    <td><a href="{{ asset('attatcment_project/' . $PRG->record) }}"
+                                                                            target="_blank">اضغط هنا</a></td>
+                                                                @elseif(!$PRG->record)
                                                                     <td>لا يوجد</td>
                                                                 @endif
                                                             </tr>
@@ -371,6 +382,7 @@
                                                 <label>اختر الجهة <span style="color: red">*</span></label>
                                                 <select class="form-control select2" style="width: 100%" multiple
                                                     name="l_name[]">
+                                                    <option value="invest">الاستثمار</option>
                                                     @isset($r_license)
                                                         @if ($r_license && $r_license->count() > 0)
                                                             @foreach ($r_license as $item)
@@ -415,9 +427,9 @@
                                                     </thead>
                                                     <tbody>
                                                         @isset($r_note)
-                                                            @foreach ($r_note as $note)
+                                                            @foreach ($r_note as $n => $note)
                                                                 <tr>
-                                                                    <td>{{ $note->id }}</td>
+                                                                    <td>{{ $n + 1 }}</td>
                                                                     <td>{{ $note->sender_name->name }}</td>
                                                                     <td>{{ $note->note_license->name }}</td>
                                                                     <td>{{ $note->notes }}</td>
@@ -451,9 +463,9 @@
                                                 </thead>
                                                 <tbody>
                                                     @isset($r_tech)
-                                                        @foreach ($r_tech as $note)
+                                                        @foreach ($r_tech as $n => $note)
                                                             <tr>
-                                                                <td>{{ $note->id }}</td>
+                                                                <td>{{ $n + 1 }}</td>
                                                                 <td>{{ $note->note }}</td>
                                                                 <td>{{ $note->date }}</td>
                                                             </tr>

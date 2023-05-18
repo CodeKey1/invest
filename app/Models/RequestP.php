@@ -25,6 +25,7 @@ class RequestP extends Model
         'self_financing',
         'recived_date',
         'capital',
+        'currency_type',
         'phone',
         'state',
         'technical_state',

@@ -78,7 +78,7 @@
                                             @if ($request->technical_state == 1)
                                                 <span style="color: green"> المعتمدة </span>
                                             @elseif($request->technical_state == 2)
-                                                <span style="color: darkslategrey"> المعلقة </span>
+                                                <span style="color: darkslategrey"> الجاري </span>
                                             @elseif($request->technical_state == 0)
                                                 <span style="color: red"> المرفوضة </span>
                                             @endif

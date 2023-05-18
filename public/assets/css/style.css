@@ -9153,7 +9153,7 @@ body:not(.sidebar-mini)
     ul.dropdown-menu
     li
     a {
-    background-color: #fff;
+    background: linear-gradient(-180deg, #353c48, #10131a);
 }
 
 .light-sidebar.sidebar-mini
@@ -9170,9 +9170,9 @@ body:not(.sidebar-mini)
     background-color: #fff;
 }
 
-.light-sidebar.sidebar-mini .main-sidebar .dropdown-title {
+/* .light-sidebar.sidebar-mini .main-sidebar .dropdown-title {
     background-color: #fff;
-}
+} */
 
 .light-sidebar.sidebar-mini .main-sidebar:after {
     background-color: #fff;

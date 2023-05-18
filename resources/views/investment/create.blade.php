@@ -23,7 +23,7 @@
 </head>
 
 <body class="light theme-white dark-sidebar">
-    <div class="loader"></div>E
+    <div class="loader"></div>
     <div id="app">
         <div class="main-wrapper main-wrapper-1">
 
@@ -53,17 +53,6 @@
                                                     href="#">عودة</a></button> --}}
                                     </div>
 
-                                </div>
-                                <div class="card"
-                                    style="flex-direction: inherit;
-                                    background-color: #fff0;
-                                    border-radius: 10px;
-                                    border: none;
-                                    position: relative;
-                                    margin-bottom: 30px;
-                                    box-shadow: unset;">
-                                    <span class="badge badge-danger" style="border-radius: 4px;">تاريخ اليوم :
-                                        {{ $now }} </span>
                                 </div>
                                 <form class="needs-validation" id="work_experience" novalidate=""
                                     action="{{ route('investment.store') }}" method="POST"
@@ -108,18 +97,20 @@
                                                         name="name" class="form-control" placeholder="" required>
                                                 </div>
                                                 <div class="form-group col-md-12">
-                                                    <label> الجهات للموافة علي المشرع </label>
-                                                    @isset($clicense)
-                                                        @if ($clicense && $clicense->count() > 0)
-                                                            @foreach ($clicense as $lice)
-                                                                <div
-                                                                    class="option license-{{ $lice->license_cate->id }} badge badge-danger">
-                                                                    {{ $lice->license->name }}</div>
-                                                                {{-- <input class="option license-{{ $lice->license_cate->id }}" type="text" value="{{ $lice->license_cate->id }}" name="sub_ctegory_id"> --}}
-                                                            @endforeach
-                                                        @endif
-                                                    @endisset
-
+                                                    <label> الجهات للموافة علي المشرع <span
+                                                            style="color: red">*</span></label>
+                                                    <select class="form-control select2" multiple="" name="license[]"
+                                                        style="width: 100%">
+                                                        @isset($license)
+                                                            @if ($license && $license->count() > 0)
+                                                                @foreach ($license as $license1)
+                                                                    <option value="{{ $license1->id }}">
+                                                                        {{ $license1->name }}
+                                                                    </option>
+                                                                @endforeach
+                                                            @endif
+                                                        @endisset
+                                                    </select>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label>نوع مقدم الطلب <span style="color: red">*</span></label>
@@ -152,10 +143,10 @@
                                                         name="representative_id" class="form-control" value="">
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label>بطاقة رقم </label>
+                                                    <label>بطاقة رقم \ جواز رقم</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        pattern="\d*" name="NID" class="form-control"
-                                                        maxlength="14" minlength="14">
+                                                        name="NID" class="form-control" maxlength="14"
+                                                        minlength="9">
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label>تليفون <span style="color: red">*</span></label>
@@ -178,11 +169,19 @@
                                                         <option value="فدان">فدان</option>
                                                     </select>
                                                 </div>
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-2">
                                                     <label>برأسمال قيمته </label>
                                                     <input style="height: calc(2.25rem + 6px);" step="0.1"
                                                         type="number" name="capital" class="form-control"
                                                         placeholder="">
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <label>فئة العملة</label>
+                                                    <select class="form-control" name="currency_type">
+                                                        <option value="EGP">جنيه</option>
+                                                        <option value="USD">USD</option>
+                                                        <option value="EUR">EUR</option>
+                                                    </select>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label>نسبة التمويل الذاتي </label>
@@ -277,13 +276,18 @@
                                                 <div class="form-group col-md-3">
                                                     <label for=""> كروكي الموقع المختار واحداثياته
                                                     </label>
-                                                    <input type="file" name="location_string" class="form-control"
+                                                    <input type="file" name="site_sketch" class="form-control"
                                                         style="height: calc(2.25rem + 6px);">
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for=""> دراسة جدوي للمشروع </label>
                                                     <input type="file" name="feasibility_study"
                                                         class="form-control" style="height: calc(2.25rem + 6px);">
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label for="">محضر الجلسة</label>
+                                                    <input type="file" name="record" class="form-control"
+                                                        style="height: calc(2.25rem + 6px);">
                                                 </div>
                                             </div>
                                             <button type="submit" class="btn btn-success"

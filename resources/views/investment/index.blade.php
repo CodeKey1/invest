@@ -97,14 +97,14 @@
                                                                         @elseif($requests->technical_state == 0)
                                                                             <div class="badge badge-danger">مرفوض</div>
                                                                         @else
-                                                                            <div class="badge badge-warning">معلق</div>
+                                                                            <div class="badge badge-warning">جاري</div>
                                                                         @endif
                                                                     </td>
                                                                     <td>
                                                                         @foreach ($r_license->where('request_id', $requests->id) as $r)
-                                                                            @if ($r->response_file != null)
+                                                                            @if ($r->state)
                                                                                 <div class="badge badge-success"> </div>
-                                                                            @elseif($r->response_file == null)
+                                                                            @else
                                                                                 <div class="badge badge-danger"> </div>
                                                                             @endif
                                                                         @endforeach
