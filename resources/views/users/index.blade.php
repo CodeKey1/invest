@@ -62,9 +62,9 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($users as $user)
+                                                    @foreach ($users as $u => $user)
                                                         <tr>
-                                                            <td>{{ $user->id }}</td>
+                                                            <td>{{ $u + 1 }}</td>
                                                             <td>{{ $user->name }}</td>
                                                             <td class="mb-2">
                                                                 @if ($user->role == 3)
@@ -73,6 +73,10 @@
                                                                     مستخدم
                                                                 @elseif($user->role == 5)
                                                                     جهات
+                                                                @elseif($user->role == 7)
+                                                                    اللجنة الفنية
+                                                                @elseif($user->role == 8)
+                                                                    المدن
                                                                 @endif
                                                             </td>
 

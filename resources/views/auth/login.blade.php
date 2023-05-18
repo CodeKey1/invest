@@ -30,12 +30,12 @@
             left: 0;
             width: 100%;
             height: 100vh;
-            background: url(images/logo/aswan.png) no-repeat center center fixed;
+            background: url(images/logo/aswan.jpg) no-repeat center fixed;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
-            opacity: 0.8;
+            opacity: 1;
         }
 
         .background::after {
@@ -45,16 +45,16 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: linear-gradient(135deg, #279c96, #ee7326) !important;
+            background-image: linear-gradient(135deg, #003b38, #682901) !important;
             /*background-image: linear-gradient(to bottom, #ff0000, #ff3d66, #ff75ad, #ffa6e0, #f8d1fc, #decae9, #c9c2d2, #b9b9b9, #878787, #585858, #2e2e2e, #000000);*/
             opacity: .7;
         }
 
         .container {
-            background-color: #fff;
-            opacity: 0.95;
+            background-color: #ffffffc4;
+            opacity: 0.99;
             border-radius: 15px;
-            animation: glow 1s infinite alternate;
+            animation: glow 2s infinite alternate;
             margin-top: 10%;
         }
 
@@ -77,11 +77,11 @@
 
         @keyframes glow {
             from {
-                box-shadow: 0 0 10px 10px #279c96;
+                box-shadow: 0 0 10px 10px #003b3865;
             }
 
             to {
-                box-shadow: 0 0 10px 10px #ee7326;
+                box-shadow: 0 0 10px 10px #6829018a;
             }
         }
 

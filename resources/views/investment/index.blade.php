@@ -68,6 +68,7 @@
                                                 style="width:100%;">
                                                 <thead>
                                                     <tr>
+                                                        <th>#</th>
                                                         <th>فئة مشروع </th>
                                                         <th> اسم المشروع </th>
                                                         <th>اسم المقدم</th>
@@ -81,8 +82,9 @@
                                                 <tbody>
                                                     @isset($request)
                                                         @if ($request && $request->count() > 0)
-                                                            @foreach ($request as $requests)
+                                                            @foreach ($request as $req => $requests)
                                                                 <tr>
+                                                                    <td>{{ $req + 1 }}</td>
                                                                     <td>{{ $requests->categoryname->name ?? 'لا يوجد' }}
                                                                     </td>
                                                                     <td>{{ $requests->name }}</td>
@@ -90,10 +92,12 @@
                                                                     <td>{{ $requests->owner_type }}</td>
                                                                     <td>{{ $requests->city->name }}</td>
                                                                     <td>
-                                                                        @if ($requests->state)
-                                                                            <div class="badge badge-success"> </div>
-                                                                        @elseif(!$requests->state)
-                                                                            <div class="badge badge-danger"> </div>
+                                                                        @if ($requests->technical_state == 1)
+                                                                            <div class="badge badge-success">مقبول</div>
+                                                                        @elseif($requests->technical_state == 0)
+                                                                            <div class="badge badge-danger">مرفوض</div>
+                                                                        @else
+                                                                            <div class="badge badge-warning">معلق</div>
                                                                         @endif
                                                                     </td>
                                                                     <td>

@@ -45,8 +45,6 @@
                                         <h4>ادارة جميع طلبات الإستثمار المرسلة</h4>
                                         <div class="card-header-action">
                                             <div class="dropdown">
-                                                <a href="{{ route('investment') }}" class="btn btn-warning"> كل طلبات
-                                                    الإستثمار </a>
                                             </div>
                                             <a href="{{ route('home') }}" class="btn btn-primary">الرئيسية</a>
                                         </div>
@@ -134,7 +132,7 @@
                                                                     <th> # </th>
                                                                     <th> مشروع </th>
                                                                     <th> اسم المشروع </th>
-                                                                    <th>اسم المتقدم</th>
+                                                                    <th>اسم المقدم</th>
                                                                     <th> مواطن / شركة </th>
                                                                     <th>المدينة</th>
                                                                     <th>تفاصيل</th>
@@ -143,14 +141,14 @@
                                                             <tbody>
                                                                 @isset($request)
                                                                     @if ($request && $request->count() > 0)
-                                                                        @foreach ($request as $requests)
+                                                                        @foreach ($request as $req => $requests)
                                                                             @if ($requests->technical_state == 2)
                                                                                 <tr>
-                                                                                    <td>{{ $requests->id }}</td>
+                                                                                    <td>{{ $req + 1 }}</td>
                                                                                     <td>{{ $requests->categoryname->name }}
                                                                                     </td>
                                                                                     <td>{{ $requests->name }}</td>
-                                                                                    <td>{{ $requests->name }}</td>
+                                                                                    <td>{{ $requests->owner_name }}</td>
                                                                                     <td>{{ $requests->owner_type }}</td>
                                                                                     <td>{{ $requests->city->name }}</td>
                                                                                     <td>
@@ -183,7 +181,7 @@
                                                                     <th> # </th>
                                                                     <th> مشروع </th>
                                                                     <th> اسم المشروع </th>
-                                                                    <th>اسم المتقدم</th>
+                                                                    <th>اسم المقدم</th>
                                                                     <th> مواطن / شركة </th>
                                                                     <th>المدينة</th>
                                                                     <th> الرد </th>
@@ -193,14 +191,14 @@
                                                             <tbody>
                                                                 @isset($request)
                                                                     @if ($request && $request->count() > 0)
-                                                                        @foreach ($request as $requests)
+                                                                        @foreach ($request as $req => $requests)
                                                                             @if ($requests->technical_state != 2)
                                                                                 <tr>
-                                                                                    <td>{{ $requests->id }}</td>
+                                                                                    <td>{{ $req + 1 }}</td>
                                                                                     <td>{{ $requests->categoryname->name }}
                                                                                     </td>
                                                                                     <td>{{ $requests->name }}</td>
-                                                                                    <td>{{ $requests->name }}</td>
+                                                                                    <td>{{ $requests->owner_name }}</td>
                                                                                     <td>{{ $requests->owner_type }}</td>
                                                                                     <td>{{ $requests->city->name }}</td>
                                                                                     <td>

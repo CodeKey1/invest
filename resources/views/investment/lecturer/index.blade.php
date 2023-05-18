@@ -144,10 +144,10 @@
                                                             <tbody>
                                                                 @isset($request)
                                                                     @if ($request && $request->count() > 0)
-                                                                        @foreach ($request as $requests)
+                                                                        @foreach ($request as $req => $requests)
                                                                             @if ($requests->state)
                                                                                 <tr>
-                                                                                    <td>{{ $requests->id }}</td>
+                                                                                    <td>{{ $req + 1 }}</td>
                                                                                     <td>{{ $requests->categoryname->name }}
                                                                                     </td>
                                                                                     <td>{{ $requests->name }}</td>
@@ -207,10 +207,10 @@
                                                             <tbody>
                                                                 @isset($request)
                                                                     @if ($request && $request->count() > 0)
-                                                                        @foreach ($request as $requests)
+                                                                        @foreach ($request as $req => $requests)
                                                                             @if (!$requests->state)
                                                                                 <tr>
-                                                                                    <td>{{ $requests->id }}</td>
+                                                                                    <td>{{ $req + 1 }}</td>
                                                                                     <td>{{ $requests->categoryname->name }}
                                                                                     </td>
                                                                                     <td>{{ $requests->name }}</td>

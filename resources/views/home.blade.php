@@ -76,7 +76,7 @@
                                         <div class="row ">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
                                                 <div class="card-content">
-                                                    <h5 class="font-14">اجمالي المزادات</h5>
+                                                    <h5 class="font-14"> المزادات</h5>
                                                     <h2 class="mb-3 font-18">
                                                         {{ $auctions->count() }}
                                                     </h2>
@@ -143,10 +143,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4>المشاريع</h4>
-                                    <div class="card-header-action">
-                                        <a href="{{ route('investment') }}" class="btn btn-primary">كل طلبات
-                                            الإستثمار</a>
-                                    </div>
                                 </div>
                                 <div class="card-body">
                                     <canvas id="lineChartFill"></canvas>
@@ -195,17 +191,11 @@
                                     <h4>طلبات الإستثمار المتأخرة</h4>
 
                                     <div class="card-header-action">
-                                        {{-- <div class="dropdown">
-                                      <a href="#" data-toggle="dropdown" class="btn btn-warning dropdown-toggle">Options</a>
-                                      <div class="dropdown-menu">
-                                        <a href="#" class="dropdown-item has-icon"><i class="fas fa-eye"></i> View</a>
-                                        <a href="#" class="dropdown-item has-icon"><i class="far fa-edit"></i> Edit</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a href="#" class="dropdown-item has-icon text-danger"><i class="far fa-trash-alt"></i>
-                                          Delete</a>
-                                      </div>
-                                    </div> --}}
-                                        <a href="#" class="btn btn-primary">View All</a>
+                                        @if (auth()->user()->hasRole('super_admin') ||
+                                                auth()->user()->hasRole('user'))
+                                            <a href="{{ route('investment') }}" class="btn btn-primary">كل طلبات
+                                                الإستثمار</a>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="card-body" style="direction: rtl;">
@@ -215,24 +205,32 @@
                                                 <tr>
                                                     <th> # </th>
                                                     <th>الطلب</th>
-                                                    <th>الحالة</th>
+                                                    <th>مقدم الطلب</th>
                                                     <th>التاخير</th>
                                                     <th>تاريخ الطلب</th>
+                                                    <th>عرض</th>
 
                                                 </tr>
                                             </thead>
                                             @isset($delaiy_req)
                                                 @if ($delaiy_req && $delaiy_req->count() > 0)
-                                                    @foreach ($delaiy_req as $delaiy)
+                                                    @foreach ($delaiy_req as $d => $delaiy)
                                                         <tbody>
                                                             <tr>
-                                                                <td>{{ $delaiy->id }}</td>
+                                                                <td>{{ $d + 1 }}</td>
                                                                 <td> {{ $delaiy->name }} </td>
-                                                                <td>
-                                                                    <div class="badge badge-danger"> </div>
-                                                                </td>
+                                                                <td> {{ $delaiy->owner_name }} </td>
                                                                 <td> {{ $delaiy->created_at->diffForHumans($now) }} </td>
                                                                 <td> {{ $delaiy->recived_date }} </td>
+                                                                @if (auth()->user()->hasRole('super_admin') ||
+                                                                        auth()->user()->hasRole('user'))
+                                                                    <td><a class="btn btn-icon btn-info"
+                                                                            href="{{ route('investment.record', $delaiy->id) }}"
+                                                                            ata-toggle="tooltip" data-placement="top"
+                                                                            title="عرض">
+                                                                            <i class="fas fa-info"></i>
+                                                                        </a></td>
+                                                                @endif
                                                             </tr>
 
                                                         </tbody>
@@ -274,13 +272,7 @@
                     </div>
                 </section>
             </div>
-            <footer class="main-footer">
-                <div class="footer-left">
-                    <a href="https://aswan.gov.eg/">ISDT</a></a>
-                </div>
-                <div class="footer-right">
-                </div>
-            </footer>
+            @include('layouts.footer')
         </div>
     </div>
     <!-- General JS Scripts -->

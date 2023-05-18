@@ -42,11 +42,8 @@
                                     <div class="card-header">
                                         <h4> محاضر طلب الإسثمار / {{ $request->name }}</h4>
                                         <div class="card-header-action">
-                                            <a href="{{ route('investment.show', $request->id) }}"
-                                                class="btn btn-warning">تعديل
-                                                الطلب</a>
-                                            <a href="{{ route('lecturer') }}" class="btn btn-primary">ادارة
-                                                المحاضر</a>
+                                            <a href="{{ route('tech') }}" class="btn btn-primary">ادارة
+                                                الطلبات</a>
                                         </div>
                                     </div>
                                 </div>
@@ -131,8 +128,7 @@
                                                     <label> بالتوكيل رقم </label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
                                                         class="form-control"
-                                                        value="{{ $request->representative_id ?? 'لا يوجد' }}"
-                                                        disabled>
+                                                        value="{{ $request->representative_id ?? 'لا يوجد' }}" disabled>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label>بطاقة رقم </label>
@@ -196,7 +192,7 @@
                                                     <label> وصف المشروع </label>
                                                     <textarea class="form-control" name="description" cols="30" rows="5" maxlength="200" disabled>{{ $request->description }}</textarea>
                                                 </div>
-                                                @if ($request->technical_state == 0)
+                                                @if ($request->technical_state == 0 || $request->technical_state == 2)
                                                     <div class="form-group col-md-12">
                                                         <button type="submit" class="btn btn-success"
                                                             style="float: left;" name="actionBTN" value="approve">
@@ -302,10 +298,10 @@
                                             @csrf
                                             <div class="form-group col-md-12">
                                                 <label> التعليق<span style="color: red">*</span></label>
-                                                <textarea class="form-control" name="note" cols="10" rows="5" required> </textarea>
+                                                <textarea class="form-control" name="note" cols="10" rows="5" required></textarea>
                                             </div>
                                             <div class="form-group">
-                                                @if (!$request->technical_state)
+                                                @if ($request->technical_state == 0 || $request->technical_state == 2)
                                                     <input class="form-check-input" name="isConfirmed"
                                                         type="checkbox" value="1" id="defaultCheck1">
                                                     <label style="color: green" class="form-check-label"

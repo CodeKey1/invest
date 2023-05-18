@@ -59,9 +59,9 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($roles as $role)
+                                                    @foreach ($roles as $r => $role)
                                                         <tr>
-                                                            <td>{{ $role->id }}</td>
+                                                            <td>{{ $r + 1 }}</td>
                                                             <td>{{ $role->name }}</td>
                                                             <td>
                                                                 <a class="btn btn-icon btn-success"

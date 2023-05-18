@@ -267,6 +267,7 @@ class InvestmentController extends Controller
                      'phone' =>$request['phone'],
                      'description' =>$request['description'],
                      'state' =>0,
+                     'technical_state' =>2,
     
                   ]));
     
@@ -279,6 +280,7 @@ class InvestmentController extends Controller
                     'company_reg'         =>$company_file,
                     'nid_photo'           =>$nid_file,
                  ]));
+                if($request->region)
                 for($i = 0 ; $i < count($request->region) ; $i++){
                     $region[] = $request->region[$i];
                     $Request_places = Request_places::where('request_id', $id)-> update(([
@@ -339,7 +341,6 @@ class InvestmentController extends Controller
     {
         try{
             for($i = 0 ; $i < count($request->r_id) ; $i++){
-                $region[] = $request->send_date[$i];
                 $record_name = R_license::select()->where('id',$request->r_id[$i])->first();
                 $file_name = $record_name->file;
                 try{
@@ -351,7 +352,7 @@ class InvestmentController extends Controller
                     }
                 }catch( \Exception $ex){}
                 $r_license = R_license::where('id', $request->r_id[$i])-> update(([
-                    // 'send_date' => $region[$i],
+                    'send_date' => Carbon::today()->format('y-m-d'),
                     'file' => $file_name,
                     'point' => ($record_name->point)+1,
                 ]));

@@ -164,7 +164,7 @@
                                                         disabled>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
                                                         class="form-control" name="representative_name"
-                                                        value="{{ $request->representative_name ?? 'لا يوجد' }}">
+                                                        value="{{ $request->representative_name ?? '' }}">
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label> بالتوكيل رقم </label>
@@ -174,7 +174,7 @@
                                                         disabled>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
                                                         class="form-control" name="representative_id"
-                                                        value="{{ $request->representative_id ?? 'لا يوجد' }}">
+                                                        value="{{ $request->representative_id ?? '' }}">
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label>بطاقة رقم </label>
