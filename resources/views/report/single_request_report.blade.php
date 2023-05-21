@@ -22,6 +22,29 @@
     <!-- Custom style CSS -->
     <link rel="stylesheet" href="assets/css/custom.css">
     <link rel='shortcut icon' type='image/x-icon' href='assets/img/favicon.ico' />
+    <style>
+        @media screen {
+            div.divFooter {
+                display: none;
+            }
+        }
+
+        @media print {
+            div.divFooter {
+                position: fixed;
+                bottom: 0;
+                margin: 30px;
+                width: 90%;
+                justify-content: space-between;
+                align-items: center;
+                display: flex;
+            }
+
+            div.divFooter .logo {
+                width: 5%;
+            }
+        }
+    </style>
 </head>
 
 <body class="light theme-white dark-sidebar">
@@ -46,9 +69,9 @@
                         <section class="section" id="print">
                             <div id="centerlogo"
                                 style="margin: 30px ; justify-content: space-between; align-items: center; display:flex;">
-                                <img width="80px" height="100px" src="../images/logo/aswan.png">
-
-                                <img width="80px" height="100px" src="../images/logo/logo.png">
+                                {{-- <img width="80px" height="100px" src="../images/logo/logo.png"> --}}
+                                <h3>قطاع الشؤن الاقتصادية والاستثمار</h3>
+                                <img width="120px" height="120px" src="../images/logo/new_logo.png">
                             </div>
                             <div class="section-body">
                                 <div class="row" style="direction: rtl">
@@ -180,6 +203,33 @@
                                                     <br>
                                                     <br>
                                                     <br>
+                                                    <div class="col-12 col-md-12 col-lg-12">
+                                                        <h3>حالة الموافقات: </h3>
+                                                        <div class="d-flex justify-content-between">
+                                                            @isset($license)
+                                                                @foreach ($license as $li => $l)
+                                                                    <div class="p-2" style="width: 33%">
+                                                                        <h6> الجهة: {{ $l->L_Lisense->name }}</h6>
+                                                                        <h6> الرد :
+                                                                            @if ($l->state == 1)
+                                                                                موافق
+                                                                            @elseif($l->state == 0)
+                                                                                رفض
+                                                                            @else
+                                                                                لم يتم الرد
+                                                                            @endif
+                                                                        </h6>
+                                                                    </div>
+                                                                    @if ($li + 1 == 3 || ($li + 1) % 3 == 0)
+                                                            </div>
+                                                            <div class="d-flex justify-content-between">
+                                                                @endif
+                                                                @endforeach
+                                                            @endisset
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <br>
                                                     <br>
                                                     <br>
                                                     <div class="col-6 col-md-6 col-lg-6">
@@ -230,17 +280,23 @@
                                                         </table>
                                                     </div>
                                                 </div>
-                                                <div class="justify-content-right d-flex">
-                                                    <button class="btn btn-danger  float-left mt-3 mr-2"
-                                                        id="print_Button" onclick="printDiv()"> <i
-                                                            class="mdi mdi-printer ml-1"></i>طباعة</button>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="divFooter">
+                                <img src="../images/logo/logo.png" class="logo">
+                                <h6 style="color: darkslategrey">&nbsp;&nbsp; جميع الحقوق محفوظة لمركز نظم المعلومات
+                                    والتحول الرقمي&nbsp;&nbsp;
+                                </h6>
+                            </div>
                         </section>
+                        <div class="card-body justify-content-right d-flex">
+                            <button class="btn btn-danger  float-left mt-3 mr-2" id="print_Button"
+                                onclick="printDiv()">
+                                <i class="mdi mdi-printer ml-1"></i>طباعة</button>
+                        </div>
                     </div>
                     <div class="col-12 col-md-12 col-lg-12">
                         <div class="card card-primary">

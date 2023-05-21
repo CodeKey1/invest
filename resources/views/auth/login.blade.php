@@ -231,7 +231,7 @@
     <div class="container">
         <button class="btn btn-primary" onclick="showInfo()"
             style="position: absolute; border-radius: 50%; margin-top: 15px;">?</button>
-        <h2 class="text-center pt-5">منظومة الاستثمار</h2>
+        <h2 class="text-center pt-5">قطاع الشؤن الاقتصادية والاستثمار</h2>
         <div id="login-col">
             <div class="col-lg-6" id="inner-logo">
                 <img src="images/logo/logo.png">

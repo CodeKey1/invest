@@ -11,6 +11,7 @@ use App\Models\Offer;
 use App\Models\contract_type;
 
 use App\Models\RequestP;
+use App\Models\R_license;
 use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\Request_places;
@@ -139,7 +140,8 @@ class ReportController extends Controller
         $r_note = Request_note::select()->where('request_id',$id)->get();
         $project = Project::select()->where('request_id',$id)->get();
         $request_places = Request_places::select()->where('request_id',$id)->get();
-        return view('report.single_request_report',compact('request','tech','r_note','project','request_places'));
+        $license = R_license::select()->where('request_id',$id)->get();
+        return view('report.single_request_report',compact('request','tech','r_note','project','request_places','license'));
     }
     
 }

@@ -44,9 +44,9 @@
                                         <h4>ادارة جميع الطلبات الإستثمار</h4>
                                         <div class="card-header-action">
                                             <div class="dropdown">
-                                                <a href="{{ route('lecturer') }}" class="btn btn-warning "> المحاضر </a>
+                                                <a href="{{ route('investment.Create') }}" class="btn btn-success"> طلب
+                                                    جديد </a>
                                             </div>
-
                                             <a href="{{ route('home') }}" class="btn btn-primary">الرئيسية</a>
                                         </div>
                                     </div>
@@ -54,13 +54,7 @@
 
                                 <div class="card card-secondary">
                                     <div class="card-header">
-                                        <h4></h4>
-                                        <div class="card-header-action">
-                                            <div class="dropdown">
-                                                <a href="{{ route('investment.Create') }}" class="btn btn-success"> طلب
-                                                    جديد </a>
-                                            </div>
-                                        </div>
+                                        <h4>جدول الطلبات</h4>
                                     </div>
                                     <div class="card-body" style="direction: rtl;">
                                         <div class="table-responsive">

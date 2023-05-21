@@ -77,6 +77,10 @@
                                                                     اللجنة الفنية
                                                                 @elseif($user->role == 8)
                                                                     المدن
+                                                                @elseif($user->role == 9)
+                                                                    مشاهد
+                                                                @else
+                                                                    {{ $user->role }}
                                                                 @endif
                                                             </td>
 
