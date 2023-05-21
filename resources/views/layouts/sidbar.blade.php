@@ -112,6 +112,7 @@
                         <i class="fa fa-file-pdf" aria-hidden="true"></i></a>
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="{{ route('request.report') }}">تقرير الطلبات</a></li>
+                        <li><a class="nav-link" href="{{ route('single.report') }}">تقرير فردي</a></li>
                         <li><a class="nav-link" href="{{ route('auction.report') }}">تقرير المزادات</a></li>
                     </ul>
                 </li>

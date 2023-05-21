@@ -227,7 +227,7 @@
                                                         <option selected hidden value="{{ $request->size_type }}">
                                                             {{ $request->size_type }}
                                                         </option>
-                                                        <option value="متر">متر مربع</option>
+                                                        <option value="متر مربع">متر مربع</option>
                                                         <option value="فدان">فدان</option>
                                                     </select>
                                                 </div>

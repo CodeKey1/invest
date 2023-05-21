@@ -152,6 +152,9 @@ Route::get('/auctionReport', [App\Http\Controllers\Report\ReportController::clas
 
 Route::get('/request-report', [App\Http\Controllers\Report\ReportController::class, 'request_index'])->name('request.report');
 Route::get('/requestReport', [App\Http\Controllers\Report\ReportController::class, 'request_report'])->name('req_report');
+
+Route::get('/single-report', [App\Http\Controllers\Report\ReportController::class, 'single_index'])->name('single.report');
+Route::get('/singleReport{id}', [App\Http\Controllers\Report\ReportController::class, 'single_report'])->name('single_report');
 /*
 |--------------------------------------------------------------------------
 | Dashboard other Controller ****************************************

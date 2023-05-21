@@ -165,7 +165,7 @@
                                                     <select class="form-control" name="size_type" required>
                                                         <option disabled selected value="">اختر نوع المساحة
                                                         </option>
-                                                        <option value="متر">متر مربع</option>
+                                                        <option value="متر مربع">متر مربع</option>
                                                         <option value="فدان">فدان</option>
                                                     </select>
                                                 </div>

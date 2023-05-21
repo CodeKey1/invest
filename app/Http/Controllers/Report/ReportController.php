@@ -14,6 +14,9 @@ use App\Models\RequestP;
 use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\Request_places;
+use App\Models\Request_technical as r_tech;
+use App\Models\Request_note;
+use App\Models\Project;
 
 use Illuminate\Support\Facades\DB as DB;
 
@@ -36,6 +39,12 @@ class ReportController extends Controller
         $sub_cat = SubCategory::select()->get(); 
         $city = City::select()->get(); 
         return view('report.request_report',compact('category','request','sub_cat','city'));
+    }
+
+    public function single_index()
+    {      
+        $request = RequestP::select()->get(); 
+        return view('report.single_report',compact('request'));
     }
     /**
      * Display the specified resource.
@@ -123,4 +132,14 @@ class ReportController extends Controller
 
         return view('report.request_report',compact('category','request','sub_cat','city','request_detail','category_name','sub_cat_name','city_name','owner_type'));
     }
+    public function single_report(string $id)
+    {
+        $request = RequestP::select()->find($id); 
+        $tech = r_tech::select()->where('request_id',$id)->get();
+        $r_note = Request_note::select()->where('request_id',$id)->get();
+        $project = Project::select()->where('request_id',$id)->get();
+        $request_places = Request_places::select()->where('request_id',$id)->get();
+        return view('report.single_request_report',compact('request','tech','r_note','project','request_places'));
+    }
+    
 }
