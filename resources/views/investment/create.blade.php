@@ -100,7 +100,7 @@
                                                     <label> الجهات للموافة علي المشرع <span
                                                             style="color: red">*</span></label>
                                                     <select class="form-control select2" multiple="" name="license[]"
-                                                        style="width: 100%">
+                                                        style="width: 100%" required>
                                                         @isset($license)
                                                             @if ($license && $license->count() > 0)
                                                                 @foreach ($license as $license1)
@@ -303,7 +303,7 @@
                     </div>
             </div>
             </section>
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="formModal"
+            {{-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="formModal"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -319,7 +319,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             @include('layouts.setting')
         </div>
         @include('layouts.footer')

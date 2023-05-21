@@ -62,6 +62,8 @@ class InvestmentController extends Controller
         //     'state' => ['required', 'string', 'max:255'],
 
         // ]);
+        // if(!$request->license)
+        //     return redirect()->back()->with(['error'=>'تأكد من اختيار جهات الموافقة']);
         try{
             $request_id   = RequestP:: create(([
                 'name' => $request['name'],
@@ -169,14 +171,13 @@ class InvestmentController extends Controller
                         'request_id' => $request_id->id,
                     ]));
                 }
-            if($request->license)
-                for($i = 0 ; $i< count($request->license) ; $i++){
-                    $li[] = $request->license[$i];
-                    R_license::create(([
-                        'request_id' => $request_id->id,
-                        'license_id' => $li[$i],
-                    ]));
-                }
+            for($i = 0 ; $i< count($request->license) ; $i++){
+                $li[] = $request->license[$i];
+                R_license::create(([
+                    'request_id' => $request_id->id,
+                    'license_id' => $li[$i],
+                ]));
+            }
             return redirect()->action([InvestmentController::class, 'record'], ['id' => $request_id->id]);
         }catch(\Exception $ex){
             return redirect()->route('investment')-> with(['error' => 'خطأ'.$ex]);
