@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2023 at 01:05 PM
+-- Generation Time: May 24, 2023 at 10:49 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -337,7 +337,8 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`, `created_at`
 (4, 'App\\Models\\User', 30, '2023-04-30 07:08:40', '2023-04-30 11:53:56'),
 (5, 'App\\Models\\User', 33, '2023-05-17 10:57:15', '2023-05-17 10:57:15'),
 (7, 'App\\Models\\User', 32, '2023-05-17 09:43:37', '2023-05-17 09:43:37'),
-(8, 'App\\Models\\User', 34, '2023-05-17 11:07:25', '2023-05-17 11:07:25');
+(8, 'App\\Models\\User', 34, '2023-05-17 11:07:25', '2023-05-17 11:07:25'),
+(9, 'App\\Models\\User', 35, '2023-05-21 11:04:03', '2023-05-21 11:04:03');
 
 -- --------------------------------------------------------
 
@@ -506,8 +507,8 @@ CREATE TABLE `project` (
 --
 
 INSERT INTO `project` (`id`, `feasibility_study`, `financial_capital`, `commercial_register`, `tax_card`, `site_sketch`, `company_reg`, `status`, `name`, `nid_photo`, `record`, `request_id`, `place_id`, `created_at`, `updated_at`) VALUES
-(26, '', '', '', '', '', '', 0, 'شسيب', '', NULL, 28, NULL, '2023-05-14 07:50:37', '2023-05-17 13:42:16'),
-(27, '', '', '', '', '', '', 0, 'gdhfgh', '', NULL, 29, NULL, '2023-05-14 08:24:25', '2023-05-17 10:54:44'),
+(26, '28feasibility_study.png', '28financial_capital.pdf', '28commercial_register.png', '28tax_card.png', '', '28company_reg.png', 0, 'شسيب', '28nid_photo.pdf', '28record.pdf', 28, NULL, '2023-05-14 07:50:37', '2023-05-21 08:25:29'),
+(27, '', '', '', '', '', '', 0, 'gdhfgh', '', NULL, 29, NULL, '2023-05-14 08:24:25', '2023-05-21 08:27:56'),
 (28, '', '', '', '', '', '', 0, 'adsfsadf', '', NULL, 30, NULL, '2023-05-18 04:43:53', '2023-05-18 05:24:21'),
 (33, '', '', '', '', '', '', 0, 'ببليسسيبل', '35nid_photo.pdf', NULL, 35, NULL, '2023-05-18 05:45:10', '2023-05-18 05:58:22'),
 (34, '', '', '', '', '', '', 0, 'asdasd', '', NULL, 36, NULL, '2023-05-18 06:10:29', '2023-05-18 06:14:46'),
@@ -515,8 +516,10 @@ INSERT INTO `project` (`id`, `feasibility_study`, `financial_capital`, `commerci
 (36, '38feasibility_study.pdf', '38financial_capital.pdf', '38commercial_register.pdf', '38tax_card.pdf', '', '38company_reg.pdf', 0, 'hbyg', '38nid_photo.jpg', '38record.pdf', 38, NULL, '2023-05-18 07:49:30', '2023-05-18 07:49:30'),
 (37, '39feasibility_study.pdf', '39financial_capital.pdf', '39commercial_register.pdf', '39tax_card.pdf', '', '39company_reg.pdf', 0, 'hbyg', '39nid_photo.jpg', '39record.pdf', 39, NULL, '2023-05-18 07:51:15', '2023-05-18 07:51:15'),
 (38, '40feasibility_study.pdf', '40financial_capital.pdf', '40commercial_register.pdf', '40tax_card.pdf', '', '40company_reg.pdf', 0, 'hbyg', '40nid_photo.jpg', '40record.pdf', 40, NULL, '2023-05-18 07:51:26', '2023-05-18 07:51:26'),
-(39, '41feasibility_study.pdf', '41financial_capital.pdf', '41commercial_register.pdf', '41tax_card.pdf', '41site_sketch.jpg', '41company_reg.pdf', 0, 'hbyg', '41nid_photo.jpg', '41record.pdf', 41, NULL, '2023-05-18 07:54:14', '2023-05-18 07:55:44'),
-(40, '', '', '', '', '', '', 0, 'sdfg', '', '', 42, NULL, '2023-05-18 08:03:53', '2023-05-18 08:03:53');
+(39, '41feasibility_study.pdf', '41financial_capital.pdf', '41commercial_register.pdf', '41tax_card.pdf', '41site_sketch.jpg', '41company_reg.pdf', 0, 'hbyg', '41nid_photo.jpg', '41record.pdf', 41, NULL, '2023-05-18 07:54:14', '2023-05-21 07:48:20'),
+(40, '', '', '', '', '', '', 0, 'sdfg', '', '', 42, NULL, '2023-05-18 08:03:53', '2023-05-18 08:03:53'),
+(41, '', '', '', '', '', '', 0, 'asdشسي', '', '', 43, NULL, '2023-05-21 05:29:42', '2023-05-21 05:29:42'),
+(42, '', '', '', '', '', '', 0, 'شسيب', '', '', 44, NULL, '2023-05-21 05:32:22', '2023-05-21 05:32:22');
 
 -- --------------------------------------------------------
 
@@ -555,17 +558,19 @@ CREATE TABLE `request` (
 --
 
 INSERT INTO `request` (`id`, `name`, `owner_type`, `owner_name`, `address`, `representative_name`, `representative_id`, `NID`, `size`, `size_type`, `self_financing`, `recived_date`, `capital`, `currency_type`, `phone`, `state`, `technical_state`, `sub_category_id`, `category_id`, `city_id`, `description`, `created_at`, `updated_at`) VALUES
-(28, 'شسيب', 'شركة', 'محمد ياسر', 'شسيب', 'شسيب', 423, '29805162800733', 50, 'متر', 56, '2023-05-17', 46756, 'EGP', 1120535000, 0, 2, NULL, 1, 1, NULL, '2023-05-14 07:50:37', '2023-05-17 13:42:16'),
-(29, 'gdhfgh', 'شركة', 'محمد ياسر', 'sdfg', NULL, NULL, NULL, 44, 'فدان', NULL, '2023-05-17', NULL, 'EGP', 1120535000, 1, 1, NULL, 1, 2, NULL, '2023-05-14 08:24:25', '2023-05-18 07:27:00'),
-(30, 'adsfsadf', 'شركة', 'sadfasdf', 'sdafsadf', NULL, NULL, NULL, 2435, 'متر', NULL, '2023-05-10', NULL, 'EGP', 1120535000, 0, 2, 1, 2, 1, 'sdf', '2023-05-18 04:43:53', '2023-05-18 05:24:20'),
-(35, 'ببليسسيبل', 'شركة', 'بلايبلا', 'لبيايبلا', NULL, NULL, '532414631', 54, 'متر', 50, '2023-05-30', 453424, 'EGP', 1120505000, 0, 2, 1, 1, 2, 'asdasd', '2023-05-18 05:45:10', '2023-05-18 05:58:22'),
-(36, 'asdasd', 'شركة', 'asdasd', 'asdasd', NULL, NULL, 'A32414631', 5000, 'متر', 90, '2023-05-01', 1500000, 'EUR', 1120535000, 0, 2, 1, 1, 1, NULL, '2023-05-18 06:10:29', '2023-05-18 06:14:46'),
+(28, 'شسيب', 'شركة', 'محمد ياسر', 'شسيب', NULL, NULL, '29805162800733', 50, 'متر مربع', 56, '2023-05-17', 46756, 'EGP', 1120535000, 1, 2, NULL, 1, 1, 'تشلايتن بلاشسنتيبلا نتشسيبتن اشستنيبا شستنيبا ستنيش اتنسشي باتنشسا يبت شسيتنبسشتني بلاسشيبلا شس', '2023-05-14 07:50:37', '2023-05-21 10:25:13'),
+(29, 'gdhfgh', 'شركة', 'محمد ياسر', 'sdfg', NULL, NULL, NULL, 44, 'فدان', NULL, '2023-05-17', NULL, 'EGP', 1120535000, 0, 2, NULL, 1, 2, NULL, '2023-05-14 08:24:25', '2023-05-21 08:27:56'),
+(30, 'adsfsadf', 'شركة', 'sadfasdf', 'sdafsadf', NULL, NULL, NULL, 2435, 'متر مربع', NULL, '2023-05-10', NULL, 'EGP', 1120535000, 0, 2, 1, 2, 1, 'sdf', '2023-05-18 04:43:53', '2023-05-18 05:24:20'),
+(35, 'ببليسسيبل', 'شركة', 'بلايبلا', 'لبيايبلا', NULL, NULL, '532414631', 54, 'متر مربع', 50, '2023-05-30', 453424, 'EGP', 1120505000, 0, 2, 1, 1, 2, 'asdasd', '2023-05-18 05:45:10', '2023-05-18 05:58:22'),
+(36, 'asdasd', 'شركة', 'asdasd', 'asdasd', NULL, NULL, 'A32414631', 5000, 'متر مربع', 90, '2023-05-01', 1500000, 'EUR', 1120535000, 0, 2, 1, 1, 1, NULL, '2023-05-18 06:10:29', '2023-05-18 06:14:46'),
 (37, 'dsafdf', 'شركة', 'asd', 'asd', NULL, NULL, NULL, 2345, 'متر', 43, '2023-05-04', 43524, 'USD', 1120535000, 0, 2, 1, 1, 2, 'rewtwert', '2023-05-18 06:21:04', '2023-05-18 06:46:09'),
 (38, 'hbyg', 'شركة', 'asdfasd', 'adsfasdf', 'sdaf', 32423, '342342225', 1524, 'متر', 45, '2023-04-30', 4545, 'EGP', 1120535000, 0, 2, 1, 1, 3, 'fgdhdfgh', '2023-05-18 07:49:30', '2023-05-18 07:49:30'),
 (39, 'hbyg', 'شركة', 'asdfasd', 'adsfasdf', 'sdaf', 32423, '342342225', 1524, 'متر', 45, '2023-04-30', 4545, 'EGP', 1120535000, 0, 2, 1, 1, 3, 'fgdhdfgh', '2023-05-18 07:51:15', '2023-05-18 07:51:15'),
 (40, 'hbyg', 'شركة', 'asdfasd', 'adsfasdf', 'sdaf', 32423, '342342225', 1524, 'متر', 45, '2023-04-30', 4545, 'EGP', 1120535000, 0, 2, 1, 1, 3, 'fgdhdfgh', '2023-05-18 07:51:26', '2023-05-18 07:51:26'),
-(41, 'hbyg', 'شركة', 'asdfasd', 'adsfasdf', 'sdaf', 32423, '342342225', 1524, 'متر', 45, '2023-04-30', 4545, 'EGP', 1120535000, 0, 2, 1, 1, 3, 'fgdhdfgh', '2023-05-18 07:54:14', '2023-05-18 07:55:44'),
-(42, 'sdfg', 'شركة', 'sdfg', 'fdsg', NULL, NULL, NULL, 55, 'متر', 45, '2023-05-12', 4545, 'EGP', 1120535000, 0, 2, 1, 1, 1, NULL, '2023-05-18 08:03:53', '2023-05-18 08:03:53');
+(41, 'hbyg', 'شركة', 'asdfasd', 'adsfasdf', 'sdaf', 32423, '342342225', 1524, 'متر مربع', 45, '2023-04-30', 4545, 'EGP', 1120535000, 0, 2, 1, 1, 3, 'fgdhdfgh', '2023-05-18 07:54:14', '2023-05-21 07:48:20'),
+(42, 'sdfg', 'شركة', 'sdfg', 'fdsg', NULL, NULL, NULL, 55, 'متر', 45, '2023-05-12', 4545, 'EGP', 1120535000, 0, 2, 1, 1, 1, NULL, '2023-05-18 08:03:53', '2023-05-18 08:03:53'),
+(43, 'asdشسي', 'مواطن', 'sad', 'asd', NULL, NULL, NULL, 414, 'متر', NULL, '2023-05-11', NULL, 'EGP', 1120535000, 0, 2, 1, 1, 2, NULL, '2023-05-21 05:29:42', '2023-05-21 05:29:42'),
+(44, 'شسيب', 'شركة', 'شسيب', 'شسيب', NULL, NULL, NULL, 5, 'فدان', NULL, '2023-05-18', NULL, 'EGP', 1120535000, 0, 2, NULL, 1, 2, NULL, '2023-05-21 05:32:22', '2023-05-21 05:32:22');
 
 -- --------------------------------------------------------
 
@@ -582,7 +587,7 @@ CREATE TABLE `request_license` (
   `point` int(11) DEFAULT 0,
   `response_file` varchar(128) DEFAULT NULL,
   `recived_date` date DEFAULT NULL,
-  `state` tinyint(1) DEFAULT NULL,
+  `state` tinyint(1) DEFAULT 2,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -592,14 +597,14 @@ CREATE TABLE `request_license` (
 --
 
 INSERT INTO `request_license` (`id`, `file`, `send_date`, `request_id`, `license_id`, `point`, `response_file`, `recived_date`, `state`, `created_at`, `updated_at`) VALUES
-(63, NULL, '2023-05-14', 28, 1, 0, NULL, NULL, NULL, '2023-05-14 07:50:37', '2023-05-14 07:50:37'),
-(64, NULL, '2023-05-14', 28, 2, 0, NULL, NULL, NULL, '2023-05-14 07:50:37', '2023-05-14 07:50:37'),
-(65, NULL, '2023-05-14', 28, 10, 0, NULL, NULL, NULL, '2023-05-14 07:50:37', '2023-05-14 07:50:37'),
-(66, NULL, '2023-05-14', 28, 12, 0, NULL, NULL, NULL, '2023-05-14 07:50:37', '2023-05-14 07:50:37'),
-(67, NULL, '2023-05-14', 28, 16, 0, NULL, NULL, NULL, '2023-05-14 07:50:37', '2023-05-14 07:50:37'),
-(68, NULL, '2023-05-14', 28, 19, 0, NULL, NULL, NULL, '2023-05-14 07:50:38', '2023-05-14 07:50:38'),
-(69, '69 send_file.pdf', '2023-05-18', 29, 1, 2, NULL, NULL, NULL, '2023-05-14 08:24:26', '2023-05-18 04:38:54'),
-(70, '70 send_file.pdf', '2023-05-18', 29, 2, 2, NULL, NULL, NULL, '2023-05-14 08:24:26', '2023-05-18 04:38:54'),
+(63, NULL, '2023-05-14', 28, 1, 0, NULL, NULL, 1, '2023-05-14 07:50:37', '2023-05-14 07:50:37'),
+(64, NULL, '2023-05-14', 28, 2, 0, NULL, NULL, 1, '2023-05-14 07:50:37', '2023-05-14 07:50:37'),
+(65, NULL, '2023-05-14', 28, 10, 0, NULL, NULL, 1, '2023-05-14 07:50:37', '2023-05-14 07:50:37'),
+(66, NULL, '2023-05-14', 28, 12, 0, NULL, NULL, 2, '2023-05-14 07:50:37', '2023-05-14 07:50:37'),
+(67, NULL, '2023-05-14', 28, 16, 0, NULL, NULL, 0, '2023-05-14 07:50:37', '2023-05-14 07:50:37'),
+(68, NULL, '2023-05-14', 28, 19, 0, NULL, NULL, 0, '2023-05-14 07:50:38', '2023-05-14 07:50:38'),
+(69, '69 send_file.pdf', '2023-05-18', 29, 1, 2, NULL, NULL, 1, '2023-05-14 08:24:26', '2023-05-18 04:38:54'),
+(70, '70 send_file.pdf', '2023-05-18', 29, 2, 2, NULL, NULL, 0, '2023-05-14 08:24:26', '2023-05-18 04:38:54'),
 (71, NULL, '2023-05-18', 29, 10, 2, NULL, NULL, NULL, '2023-05-14 08:24:26', '2023-05-18 04:38:54'),
 (72, NULL, '2023-05-18', 29, 12, 2, NULL, NULL, NULL, '2023-05-14 08:24:26', '2023-05-18 04:38:54'),
 (73, NULL, '2023-05-18', 29, 16, 2, NULL, NULL, NULL, '2023-05-14 08:24:26', '2023-05-18 04:38:54'),
@@ -622,7 +627,9 @@ INSERT INTO `request_license` (`id`, `file`, `send_date`, `request_id`, `license
 (102, NULL, NULL, 40, 3, 0, NULL, NULL, NULL, '2023-05-18 07:51:27', '2023-05-18 07:51:27'),
 (103, NULL, NULL, 41, 2, 0, NULL, NULL, NULL, '2023-05-18 07:54:14', '2023-05-18 07:54:14'),
 (104, NULL, NULL, 41, 3, 0, NULL, NULL, NULL, '2023-05-18 07:54:14', '2023-05-18 07:54:14'),
-(105, NULL, NULL, 41, 4, 0, NULL, NULL, NULL, '2023-05-18 07:54:14', '2023-05-18 07:54:14');
+(105, NULL, NULL, 41, 4, 0, NULL, NULL, NULL, '2023-05-18 07:54:14', '2023-05-18 07:54:14'),
+(106, NULL, NULL, 43, 1, 0, NULL, NULL, NULL, '2023-05-21 05:29:42', '2023-05-21 05:29:42'),
+(107, NULL, NULL, 44, 2, 0, NULL, NULL, NULL, '2023-05-21 05:32:22', '2023-05-21 05:32:22');
 
 -- --------------------------------------------------------
 
@@ -639,6 +646,16 @@ CREATE TABLE `request_notes` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `request_notes`
+--
+
+INSERT INTO `request_notes` (`id`, `notes`, `request_id`, `license_id`, `sender`, `created_at`, `updated_at`) VALUES
+(26, 'sdfgsdfg', 28, 1, 27, '2023-05-21 08:00:43', '2023-05-21 08:00:43'),
+(27, 'sdfgdg gfdsg', 28, 2, 27, '2023-05-21 08:00:50', '2023-05-21 08:00:50'),
+(28, 'sdfg df', 28, 2, 27, '2023-05-21 08:00:58', '2023-05-21 08:00:58'),
+(29, 'sdfg df', 28, 16, 27, '2023-05-21 08:00:58', '2023-05-21 08:00:58');
 
 -- --------------------------------------------------------
 
@@ -663,7 +680,8 @@ INSERT INTO `request_suggested_places` (`id`, `suggested_places`, `request_id`, 
 (5, 4, 38, '2023-05-18 07:49:30', '2023-05-18 07:49:30'),
 (6, 4, 39, '2023-05-18 07:51:16', '2023-05-18 07:51:16'),
 (7, 4, 40, '2023-05-18 07:51:26', '2023-05-18 07:51:26'),
-(8, 4, 41, '2023-05-18 07:54:14', '2023-05-18 07:54:14');
+(8, 4, 41, '2023-05-18 07:54:14', '2023-05-18 07:54:14'),
+(9, 4, 28, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -687,7 +705,11 @@ CREATE TABLE `request_technical_decision` (
 INSERT INTO `request_technical_decision` (`id`, `note`, `date`, `request_id`, `created_at`, `updated_at`) VALUES
 (10, 'hg', '2023-05-18', 29, '2023-05-18 07:26:26', '2023-05-18 07:26:26'),
 (11, 'bbbb', '2023-05-18', 29, '2023-05-18 07:26:37', '2023-05-18 07:26:37'),
-(12, 'vv', '2023-05-18', 29, '2023-05-18 07:26:46', '2023-05-18 07:26:46');
+(12, 'vv', '2023-05-18', 29, '2023-05-18 07:26:46', '2023-05-18 07:26:46'),
+(13, 'asdf asdf', '2023-05-21', 28, '2023-05-21 08:05:05', '2023-05-21 08:05:05'),
+(14, 'sdaf asdf', '2023-05-21', 28, '2023-05-21 08:05:09', '2023-05-21 08:05:09'),
+(15, 'asdf asdf sdas', '2023-05-21', 28, '2023-05-21 08:05:13', '2023-05-21 08:05:13'),
+(16, 'sdaf asdf sad fsadf  sdf asdfas sad', '2023-05-21', 28, '2023-05-21 08:05:19', '2023-05-21 08:05:19');
 
 -- --------------------------------------------------------
 
@@ -712,7 +734,8 @@ INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VAL
 (4, 'user', 'web', NULL, NULL),
 (5, 'side', 'web', '2023-04-13 11:02:46', '2023-04-13 11:02:46'),
 (7, 'technical', 'web', '2023-05-17 09:43:00', '2023-05-17 09:43:00'),
-(8, 'city', 'web', '2023-05-17 11:02:39', '2023-05-17 11:02:39');
+(8, 'city', 'web', '2023-05-17 11:02:39', '2023-05-17 11:02:39'),
+(9, 'viewer', 'web', '2023-05-21 11:03:04', '2023-05-21 11:03:04');
 
 -- --------------------------------------------------------
 
@@ -821,7 +844,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `ro
 (30, 'مستخدم الاستثمار', 'user@invest.gov', NULL, '$2y$10$RovC5bNuc624.BfK4rB6qudF71tSW934Jr/mA0bCHK29LKZITRe3i', 4, NULL, '2023-04-30 07:08:39', '2023-04-30 11:53:56'),
 (32, 'لجنة البت الفني', 'tech@invest.gov', NULL, '$2y$10$wSFwmW2OophX1EEXaUBrCuB7ZzVCZUlB0lKrGlDXlOxCw9aCsmBdS', 7, NULL, '2023-05-17 09:43:37', '2023-05-17 09:43:37'),
 (33, 'الجهات', 'side@invest.gov', NULL, '$2y$10$.NYgHRkz/Rx1qAxmo9rMdOiGarYblpclIQBKLN.dKq7JeT7lUi3ve', 5, NULL, '2023-05-17 10:57:15', '2023-05-17 10:57:15'),
-(34, 'المدن', 'city@invest.gov', NULL, '$2y$10$qqb2uQXLdudpTY84RsHyVudZuMxWvHWsGpad93NQ4BiuiapPl.kTi', 8, NULL, '2023-05-17 11:07:25', '2023-05-17 11:07:25');
+(34, 'المدن', 'city@invest.gov', NULL, '$2y$10$qqb2uQXLdudpTY84RsHyVudZuMxWvHWsGpad93NQ4BiuiapPl.kTi', 8, NULL, '2023-05-17 11:07:25', '2023-05-17 11:07:25'),
+(35, 'مشاهد', 'viwer@invest.gov', NULL, '$2y$10$aQfr32WTP2V4Qd9JXINDoek6ES1z3IeJKflkucVAJ1m2h6iGrfe92', 9, NULL, '2023-05-21 11:04:03', '2023-05-21 11:04:03');
 
 --
 -- Indexes for dumped tables
@@ -1170,43 +1194,43 @@ ALTER TABLE `place`
 -- AUTO_INCREMENT for table `project`
 --
 ALTER TABLE `project`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `request_license`
 --
 ALTER TABLE `request_license`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
 -- AUTO_INCREMENT for table `request_notes`
 --
 ALTER TABLE `request_notes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `request_suggested_places`
 --
 ALTER TABLE `request_suggested_places`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `request_technical_decision`
 --
 ALTER TABLE `request_technical_decision`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `side`
@@ -1224,7 +1248,7 @@ ALTER TABLE `sub_category`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- Constraints for dumped tables

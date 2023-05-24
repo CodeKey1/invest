@@ -212,12 +212,12 @@
 
                                                 </tr>
                                             </thead>
-                                            @isset($delaiy_req)
-                                                @if ($delaiy_req && $delaiy_req->count() > 0)
-                                                    @foreach ($delaiy_req as $d => $delaiy)
-                                                        <tbody>
+                                            <tbody>
+                                                @isset($delaiy_req)
+                                                    @if ($delaiy_req && $delaiy_req->count() > 0)
+                                                        @foreach ($delaiy_req as $d => $delaiy)
                                                             <tr>
-                                                                <td>{{ $d + 1 }}</td>
+                                                                <td> {{ $d + 1 }} </td>
                                                                 <td> {{ $delaiy->name }} </td>
                                                                 <td> {{ $delaiy->owner_name }} </td>
                                                                 <td> {{ $delaiy->created_at->diffForHumans($now) }} </td>
@@ -232,43 +232,15 @@
                                                                         </a></td>
                                                                 @endif
                                                             </tr>
-
-                                                        </tbody>
-                                                    @endforeach
-                                                @endif
-                                            @endisset
+                                                        @endforeach
+                                                    @endif
+                                                @endisset
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        {{-- <div class="col-lg-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4>المشاريع</h4>
-
-                                <div class="card-header-action">
-                                    <div class="dropdown">
-                                      <a href="#" data-toggle="dropdown" class="btn btn-warning dropdown-toggle">Options</a>
-                                      <div class="dropdown-menu">
-                                        <a href="#" class="dropdown-item has-icon"><i class="fas fa-eye"></i> View</a>
-                                        <a href="#" class="dropdown-item has-icon"><i class="far fa-edit"></i> Edit</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a href="#" class="dropdown-item has-icon text-danger"><i class="far fa-trash-alt"></i>
-                                          Delete</a>
-                                      </div>
-                                    </div>
-                                    <a href="#" class="btn btn-primary">View All</a>
-                                  </div>
-                                </div>
-                                <div class="card-body">
-                                    <canvas id="lineChartFill"></canvas>
-                                    <input type="hidden" name="users" value="">
-                                    <input type="hidden" name="service" value="">
-                                    <input type="hidden" name="month" value="">
-                                </div>
-                            </div>
-                        </div> --}}
                     </div>
                 </section>
             </div>
