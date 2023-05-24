@@ -79,7 +79,7 @@
                                         <div class="card card-primary">
                                             <div class="card-header">
                                                 <h3>تقرير طلب استثماري / {{ $request->name }} - المقدم بتاريخ
-                                                    {{ $request->recived_date }}</h3>
+                                                    {{ $request->recived_date->format('Y-m-d') }}</h3>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -212,11 +212,12 @@
                                                                         <h6> الجهة: {{ $l->L_Lisense->name }}</h6>
                                                                         <h6> الرد :
                                                                             @if ($l->state == 1)
-                                                                                موافق
+                                                                                <span style="color: green">موافق</span>
                                                                             @elseif($l->state == 0)
-                                                                                رفض
+                                                                                <span style="color: red">مرفوض</span>
                                                                             @else
-                                                                                لم يتم الرد
+                                                                                <span
+                                                                                    style="color: yellowgreen">جاري</span>
                                                                             @endif
                                                                         </h6>
                                                                     </div>
@@ -374,6 +375,70 @@
                                             @endforeach
                                         @endif
                                     @endisset
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-12">
+                        <div class="card card-primary">
+                            <div class="form-group col-md-12">
+                                <br>
+                                <h4>ردود الهيئات المنوطة بالموافقة</h4>
+                                <table class="table table-bordered" style="margin-top: 10px;">
+                                    <thead>
+                                        <tr>
+                                            {{-- <th scope="col"> # </th> --}}
+                                            <th> اسم الجهة</th>
+                                            <th> الملف المرسل</th>
+                                            <th> تاريخ الارسال </th>
+                                            <th> الرد </th>
+                                            <th> ملف الرد </th>
+                                            <th> تاريخ الرد </th>
+                                        </tr>
+                                    </thead>
+                                    @foreach ($license as $r)
+                                        <tbody>
+                                            <tr>
+                                                <input type="text" name="r_id" value="{{ $r->id }}"
+                                                    hidden readonly>
+
+                                                <td>{{ $r->L_Lisense->name }}</td>
+                                                <td>
+                                                    @if ($r->file != null)
+                                                        <a href="{{ asset('project_inquiry_file/' . $r->file) }}"
+                                                            target="_blank">اضغط هنا</a>
+                                                    @else
+                                                        <p>لا يوجد</p>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if ($r->send_date != null)
+                                                        {{ $r->send_date }}
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if ($r->state == 1)
+                                                        <div class="badge badge-success"> موافق
+                                                        </div>
+                                                    @elseif ($r->state == 0)
+                                                        <div class="badge badge-danger"> رفض
+                                                        </div>
+                                                    @else
+                                                        <div class="badge badge-warning"> جاري
+                                                        </div>
+                                                    @endif
+                                                </td>
+                                                @if ($r->response_file != null)
+                                                    <td><a href="{{ asset('project_response_file/' . $r->response_file) }}"
+                                                            target="_blank">اضغط هنا</a></td>
+                                                @elseif($r->response_file == null)
+                                                    <td>لا يوجد</td>
+                                                @endif
+                                                <td>{{ $r->recived_date }}</td>
+                                            </tr>
+
+                                        </tbody>
+                                    @endforeach
                                 </table>
                             </div>
                         </div>

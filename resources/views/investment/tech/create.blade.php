@@ -151,10 +151,16 @@
                                                         class="form-control" value="{{ $request->size_type }}"
                                                         disabled>
                                                 </div>
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-2">
                                                     <label>برأسمال قيمته </label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
                                                         class="form-control" value="{{ $request->capital }}"
+                                                        disabled>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <label>برأسمال قيمته </label>
+                                                    <input style="height: calc(2.25rem + 6px);" type="text"
+                                                        class="form-control" value="{{ $request->currency_type }}"
                                                         disabled>
                                                 </div>
                                                 <div class="form-group col-md-4">

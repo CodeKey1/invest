@@ -42,7 +42,7 @@
 
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>طلب الحصول علي موافقة لإقامت مشروع</h4>
+                                        <h4>طلب الحصول علي موافقة لإقامة مشروع</h4>
                                         <div class="card-header-action">
                                             <a href="{{ route('investment') }}" class="btn btn-primary">ادارة
                                                 الطلبات</a>
@@ -138,15 +138,15 @@
                                                         name="representative_name" class="form-control" value="">
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label> بالتوكيل رقم </label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="number"
-                                                        name="representative_id" class="form-control" value="">
-                                                </div>
-                                                <div class="form-group col-md-4">
                                                     <label>بطاقة رقم \ جواز رقم</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
                                                         name="NID" class="form-control" maxlength="14"
                                                         minlength="9">
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label> بالتوكيل رقم </label>
+                                                    <input style="height: calc(2.25rem + 6px);" type="number"
+                                                        name="representative_id" class="form-control" value="">
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label>تليفون <span style="color: red">*</span></label>
@@ -154,13 +154,13 @@
                                                         pattern="\d*" name="phone" maxlength="11" minlength="10"
                                                         class="form-control" placeholder="" required>
                                                 </div>
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-2">
                                                     <label> مساحة المشروع <span style="color: red">*</span></label>
                                                     <input style="height: calc(2.25rem + 6px);" type="number"
                                                         name="size" class="form-control" step="0.1"
                                                         placeholder="" required>
                                                 </div>
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-2">
                                                     <label>نوع المساحة <span style="color: red">*</span></label>
                                                     <select class="form-control" name="size_type" required>
                                                         <option disabled selected value="">اختر نوع المساحة
@@ -183,19 +183,19 @@
                                                         <option value="EUR">EUR</option>
                                                     </select>
                                                 </div>
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-2">
                                                     <label>نسبة التمويل الذاتي </label>
                                                     <input style="height: calc(2.25rem + 6px);" type="number"
                                                         min="0" max="100" step="0.1"
                                                         name="Self_financing" class="form-control" placeholder="">
                                                 </div>
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-2">
                                                     <label>تاريخ تقديم الطلب <span style="color: red">*</span></label>
                                                     <input style="height: calc(2.25rem + 6px);" type="date"
                                                         name="recived_date" class="form-control" placeholder=""
                                                         required>
                                                 </div>
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-2">
                                                     <label>المدينة <span style="color: red">*</span></label>
                                                     <select class="form-control" id="city_id" name="city_id"
                                                         required>
@@ -219,7 +219,7 @@
                                                         @endif
                                                     </select>
                                                 </div>
-                                                <div class="form-group col-md-8">
+                                                <div class="form-group col-md-6">
                                                     <label>المواقع المقترحة لإقامة المشروع بالمحافظة</label>
                                                     <select class="form-control select2" multiple id="area"
                                                         name="region[]" style="width: 100%">

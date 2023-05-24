@@ -86,6 +86,7 @@
                                                 <span style="color: red"> الرفض </span>
                                             @endif
                                         </h4>
+                                        <br>
                                         <h4>بيانات المشروع</h4>
                                         <form class="needs-validation" novalidate=""
                                             action="{{ route('record.approve', $request->id) }}" method="POST"
@@ -228,7 +229,7 @@
                                 <div class="card card-primary">
                                     <div class="form-group col-md-12">
                                         <br>
-                                        <h4>مرفقات الطلب</h4>
+                                        <h4>المرفقات </h4>
                                         <table class="table table-bordered" style="margin-top: 10px;">
                                             <thead>
                                                 <tr>
@@ -307,7 +308,7 @@
                             <div class="col-12 col-md-12 col-lg-12" style="direction: rtl; width:100%">
                                 <div class="card card-primary">
                                     <div class="card-body">
-                                        <h4>جهات الموافقات</h4>
+                                        <h4>الموافقات</h4>
                                         <div class="form-group col-md-12">
                                             <form class="needs-validation" novalidate=""
                                                 action="{{ route('record.store') }}" method="POST"
@@ -317,11 +318,12 @@
                                                     <thead>
                                                         <tr>
                                                             {{-- <th scope="col"> # </th> --}}
-                                                            <th scope="col"> اسم الجهة</th>
-                                                            <th scope="col"> الملف المرسل</th>
-                                                            <th scope="col"> تاريخ الارسال </th>
-                                                            <th scope="col"> ملف الرد </th>
-                                                            <th scope="col"> تاريخ الرد </th>
+                                                            <th> اسم الجهة</th>
+                                                            <th> الملف المرسل</th>
+                                                            <th> تاريخ الارسال </th>
+                                                            <th> الرد </th>
+                                                            <th> ملف الرد </th>
+                                                            <th> تاريخ الرد </th>
                                                         </tr>
                                                     </thead>
                                                     @foreach ($r_license as $r)
@@ -348,6 +350,18 @@
                                                                 <td>
                                                                     @if ($r->send_date != null)
                                                                         {{ $r->send_date }}
+                                                                    @endif
+                                                                </td>
+                                                                <td>
+                                                                    @if ($r->state == 1)
+                                                                        <div class="badge badge-success"> موافق
+                                                                        </div>
+                                                                    @elseif ($r->state == 0)
+                                                                        <div class="badge badge-danger"> رفض
+                                                                        </div>
+                                                                    @else
+                                                                        <div class="badge badge-warning"> جاري
+                                                                        </div>
                                                                     @endif
                                                                 </td>
                                                                 @if ($r->response_file != null)
@@ -419,7 +433,7 @@
                                                         <tr>
                                                             <th scope="col"> # </th>
                                                             <th scope="col"> الراسل </th>
-                                                            <th scope="col"> الجهة </th>
+                                                            {{-- <th scope="col"> الجهة </th> --}}
                                                             <th scope="col"> الملاحظة </th>
                                                             <th scope="col"> تاريخ الارسال </th>
                                                             <th scope="col"> خيارات </th>
@@ -431,7 +445,7 @@
                                                                 <tr>
                                                                     <td>{{ $n + 1 }}</td>
                                                                     <td>{{ $note->sender_name->name }}</td>
-                                                                    <td>{{ $note->note_license->name }}</td>
+                                                                    {{-- <td>{{ $note->note_license->name }}</td> --}}
                                                                     <td>{{ $note->notes }}</td>
                                                                     <td>{{ $note->created_at }}</td>
                                                                     <td><a class="btn btn-icon btn-danger"

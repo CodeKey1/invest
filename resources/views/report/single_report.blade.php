@@ -41,17 +41,13 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>التقارير الفردية</h4>
+                                        <h4>ملخص طلبات المستثمرين</h4>
                                         <div class="card-header-action">
                                             <a href="{{ route('home') }}" class="btn btn-primary">الرئيسية</a>
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="card card-secondary">
-                                    <div class="card-header">
-                                        <h4>جدول المشاريع</h4>
-                                    </div>
                                     <div class="card-body" style="direction: rtl;">
                                         <div class="table-responsive">
                                             <table class="table table-striped table-hover" id="save-stage"
@@ -64,7 +60,7 @@
                                                         <th>اسم المقدم</th>
                                                         <th> مواطن / شركة </th>
                                                         <th>المدينة</th>
-                                                        <th>الحالة</th>
+                                                        <th>الرأي الفني</th>
                                                         <th>تفاصيل</th>
                                                     </tr>
                                                 </thead>
@@ -92,7 +88,7 @@
                                                                     <td>
                                                                         <a class="btn btn-icon btn-info"
                                                                             href="{{ route('single_report', $requests->id) }}"
-                                                                            ata-toggle="tooltip" data-placement="top"
+                                                                            data-toggle="tooltip" data-placement="top"
                                                                             title="عرض">
                                                                             <i class="fas fa-info"></i>
                                                                         </a>

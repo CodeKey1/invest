@@ -42,7 +42,7 @@
                                 @include('layouts.error')
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>ادارة جميع طلبات الإستثمار المرسلة</h4>
+                                        <h4>ادارة جميع طلبات الإستثمار المرسلة للبت الفني</h4>
                                         <div class="card-header-action">
                                             <div class="dropdown">
                                             </div>

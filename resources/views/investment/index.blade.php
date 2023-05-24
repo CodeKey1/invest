@@ -41,7 +41,7 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>ادارة جميع الطلبات الإستثمار</h4>
+                                        <h4>ادارة جميع طلبات الإستثمار</h4>
                                         <div class="card-header-action">
                                             <div class="dropdown">
                                                 <a href="{{ route('investment.Create') }}" class="btn btn-success"> طلب
@@ -53,9 +53,6 @@
                                 </div>
 
                                 <div class="card card-secondary">
-                                    <div class="card-header">
-                                        <h4>جدول الطلبات</h4>
-                                    </div>
                                     <div class="card-body" style="direction: rtl;">
                                         <div class="table-responsive">
                                             <table class="table table-striped table-hover" id="save-stage"
@@ -63,9 +60,9 @@
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>فئة مشروع </th>
+                                                        <th>فئة المشروع </th>
                                                         <th> اسم المشروع </th>
-                                                        <th>اسم المقدم</th>
+                                                        <th>اسم مقدم الطلب</th>
                                                         <th> مواطن / شركة </th>
                                                         <th>المدينة</th>
                                                         <th>الحالة</th>
@@ -106,13 +103,13 @@
                                                                     <td>
                                                                         <a class="btn btn-icon btn-info"
                                                                             href="{{ route('investment.record', $requests->id) }}"
-                                                                            ata-toggle="tooltip" data-placement="top"
+                                                                            data-toggle="tooltip" data-placement="top"
                                                                             title="عرض">
                                                                             <i class="fas fa-info"></i>
                                                                         </a>
                                                                         <a class="btn btn-icon btn-success"
                                                                             href="{{ route('investment.show', $requests->id) }}"
-                                                                            ata-toggle="tooltip" data-placement="top"
+                                                                            data-toggle="tooltip" data-placement="top"
                                                                             title="تعديل">
                                                                             <i class="fas fa-edit"></i>
                                                                         </a>
