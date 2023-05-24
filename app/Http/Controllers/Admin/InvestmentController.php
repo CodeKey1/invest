@@ -371,6 +371,7 @@ class InvestmentController extends Controller
                 $r_license = R_license::where('id', $request->r_id[$i])-> update(([
                     'send_date' => Carbon::today()->format('y-m-d'),
                     'file' => $file_name,
+                    'state' => 2,
                     'point' => ($record_name->point)+1,
                 ]));
             }

@@ -262,10 +262,10 @@
                                                 <table class="table table-bordered" style="margin-top: 10px;">
                                                     <thead>
                                                         <tr>
-                                                            <th scope="col"> # </th>
                                                             <th scope="col"> اسم الجهة</th>
                                                             <th scope="col"> الملف المرسل</th>
                                                             <th scope="col"> تاريخ الارسال </th>
+                                                            <th scope="col"> الرد </th>
                                                             <th scope="col"> ملف الرد </th>
                                                             <th scope="col"> تاريخ الرد </th>
                                                         </tr>
@@ -273,10 +273,9 @@
                                                     @foreach ($r_license as $r)
                                                         <tbody>
                                                             <tr>
-                                                                <td>{{ $r->id }}<input type="text"
+                                                                <td>{{ $r->L_Lisense->name }}<input type="text"
                                                                         name="r_id[]" value="{{ $r->id }}"
                                                                         hidden readonly></td>
-                                                                <td>{{ $r->L_Lisense->name }}</td>
                                                                 <td>
                                                                     @if ($r->file != null)
                                                                         <a href="{{ asset('project_inquiry_file/' . $r->file) }}"
@@ -289,20 +288,35 @@
                                                                 <td>
                                                                     <p>{{ $r->send_date }}</p>
                                                                 </td>
-                                                                @if ($r->response_file != null)
-                                                                    <td><a href="{{ asset('project_inquiry_file/' . $r->response_file) }}"
-                                                                            target="_blank">اضغط هنا</a></td>
-                                                                @elseif($r->response_file == null)
-                                                                    <td>
-                                                                        <input type="file"
-                                                                            accept=",.doc, .docx, .pdf, image/*"
-                                                                            name="response_file[]">
-                                                                    </td>
-                                                                @endif
                                                                 <td>
-                                                                    <input type="date"
-                                                                        value="{{ $r->recived_date }}"
-                                                                        name="recived_date[]">
+                                                                    <select class="form-control" name="state"
+                                                                        required>
+                                                                        <option selected value="{{ $r->state }}"
+                                                                            hidden>
+                                                                            @if ($r->state == 1)
+                                                                                موافق
+                                                                            @elseif($r->state == 2)
+                                                                                جاري المتابعة
+                                                                            @else
+                                                                                مرفوض   
+                                                                            @endif
+                                                                        </option>
+                                                                        <option value="1">موافق</option>
+                                                                        <option value="0">مرفوض</option>
+                                                                        <option value="2">جاري المتابعة</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    @if ($r->response_file != null)
+                                                                        <a href="{{ asset('project_response_file/' . $r->response_file) }}"
+                                                                            target="_blank">اضغط هنا</a> || او ||
+                                                                    @endif
+                                                                    <input type="file"
+                                                                        accept=",.doc, .docx, .pdf, image/*"
+                                                                        name="response_file[]">
+                                                                </td>
+                                                                <td>
+                                                                    <p> {{ $r->recived_date ?? 'لا يوجد' }}</p>
                                                                 </td>
                                                             </tr>
 

@@ -193,12 +193,8 @@
                 </li>
                 <li class="menu-header"></li>
                 <li class="dropdown">
-                    <a href="#" class="menu-toggle nav-link has-dropdown"><span> طلبات المستثمر </span>
-                        <i class="fa fa-file" aria-hidden="true"></i></a>
-                    <ul class="dropdown-menu">
-                        {{-- <li><a class="nav-link" href="{{ route('investment.Create') }}">اضافة طلب</a></li> --}}
-                        <li><a class="nav-link" href="{{ route('side') }}">طلبات المستثمرين</a></li>
-                    </ul>
+                    <a href="{{ route('side') }}" class="nav-link"><span>طلبات المستثمرين</span><i class="fa fa-bug"
+                            aria-hidden="true"></i></a>
                 </li>
                 <li class="menu-header">
                     <hr />
