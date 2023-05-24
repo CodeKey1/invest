@@ -44,27 +44,34 @@
                                     <div class="card-header">
                                         <h4>ادارة جميع محاضر لطلبات الإستثمار</h4>
                                         <div class="card-header-action">
-                                            <div class="dropdown">
-                                                {{-- <a href="{{ route('investment') }}" class="btn btn-warning"> كل طلبات
-                                                    الإستثمار </a> --}}
-                                            </div>
+                                            @if (auth()->user()->hasRole('city'))
+                                                <div class="dropdown">
+                                                    <a href="{{ route('investment.Create') }}" class="btn btn-success">
+                                                        طلب
+                                                        جديد </a>
+                                                </div>
+                                            @endif
                                             <a href="{{ route('home') }}" class="btn btn-primary">الرئيسية</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card card-secondary">
+                                    <div class="card-header">
+                                        <h4>جدول الطلبات</h4>
+                                    </div>
                                     <div class="card-body" style="direction: rtl;">
                                         <div class="table-responsive">
                                             <table class="table table-striped table-hover" id="save-stage"
                                                 style="width:100%;">
                                                 <thead>
                                                     <tr>
-                                                        <th> # </th>
-                                                        <th> مشروع </th>
+                                                        <th>#</th>
+                                                        <th>فئة مشروع </th>
                                                         <th> اسم المشروع </th>
-                                                        <th>اسم المتقدم</th>
+                                                        <th>اسم المقدم</th>
                                                         <th> مواطن / شركة </th>
                                                         <th>المدينة</th>
+                                                        <th>الحالة</th>
                                                         <th> موافقات الجهات </th>
                                                         <th>تفاصيل</th>
                                                     </tr>
@@ -72,30 +79,55 @@
                                                 <tbody>
                                                     @isset($request)
                                                         @if ($request && $request->count() > 0)
-                                                            @foreach ($request as $requests)
+                                                            @foreach ($request as $req => $requests)
                                                                 <tr>
-                                                                    <td>{{ $requests->id }}</td>
-                                                                    <td>{{ $requests->categoryname->name }}</td>
+                                                                    <td>{{ $req + 1 }}</td>
+                                                                    <td>{{ $requests->categoryname->name ?? 'لا يوجد' }}
+                                                                    </td>
                                                                     <td>{{ $requests->name }}</td>
-                                                                    <td>{{ $requests->name }}</td>
+                                                                    <td>{{ $requests->owner_name }}</td>
                                                                     <td>{{ $requests->owner_type }}</td>
                                                                     <td>{{ $requests->city->name }}</td>
                                                                     <td>
+                                                                        @if ($requests->technical_state == 1)
+                                                                            <div class="badge badge-success">مقبول</div>
+                                                                        @elseif($requests->technical_state == 0)
+                                                                            <div class="badge badge-danger">مرفوض</div>
+                                                                        @else
+                                                                            <div class="badge badge-warning">جاري</div>
+                                                                        @endif
+                                                                    </td>
+                                                                    <td>
                                                                         @foreach ($r_license->where('request_id', $requests->id) as $r)
-                                                                            @if ($r->response_file != null)
+                                                                            @if ($r->state)
                                                                                 <div class="badge badge-success"> </div>
-                                                                            @elseif($r->response_file == null)
+                                                                            @else
                                                                                 <div class="badge badge-danger"> </div>
                                                                             @endif
                                                                         @endforeach
                                                                     </td>
                                                                     <td>
-                                                                        <a class="btn btn-icon btn-success"
-                                                                            href="{{ route('side.Create', $requests->id) }}"
-                                                                            ata-toggle="tooltip" data-placement="top"
-                                                                            title="عرض">
-                                                                            <i class="fas fa-user"></i>
-                                                                        </a>
+                                                                        @if (auth()->user()->hasRole('city'))
+                                                                            <a class="btn btn-icon btn-info"
+                                                                                href="{{ route('investment.record', $requests->id) }}"
+                                                                                ata-toggle="tooltip" data-placement="top"
+                                                                                title="عرض">
+                                                                                <i class="fas fa-info"></i>
+                                                                            </a>
+                                                                            <a class="btn btn-icon btn-success"
+                                                                                href="{{ route('investment.show', $requests->id) }}"
+                                                                                ata-toggle="tooltip" data-placement="top"
+                                                                                title="تعديل">
+                                                                                <i class="fas fa-edit"></i>
+                                                                            </a>
+                                                                        @elseif(auth()->user()->hasRole('side'))
+                                                                            <a class="btn btn-icon btn-info"
+                                                                                href="{{ route('side.Create', $requests->id) }}"
+                                                                                ata-toggle="tooltip" data-placement="top"
+                                                                                title="عرض">
+                                                                                <i class="fas fa-info"></i>
+                                                                            </a>
+                                                                        @endif
                                                                     </td>
                                                                 </tr>
                                                             @endforeach

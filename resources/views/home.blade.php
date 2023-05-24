@@ -220,8 +220,8 @@
                                                                 <td> {{ $d + 1 }} </td>
                                                                 <td> {{ $delaiy->name }} </td>
                                                                 <td> {{ $delaiy->owner_name }} </td>
-                                                                <td> {{ $delaiy->created_at->diffForHumans($now) }} </td>
-                                                                <td> {{ $delaiy->recived_date }} </td>
+                                                                <td> {{ $delaiy->created_at->diffInDays($now) }} يوم </td>
+                                                                <td> {{ $delaiy->recived_date->format('Y-M-d') }} </td>
                                                                 @if (auth()->user()->hasRole('super_admin') ||
                                                                         auth()->user()->hasRole('user'))
                                                                     <td><a class="btn btn-icon btn-info"

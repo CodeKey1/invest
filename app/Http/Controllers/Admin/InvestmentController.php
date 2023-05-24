@@ -9,6 +9,7 @@ use App\Models\City;
 use App\Models\Place;
 use App\Models\Place_Category;
 use App\Models\Request_places;
+use App\Models\User_have_type;
 use App\Models\Request_technical as r_tech;
 use App\Models\Project;
 use App\Models\R_license;
@@ -27,20 +28,20 @@ class InvestmentController extends Controller
     public function index()
     {
         //
-        $r_license = R_license::select()->with('L_Lisense','R_Lisense')->get();
+        $r_license = R_license::select()->get();
         $request   = RequestP::select()->with('categoryname','city','rl','subCat')->get();
         return view('investment.index',compact('request','r_license'));
     }
     public function create()
     {
-        //
+        $type = User_have_type::select()->find(auth()->user()->id);
         $place = Place::select()->with('cityPlace')->get();
         $license = license::select()->get();
         $city = City::select()->get();
         $category = Category::select()->get();
         $sub_cat = SubCategory::select()->get();
         $now = Carbon::today()->format('y-m-d');
-        return view('investment.create',compact('now','category','sub_cat','city','license','place'));
+        return view('investment.create',compact('now','category','sub_cat','city','license','place','type'));
     }
 
     public function store(Request $request)
@@ -186,7 +187,7 @@ class InvestmentController extends Controller
 
     public function show(string $id)
     {
-        if (auth()->user()->hasRole('super_admin')){
+        if (auth()->user()->hasRole('super_admin')||auth()->user()->hasRole('user')||auth()->user()->hasRole('city')){
             $city = City::select()->get();
             $project = Project::select()->with('request_PJ')->where('request_id',$id)->get();
             $r_license = R_license::select()->with('L_Lisense','R_Lisense')->where('request_id',$id)->get();

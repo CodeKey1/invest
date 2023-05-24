@@ -199,16 +199,24 @@
                                                     <label>المدينة <span style="color: red">*</span></label>
                                                     <select class="form-control" id="city_id" name="city_id"
                                                         required>
-                                                        <option disabled selected value="">اختر المدينة</option>
-                                                        @isset($city)
-                                                            @if ($city && $city->count() > 0)
-                                                                @foreach ($city as $City)
-                                                                    <option value="{{ $City->id }}">
-                                                                        {{ $City->name }}
-                                                                    </option>
-                                                                @endforeach
-                                                            @endif
-                                                        @endisset
+                                                        @if (auth()->user()->hasRole('city')){
+                                                            <option selected value="{{ $type->city_id }}">
+                                                                {{ $type->city_name->name }}</option>
+                                                            }
+                                                        @else{
+                                                            <option disabled selected value="">اختر المدينة
+                                                            </option>
+                                                            @isset($city)
+                                                                @if ($city && $city->count() > 0)
+                                                                    @foreach ($city as $City)
+                                                                        <option value="{{ $City->id }}">
+                                                                            {{ $City->name }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                @endif
+                                                            @endisset
+                                                            }
+                                                        @endif
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-8">

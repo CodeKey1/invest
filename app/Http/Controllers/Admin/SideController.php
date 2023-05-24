@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Side;
-use App\Models\C_license;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\Place;
@@ -15,6 +14,7 @@ use App\Models\R_license;
 use App\Models\SubCategory;
 use App\Models\RequestP;
 use App\Models\Request_note;
+use App\Models\User_have_type;
 
 use Illuminate\Http\Request;
 
@@ -25,10 +25,18 @@ class SideController extends Controller
      */
     public function index()
     {
-        //
-        $request   = RequestP::select()->with('categoryname','city','rl','subCat')->where('state',0)->get();
-        $r_license = R_license::select()->with('L_Lisense','R_Lisense')->get();
-        return view('side.index',compact('request','r_license'));
+        $type = User_have_type::select()->find(auth()->user()->id);
+        if(auth()->user()->hasRole('city')){
+            $r_license = R_license::select()->get();
+            $request = RequestP::select()->where('city_id',$type->city_id )->get();
+        }
+        else if(auth()->user()->hasRole('side')){
+            $r_license = R_license::select('request_id')->where('license_id',$type->license_id)->get();
+            foreach($r_license as $r)
+                $request = RequestP::select('id')->where('id',$r->request_id)->get();
+            return response()->json($request);
+        }
+        return view('side.index',compact('request','type','r_license'));
 
     }
 
@@ -39,14 +47,12 @@ class SideController extends Controller
     {
         //
         $city = City::select()->get();
-        $clicense   = C_license::select()->get();
         $project = Project::select()->where('request_id',$id)->get();
         $r_license = R_license::select()->where('request_id',$id)->get();
         $r_note = Request_note::select()->where('request_id',$id)->get();
         $request = RequestP::select()->find($id);
         $request_places = Request_places::select()->where('request_id',$id)->get();
-        return view('side.create',compact('request','city','clicense','r_license','r_note','project','request_places'));
-
+        return view('side.create',compact('request','city','r_license','r_note','project','request_places'));
     }
 
     /**

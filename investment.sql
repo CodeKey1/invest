@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2023 at 10:49 AM
+-- Generation Time: May 24, 2023 at 03:19 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -335,9 +335,9 @@ CREATE TABLE `model_has_roles` (
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`, `created_at`, `updated_at`) VALUES
 (3, 'App\\Models\\User', 27, NULL, '2023-05-17 11:07:35'),
 (4, 'App\\Models\\User', 30, '2023-04-30 07:08:40', '2023-04-30 11:53:56'),
-(5, 'App\\Models\\User', 33, '2023-05-17 10:57:15', '2023-05-17 10:57:15'),
+(5, 'App\\Models\\User', 39, '2023-05-24 09:31:45', '2023-05-24 09:31:45'),
 (7, 'App\\Models\\User', 32, '2023-05-17 09:43:37', '2023-05-17 09:43:37'),
-(8, 'App\\Models\\User', 34, '2023-05-17 11:07:25', '2023-05-17 11:07:25'),
+(8, 'App\\Models\\User', 36, '2023-05-24 07:36:27', '2023-05-24 07:36:27'),
 (9, 'App\\Models\\User', 35, '2023-05-21 11:04:03', '2023-05-21 11:04:03');
 
 -- --------------------------------------------------------
@@ -597,12 +597,12 @@ CREATE TABLE `request_license` (
 --
 
 INSERT INTO `request_license` (`id`, `file`, `send_date`, `request_id`, `license_id`, `point`, `response_file`, `recived_date`, `state`, `created_at`, `updated_at`) VALUES
-(63, NULL, '2023-05-14', 28, 1, 0, NULL, NULL, 1, '2023-05-14 07:50:37', '2023-05-14 07:50:37'),
-(64, NULL, '2023-05-14', 28, 2, 0, NULL, NULL, 1, '2023-05-14 07:50:37', '2023-05-14 07:50:37'),
-(65, NULL, '2023-05-14', 28, 10, 0, NULL, NULL, 1, '2023-05-14 07:50:37', '2023-05-14 07:50:37'),
-(66, NULL, '2023-05-14', 28, 12, 0, NULL, NULL, 2, '2023-05-14 07:50:37', '2023-05-14 07:50:37'),
-(67, NULL, '2023-05-14', 28, 16, 0, NULL, NULL, 0, '2023-05-14 07:50:37', '2023-05-14 07:50:37'),
-(68, NULL, '2023-05-14', 28, 19, 0, NULL, NULL, 0, '2023-05-14 07:50:38', '2023-05-14 07:50:38'),
+(63, NULL, '2023-05-24', 28, 1, 1, NULL, NULL, 1, '2023-05-14 07:50:37', '2023-05-24 09:23:21'),
+(64, '64 send_file.pdf', '2023-05-24', 28, 2, 1, NULL, NULL, 1, '2023-05-14 07:50:37', '2023-05-24 09:23:21'),
+(65, NULL, '2023-05-24', 28, 10, 1, NULL, NULL, 1, '2023-05-14 07:50:37', '2023-05-24 09:23:21'),
+(66, NULL, '2023-05-24', 28, 12, 1, NULL, NULL, 2, '2023-05-14 07:50:37', '2023-05-24 09:23:21'),
+(67, NULL, '2023-05-24', 28, 16, 1, NULL, NULL, 0, '2023-05-14 07:50:37', '2023-05-24 09:23:21'),
+(68, NULL, '2023-05-24', 28, 19, 1, NULL, NULL, 0, '2023-05-14 07:50:38', '2023-05-24 09:23:21'),
 (69, '69 send_file.pdf', '2023-05-18', 29, 1, 2, NULL, NULL, 1, '2023-05-14 08:24:26', '2023-05-18 04:38:54'),
 (70, '70 send_file.pdf', '2023-05-18', 29, 2, 2, NULL, NULL, 0, '2023-05-14 08:24:26', '2023-05-18 04:38:54'),
 (71, NULL, '2023-05-18', 29, 10, 2, NULL, NULL, NULL, '2023-05-14 08:24:26', '2023-05-18 04:38:54'),
@@ -843,9 +843,32 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `ro
 (27, 'ادمن النظام', 'admin@invest.gov', NULL, '$2y$10$7NDqeFL3Xg/lFAhUpVeJw.TQ/oQ7g2/2l23vmO9OwL9.f0pYbot5i', 3, NULL, '2023-03-06 08:56:16', '2023-05-17 11:07:35'),
 (30, 'مستخدم الاستثمار', 'user@invest.gov', NULL, '$2y$10$RovC5bNuc624.BfK4rB6qudF71tSW934Jr/mA0bCHK29LKZITRe3i', 4, NULL, '2023-04-30 07:08:39', '2023-04-30 11:53:56'),
 (32, 'لجنة البت الفني', 'tech@invest.gov', NULL, '$2y$10$wSFwmW2OophX1EEXaUBrCuB7ZzVCZUlB0lKrGlDXlOxCw9aCsmBdS', 7, NULL, '2023-05-17 09:43:37', '2023-05-17 09:43:37'),
-(33, 'الجهات', 'side@invest.gov', NULL, '$2y$10$.NYgHRkz/Rx1qAxmo9rMdOiGarYblpclIQBKLN.dKq7JeT7lUi3ve', 5, NULL, '2023-05-17 10:57:15', '2023-05-17 10:57:15'),
-(34, 'المدن', 'city@invest.gov', NULL, '$2y$10$qqb2uQXLdudpTY84RsHyVudZuMxWvHWsGpad93NQ4BiuiapPl.kTi', 8, NULL, '2023-05-17 11:07:25', '2023-05-17 11:07:25'),
-(35, 'مشاهد', 'viwer@invest.gov', NULL, '$2y$10$aQfr32WTP2V4Qd9JXINDoek6ES1z3IeJKflkucVAJ1m2h6iGrfe92', 9, NULL, '2023-05-21 11:04:03', '2023-05-21 11:04:03');
+(35, 'مشاهد', 'viwer@invest.gov', NULL, '$2y$10$aQfr32WTP2V4Qd9JXINDoek6ES1z3IeJKflkucVAJ1m2h6iGrfe92', 9, NULL, '2023-05-21 11:04:03', '2023-05-21 11:04:03'),
+(36, 'اسوان', 'aswan@invest.gov', NULL, '$2y$10$sfP4.kwSl2nhrhKCt8YXhOm0LYkFPe8afzFyR8oQzjuVOplg.6sVa', 8, NULL, '2023-05-24 07:36:27', '2023-05-24 07:36:27'),
+(39, 'مركز اسوان', 'aswan_side@invest.gov', NULL, '$2y$10$wc.liED4Ilj9Wc4U.yl/1OUiGhwzyWV1VaGN8QkDJpqu5EgLfrEgu', 5, NULL, '2023-05-24 09:31:45', '2023-05-24 09:31:45');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_have_type`
+--
+
+CREATE TABLE `user_have_type` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `type_id` bigint(20) UNSIGNED NOT NULL,
+  `city_id` int(11) DEFAULT NULL,
+  `license_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user_have_type`
+--
+
+INSERT INTO `user_have_type` (`id`, `type_id`, `city_id`, `license_id`, `created_at`, `updated_at`) VALUES
+(36, 8, 1, NULL, '2023-05-24 07:36:28', '2023-05-24 07:36:28'),
+(39, 5, NULL, 2, '2023-05-24 09:31:45', '2023-05-24 09:31:45');
 
 --
 -- Indexes for dumped tables
@@ -1085,6 +1108,15 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
+-- Indexes for table `user_have_type`
+--
+ALTER TABLE `user_have_type`
+  ADD UNIQUE KEY `user_id` (`id`),
+  ADD KEY `city_id` (`city_id`),
+  ADD KEY `licnece_id` (`license_id`),
+  ADD KEY `type_id` (`type_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -1248,7 +1280,7 @@ ALTER TABLE `sub_category`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- Constraints for dumped tables
@@ -1358,6 +1390,15 @@ ALTER TABLE `role_has_permissions`
 --
 ALTER TABLE `sub_category`
   ADD CONSTRAINT `sub_category_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`);
+
+--
+-- Constraints for table `user_have_type`
+--
+ALTER TABLE `user_have_type`
+  ADD CONSTRAINT `user_have_type_ibfk_2` FOREIGN KEY (`id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `user_have_type_ibfk_3` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`),
+  ADD CONSTRAINT `user_have_type_ibfk_4` FOREIGN KEY (`license_id`) REFERENCES `license` (`id`),
+  ADD CONSTRAINT `user_have_type_ibfk_5` FOREIGN KEY (`type_id`) REFERENCES `roles` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

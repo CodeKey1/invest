@@ -37,6 +37,8 @@ class RequestP extends Model
         'updated_at',
     ];
 
+    protected $casts = ['recived_date'=>'datetime'];
+
     public function categoryname(){
         return  $this->belongsTo(Category::class ,'category_id');
     }

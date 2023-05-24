@@ -184,7 +184,8 @@
         @endif
 
         {{-- /* side permission and role for sidebar*/ --}}
-        @if (auth()->user()->hasRole('side'))
+        @if (auth()->user()->hasRole('side') ||
+                auth()->user()->hasRole('city'))
             <ul class="sidebar-menu">
                 <li class="dropdown active">
                     <a href="{{ route('home') }}" class="nav-link"><span>الرئيسية</span><i class="fa fa-home"
@@ -192,8 +193,12 @@
                 </li>
                 <li class="menu-header"></li>
                 <li class="dropdown">
-                    <a href="{{ route('side') }}" class="nav-link"><span>طلبات المستثمر</span><i class="fa fa-bars"
-                            aria-hidden="true"></i></a>
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><span> طلبات المستثمر </span>
+                        <i class="fa fa-file" aria-hidden="true"></i></a>
+                    <ul class="dropdown-menu">
+                        {{-- <li><a class="nav-link" href="{{ route('investment.Create') }}">اضافة طلب</a></li> --}}
+                        <li><a class="nav-link" href="{{ route('side') }}">طلبات المستثمرين</a></li>
+                    </ul>
                 </li>
                 <li class="menu-header">
                     <hr />
