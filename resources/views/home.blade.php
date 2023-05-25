@@ -39,7 +39,7 @@
     </script>
 </head>
 
-<body class="light theme-white dark-sidebar">
+<body class="light theme-white">
     <div class="loader"></div>
     <div id="app">
         <div class="main-wrapper main-wrapper-1">
@@ -192,7 +192,7 @@
 
                                     <div class="card-header-action">
                                         @if (auth()->user()->hasRole('super_admin') ||
-                                                auth()->user()->hasRole('user'))
+    auth()->user()->hasRole('user'))
                                             <a href="{{ route('investment') }}" class="btn btn-primary">كل طلبات
                                                 الإستثمار</a>
                                         @endif
@@ -223,7 +223,7 @@
                                                                 <td> {{ $delaiy->created_at->diffInDays($now) }} يوم </td>
                                                                 <td> {{ $delaiy->recived_date->format('Y-M-d') }} </td>
                                                                 @if (auth()->user()->hasRole('super_admin') ||
-                                                                        auth()->user()->hasRole('user'))
+    auth()->user()->hasRole('user'))
                                                                     <td><a class="btn btn-icon btn-info"
                                                                             href="{{ route('investment.record', $delaiy->id) }}"
                                                                             ata-toggle="tooltip" data-placement="top"

@@ -22,8 +22,8 @@
     <link rel='shortcut icon' type='image/x-icon' href='assets/img/favicon.ico' />
 </head>
 
-<body class="light theme-white dark-sidebar">
-    <div class="loader"></div>E
+<body class="light theme-white">
+    <div class="loader"></div>
     <div id="app">
         <div class="main-wrapper main-wrapper-1">
 
@@ -38,7 +38,7 @@
                                 @include('layouts.error')
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4> عرض طلب الإسثمار / {{ $request->name }}</h4>
+                                        <h4> تعديل طلب الإسثمار / {{ $request->name }}</h4>
                                         <div class="card-header-action">
                                             <a href="{{ route('investment.record', $request->id) }}"
                                                 class="btn btn-warning">
@@ -51,42 +51,6 @@
                                                     class="nav-link text-white"
                                                     href="#">عودة</a></button> --}}
                                     </div>
-                                    <div class="card-body">
-                                        <p class="card-text" style="text-align:center;">الجهات المختصة للرد</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    @foreach ($r_license as $r)
-                                        @if ($r->state)
-                                            <div class="col-12 col-md-6 col-lg-2">
-                                                <div class="card card-primary">
-                                                    <div class="card-header">
-                                                        <i class="fas fa-check-double" style="color: green;"></i>
-                                                        <h4>
-                                                            @if ($r->response_file)
-                                                                <a style="font-size: 12px;color: green;"
-                                                                    href="{{ asset('project_response_file/' . $r->response_file) }}"
-                                                                    target="_blank">{{ $r->L_Lisense->name }}</a>
-                                                            @else
-                                                                <h4 style="font-size: 12px;color: green;">
-                                                                    {{ $r->L_Lisense->name }}</h4>
-                                                            @endif
-                                                        </h4>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @elseif(!$r->state)
-                                            <div class="col-12 col-md-6 col-lg-2">
-                                                <div class="card card-primary">
-                                                    <div class="card-header">
-                                                        <i class="fas fa-times" style="color: red;"></i>
-                                                        <h4 style="font-size: 12px;color: red;">
-                                                            {{ $r->L_Lisense->name }}</h4>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
                                 </div>
                                 <form class="needs-validation" id="work_experience" novalidate=""
                                     action="{{ route('investment.update', $request->id) }}" method="POST"
@@ -116,11 +80,11 @@
                                                 <div class="form-group col-md-8">
                                                     <label> اسم المشروع </label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        class="form-control" name="name"
-                                                        value="{{ $request->name }}" disabled>
+                                                        class="form-control" name="name" value="{{ $request->name }}"
+                                                        disabled>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        class="form-control" name="name"
-                                                        value="{{ $request->name }}" hidden>
+                                                        class="form-control" name="name" value="{{ $request->name }}"
+                                                        hidden>
                                                 </div>
                                                 <div class="form-group col-md-12">
                                                     <label> الجهات للموافة علي المشرع </label>
