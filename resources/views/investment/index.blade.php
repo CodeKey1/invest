@@ -115,7 +115,8 @@
                                                                         </a>
                                                                         @if (auth()->user()->hasRole('super_admin'))
                                                                             <a class="btn btn-icon btn-danger"
-                                                                                href="{{ route('investment.delete', $requests->id) }}"><i
+                                                                                href="{{ route('investment.delete', $requests->id) }}"data-toggle="tooltip"
+                                                                                data-placement="top" title="حذف"><i
                                                                                     class="fas fa-times"></i></a>
                                                                         @endif
                                                                     </td>

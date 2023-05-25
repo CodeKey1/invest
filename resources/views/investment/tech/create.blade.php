@@ -210,7 +210,7 @@
                                                         <button type="submit" class="btn btn-danger"
                                                             style="float: left;" name="actionBTN"
                                                             value="dissApprove">
-                                                            الغاء الاعتماد
+                                                            رفض المشروع
                                                         </button>
                                                     </div>
                                                 @endif

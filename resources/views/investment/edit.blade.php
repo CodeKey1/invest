@@ -167,23 +167,23 @@
                                                         value="{{ $request->NID }}">
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label>تليفون </label>
+                                                    <label>تليفون <span style="color: red">*</span></label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
                                                         class="form-control" value="{{ $request->phone }}" disabled>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
                                                         class="form-control" name="phone"
-                                                        value="{{ $request->phone }}">
+                                                        value="{{ $request->phone }}" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label> مساحة المشروع </label>
+                                                    <label> مساحة المشروع <span style="color: red">*</span></label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
                                                         class="form-control" value="{{ $request->size }}" disabled>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
                                                         class="form-control" name="size"
-                                                        value="{{ $request->size }}">
+                                                        value="{{ $request->size }}" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label>نوع المساحة </label>
+                                                    <label>نوع المساحة <span style="color: red">*</span></label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
                                                         class="form-control" value="{{ $request->size_type }}"
                                                         disabled>
@@ -227,20 +227,23 @@
                                                         value="{{ $request->self_financing }}">
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label>تاريخ تقديم الطلب </label>
+                                                    <label>تاريخ تقديم الطلب <span style="color: red">*</span></label>
                                                     <input style="height: calc(2.25rem + 6px);" type="date"
-                                                        class="form-control" value="{{ $request->recived_date }}"
+                                                        class="form-control"
+                                                        value="{{ $request->recived_date->format('Y-m-d') }}"
                                                         disabled>
                                                     <input style="height: calc(2.25rem + 6px);" type="date"
                                                         class="form-control" name="recived_date"
-                                                        value="{{ $request->recived_date }}">
+                                                        value="{{ $request->recived_date->format('Y-m-d') }}"
+                                                        required>
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label>المدينة </label>
+                                                    <label>المدينة <span style="color: red">*</span></label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
                                                         class="form-control" value="{{ $request->city->name }}"
                                                         disabled>
-                                                    <select class="form-control" id="city_id" name="city_id">
+                                                    <select class="form-control" id="city_id" name="city_id"
+                                                        required>
                                                         <option value="{{ $request->city_id }}" selected hidden>
                                                             {{ $request->city->name }}</option>
                                                         @isset($city)
@@ -266,7 +269,7 @@
                                                             @endif
                                                         @endisset
                                                     </select>
-                                                    <select class="form-control select2" name="region[]" multiple
+                                                    {{-- <select class="form-control select2" name="region[]" multiple
                                                         style="width: 100%">
                                                         @isset($place)
                                                             @if ($place && $place->count() > 0)
@@ -276,7 +279,7 @@
                                                                 @endforeach
                                                             @endif
                                                         @endisset
-                                                    </select>
+                                                    </select> --}}
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label> وصف المشروع </label>

@@ -481,10 +481,9 @@ class InvestmentController extends Controller
                 ]));
             }else{
                 RequestP::where('id',$id)-> update(([
-                    'technical_state' =>0,
+                    'technical_state' =>2,
                 ]));
             }
-        
             return redirect()->back();
         }catch(\Exception $ex){
             return redirect()->route('tech')-> with(['error' => ' خطأ '.$ex]);
