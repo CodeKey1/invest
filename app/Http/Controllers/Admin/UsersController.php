@@ -131,7 +131,10 @@ class UsersController extends Controller
     public function destroy(string $id)
     {
         if (auth()->user()->hasRole('super_admin')){
-            $user_have_type = User_have_type::find($id)->delete();
+            $user_have_type = User_have_type::find($id);
+            if($user_have_type){
+                $user_have_type->delete();
+            }
             $user = User::find($id);
             $user->delete();
             return redirect()->route('user')->with(['success' => 'تم الحذف بنجاح']);
