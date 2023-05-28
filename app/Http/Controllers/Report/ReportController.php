@@ -111,27 +111,62 @@ class ReportController extends Controller
     }
     public function request_report(Request $request)
     {
-        $cat_id =  $request['category'];
-        $sub_cat_id =  $request['sub_cat'];
-        $owner_type =  $request['owner_type'];
-        $city_id =  $request['city'];
-        
-        $request_detail = RequestP::whereRaw('category_id '. $cat_id)
-            ->whereRaw('sub_category_id '. $sub_cat_id)
-            ->whereRaw('owner_type '. $owner_type)
-            ->whereRaw('city_id '. $city_id)->get(); 
-
-        $request = RequestP::select()->get(); 
+        $report_type =  $request->action;
         $category = Category::select()->get(); 
-        $sub_cat = SubCategory::select()->get(); 
         $city = City::select()->get(); 
+        switch($report_type){
+            case "all":
+                $cat_id =  $request['category'];
+                $city_id =  $request['city'];
+                $owner_type =  $request['owner_type'];
+                $request_detail_all = RequestP::whereRaw('category_id '. $cat_id)
+                    ->whereRaw('owner_type '. $owner_type)
+                    ->whereRaw('city_id '. $city_id)->get(); 
 
-        $category_name = Category::select()->whereRaw('id '.$cat_id)->get(); 
-        $sub_cat_name = SubCategory::select()->whereRaw('id '.$sub_cat_id)->get(); 
-        $city_name = City::select()->whereRaw('id '.$city_id)->get(); 
-        $owner_type = str_replace(array("'","'","="), '', $owner_type);
-
-        return view('report.request_report',compact('category','request','sub_cat','city','request_detail','category_name','sub_cat_name','city_name','owner_type'));
+                $category_name = Category::select()->whereRaw('id '.$cat_id)->get(); 
+                $city_name = City::select()->whereRaw('id '.$city_id)->get(); 
+                $owner_type = str_replace(array("'","'","="), '', $owner_type);
+                return view('report.request_report',compact('category','request','city','request_detail_all','category_name','city_name','owner_type'));
+                break;
+            case "city":
+                $city_id =  $request->city_id;
+                $request_detail_city = RequestP::select()->where('city_id',$city_id)->get();
+                $name = City::select()->find($city_id); 
+                return view('report.request_report',compact('category','request','city','request_detail_city','name'));
+                break;
+            case "cat":
+                $category_id =  $request->category_id;
+                $request_detail_cat = RequestP::select()->where('category_id',$category_id)->get();
+                $name = Category::select()->find($category_id);
+                return view('report.request_report',compact('category','request','city','request_detail_cat','name'));
+                break;
+            case "size":
+                break;
+            case "capital":
+                $capital =  $request->capital;
+                switch($capital){
+                    case "small":
+                        $request_detail_capital = RequestP::select()->where('capital','<=','1000000')->get();
+                        $name = "اقل من مليون";
+                        break;
+                    case "mediam":
+                        $request_detail_capital = RequestP::select()->where('capital','>=','1000000')->where('capital','<=','5000000')->get();
+                        $name = "اكبر من مليون واقل من 5 مليون";
+                        break;
+                    case "large":
+                        $request_detail_capital = RequestP::select()->where('capital','>=','5000000')->get();
+                        $name = "اكبر من 5 مليون";
+                        break;
+                }
+                return view('report.request_report',compact('category','request','city','request_detail_capital','name'));
+                break;
+            case "date":
+                $start_date =  $request->start_date;
+                $end_date =  $request->end_date;
+                $request_detail_date = RequestP::select()->where('recived_date','>=',$start_date)->where('recived_date','<=',$end_date)->get();
+                return view('report.request_report',compact('category','request','city','request_detail_date','start_date','end_date'));
+                break;
+        }
     }
     public function single_report(string $id)
     {

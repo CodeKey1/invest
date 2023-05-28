@@ -200,11 +200,10 @@
                                                             </tbody>
                                                         </table>
                                                     </div>
-                                                    <br>
-                                                    <br>
-                                                    <br>
-                                                    <div class="col-12 col-md-12 col-lg-12">
+                                                    <div class="col-12 col-md-12 col-lg-12"
+                                                        style="border-top: 1px solid black; margin-top:30px; padding-top:20px; border-radius: 20px;">
                                                         <h3>حالة الموافقات: </h3>
+                                                        <br>
                                                         <div class="d-flex justify-content-between">
                                                             @isset($license)
                                                                 @foreach ($license as $li => $l)
@@ -229,56 +228,62 @@
                                                             @endisset
                                                         </div>
                                                     </div>
-                                                    <br>
-                                                    <br>
-                                                    <br>
-                                                    <br>
-                                                    <div class="col-6 col-md-6 col-lg-6">
-                                                        <h5>ملاحظات الجهات</h5>
-                                                        <table class="table">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th> الملاحظة </th>
-                                                                    <th> المرسل </th>
-                                                                    <th> الجهة </th>
-                                                                    <th> التاريخ </th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                @isset($r_note)
-                                                                    @foreach ($r_note as $note)
+                                                    <div class="col-12 col-md-12 col-lg-12"
+                                                        style="border-top: 1px solid black; margin-top:30px; padding-top:20px; border-radius: 20px;">
+                                                        <div class="row">
+                                                            <div class="col-6 col-md-6 col-lg-6">
+                                                                <h5>ملاحظات الجهات</h5>
+                                                                <br>
+                                                                <br>
+                                                                <table class="table">
+                                                                    <thead>
                                                                         <tr>
-                                                                            <td>{{ $note->notes }}</td>
-                                                                            <td>{{ $note->sender_name->name }}</td>
-                                                                            <td>{{ $note->note_license->name }}</td>
-                                                                            <td>{{ date('Y-m-d', strtotime($note->created_at)) }}
-                                                                            </td>
+                                                                            <th> الملاحظة </th>
+                                                                            <th> المرسل </th>
+                                                                            <th> الجهة </th>
+                                                                            <th> التاريخ </th>
                                                                         </tr>
-                                                                    @endforeach
-                                                                @endisset
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                    <div class="col-6 col-md-6 col-lg-6">
-                                                        <h5>ملاحظات لجنة البت الفني</h5>
-                                                        <table class="table">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th> الملاحظة </th>
-                                                                    <th> التاريخ </th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                @isset($tech)
-                                                                    @foreach ($tech as $note)
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @isset($r_note)
+                                                                            @foreach ($r_note as $note)
+                                                                                <tr>
+                                                                                    <td>{{ $note->notes }}</td>
+                                                                                    <td>{{ $note->sender_name->name }}</td>
+                                                                                    <td>{{ $note->note_license->name }}
+                                                                                    </td>
+                                                                                    <td>{{ date('Y-m-d', strtotime($note->created_at)) }}
+                                                                                    </td>
+                                                                                </tr>
+                                                                            @endforeach
+                                                                        @endisset
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <div class="col-6 col-md-6 col-lg-6">
+                                                                <h5>ملاحظات لجنة البت الفني</h5>
+                                                                <br>
+                                                                <br>
+                                                                <table class="table">
+                                                                    <thead>
                                                                         <tr>
-                                                                            <td>{{ $note->note }}</td>
-                                                                            <td>{{ $note->date }}</td>
+                                                                            <th> الملاحظة </th>
+                                                                            <th> التاريخ </th>
                                                                         </tr>
-                                                                    @endforeach
-                                                                @endisset
-                                                            </tbody>
-                                                        </table>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @isset($tech)
+                                                                            @foreach ($tech as $note)
+                                                                                <tr>
+                                                                                    <td>{{ $note->note }}</td>
+                                                                                    <td>{{ $note->date }}</td>
+                                                                                </tr>
+                                                                            @endforeach
+                                                                        @endisset
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
