@@ -83,7 +83,7 @@
                                             اختر
                                             نوع التقرير
                                         </option>
-                                        <option value="all">كل الفئات</option>
+                                        <option value="all">المدينة وفئة الطلب</option>
                                         <option value="city">المدن</option>
                                         <option value="cat">فئة الطلبات</option>
                                         <option value="size">المساحة</option>
@@ -117,16 +117,6 @@
                                                 @endforeach
                                             @endif
                                         @endisset
-                                    </select>
-                                    <select class="form-control col-2" name="owner_type" required>
-                                        <option value="" hidden disabled selected>
-                                            اختر
-                                            فئة المالك
-                                        </option>
-                                        <option style="font-weight: bolder" value="IS NOT NULL">كل الفئات
-                                        </option>
-                                        <option value="='شركة'">شركات</option>
-                                        <option value="='مواطن'">افراد</option>
                                     </select>
                                     <select class="form-control col-2" name="category" required>
                                         <option value="" hidden disabled selected>
@@ -194,6 +184,42 @@
                                     </select>
                                 </div>
                             </form>
+                            <form class="report size" action="{{ route('req_report') }}" method="GET"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <div class="row"
+                                    style="display: flex; justify-content: space-around;  align-items: center ">
+                                    <div class="form-group col-md-3">
+                                        <button type="submit" style="height: calc(2.25rem + 6px); color:white"
+                                            name='action' value='size' class="btn-dark form-control">عرض</button>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>نوع المساحة</label>
+                                        <select class="form-control" name="size_type" required>
+                                            <option value="" hidden disabled selected>
+                                                اختر
+                                                نوع المساحة
+                                            </option>
+                                            <option value="متر مربع">
+                                                متر مربع
+                                            </option>
+                                            <option value="فدان">
+                                                فدان
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>المساحة الى </label>
+                                        <input style="height: calc(2.25rem + 6px);" type="number" name="end_size"
+                                            class="form-control" required>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>المساحة من </label>
+                                        <input style="height: calc(2.25rem + 6px);" type="number" name="start_size"
+                                            class="form-control" required>
+                                    </div>
+                                </div>
+                            </form>
                             <form class="report capital" action="{{ route('req_report') }}" method="GET"
                                 enctype="multipart/form-data">
                                 @csrf
@@ -245,9 +271,9 @@
                     <section class="section" id="print">
                         <div id="centerlogo"
                             style="margin: 30px ; justify-content: space-between; align-items: center; display:flex;">
-                            <img width="80px" height="100px" src="../images/logo/aswan.png">
-
-                            <img width="80px" height="100px" src="../images/logo/logo.png">
+                            {{-- <img width="80px" height="100px" src="../images/logo/logo.png"> --}}
+                            <h3>قطاع الشؤن الاقتصادية والاستثمار</h3>
+                            <img width="120px" height="120px" src="../images/logo/new_logo.png">
                         </div>
                         <div class="section-body">
                             <div class="row" style="direction: rtl">
@@ -282,68 +308,63 @@
                                                             @endisset
                                                         </td>
                                                     </tr>
-                                                    <tr style="height: 50px;">
-                                                        <th scope="row" style="text-align: inherit;width: 130px;">
-                                                            فئة مقدم الطلب:</th>
-                                                        <td style="text-align: inherit;">
-                                                            {{ $owner_type }} -
-                                                        </td>
-                                                    </tr>
                                                 </tbody>
                                             </table>
-
                                             <table class="table table-bordered" style="margin-top: 50px;">
                                                 <thead>
                                                     <tr>
                                                         <th>الطلب</th>
                                                         <th>مقدم الطلب</th>
-                                                        {{-- <th>نوع المقدم</th> --}}
                                                         <th>الهاتف</th>
                                                         <th>المساحة</th>
-                                                        <th>نوع المساحة</th>
                                                         <th>راس المال</th>
                                                         <th>نسبة التمويل</th>
                                                         <th>ت. الطلب</th>
-                                                        <th>المواقع المقترحة</th>
+                                                        {{-- <th>المواقع المقترحة</th> --}}
                                                         <th>الحالة</th>
-                                                        {{-- <th>الفئة</th>
-                                                        <th>الفئة الفرعية</th>
-                                                        <th>المدينة</th> --}}
+                                                        <th>الفئة</th>
+                                                        {{-- <th>الفئة الفرعية</th> --}}
+                                                        <th>المدينة</th>
+                                                        <th class="info">تفاصيل</th>
                                                     </tr>
                                                 </thead>
                                                 @isset($request_detail_all)
-                                                    @if ($request_detail_all && $request_detail_all->count() > 0)
-                                                        @foreach ($request_detail_all as $item)
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>{{ $item->name }}</td>
-                                                                    <td>{{ $item->owner_name }}</td>
-                                                                    {{-- <td>{{ $item->owner_type }}</td> --}}
-                                                                    <td>{{ $item->phone }}</td>
-                                                                    <td>{{ $item->size }}</td>
-                                                                    <td>{{ $item->size_type }}</td>
-                                                                    <td>{{ $item->capital }}</td>
-                                                                    <td>{{ $item->self_financing }}</td>
-                                                                    <td>{{ $item->recived_date }}</td>
-                                                                    <td>
-                                                                        @foreach (App\Models\Request_places::where('request_id', $item->id)->get() as $item1)
-                                                                            {{ $item1->Req_place->name }} -
-                                                                        @endforeach
-                                                                    </td>
-                                                                    <td>
-                                                                        @if ($item->state)
-                                                                            <span style="color: green">فعال</span>
-                                                                        @else
-                                                                            <span style="color: red">غير فعال</span>
-                                                                        @endif
-                                                                    </td>
-                                                                    {{-- <td>{{ $item->categoryname->name }}</td>
-                                                                    <td>{{ $item->subCat->name }}</td>
-                                                                    <td>{{ $item->city->name }}</td> --}}
-                                                                </tr>
-                                                            </tbody>
-                                                        @endforeach
-                                                    @endif
+                                                    @foreach ($request_detail_all as $item)
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>{{ $item->name }}</td>
+                                                                <td>{{ $item->owner_name }}</td>
+                                                                {{-- <td>{{ $item->owner_type }}</td> --}}
+                                                                <td>0{{ $item->phone }}</td>
+                                                                <td>{{ $item->size }} {{ $item->size_type }}</td>
+                                                                <td>{{ $item->capital ?? 'null' }} {{ $item->currency_type }}
+                                                                </td>
+                                                                <td>{{ $item->self_financing }}%</td>
+                                                                <td>{{ $item->recived_date->format('Y-m-d') }}</td>
+                                                                {{-- <td>
+                                                                    @foreach (App\Models\Request_places::where('request_id', $item->id)->get() as $item1)
+                                                                        {{ $item1->Req_place->name }} -
+                                                                    @endforeach
+                                                                </td> --}}
+                                                                <td>
+                                                                    @if ($item->technical_state == 1)
+                                                                        <span style="color: green">مقبول</span>
+                                                                    @elseif ($item->technical_state == 0)
+                                                                        <span style="color: red">مرفوض</span>
+                                                                    @else
+                                                                        <span style="color: darkslategrey">جاري</span>
+                                                                    @endif
+                                                                </td>
+                                                                <td>{{ $item->categoryname->name }}</td>
+                                                                <td>{{ $item->city->name }}</td>
+                                                                <td class="info">
+                                                                    <a href="{{ route('single_report', $item->id) }}">عرض
+                                                                    </a>
+                                                                </td>
+                                                                {{-- <td>{{ $item->subCat->name }}</td> --}}
+                                                            </tr>
+                                                        </tbody>
+                                                    @endforeach
                                                 @endisset
                                             </table>
                                         </div>
@@ -354,6 +375,12 @@
                                         onclick="printDiv()"> <i class="mdi mdi-printer ml-1"></i>طباعة</button>
                                 </div>
                             </div>
+                        </div>
+                        <div class="divFooter">
+                            <img src="../images/logo/logo.png" class="logo">
+                            <h6 style="color: darkslategrey">&nbsp;&nbsp; جميع الحقوق محفوظة لمركز نظم المعلومات
+                                والتحول الرقمي&nbsp;&nbsp;
+                            </h6>
                         </div>
                     </section>
                 @endisset
@@ -552,10 +579,12 @@
                                 <div class="col-12 col-md-12 col-lg-12">
                                     <div class="card card-primary work-xp">
                                         <div class="card-header">
-                                            <h3>تقرير الطلبات الاستثمارية للمساحات {{ $name }}
+                                            <h3>تقرير الطلبات الاستثمارية للمساحة
                                             </h3>
                                         </div>
                                         <div class="card-body">
+                                            <h5>المساحات من {{ $start_size }} {{ $size_type }} الى
+                                                {{ $end_size }} {{ $size_type }} </h5>
                                             <table class="table table-bordered" style="margin-top: 50px;">
                                                 <thead>
                                                     <tr>
@@ -865,6 +894,7 @@
                     $('.category').show();
                     break;
                 case "size":
+                    $('.size').show();
                     break;
                 case "capital":
                     $('.capital').show();

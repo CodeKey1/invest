@@ -49,17 +49,17 @@
                                     <div class="card card-primary">
                                         <div class="card-body">
                                             <div class="form-group col-md-12">
-                                                <label> اسم المزاد</label>
+                                                <label> اسم المزاد <span style="color: red">*</span></label>
                                                 <input style="height: calc(2.25rem + 6px);" type="text"
                                                     name="name" class="form-control"placeholder="" required>
                                             </div>
                                             <div class="form-group col-md-12">
-                                                <label> تاريخ المزاد</label>
+                                                <label> تاريخ المزاد <span style="color: red">*</span></label>
                                                 <input style="height: calc(2.25rem + 6px);" type="date"
                                                     name="date" class="form-control"placeholder="" required>
                                             </div>
                                             <div class="form-group col-md-12">
-                                                <label> عنوان المزاد</label>
+                                                <label> عنوان المزاد <span style="color: red">*</span></label>
                                                 <input style="height: calc(2.25rem + 6px);" type="text"
                                                     name="label" class="form-control"placeholder="" required>
                                             </div>

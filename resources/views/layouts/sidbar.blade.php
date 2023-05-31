@@ -75,7 +75,7 @@
                     <a href="{{ route('tech') }}" class="nav-link"><span>لجنة البت الفني</span><i class="fa fa-bug"
                             aria-hidden="true"></i></a>
                 </li>
-                <li class="menu-header">
+                {{-- <li class="menu-header">
                     <hr />
                 </li>
                 <li class="dropdown">
@@ -95,7 +95,7 @@
                         <li><a class="nav-link" href="{{ route('export.Create') }}">اضافة صادر</a></li>
                         <li><a class="nav-link" href="{{ route('export') }}"> كل الصادر</a></li>
                     </ul>
-                </li>
+                </li> --}}
                 <li class="menu-header">
                     <hr />
                 </li>
@@ -148,7 +148,7 @@
                         <li><a class="nav-link" href="{{ route('offer') }}">الاطروحات</a></li>
                     </ul>
                 </li>
-                <li class="menu-header">
+                {{-- <li class="menu-header">
                     <hr />
                 </li>
                 <li class="dropdown">
@@ -168,7 +168,7 @@
                         <li><a class="nav-link" href="{{ route('export.Create') }}">اضافة صادر</a></li>
                         <li><a class="nav-link" href="{{ route('export') }}"> كل الصادر</a></li>
                     </ul>
-                </li>
+                </li> --}}
                 <li class="menu-header">
                     <hr />
                 </li>
@@ -196,7 +196,7 @@
                     <a href="{{ route('side') }}" class="nav-link"><span>طلبات المستثمرين</span><i class="fa fa-bug"
                             aria-hidden="true"></i></a>
                 </li>
-                <li class="menu-header">
+                {{-- <li class="menu-header">
                     <hr />
                 </li>
                 <li class="dropdown">
@@ -216,7 +216,7 @@
                         <li><a class="nav-link" href="{{ route('export.Create') }}">اضافة صادر</a></li>
                         <li><a class="nav-link" href="{{ route('export') }}"> كل الصادر</a></li>
                     </ul>
-                </li>
+                </li> --}}
             </ul>
         @endif
 
@@ -232,7 +232,7 @@
                     <a href="{{ route('tech') }}" class="nav-link"><span>لجنة البت الفني</span><i class="fa fa-bug"
                             aria-hidden="true"></i></a>
                 </li>
-                <li class="menu-header">
+                {{-- <li class="menu-header">
                     <hr />
                 </li>
                 <li class="dropdown">
@@ -252,7 +252,7 @@
                         <li><a class="nav-link" href="{{ route('export.Create') }}">اضافة صادر</a></li>
                         <li><a class="nav-link" href="{{ route('export') }}"> كل الصادر</a></li>
                     </ul>
-                </li>
+                </li> --}}
             </ul>
         @endif
 

@@ -118,15 +118,11 @@ class ReportController extends Controller
             case "all":
                 $cat_id =  $request['category'];
                 $city_id =  $request['city'];
-                $owner_type =  $request['owner_type'];
                 $request_detail_all = RequestP::whereRaw('category_id '. $cat_id)
-                    ->whereRaw('owner_type '. $owner_type)
                     ->whereRaw('city_id '. $city_id)->get(); 
-
                 $category_name = Category::select()->whereRaw('id '.$cat_id)->get(); 
                 $city_name = City::select()->whereRaw('id '.$city_id)->get(); 
-                $owner_type = str_replace(array("'","'","="), '', $owner_type);
-                return view('report.request_report',compact('category','request','city','request_detail_all','category_name','city_name','owner_type'));
+                return view('report.request_report',compact('category','request','city','request_detail_all','category_name','city_name'));
                 break;
             case "city":
                 $city_id =  $request->city_id;
@@ -141,6 +137,11 @@ class ReportController extends Controller
                 return view('report.request_report',compact('category','request','city','request_detail_cat','name'));
                 break;
             case "size":
+                $start_size =  $request->start_size;
+                $end_size =  $request->end_size;
+                $size_type =  $request->size_type;
+                $request_detail_size = RequestP::select()->where('size','>=',$start_size)->where('size','<=',$end_size)->where('size_type',$size_type)->get();
+                return view('report.request_report',compact('category','request','city','request_detail_size','start_size','end_size','size_type'));
                 break;
             case "capital":
                 $capital =  $request->capital;
