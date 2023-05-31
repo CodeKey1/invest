@@ -40,23 +40,28 @@ class HomeController extends Controller
     }
     public function userChart()
     {
-        $now = Carbon::today();
+        $now = Carbon::now();
+        $now1 = Carbon::now();
         $month = [];
-        $service = [];
-        $user = [];
-        for ($i = 0; $i < 12; $i++)
+        $rejected = [];
+        $finished = [];
+        $pending = [];
+        for ($i = $now->month; $i >= $now->month-12; $i--)
         {
-            $end =  RequestP::whereMonth('created_at', $now->month)->whereYear('created_at', $now->year)->where('state',1)->get();
-            $start =  RequestP::whereMonth('created_at', $now->month)->whereYear('created_at', $now->year)->get();
-            array_push($month, $now->format('M').' '.$now->format('Y'));
-            array_push($service, $end->count());
-            array_push($user, $start->count());
-            $now =  $now->subMonth();
+            $now1 =  $now1->subMonth();
+            $reject =  RequestP::whereMonth('recived_date', $i)->whereYear('recived_date', $now1->year)->where('technical_state',0)->get();
+            $pend =  RequestP::whereMonth('recived_date', $i)->whereYear('recived_date', $now1->year)->where('technical_state',2)->get();
+            $finish =  RequestP::whereMonth('recived_date', $i)->whereYear('recived_date', $now1->year)->where('technical_state',1)->get();
+            array_push($month, $now1->format('M').' '.$now1->format('Y'));
+            array_push($pending, $pend->count());
+            array_push($finished, $finish->count());
+            array_push($rejected, $reject->count());
         }
 
-        $master['service'] = json_encode($service);
         $master['month'] = json_encode($month);
-        $master['user'] = json_encode($user);
+        $master['pending'] = json_encode($pending);
+        $master['finished'] = json_encode($finished);
+        $master['rejected'] = json_encode($rejected);
         return $master;
     }
 }

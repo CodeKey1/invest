@@ -53,9 +53,8 @@
                     <a href="{{ route('home') }}" class="nav-link"><span>الرئيسية</span><i class="fa fa-home"
                             aria-hidden="true"></i></a>
                 </li>
-                <li class="menu-header"></li>
                 <li class="dropdown">
-                    <a href="#" class="menu-toggle nav-link has-dropdown"><span> طلبات المستثمر </span>
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><span> طلبــات المستثــمر </span>
                         <i class="fa fa-file" aria-hidden="true"></i></a>
                     <ul class="dropdown-menu">
                         {{-- <li><a class="nav-link" href="{{ route('investment.Create') }}">اضافة طلب</a></li> --}}
@@ -64,7 +63,7 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="menu-toggle nav-link has-dropdown"><span> المزادات </span>
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><span> مزادات واطروحات </span>
                         <i class="fa fa-university" aria-hidden="true"></i></a>
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="{{ route('auction') }}">مزادات</a></li>
@@ -116,7 +115,7 @@
                         <i class="fa fa-cogs" aria-hidden="true"></i></a>
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="{{ route('user') }}"> المستخدمين</a></li>
-                        <li><a class="nav-link" href="{{ route('role') }}">الصلحيات</a></li>
+                        {{-- <li><a class="nav-link" href="{{ route('role') }}">الصلحيات</a></li> --}}
                         <li><a class="nav-link" href="{{ route('app.modify') }}">بيانات اساسية</a></li>
                     </ul>
                 </li>

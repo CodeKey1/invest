@@ -63,6 +63,10 @@
                 width: 5%;
             }
         }
+
+        .tbody {
+            background-color: transparent !important;
+        }
     </style>
 </head>
 
@@ -285,7 +289,7 @@
                                         </div>
                                         <div class="card-body">
                                             <table class="table">
-                                                <tbody>
+                                                <tbody class="tbody">
                                                     <tr style="height: 50px;">
                                                         <th scope="row" style="text-align: inherit;width: 130px; ">
                                                             الفئة:</th>

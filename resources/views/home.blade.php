@@ -37,6 +37,21 @@
             toastr.success(JSON.stringify(data));
         });
     </script>
+    <style>
+        .col-xl-3 .card {
+            border-radius: 68px;
+            background: linear-gradient(to left, #183242, #2c5875, #fff);
+            background: #2c587526;
+        }
+
+        .col-xl-3 .card .card-statistic-4 {
+            padding: 0;
+        }
+
+        .col-xl-3 .card .card-content {
+            margin-top: 10%;
+        }
+    </style>
 </head>
 
 <body class="light theme-white">
@@ -139,51 +154,23 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-lg-8">
+                        <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-header">
                                     <h4>المشاريع</h4>
                                 </div>
                                 <div class="card-body">
-                                    <canvas id="lineChartFill"></canvas>
-                                    <input type="hidden" name="users" value="{{ $users['user'] }}">
-                                    <input type="hidden" name="service" value="{{ $users['service'] }}">
-                                    <input type="hidden" name="month" value="{{ $users['month'] }}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="card">
-
-                                <div class="card-body" style="direction: rtl;">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th>المزاد</th>
-                                                    <th> الاطروحات </th>
-
-                                                </tr>
-                                            </thead>
-                                            @isset($auctions)
-                                                @if ($auctions && $auctions->count() > 0)
-                                                    @foreach ($auctions as $offer1)
-                                                        <tbody>
-                                                            <tr>
-                                                                <td> {{ $offer1->name }} </td>
-                                                                <td> {{ $offer1->offer_name->count() }} </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    @endforeach
-                                                @endif
-                                            @endisset
-                                        </table>
+                                    <div id="chart1">
+                                        <input type="hidden" name="pending" value="{{ $users['pending'] }}">
+                                        <input type="hidden" name="rejected" value="{{ $users['rejected'] }}">
+                                        <input type="hidden" name="finished" value="{{ $users['finished'] }}">
+                                        <input type="hidden" name="month" value="{{ $users['month'] }}">
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
+
                     {{-- <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
@@ -249,26 +236,25 @@
     </div>
     <!-- General JS Scripts -->
     <script src="assets/js/app.min.js"></script>
+    <script src="assets/bundles/owlcarousel2/dist/owl.carousel.min.js"></script>
     <script src="assets/bundles/datatables/datatables.min.js"></script>
     <script src="assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
     <!-- JS Libraies -->
-
+    <!-- Page Specific JS File -->
+    <script src="assets/js/page/widget-data.js"></script>
+    <!-- Template JS File -->
     <script src="assets/bundles/apexcharts/apexcharts.min.js"></script>
     <!-- Page Specific JS File -->
-    <script src="assets/js/page/index.js"></script>
+    <script src="assets/js/page/chart-apexcharts.js"></script>
     <script src="assets/js/page/datatables.js"></script>
     <!-- Template JS File -->
-    <script src="assets/bundles/chartjs/chart.min.js"></script>
     <!-- Page Specific JS File -->
-    <script src="assets/js/page/chart-chartjs.js"></script>
     <script src="assets/js/scripts.js"></script>
     <!-- Custom JS File -->
     <script src="assets/js/custom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-
 </body>
 
 

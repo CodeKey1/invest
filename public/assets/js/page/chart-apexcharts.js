@@ -20,29 +20,34 @@ function chart1() {
             bar: {
                 horizontal: false,
                 endingShape: 'rounded',
-                columnWidth: '55%',
+                columnWidth: '80%',
             },
         },
         dataLabels: {
             enabled: false
         },
+        theme: {
+            palette: 'palette5' // upto palette10
+        },
         stroke: {
             show: true,
             width: 2,
-            colors: ['transparent']
+            colors: ['tranparent']
         },
         series: [{
-            name: 'Net Profit',
-            data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
-        }, {
-            name: 'Revenue',
-            data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
-        }, {
-            name: 'Free Cash Flow',
-            data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
+            name: 'جاري',
+            data: JSON.parse($('input[name=pending]').val()),
+        }, 
+        {
+            name: 'مرفوض',
+            data: JSON.parse($('input[name=rejected]').val()),
+        },
+        {
+            name: 'مقبول',
+            data: JSON.parse($('input[name=finished]').val()),
         }],
         xaxis: {
-            categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+            categories: JSON.parse($('input[name=month]').val()),
             labels: {
                 style: {
                     colors: '#9aa0ac',
@@ -51,7 +56,7 @@ function chart1() {
         },
         yaxis: {
             title: {
-                text: '$ (thousands)'
+                text: 'الطلبات'
             },
             labels: {
                 style: {
@@ -61,15 +66,7 @@ function chart1() {
         },
         fill: {
             opacity: 1
-
         },
-        tooltip: {
-            y: {
-                formatter: function (val) {
-                    return "$ " + val + " thousands"
-                }
-            }
-        }
     }
 
     var chart = new ApexCharts(

@@ -78,11 +78,11 @@
                                                                     <td>{{ $auction1->label }}</td>
                                                                     <td>{{ $auction1->note }}</td>
                                                                     <td>
-                                                                        <a class="btn btn-icon btn-success"
+                                                                        <a class="col-dark-gray waves-effect"
                                                                             href="{{ route('auction.edit', $auction1->id) }}"
                                                                             ata-toggle="tooltip" data-placement="top"
                                                                             title="عرض وتعديل">
-                                                                            <i class="fas fa-user"></i>
+                                                                            <i class="material-icons">edit</i>
                                                                         </a>
                                                                     </td>
                                                                 </tr>

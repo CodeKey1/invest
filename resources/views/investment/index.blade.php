@@ -101,23 +101,23 @@
                                                                         @endforeach
                                                                     </td>
                                                                     <td>
-                                                                        <a class="btn btn-icon btn-info"
+                                                                        <a class="col-dark-gray waves-effect"
                                                                             href="{{ route('investment.record', $requests->id) }}"
                                                                             data-toggle="tooltip" data-placement="top"
                                                                             title="عرض">
-                                                                            <i class="fas fa-info"></i>
+                                                                            <i class="material-icons">info</i>
                                                                         </a>
-                                                                        <a class="btn btn-icon btn-success"
+                                                                        <a class="col-dark-gray waves-effect"
                                                                             href="{{ route('investment.show', $requests->id) }}"
                                                                             data-toggle="tooltip" data-placement="top"
                                                                             title="تعديل">
-                                                                            <i class="fas fa-edit"></i>
+                                                                            <i class="material-icons">edit</i>
                                                                         </a>
                                                                         @if (auth()->user()->hasRole('super_admin'))
-                                                                            <a class="btn btn-icon btn-danger"
+                                                                            <a class="col-red waves-effect m-r-10"
                                                                                 href="{{ route('investment.delete', $requests->id) }}"data-toggle="tooltip"
                                                                                 data-placement="top" title="حذف"><i
-                                                                                    class="fas fa-times"></i></a>
+                                                                                    class="material-icons">delete</i></a>
                                                                         @endif
                                                                     </td>
                                                                 </tr>

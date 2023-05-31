@@ -168,12 +168,13 @@
                                                                                         @endforeach
                                                                                     </td>
                                                                                     <td>
-                                                                                        <a class="btn btn-icon btn-success"
+                                                                                        <a class="col-dark-gray waves-effect"
                                                                                             href="{{ route('investment.record', $requests->id) }}"
                                                                                             ata-toggle="tooltip"
                                                                                             data-placement="top"
                                                                                             title="عرض">
-                                                                                            <i class="fas fa-user"></i>
+                                                                                            <i
+                                                                                                class="material-icons">info</i>
                                                                                         </a>
                                                                                     </td>
                                                                                 </tr>
@@ -231,12 +232,13 @@
                                                                                         @endforeach
                                                                                     </td>
                                                                                     <td>
-                                                                                        <a class="btn btn-icon btn-success"
+                                                                                        <a class="col-dark-gray waves-effect"
                                                                                             href="{{ route('investment.record', $requests->id) }}"
                                                                                             ata-toggle="tooltip"
                                                                                             data-placement="top"
                                                                                             title="عرض">
-                                                                                            <i class="fas fa-user"></i>
+                                                                                            <i
+                                                                                                class="material-icons">info</i>
                                                                                         </a>
                                                                                     </td>
                                                                                 </tr>
