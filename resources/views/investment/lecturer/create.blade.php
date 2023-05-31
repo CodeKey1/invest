@@ -266,9 +266,6 @@
                                                                 @elseif(!$PRG->tax_card)
                                                                     <td>لا يوجد</td>
                                                                 @endif
-                                                                <embed
-                                                                    src="{{ asset('attatcment_project/' . $PRG->nid_photo) }}"
-                                                                    width="800px" height="2100px" />
                                                                 @if ($PRG->nid_photo)
                                                                     <td><a href="{{ asset('attatcment_project/' . $PRG->nid_photo) }}"
                                                                             target="_blank">اضغط هنا</a></td>
