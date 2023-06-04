@@ -57,6 +57,7 @@
                 justify-content: space-between;
                 align-items: center;
                 display: flex;
+                height: 100px;
             }
 
             div.divFooter .logo {
@@ -271,14 +272,14 @@
                         </div>
                     </div>
                 </div>
-                @isset($request_detail_all)
-                    <section class="section" id="print">
-                        <div id="centerlogo"
-                            style="margin: 30px ; justify-content: space-between; align-items: center; display:flex;">
-                            {{-- <img width="80px" height="100px" src="../images/logo/logo.png"> --}}
-                            <h3>قطاع الشؤن الاقتصادية والاستثمار</h3>
-                            <img width="120px" height="120px" src="../images/logo/new_logo.png">
-                        </div>
+                <section class="section" id="print">
+                    <div id="centerlogo"
+                        style="margin: 30px; justify-content: space-between; align-items: center; display:flex;">
+                        {{-- <img width="80px" height="100px" src="../images/logo/logo.png"> --}}
+                        <h3>قطاع الشؤن الاقتصادية والاستثمار</h3>
+                        <img width="120px" height="120px" src="../images/logo/new_logo.png">
+                    </div>
+                    @isset($request_detail_all)
                         <div class="section-body">
                             <div class="row" style="direction: rtl">
                                 <div class="col-12 col-md-12 col-lg-12">
@@ -363,11 +364,11 @@
                                                                 <td>{{ $item->city->name }}</td>
                                                                 <td class="info">
                                                                     <a class="col-dark-gray waves-effect"
-                                                                            href="{{ route('single_report', $item->id) }}"
-                                                                            data-toggle="tooltip" data-placement="top"
-                                                                            title="عرض">
-                                                                            <i class="material-icons">info</i>
-                                                                        </a>
+                                                                        href="{{ route('single_report', $item->id) }}"
+                                                                        data-toggle="tooltip" data-placement="top"
+                                                                        title="عرض">
+                                                                        <i class="material-icons">info</i>
+                                                                    </a>
                                                                 </td>
                                                                 {{-- <td>{{ $item->subCat->name }}</td> --}}
                                                             </tr>
@@ -384,22 +385,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="divFooter">
-                            <img src="../images/logo/logo.png" class="logo">
-                            <h6 style="color: darkslategrey">&nbsp;&nbsp; جميع الحقوق محفوظة لمركز نظم المعلومات
-                                والتحول الرقمي&nbsp;&nbsp;
-                            </h6>
-                        </div>
-                    </section>
-                @endisset
-                @isset($request_detail_city)
-                    <section class="section" id="print">
-                        <div id="centerlogo"
-                            style="margin: 30px ; justify-content: space-between; align-items: center; display:flex;">
-                            {{-- <img width="80px" height="100px" src="../images/logo/logo.png"> --}}
-                            <h3>قطاع الشؤن الاقتصادية والاستثمار</h3>
-                            <img width="120px" height="120px" src="../images/logo/new_logo.png">
-                        </div>
+                    @endisset
+                    @isset($request_detail_city)
                         <div class="section-body">
                             <div class="row" style="direction: rtl">
                                 <div class="col-12 col-md-12 col-lg-12">
@@ -436,7 +423,8 @@
                                                                 {{-- <td>{{ $item->owner_type }}</td> --}}
                                                                 <td>0{{ $item->phone }}</td>
                                                                 <td>{{ $item->size }} {{ $item->size_type }}</td>
-                                                                <td>{{ $item->capital ?? 'null' }} {{ $item->currency_type }}
+                                                                <td>{{ $item->capital ?? 'null' }}
+                                                                    {{ $item->currency_type }}
                                                                 </td>
                                                                 <td>{{ $item->self_financing }}%</td>
                                                                 <td>{{ $item->recived_date->format('Y-m-d') }}</td>
@@ -457,11 +445,11 @@
                                                                 <td>{{ $item->categoryname->name }}</td>
                                                                 <td class="info">
                                                                     <a class="col-dark-gray waves-effect"
-                                                                            href="{{ route('single_report', $item->id) }}"
-                                                                            data-toggle="tooltip" data-placement="top"
-                                                                            title="عرض">
-                                                                            <i class="material-icons">info</i>
-                                                                        </a>
+                                                                        href="{{ route('single_report', $item->id) }}"
+                                                                        data-toggle="tooltip" data-placement="top"
+                                                                        title="عرض">
+                                                                        <i class="material-icons">info</i>
+                                                                    </a>
                                                                 </td>
                                                                 {{-- <td>{{ $item->subCat->name }}</td>
                                                                     <td>{{ $item->city->name }}</td> --}}
@@ -479,22 +467,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="divFooter">
-                            <img src="../images/logo/logo.png" class="logo">
-                            <h6 style="color: darkslategrey">&nbsp;&nbsp; جميع الحقوق محفوظة لمركز نظم المعلومات
-                                والتحول الرقمي&nbsp;&nbsp;
-                            </h6>
-                        </div>
-                    </section>
-                @endisset
-                @isset($request_detail_cat)
-                    <section class="section" id="print">
-                        <div id="centerlogo"
-                            style="margin: 30px ; justify-content: space-between; align-items: center; display:flex;">
-                            {{-- <img width="80px" height="100px" src="../images/logo/logo.png"> --}}
-                            <h3>قطاع الشؤن الاقتصادية والاستثمار</h3>
-                            <img width="120px" height="120px" src="../images/logo/new_logo.png">
-                        </div>
+                    @endisset
+                    @isset($request_detail_cat)
                         <div class="section-body">
                             <div class="row" style="direction: rtl">
                                 <div class="col-12 col-md-12 col-lg-12">
@@ -531,7 +505,8 @@
                                                                 {{-- <td>{{ $item->owner_type }}</td> --}}
                                                                 <td>0{{ $item->phone }}</td>
                                                                 <td>{{ $item->size }} {{ $item->size_type }}</td>
-                                                                <td>{{ $item->capital ?? 'null' }} {{ $item->currency_type }}
+                                                                <td>{{ $item->capital ?? 'null' }}
+                                                                    {{ $item->currency_type }}
                                                                 </td>
                                                                 <td>{{ $item->self_financing }}%</td>
                                                                 <td>{{ $item->recived_date->format('Y-m-d') }}</td>
@@ -553,11 +528,11 @@
                                                                 <td>{{ $item->city->name }}</td>
                                                                 <td class="info">
                                                                     <a class="col-dark-gray waves-effect"
-                                                                            href="{{ route('single_report', $item->id) }}"
-                                                                            data-toggle="tooltip" data-placement="top"
-                                                                            title="عرض">
-                                                                            <i class="material-icons">info</i>
-                                                                        </a>
+                                                                        href="{{ route('single_report', $item->id) }}"
+                                                                        data-toggle="tooltip" data-placement="top"
+                                                                        title="عرض">
+                                                                        <i class="material-icons">info</i>
+                                                                    </a>
                                                                 </td>
                                                                 {{-- <td>{{ $item->subCat->name }}</td> --}}
                                                             </tr>
@@ -574,22 +549,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="divFooter">
-                            <img src="../images/logo/logo.png" class="logo">
-                            <h6 style="color: darkslategrey">&nbsp;&nbsp; جميع الحقوق محفوظة لمركز نظم المعلومات
-                                والتحول الرقمي&nbsp;&nbsp;
-                            </h6>
-                        </div>
-                    </section>
-                @endisset
-                @isset($request_detail_size)
-                    <section class="section" id="print">
-                        <div id="centerlogo"
-                            style="margin: 30px ; justify-content: space-between; align-items: center; display:flex;">
-                            {{-- <img width="80px" height="100px" src="../images/logo/logo.png"> --}}
-                            <h3>قطاع الشؤن الاقتصادية والاستثمار</h3>
-                            <img width="120px" height="120px" src="../images/logo/new_logo.png">
-                        </div>
+                    @endisset
+                    @isset($request_detail_size)
                         <div class="section-body">
                             <div class="row" style="direction: rtl">
                                 <div class="col-12 col-md-12 col-lg-12">
@@ -628,7 +589,8 @@
                                                                 {{-- <td>{{ $item->owner_type }}</td> --}}
                                                                 <td>0{{ $item->phone }}</td>
                                                                 <td>{{ $item->size }} {{ $item->size_type }}</td>
-                                                                <td>{{ $item->capital ?? 'null' }} {{ $item->currency_type }}
+                                                                <td>{{ $item->capital ?? 'null' }}
+                                                                    {{ $item->currency_type }}
                                                                 </td>
                                                                 <td>{{ $item->self_financing }}%</td>
                                                                 <td>{{ $item->recived_date->format('Y-m-d') }}</td>
@@ -650,11 +612,11 @@
                                                                 <td>{{ $item->city->name }}</td>
                                                                 <td class="info">
                                                                     <a class="col-dark-gray waves-effect"
-                                                                            href="{{ route('single_report', $item->id) }}"
-                                                                            data-toggle="tooltip" data-placement="top"
-                                                                            title="عرض">
-                                                                            <i class="material-icons">info</i>
-                                                                        </a>
+                                                                        href="{{ route('single_report', $item->id) }}"
+                                                                        data-toggle="tooltip" data-placement="top"
+                                                                        title="عرض">
+                                                                        <i class="material-icons">info</i>
+                                                                    </a>
                                                                 </td>
                                                                 {{-- <td>{{ $item->subCat->name }}</td> --}}
                                                             </tr>
@@ -671,22 +633,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="divFooter">
-                            <img src="../images/logo/logo.png" class="logo">
-                            <h6 style="color: darkslategrey">&nbsp;&nbsp; جميع الحقوق محفوظة لمركز نظم المعلومات
-                                والتحول الرقمي&nbsp;&nbsp;
-                            </h6>
-                        </div>
-                    </section>
-                @endisset
-                @isset($request_detail_capital)
-                    <section class="section" id="print">
-                        <div id="centerlogo"
-                            style="margin: 30px ; justify-content: space-between; align-items: center; display:flex;">
-                            {{-- <img width="80px" height="100px" src="../images/logo/logo.png"> --}}
-                            <h3>قطاع الشؤن الاقتصادية والاستثمار</h3>
-                            <img width="120px" height="120px" src="../images/logo/new_logo.png">
-                        </div>
+                    @endisset
+                    @isset($request_detail_capital)
                         <div class="section-body">
                             <div class="row" style="direction: rtl">
                                 <div class="col-12 col-md-12 col-lg-12">
@@ -723,7 +671,8 @@
                                                                 {{-- <td>{{ $item->owner_type }}</td> --}}
                                                                 <td>0{{ $item->phone }}</td>
                                                                 <td>{{ $item->size }} {{ $item->size_type }}</td>
-                                                                <td>{{ $item->capital ?? 'null' }} {{ $item->currency_type }}
+                                                                <td>{{ $item->capital ?? 'null' }}
+                                                                    {{ $item->currency_type }}
                                                                 </td>
                                                                 <td>{{ $item->self_financing }}%</td>
                                                                 <td>{{ $item->recived_date->format('Y-m-d') }}</td>
@@ -745,11 +694,11 @@
                                                                 <td>{{ $item->city->name }}</td>
                                                                 <td class="info">
                                                                     <a class="col-dark-gray waves-effect"
-                                                                            href="{{ route('single_report', $item->id) }}"
-                                                                            data-toggle="tooltip" data-placement="top"
-                                                                            title="عرض">
-                                                                            <i class="material-icons">info</i>
-                                                                        </a>
+                                                                        href="{{ route('single_report', $item->id) }}"
+                                                                        data-toggle="tooltip" data-placement="top"
+                                                                        title="عرض">
+                                                                        <i class="material-icons">info</i>
+                                                                    </a>
                                                                 </td>
                                                                 {{-- <td>{{ $item->subCat->name }}</td> --}}
                                                             </tr>
@@ -766,22 +715,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="divFooter">
-                            <img src="../images/logo/logo.png" class="logo">
-                            <h6 style="color: darkslategrey">&nbsp;&nbsp; جميع الحقوق محفوظة لمركز نظم المعلومات
-                                والتحول الرقمي&nbsp;&nbsp;
-                            </h6>
-                        </div>
-                    </section>
-                @endisset
-                @isset($request_detail_date)
-                    <section class="section" id="print">
-                        <div id="centerlogo"
-                            style="margin: 30px ; justify-content: space-between; align-items: center; display:flex;">
-                            {{-- <img width="80px" height="100px" src="../images/logo/logo.png"> --}}
-                            <h3>قطاع الشؤن الاقتصادية والاستثمار</h3>
-                            <img width="120px" height="120px" src="../images/logo/new_logo.png">
-                        </div>
+                    @endisset
+                    @isset($request_detail_date)
                         <div class="section-body">
                             <div class="row" style="direction: rtl">
                                 <div class="col-12 col-md-12 col-lg-12">
@@ -818,7 +753,8 @@
                                                                 {{-- <td>{{ $item->owner_type }}</td> --}}
                                                                 <td>0{{ $item->phone }}</td>
                                                                 <td>{{ $item->size }} {{ $item->size_type }}</td>
-                                                                <td>{{ $item->capital ?? 'null' }} {{ $item->currency_type }}
+                                                                <td>{{ $item->capital ?? 'null' }}
+                                                                    {{ $item->currency_type }}
                                                                 </td>
                                                                 <td>{{ $item->self_financing }}%</td>
                                                                 <td>{{ $item->recived_date->format('Y-m-d') }}</td>
@@ -840,11 +776,11 @@
                                                                 <td>{{ $item->city->name }}</td>
                                                                 <td class="info">
                                                                     <a class="col-dark-gray waves-effect"
-                                                                            href="{{ route('single_report', $item->id) }}"
-                                                                            data-toggle="tooltip" data-placement="top"
-                                                                            title="عرض">
-                                                                            <i class="material-icons">info</i>
-                                                                        </a>
+                                                                        href="{{ route('single_report', $item->id) }}"
+                                                                        data-toggle="tooltip" data-placement="top"
+                                                                        title="عرض">
+                                                                        <i class="material-icons">info</i>
+                                                                    </a>
                                                                 </td>
                                                                 {{-- <td>{{ $item->subCat->name }}</td> --}}
                                                             </tr>
@@ -861,14 +797,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="divFooter">
-                            <img src="../images/logo/logo.png" class="logo">
-                            <h6 style="color: darkslategrey">&nbsp;&nbsp; جميع الحقوق محفوظة لمركز نظم المعلومات
-                                والتحول الرقمي&nbsp;&nbsp;
-                            </h6>
-                        </div>
-                    </section>
-                @endisset
+                    @endisset
+                    <div class="divFooter">
+                        <img src="../images/logo/logo.png" class="logo">
+                        <h6 style="color: darkslategrey">&nbsp;&nbsp; جميع الحقوق محفوظة لمركز نظم المعلومات
+                            والتحول الرقمي&nbsp;&nbsp;
+                        </h6>
+                    </div>
+                </section>
             </div>
             @include('layouts.setting')
         </div>

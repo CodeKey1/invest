@@ -19,24 +19,26 @@
     <link rel="stylesheet" href="assets/css/custom.css">
     <link rel='shortcut icon' type='image/x-icon' href='assets/img/favicon.ico' />
     <style>
+        div.divFooter {
+            display: none;
+        }
+
         @media print {
+            div.divFooter {
+                position: fixed;
+                bottom: 0;
+                margin: 30px;
+                width: 90%;
+                justify-content: space-between;
+                align-items: center;
+                display: flex;
+            }
+
+            div.divFooter .logo {
+                width: 5%;
+            }
+
             #print_Button {
-                display: none;
-            }
-
-            #DataTables_Table_0_filter {
-                display: none;
-            }
-
-            #DataTables_Table_0_length {
-                display: none;
-            }
-
-            #DataTables_Table_0_paginate {
-                display: none;
-            }
-
-            #DataTables_Table_0_info {
                 display: none;
             }
         }
@@ -92,11 +94,11 @@
                 </div>
                 @isset($offer)
                     <section class="section" id="print">
-                        <div id="centerlogo"
+                        <div class="divHeader" id="centerlogo"
                             style="margin: 30px ; justify-content: space-between; align-items: center; display:flex;">
-                            <img width="80px" height="100px" src="../images/logo/aswan.png">
-
-                            <img width="80px" height="100px" src="../images/logo/logo.png">
+                            {{-- <img width="80px" height="100px" src="../images/logo/logo.png"> --}}
+                            <h3>قطاع الشؤن الاقتصادية والاستثمار</h3>
+                            <img width="120px" height="120px" src="../images/logo/new_logo.png">
                         </div>
                         <div class="section-body">
                             <div class="row" style="direction: rtl">
@@ -115,17 +117,6 @@
                                         <div class="card-body">
                                             <table class="table">
                                                 <tbody class="tbody">
-                                                    <tr style="height: 50px;">
-                                                        <th scope="row" style="text-align: inherit;width: 130px; ">
-                                                            اسم المزاد : </th>
-                                                        <td style="text-align: inherit;">
-                                                            @isset($offerDetail)
-                                                                @foreach ($offerDetail as $offerDetail1)
-                                                                    {{ $offerDetail1->name }}
-                                                                @endforeach
-                                                            @endisset
-                                                        </td>
-                                                    </tr>
                                                     <tr style="height: 50px;">
                                                         <th scope="row" style="text-align: inherit;width: 130px; ">
                                                             تاريخ المزاد : </th>
@@ -160,7 +151,7 @@
                                                             جنيه
                                                         </td>
                                                     </tr>
-                                                    <tr style="height: 50px;">
+                                                    {{-- <tr style="height: 50px;">
                                                         <th scope="row" style="text-align: inherit;width: 130px;">
                                                             عدد الاصول :</th>
                                                         <td style="text-align: inherit;">
@@ -170,7 +161,7 @@
                                                                 @endforeach
                                                             @endisset
                                                         </td>
-                                                    </tr>
+                                                    </tr> --}}
                                                 </tbody>
                                             </table>
 
@@ -226,6 +217,12 @@
                                         onclick="printDiv()"> <i class="mdi mdi-printer ml-1"></i>طباعة</button>
                                 </div>
                             </div>
+                        </div>
+                        <div class="divFooter">
+                            <img src="../images/logo/logo.png" class="logo">
+                            <h6 style="color: darkslategrey">&nbsp;&nbsp; جميع الحقوق محفوظة لمركز نظم المعلومات
+                                والتحول الرقمي&nbsp;&nbsp;
+                            </h6>
                         </div>
                     </section>
                 @endisset

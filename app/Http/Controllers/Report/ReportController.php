@@ -59,7 +59,7 @@ class ReportController extends Controller
             case 'all':
                 $offer = Offer::where('auction_id','=', $auction_id)->get(); 
                 $offerDetail = DB::table('offer')
-                    ->select('auction.name as name',
+                    ->select( DB::raw('DISTINCT auction.name as name'),
                             'auction.date as date',
                             DB::raw('count(DISTINCT offer.id) as offer_count'),
                             DB::raw('sum(offer.contract_cost) as cost_sum'),
@@ -67,7 +67,7 @@ class ReportController extends Controller
                             )
                     ->join('auction','auction.id','=','offer.auction_id')
                     ->join('assets','assets.id','=','offer.assets_id')
-                    ->groupBy('auction.id','assets.id','auction.name','auction.date')
+                    ->groupBy('auction.name','auction.date')
                     ->get();
                 $type = "اجمالي";
                 return view('report.report',compact('auction','offer','offerDetail','type'));
