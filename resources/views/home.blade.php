@@ -50,6 +50,7 @@
 
         .col-xl-3 .card .card-content {
             margin-top: 10%;
+            color: #18425f;
         }
     </style>
 </head>

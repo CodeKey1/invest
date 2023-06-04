@@ -44,7 +44,7 @@
                                     <div class="card-header">
                                         <h4>طلب الحصول علي موافقة لإقامة مشروع</h4>
                                         <div class="card-header-action">
-                                            <a href="{{ route('investment') }}" class="btn btn-primary">ادارة
+                                            <a href="{{ route('investment') }}" class="btn btn-success">ادارة
                                                 الطلبات</a>
                                         </div>
                                         {{-- <button class="btn btn-dark"

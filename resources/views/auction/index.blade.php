@@ -45,8 +45,8 @@
                                         <div class="card-header-action">
 
 
-                                            <a href="{{ route('auction.Create') }}" class="btn btn-warning">اضافة مزاد
-                                                حديد</a>
+                                            <a href="{{ route('auction.Create') }}" class="btn btn-success">اضافة مزاد
+                                                جديد</a>
                                         </div>
 
                                     </div>

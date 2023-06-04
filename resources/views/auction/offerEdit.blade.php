@@ -42,8 +42,7 @@
                                         <h4>تعديل اطروحة ({{ $offer->auction_name->name }}) -
                                             ({{ $offer->asset_name->name }}) لصالح ({{ $offer->investor }})</h4>
                                         <div class="card-header-action">
-                                            <a href="{{ route('offer') }}"
-                                                class="dropdown-item has-icon text-dark btn-warning"><i
+                                            <a href="{{ route('offer') }}" class="btn btn-success"><i
                                                     class="fa-sharp fa-solid fa-circle-arrow-left"></i>عودة</a>
                                         </div>
                                     </div>

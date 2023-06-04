@@ -362,8 +362,12 @@
                                                                 <td>{{ $item->categoryname->name }}</td>
                                                                 <td>{{ $item->city->name }}</td>
                                                                 <td class="info">
-                                                                    <a href="{{ route('single_report', $item->id) }}">عرض
-                                                                    </a>
+                                                                    <a class="col-dark-gray waves-effect"
+                                                                            href="{{ route('single_report', $item->id) }}"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="عرض">
+                                                                            <i class="material-icons">info</i>
+                                                                        </a>
                                                                 </td>
                                                                 {{-- <td>{{ $item->subCat->name }}</td> --}}
                                                             </tr>
@@ -452,8 +456,12 @@
                                                                 </td>
                                                                 <td>{{ $item->categoryname->name }}</td>
                                                                 <td class="info">
-                                                                    <a href="{{ route('single_report', $item->id) }}">عرض
-                                                                    </a>
+                                                                    <a class="col-dark-gray waves-effect"
+                                                                            href="{{ route('single_report', $item->id) }}"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="عرض">
+                                                                            <i class="material-icons">info</i>
+                                                                        </a>
                                                                 </td>
                                                                 {{-- <td>{{ $item->subCat->name }}</td>
                                                                     <td>{{ $item->city->name }}</td> --}}
@@ -544,8 +552,12 @@
                                                                 {{-- <td>{{ $item->categoryname->name }}</td> --}}
                                                                 <td>{{ $item->city->name }}</td>
                                                                 <td class="info">
-                                                                    <a href="{{ route('single_report', $item->id) }}">عرض
-                                                                    </a>
+                                                                    <a class="col-dark-gray waves-effect"
+                                                                            href="{{ route('single_report', $item->id) }}"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="عرض">
+                                                                            <i class="material-icons">info</i>
+                                                                        </a>
                                                                 </td>
                                                                 {{-- <td>{{ $item->subCat->name }}</td> --}}
                                                             </tr>
@@ -637,8 +649,12 @@
                                                                 <td>{{ $item->categoryname->name }}</td>
                                                                 <td>{{ $item->city->name }}</td>
                                                                 <td class="info">
-                                                                    <a href="{{ route('single_report', $item->id) }}">عرض
-                                                                    </a>
+                                                                    <a class="col-dark-gray waves-effect"
+                                                                            href="{{ route('single_report', $item->id) }}"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="عرض">
+                                                                            <i class="material-icons">info</i>
+                                                                        </a>
                                                                 </td>
                                                                 {{-- <td>{{ $item->subCat->name }}</td> --}}
                                                             </tr>
@@ -728,8 +744,12 @@
                                                                 <td>{{ $item->categoryname->name }}</td>
                                                                 <td>{{ $item->city->name }}</td>
                                                                 <td class="info">
-                                                                    <a href="{{ route('single_report', $item->id) }}">عرض
-                                                                    </a>
+                                                                    <a class="col-dark-gray waves-effect"
+                                                                            href="{{ route('single_report', $item->id) }}"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="عرض">
+                                                                            <i class="material-icons">info</i>
+                                                                        </a>
                                                                 </td>
                                                                 {{-- <td>{{ $item->subCat->name }}</td> --}}
                                                             </tr>
@@ -819,8 +839,12 @@
                                                                 <td>{{ $item->categoryname->name }}</td>
                                                                 <td>{{ $item->city->name }}</td>
                                                                 <td class="info">
-                                                                    <a href="{{ route('single_report', $item->id) }}">عرض
-                                                                    </a>
+                                                                    <a class="col-dark-gray waves-effect"
+                                                                            href="{{ route('single_report', $item->id) }}"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="عرض">
+                                                                            <i class="material-icons">info</i>
+                                                                        </a>
                                                                 </td>
                                                                 {{-- <td>{{ $item->subCat->name }}</td> --}}
                                                             </tr>

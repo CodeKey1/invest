@@ -42,13 +42,12 @@
                                 @include('layouts.error')
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>ادارة جميع محاضر طلبات المستثمرين</h4>
+                                        <h4>محاضر طلبات المستثمرين</h4>
                                         <div class="card-header-action">
                                             <div class="dropdown">
-                                                <a href="{{ route('investment') }}" class="btn btn-warning"> كل طلبات
+                                                <a href="{{ route('investment') }}" class="btn btn-success"> طلبات
                                                     الإستثمار </a>
                                             </div>
-                                            <a href="{{ route('home') }}" class="btn btn-primary">الرئيسية</a>
                                         </div>
                                     </div>
                                 </div>

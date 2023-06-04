@@ -43,9 +43,8 @@
                                     <div class="card-header">
                                         <h4>اطروحات المزادات</h4>
                                         <div class="card-header-action">
-                                            <a href="{{ route('offer.Create') }}"
-                                                class="dropdown-item has-icon text-dark btn-warning"><i
-                                                    class="fas fa-plus"></i>اضافة اطروحات جديد</a>
+                                            <a href="{{ route('offer.Create') }}" class="btn btn-success">اضافة اطروحات
+                                                جديد</a>
                                         </div>
                                     </div>
                                 </div>

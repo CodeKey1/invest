@@ -39,7 +39,7 @@
                                     <div class="card-header">
                                         <h4>اضافة مزاد جديد</h4>
                                         <div class="card-header-action">
-                                            <a href="{{ route('auction') }}" class="btn btn-warning">جميع المزاد </a>
+                                            <a href="{{ route('auction') }}" class="btn btn-success">جميع المزاد </a>
                                         </div>
                                     </div>
                                 </div>

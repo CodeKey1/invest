@@ -41,7 +41,7 @@
                                         <h4> تعديل طلب الإسثمار / {{ $request->name }}</h4>
                                         <div class="card-header-action">
                                             <a href="{{ route('investment.record', $request->id) }}"
-                                                class="btn btn-warning">
+                                                class="btn btn-success">
                                                 محاضر الطلب</a>
                                             <a href="{{ route('investment') }}" class="btn btn-primary">ادارة
                                                 الطلبات</a>

@@ -84,10 +84,9 @@
                                                         </div>
                                                         <div class="form-group col-md-1">
                                                             <button type="submit" name="actionbtn"
-                                                                class="btn btn-primary" value="govbtn"
+                                                                class="btn btn-success" value="govbtn"
                                                                 style="float: left;">حفظ</button>
                                                         </div>
-
                                                         <div class="col-lg-12">
                                                             <div class="table-responsive">
                                                                 <h6> جدول المحافظة</h6>

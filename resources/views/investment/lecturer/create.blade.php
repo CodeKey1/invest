@@ -43,7 +43,7 @@
                                         <h4> محاضر طلب الإسثمار / {{ $request->name }}</h4>
                                         <div class="card-header-action">
                                             <a href="{{ route('investment.show', $request->id) }}"
-                                                class="btn btn-warning">تعديل
+                                                class="btn btn-success">تعديل
                                                 الطلب</a>
                                             <a href="{{ route('lecturer') }}" class="btn btn-primary">ادارة
                                                 المحاضر</a>
@@ -396,7 +396,7 @@
                                                 <label>اختر الجهة <span style="color: red">*</span></label>
                                                 <select class="form-control select2" style="width: 100%" multiple
                                                     name="l_name[]">
-                                                    <option value="invest">الاستثمار</option>
+                                                    {{-- <option value="invest">الاستثمار</option> --}}
                                                     @isset($r_license)
                                                         @if ($r_license && $r_license->count() > 0)
                                                             @foreach ($r_license as $item)
@@ -448,9 +448,13 @@
                                                                     {{-- <td>{{ $note->note_license->name }}</td> --}}
                                                                     <td>{{ $note->notes }}</td>
                                                                     <td>{{ $note->created_at }}</td>
-                                                                    <td><a class="btn btn-icon btn-danger"
-                                                                            href="{{ route('note.delete', $note->id) }}"><i
-                                                                                class="fas fa-times"></i></a></td>
+                                                                    <td>
+                                                                        <a class="col-red waves-effect m-r-10"
+                                                                            href="{{ route('note.delete', $note->id) }}"data-toggle="tooltip"
+                                                                            data-placement="top" id="delete_btn"
+                                                                            title="حذف"><i
+                                                                                class="material-icons">delete</i></a>
+                                                                    </td>
                                                                 </tr>
                                                             @endforeach
                                                         @endisset
@@ -523,11 +527,10 @@
             $('table.table').DataTable();
         });
 
-        /*function formConfirm() {
-            if (!confirm("هل انت متأكد من تعزيز الطلب"))
-                return false;
-            location.href = "{{ route('record.store.note', $request->id) }}";
-        }*/
+        $('#delete_btn').click(function(e) {
+            if (confirm("هل انت متأكد!") == false)
+                e.preventDefault();
+        });
     </script>
 
 </body>

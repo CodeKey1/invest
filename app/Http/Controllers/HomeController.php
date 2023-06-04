@@ -48,7 +48,6 @@ class HomeController extends Controller
         $pending = [];
         for ($i = $now->month; $i >= $now->month-12; $i--)
         {
-            $now1 =  $now1->subMonth();
             $reject =  RequestP::whereMonth('recived_date', $i)->whereYear('recived_date', $now1->year)->where('technical_state',0)->get();
             $pend =  RequestP::whereMonth('recived_date', $i)->whereYear('recived_date', $now1->year)->where('technical_state',2)->get();
             $finish =  RequestP::whereMonth('recived_date', $i)->whereYear('recived_date', $now1->year)->where('technical_state',1)->get();
@@ -56,6 +55,7 @@ class HomeController extends Controller
             array_push($pending, $pend->count());
             array_push($finished, $finish->count());
             array_push($rejected, $reject->count());
+            $now1 =  $now1->subMonth();
         }
 
         $master['month'] = json_encode($month);

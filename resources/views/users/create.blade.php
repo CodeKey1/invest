@@ -35,15 +35,14 @@
                             <div class="col-12 col-md-12 col-lg-12">
                                 @include('layouts.success')
                                 @include('layouts.error')
-                                <form method="POST" action="{{ route('user.store') }}">
+                                <form method="POST" class="needs-validation" novalidate=""
+                                    action="{{ route('user.store') }}">
                                     @csrf
                                     <div class="card card-primary">
                                         <div class="card-header">
                                             <h4>اضافة مستخدم جديد</h4>
                                             <div class="card-header-action">
-
-                                                <a href="{{ route('user') }}" class="btn btn-warning">كل المستخدمين</a>
-                                                <a href="{{ route('home') }}" class="btn btn-primary">الرئيسية</a>
+                                                <a href="{{ route('user') }}" class="btn btn-success">كل المستخدمين</a>
                                             </div>
                                             {{-- <button class="btn btn-dark"
                                                 style="position: absolute; left: 10px; top:5px"><a

@@ -41,13 +41,12 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>ادارة جميع طلبات الإستثمار</h4>
+                                        <h4>جميع طلبات الإستثمار</h4>
                                         <div class="card-header-action">
                                             <div class="dropdown">
                                                 <a href="{{ route('investment.Create') }}" class="btn btn-success"> طلب
                                                     جديد </a>
                                             </div>
-                                            <a href="{{ route('home') }}" class="btn btn-primary">الرئيسية</a>
                                         </div>
                                     </div>
                                 </div>
@@ -116,7 +115,8 @@
                                                                         @if (auth()->user()->hasRole('super_admin'))
                                                                             <a class="col-red waves-effect m-r-10"
                                                                                 href="{{ route('investment.delete', $requests->id) }}"data-toggle="tooltip"
-                                                                                data-placement="top" title="حذف"><i
+                                                                                data-placement="top" id="delete_btn"
+                                                                                title="حذف"><i
                                                                                     class="material-icons">delete</i></a>
                                                                         @endif
                                                                     </td>
@@ -163,6 +163,11 @@
     <script>
         $(document).ready(function() {
             $('table.table').DataTable();
+        });
+
+        $('#delete_btn').click(function(e) {
+            if (confirm("هل انت متأكد!") == false)
+                e.preventDefault();
         });
     </script>
     <!-- Custom JS File -->
