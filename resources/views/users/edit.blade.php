@@ -10,7 +10,6 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/bundles/bootstrap-daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="assets/bundles/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
-    <link rel="stylesheet" href="assets/bundles/izitoast/css/iziToast.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <!-- Custom style CSS -->
@@ -65,7 +64,8 @@
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <select class="form-control" name="role">
-                                                        <option value="{{ $user->role }}" hidden>{{ $user->role }}
+                                                        <option value="{{ $user->role }}" hidden selected>
+                                                            {{ $user->role }}
                                                         </option>
                                                         @isset($roles)
                                                             @if ($roles && $roles->count() > 0)
@@ -106,11 +106,6 @@
     </div>
     <!-- General JS Scripts -->
     <script src="assets/js/app.min.js"></script>
-    <!-- JS Libraies -->
-    <!-- Page Specific JS File -->
-    <script src="assets/bundles/izitoast/js/iziToast.min.js"></script>
-    <!-- Page Specific JS File -->
-    <script src="assets/js/page/toastr.js"></script>
     <!-- Template JS File -->
     <script src="assets/js/scripts.js"></script>
     <!-- Custom JS File -->

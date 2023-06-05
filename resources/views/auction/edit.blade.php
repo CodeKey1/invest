@@ -13,7 +13,6 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/bundles/bootstrap-daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="assets/bundles/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
-    <link rel="stylesheet" href="assets/bundles/izitoast/css/iziToast.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <!-- Custom style CSS -->
@@ -94,11 +93,6 @@
     </div>
     <!-- General JS Scripts -->
     <script src="assets/js/app.min.js"></script>
-    <!-- JS Libraies -->
-    <!-- Page Specific JS File -->
-    <script src="assets/bundles/izitoast/js/iziToast.min.js"></script>
-    <!-- Page Specific JS File -->
-    <script src="assets/js/page/toastr.js"></script>
     <!-- Template JS File -->
     <script src="assets/js/scripts.js"></script>
     <!-- Custom JS File -->

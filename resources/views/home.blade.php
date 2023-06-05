@@ -15,11 +15,6 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="assets/css/components.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
-        integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <!-- Custom style CSS -->
     <link rel="stylesheet" href="assets/css/custom.css">
     <link rel='shortcut icon' type='image/x-icon' href='assets/img/favicon.ico' />
@@ -237,12 +232,9 @@
     </div>
     <!-- General JS Scripts -->
     <script src="assets/js/app.min.js"></script>
-    <script src="assets/bundles/owlcarousel2/dist/owl.carousel.min.js"></script>
     <script src="assets/bundles/datatables/datatables.min.js"></script>
     <script src="assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
     <!-- JS Libraies -->
-    <!-- Page Specific JS File -->
-    <script src="assets/js/page/widget-data.js"></script>
     <!-- Template JS File -->
     <script src="assets/bundles/apexcharts/apexcharts.min.js"></script>
     <!-- Page Specific JS File -->
@@ -253,9 +245,6 @@
     <script src="assets/js/scripts.js"></script>
     <!-- Custom JS File -->
     <script src="assets/js/custom.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
-        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 
 

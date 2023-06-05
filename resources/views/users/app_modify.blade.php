@@ -10,10 +10,8 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/bundles/bootstrap-daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="assets/bundles/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
-    <link rel="stylesheet" href="assets/bundles/izitoast/css/iziToast.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/components.css">
-    <link rel="stylesheet" href="assets/bundles/select2/dist/css/select2.min.css">
     <!-- Custom style CSS -->
     <link rel="stylesheet" href="assets/css/custom.css">
     <link rel='shortcut icon' type='image/x-icon' href='assets/img/favicon.ico' />
@@ -949,33 +947,28 @@
                 @include('layouts.footer')
             </div>
         </div>
-        <!-- General JS Scripts -->
-        <script src="assets/js/app.min.js"></script>
-        <!-- JS Libraies -->
-        <!-- Page Specific JS File -->
-        <script src="assets/bundles/izitoast/js/iziToast.min.js"></script>
-        <!-- Page Specific JS File -->
-        <script src="assets/js/page/toastr.js"></script>
-        <!-- Template JS File -->
-        <script src="assets/js/scripts.js"></script>
-        <script src="assets/js/page/datatables.js"></script>
-        <script src="assets/bundles/datatables/datatables.min.js"></script>
-        <!-- Custom JS File -->
-        <script src="assets/js/custom.js"></script>
-        <script src="assets/bundles/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
-        <script src="assets/bundles/bootstrap-daterangepicker/daterangepicker.js"></script>
-        <script src="assets/bundles/select2/dist/js/select2.full.min.js"></script>
-
-        <script>
-            $(document).ready(function() {
-                $('table.table').DataTable();
-            });
+    </div>
+    <!-- General JS Scripts -->
+    <script src="assets/js/app.min.js"></script>
+    <!-- Template JS File -->
+    <script src="assets/js/scripts.js"></script>
+    <script src="assets/js/page/datatables.js"></script>
+    <script src="assets/bundles/datatables/datatables.min.js"></script>
+    <!-- Custom JS File -->
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/bundles/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
+    <script src="assets/bundles/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="assets/bundles/select2/dist/js/select2.full.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('table.table').DataTable();
+        });
+        $('.option').hide();
+        $('#govselect').on('change', function(e) {
             $('.option').hide();
-            $('#govselect').on('change', function(e) {
-                $('.option').hide();
-                $('.city-' + e.target.value).show();
-            });
-        </script>
+            $('.city-' + e.target.value).show();
+        });
+    </script>
 </body>
 
 
