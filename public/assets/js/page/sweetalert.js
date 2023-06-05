@@ -1,62 +1,61 @@
 "use strict";
 
 $("#swal-1").click(function () {
-  swal('Hello');
+    swal("Hello");
 });
 
 $("#swal-2").click(function () {
-  swal('Good Job', 'You clicked the button!', 'success');
+    swal("Good Job", "You clicked the button!", "success");
 });
 
 $("#swal-3").click(function () {
-  swal('Good Job', 'You clicked the button!', 'warning');
+    swal("Good Job", "You clicked the button!", "warning");
 });
 
 $("#swal-4").click(function () {
-  swal('Good Job', 'You clicked the button!', 'info');
+    swal("Good Job", "You clicked the button!", "info");
 });
 
 $("#swal-5").click(function () {
-  swal('Good Job', 'You clicked the button!', 'error');
+    swal("Good Job", "You clicked the button!", "error");
 });
 
-$("#swal-6").click(function () {
+$("#delete_btn").click(function (e) {
   swal({
-    title: 'Are you sure?',
-    text: 'Once deleted, you will not be able to recover this imaginary file!',
-    icon: 'warning',
-    buttons: true,
-    dangerMode: true,
-  })
-    .then((willDelete) => {
-      if (willDelete) {
-        swal('Poof! Your imaginary file has been deleted!', {
-          icon: 'success',
-        });
-      } else {
-        swal('Your imaginary file is safe!');
-      }
+        title: "هل انت متأكد؟",
+        text: "لن تتمكن من استعادة الملف او ملحقاته !",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            swal("تم الحذف بنجاح", {
+                icon: "success",
+            });
+        } else {
+            //swal("Your imaginary file is safe!");
+        }
     });
 });
 
 $("#swal-7").click(function () {
-  swal({
-    title: 'What is your name?',
-    content: {
-      element: 'input',
-      attributes: {
-        placeholder: 'Type your name',
-        type: 'text',
-      },
-    },
-  }).then((data) => {
-    swal('Hello, ' + data + '!');
-  });
+    swal({
+        title: "What is your name?",
+        content: {
+            element: "input",
+            attributes: {
+                placeholder: "Type your name",
+                type: "text",
+            },
+        },
+    }).then((data) => {
+        swal("Hello, " + data + "!");
+    });
 });
 
 $("#swal-8").click(function () {
-  swal('This modal will disappear soon!', {
-    buttons: false,
-    timer: 3000,
-  });
+    swal("This modal will disappear soon!", {
+        buttons: false,
+        timer: 3000,
+    });
 });

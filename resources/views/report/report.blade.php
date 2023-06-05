@@ -79,9 +79,9 @@
                                         </option>
                                         @isset($auction)
                                             @if ($auction && $auction->count() > 0)
-                                                @foreach ($auction as $auction1)
-                                                    <option value="{{ $auction1->id }}">
-                                                        {{ $auction1->name }}
+                                                @foreach ($auction as $item)
+                                                    <option value="{{ $item->id }}">
+                                                        {{ $item->name }}
                                                     </option>
                                                 @endforeach
                                             @endif
@@ -107,10 +107,8 @@
                                     @include('layouts.error')
                                     <div class="card card-primary work-xp">
                                         <div class="card-header">
-                                            <h3>تقرير {{ $type }} لمزاد "@isset($offerDetail)
-                                                    @foreach ($offerDetail as $offerDetail1)
-                                                        {{ $offerDetail1->name }}
-                                                    @endforeach
+                                            <h3>تقرير {{ $type }} لمزاد "@isset($auction_detail)
+                                                    {{ $auction_detail->name }}
                                                 @endisset"
                                             </h3>
                                         </div>
@@ -121,10 +119,8 @@
                                                         <th scope="row" style="text-align: inherit;width: 130px; ">
                                                             تاريخ المزاد : </th>
                                                         <td style="text-align: inherit;">
-                                                            @isset($offerDetail)
-                                                                @foreach ($offerDetail as $offerDetail1)
-                                                                    {{ $offerDetail1->date }}
-                                                                @endforeach
+                                                            @isset($auction_detail)
+                                                                {{ $auction_detail->date }}
                                                             @endisset
                                                         </td>
                                                     </tr>
@@ -134,7 +130,7 @@
                                                         <td style="text-align: inherit;">
                                                             @isset($offerDetail)
                                                                 @foreach ($offerDetail as $offerDetail1)
-                                                                    {{ $offerDetail1->offer_count }}
+                                                                    {{ $offerDetail1->offer_count ?? 'لا يوجد' }}
                                                                 @endforeach
                                                             @endisset
                                                         </td>
@@ -145,7 +141,7 @@
                                                         <td style="text-align: inherit;">
                                                             @isset($offerDetail)
                                                                 @foreach ($offerDetail as $offerDetail1)
-                                                                    {{ $offerDetail1->cost_sum }}
+                                                                    {{ $offerDetail1->cost_sum ?? '0' }}
                                                                 @endforeach
                                                             @endisset
                                                             جنيه

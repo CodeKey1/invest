@@ -55,6 +55,7 @@ class ReportController extends Controller
         $auction_id =  $request['auction'];
         $report_type =  $request['type'];
         $auction = Auction::select()->get(); 
+        $auction_detail=Auction::select()->find($auction_id);
         switch($report_type){
             case 'all':
                 $offer = Offer::where('auction_id','=', $auction_id)->get(); 
@@ -65,12 +66,13 @@ class ReportController extends Controller
                             DB::raw('sum(offer.contract_cost) as cost_sum'),
                             DB::raw('count(DISTINCT assets.id) as asset_count'),
                             )
+                    ->where('auction.id',$auction_id)
                     ->join('auction','auction.id','=','offer.auction_id')
                     ->join('assets','assets.id','=','offer.assets_id')
                     ->groupBy('auction.name','auction.date')
                     ->get();
                 $type = "اجمالي";
-                return view('report.report',compact('auction','offer','offerDetail','type'));
+                return view('report.report',compact('auction_detail','auction','offer','offerDetail','type'));
                 break;
             case 'active':
                 $offer = Offer::where('auction_id','=', $auction_id)->where('status','=','1')->get(); 
@@ -84,7 +86,7 @@ class ReportController extends Controller
                     ->join('auction','auction.id','=','offer.auction_id')
                     ->join('assets','assets.id','=','offer.assets_id')
                     ->where('offer.status','=','1')
-                    ->groupBy('auction.id','assets.id','auction.name','auction.date')
+                    ->groupBy('auction.name','auction.date')
                     ->get();
                 $type = "الاطروحات الفعالة";
                 return view('report.report',compact('auction','offer','offerDetail','type'));
@@ -101,7 +103,7 @@ class ReportController extends Controller
                     ->join('auction','auction.id','=','offer.auction_id')
                     ->join('assets','assets.id','=','offer.assets_id')
                     ->where('offer.status','=','0')
-                    ->groupBy('auction.id','assets.id','auction.name','auction.date')
+                    ->groupBy('auction.name','auction.date')
                     ->get();
                 $type = "الاطروحات الغير فعالة";
                 return view('report.report',compact('auction','offer','offerDetail','type'));
