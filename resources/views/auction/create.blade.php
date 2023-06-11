@@ -13,7 +13,6 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/bundles/bootstrap-daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="assets/bundles/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
-    <link rel="stylesheet" href="assets/bundles/izitoast/css/iziToast.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <!-- Custom style CSS -->
@@ -21,8 +20,8 @@
     <link rel='shortcut icon' type='image/x-icon' href='assets/img/favicon.ico' />
 </head>
 
-<body class="light theme-white dark-sidebar">
-    <div class="loader"></div>E
+<body class="light theme-white">
+    <div class="loader"></div>
     <div id="app">
         <div class="main-wrapper main-wrapper-1">
 
@@ -39,7 +38,7 @@
                                     <div class="card-header">
                                         <h4>اضافة مزاد جديد</h4>
                                         <div class="card-header-action">
-                                            <a href="{{ route('auction') }}" class="btn btn-warning">جميع المزاد </a>
+                                            <a href="{{ route('auction') }}" class="btn btn-success">جميع المزاد </a>
                                         </div>
                                     </div>
                                 </div>
@@ -49,17 +48,17 @@
                                     <div class="card card-primary">
                                         <div class="card-body">
                                             <div class="form-group col-md-12">
-                                                <label> اسم المزاد</label>
+                                                <label> اسم المزاد <span style="color: red">*</span></label>
                                                 <input style="height: calc(2.25rem + 6px);" type="text"
                                                     name="name" class="form-control"placeholder="" required>
                                             </div>
                                             <div class="form-group col-md-12">
-                                                <label> تاريخ المزاد</label>
+                                                <label> تاريخ المزاد <span style="color: red">*</span></label>
                                                 <input style="height: calc(2.25rem + 6px);" type="date"
                                                     name="date" class="form-control"placeholder="" required>
                                             </div>
                                             <div class="form-group col-md-12">
-                                                <label> عنوان المزاد</label>
+                                                <label> عنوان المزاد <span style="color: red">*</span></label>
                                                 <input style="height: calc(2.25rem + 6px);" type="text"
                                                     name="label" class="form-control"placeholder="" required>
                                             </div>
@@ -84,11 +83,6 @@
     </div>
     <!-- General JS Scripts -->
     <script src="assets/js/app.min.js"></script>
-    <!-- JS Libraies -->
-    <!-- Page Specific JS File -->
-    <script src="assets/bundles/izitoast/js/iziToast.min.js"></script>
-    <!-- Page Specific JS File -->
-    <script src="assets/js/page/toastr.js"></script>
     <!-- Template JS File -->
     <script src="assets/js/scripts.js"></script>
     <!-- Custom JS File -->

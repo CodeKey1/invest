@@ -13,7 +13,6 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/bundles/bootstrap-daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="assets/bundles/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
-    <link rel="stylesheet" href="assets/bundles/izitoast/css/iziToast.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <!-- Custom style CSS -->
@@ -21,8 +20,8 @@
     <link rel='shortcut icon' type='image/x-icon' href='assets/img/favicon.ico' />
 </head>
 
-<body class="light theme-white dark-sidebar">
-    <div class="loader"></div>E
+<body class="light theme-white">
+    <div class="loader"></div>
     <div id="app">
         <div class="main-wrapper main-wrapper-1">
 
@@ -37,11 +36,9 @@
                                 @include('layouts.error')
                                 <div class="card card-primary">
                                     <div class="card-header">
-                                        <h4>اضافة اطروحة جديد</h4>
+                                        <h4>اضافة ترسية جديد</h4>
                                         <div class="card-header-action">
-                                            <a href="{{ route('offer') }}"
-                                                class="dropdown-item has-icon text-dark btn-warning"><i
-                                                    class="fa-sharp fa-solid fa-circle-arrow-left"></i>عودة</a>
+                                            <a href="{{ route('offer') }}" class="btn btn-success">عودة</a>
                                         </div>
                                     </div>
                                 </div>
@@ -54,8 +51,8 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="form-group col-md-4">
-                                                    <label> اختر المزاد</label>
-                                                    <select class="form-control" name="auction">
+                                                    <label> اختر المزاد <span style="color: red">*</span></label>
+                                                    <select class="form-control" name="auction" required>
                                                         <option value="" hidden disabled selected>
                                                             اختر
                                                             المزاد
@@ -72,8 +69,9 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label> اختر المدينة</label>
-                                                    <select class="form-control" id="cityselect" name="city">
+                                                    <label> اختر المدينة <span style="color: red">*</span></label>
+                                                    <select class="form-control" id="cityselect" name="city"
+                                                        required>
                                                         <option value="" hidden disabled selected>
                                                             اختر
                                                             المدينة
@@ -90,8 +88,8 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label> اختر الاصل</label>
-                                                    <select class="form-control" name="asset">
+                                                    <label> اختر الاصل <span style="color: red">*</span></label>
+                                                    <select class="form-control" name="asset" required>
                                                         <option value="" hidden disabled selected>
                                                             اختر
                                                             الاصل
@@ -109,42 +107,43 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label>اسم المستفيد</label>
+                                                    <label>اسم المستفيد <span style="color: red">*</span></label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
                                                         name="investor" class="form-control"placeholder="" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label>رقم الهاتف</label>
+                                                    <label>رقم الهاتف <span style="color: red">*</span></label>
                                                     <input style="height: calc(2.25rem + 6px);" type="number"
                                                         name="phone" minlength="10" maxlength="11"
                                                         class="form-control"placeholder="" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label>تاريخ الاستلام</label>
+                                                    <label>تاريخ الاستلام <span style="color: red">*</span></label>
                                                     <input style="height: calc(2.25rem + 6px);" type="date"
                                                         name="recived" class="form-control"placeholder="" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label>محضر الاستلام <span style="color: red">pdf او word بحد اقصي 1
-                                                            ميجا</span></label>
+                                                    <label>محضر الاستلام <span style="color: red">*</span> <span
+                                                            style="color: red">pdf او word بحد اقصي 1
+                                                            ميجا</span> </label>
                                                     <input style="height: calc(2.25rem + 6px);" type="file"
                                                         name="delivery_record" accept=",.doc, .docx, .pdf, image/*"
                                                         class="form-control" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label>تاريخ الاشغال</label>
+                                                    <label>تاريخ الاشغال <span style="color: red">*</span></label>
                                                     <input style="height: calc(2.25rem + 6px);" type="date"
                                                         name="work_date" class="form-control"placeholder="" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label>نسبة الزيادة</label>
+                                                    <label>نسبة الزيادة </label>
                                                     <input style="height: calc(2.25rem + 6px);" step="0.1"
                                                         type="number" name="increase_rate"
-                                                        class="form-control"placeholder="" required>
+                                                        class="form-control"placeholder="">
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label>نوع التعاقد</label>
-                                                    <select class="form-control" name="contract_type">
+                                                    <label>نوع التعاقد <span style="color: red">*</span></label>
+                                                    <select class="form-control" name="contract_type" required>
                                                         <option value="" hidden disabled selected>
                                                             اختر
                                                             نوع التعاقد
@@ -163,11 +162,10 @@
                                                 <div class="form-group col-md-4">
                                                     <label>مدة العقد</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="date"
-                                                        name="contract_period" class="form-control"placeholder=""
-                                                        required>
+                                                        name="contract_period" class="form-control"placeholder="">
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label>قيمة العقد</label>
+                                                    <label>قيمة العقد <span style="color: red">*</span></label>
                                                     <input style="height: calc(2.25rem + 6px);" step="0.1"
                                                         type="number" name="contract_cost"
                                                         class="form-control"placeholder="" required>
@@ -192,14 +190,8 @@
         </div>
         @include('layouts.footer')
     </div>
-    </div>
     <!-- General JS Scripts -->
     <script src="assets/js/app.min.js"></script>
-    <!-- JS Libraies -->
-    <!-- Page Specific JS File -->
-    <script src="assets/bundles/izitoast/js/iziToast.min.js"></script>
-    <!-- Page Specific JS File -->
-    <script src="assets/js/page/toastr.js"></script>
     <!-- Template JS File -->
     <script src="assets/js/scripts.js"></script>
     <!-- Custom JS File -->

@@ -51,7 +51,7 @@
         }
 
         .container {
-            background-color: #ffffffc4;
+            background: linear-gradient(317deg, #ffffffd7, #ffffffef);
             opacity: 0.99;
             border-radius: 15px;
             animation: glow 2s infinite alternate;
@@ -224,6 +224,73 @@
             }
         }
     </style>
+    <style>
+        .inputBox {
+            position: relative;
+            width: 100%;
+        }
+
+        .inputBox input {
+            padding: 15px 20px;
+            border: none;
+            outline: none;
+            width: 100%;
+            background: transparent;
+            border-radius: 5px;
+            color: #134362;
+            border: 1px solid rgba(0, 0, 0, 0.25);
+            font-size: 1em;
+        }
+
+        .inputBox span {
+            position: absolute;
+            right: 0;
+            padding: 15px 20px;
+            pointer-events: none;
+            font-size: 1em;
+            font-weight: bolder;
+            transition: 0.5s;
+            color: rgba(0, 0, 0, 0.541);
+        }
+
+        .inputBox input:focus {
+            color: #134362;
+        }
+
+        .inputBox input:valid~span,
+        .inputBox input:focus~span {
+            color: wheat;
+            font-size: 0.9em;
+            transform: translateX(-20px) translateY(-7px);
+            padding: 5px 10px;
+            background: linear-gradient(317deg, #134362, #2c3e50);
+            border-radius: 3px;
+        }
+
+        #toggle {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 10px;
+            background: url(assets/img/eye.png);
+            background-size: cover;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        #toggle.hiding {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 10px;
+            background: url(assets/img/hide.png);
+            background-size: cover;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
@@ -231,7 +298,7 @@
     <div class="container">
         <button class="btn btn-primary" onclick="showInfo()"
             style="position: absolute; border-radius: 50%; margin-top: 15px;">?</button>
-        <h2 class="text-center pt-5">منظومة الاستثمار</h2>
+        <h2 class="text-center pt-5">قطاع الشؤن الاقتصادية والاستثمار</h2>
         <div id="login-col">
             <div class="col-lg-6" id="inner-logo">
                 <img src="images/logo/logo.png">
@@ -242,24 +309,24 @@
                     <h3 class="text-center text-dark">تسجيل الدخول</h3>
                     @csrf
                     <div class="form-group">
-                        <label for="username">البريد الالكتروني</label>
-                        <input placeholder="username" type="email"
-                            class="form-control @error('email') is-invalid @enderror" name="email"
-                            value="{{ old('email') }}" required autocomplete="email" autofocus>
+                        <div class="inputBox">
+                            <input type="email" class="@error('email') is-invalid @enderror" name="email" required
+                                id="email">
+                            <span>الـبـريـد الالــكـتـرونـي</span>
+                        </div>
                         @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-
                     </div>
                     <div class="form-group">
-                        <label for="password" class="control-label">الرقم السري</label>
-                        <input type="password" id="password"
-                            class="form-control @error('password') is-invalid @enderror" name="password" required
-                            autocomplete="current-password" placeholder="Password">
-                        <label for="checkbox">عرض الرقم السري</label>
-                        <input type="checkbox" id="checkbox" onclick="show()">
+                        <div class="inputBox">
+                            <input type="password" class="@error('password') is-invalid @enderror" name="password"
+                                required id="password">
+                            <span>كــلـمـة الـســــر</span>
+                            <div id="toggle" onclick="show()"><i class="fa-solid fa-eye"></i></div>
+                        </div>
                         @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -336,6 +403,20 @@
             if (event.target == modal) {
                 modal.style.display = 'none';
                 window.onscroll = function() {};
+            }
+        }
+    </script>
+    <script>
+        let password = document.getElementById('password');
+        let toggle = document.getElementById('toggle');
+
+        function show() {
+            if (password.type === "password") {
+                password.type = "text";
+                toggle.classList.add('hiding');
+            } else {
+                password.type = "password";
+                toggle.classList.remove('hiding');
             }
         }
     </script>

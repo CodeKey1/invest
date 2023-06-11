@@ -13,7 +13,6 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/bundles/bootstrap-daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="assets/bundles/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
-    <link rel="stylesheet" href="assets/bundles/izitoast/css/iziToast.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <!-- Custom style CSS -->
@@ -21,8 +20,8 @@
     <link rel='shortcut icon' type='image/x-icon' href='assets/img/favicon.ico' />
 </head>
 
-<body class="light theme-white dark-sidebar">
-    <div class="loader"></div>E
+<body class="light theme-white">
+    <div class="loader"></div>
     <div id="app">
         <div class="main-wrapper main-wrapper-1">
             @include('layouts.sidbar')
@@ -38,9 +37,7 @@
                                     <div class="card-header">
                                         <h4>تعديل المزاد ({{ $auction->name }})</h4>
                                         <div class="card-header-action">
-                                            <a href="{{ route('auction') }}"
-                                                class="dropdown-item has-icon text-dark btn-warning"><i
-                                                    class="fa-sharp fa-solid fa-circle-arrow-left"></i>عودة</a>
+                                            <a href="{{ route('auction') }}" class="btn btn-success">عودة</a>
                                         </div>
                                     </div>
                                 </div>
@@ -61,10 +58,11 @@
                                             <div class="form-group col-md-12">
                                                 <label> تاريخ المزاد</label>
                                                 <input style="height: calc(2.25rem + 6px);" type="date"
-                                                    value="{{ $auction->date }}" class="form-control" disabled>
+                                                    value="{{ $auction->date->format('Y-m-d') }}" class="form-control"
+                                                    disabled>
                                                 <input style="height: calc(2.25rem + 6px);" type="date"
-                                                    name="date" class="form-control" value="{{ $auction->date }}"
-                                                    required>
+                                                    name="date" class="form-control"
+                                                    value="{{ $auction->date->format('Y-m-d') }}" required>
                                             </div>
                                             <div class="form-group col-md-12">
                                                 <label> عنوان المزاد</label>
@@ -96,11 +94,6 @@
     </div>
     <!-- General JS Scripts -->
     <script src="assets/js/app.min.js"></script>
-    <!-- JS Libraies -->
-    <!-- Page Specific JS File -->
-    <script src="assets/bundles/izitoast/js/iziToast.min.js"></script>
-    <!-- Page Specific JS File -->
-    <script src="assets/js/page/toastr.js"></script>
     <!-- Template JS File -->
     <script src="assets/js/scripts.js"></script>
     <!-- Custom JS File -->

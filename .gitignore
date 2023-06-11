@@ -17,4 +17,7 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-/public
+/public/attatcment_project
+/public/auctionOffer-files
+/public/project_inquiry_file
+/public/project_response_file

@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="assets/bundles/bootstrap-daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="assets/bundles/select2/dist/css/select2.min.css">
     <link rel="stylesheet" href="assets/bundles/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
-    <link rel="stylesheet" href="assets/bundles/izitoast/css/iziToast.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <!-- Custom style CSS -->
@@ -22,8 +21,8 @@
     <link rel='shortcut icon' type='image/x-icon' href='assets/img/favicon.ico' />
 </head>
 
-<body class="light theme-white dark-sidebar">
-    <div class="loader"></div>E
+<body class="light theme-white">
+    <div class="loader"></div>
     <div id="app">
         <div class="main-wrapper main-wrapper-1">
 
@@ -42,9 +41,9 @@
 
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>طلب الحصول علي موافقة لإقامت مشروع</h4>
+                                        <h4>طلب الحصول علي موافقة لإقامة مشروع</h4>
                                         <div class="card-header-action">
-                                            <a href="{{ route('investment') }}" class="btn btn-primary">ادارة
+                                            <a href="{{ route('investment') }}" class="btn btn-success">ادارة
                                                 الطلبات</a>
                                         </div>
                                         {{-- <button class="btn btn-dark"
@@ -53,17 +52,6 @@
                                                     href="#">عودة</a></button> --}}
                                     </div>
 
-                                </div>
-                                <div class="card"
-                                    style="flex-direction: inherit;
-                                    background-color: #fff0;
-                                    border-radius: 10px;
-                                    border: none;
-                                    position: relative;
-                                    margin-bottom: 30px;
-                                    box-shadow: unset;">
-                                    <span class="badge badge-danger" style="border-radius: 4px;">تاريخ اليوم :
-                                        {{ $now }} </span>
                                 </div>
                                 <form class="needs-validation" id="work_experience" novalidate=""
                                     action="{{ route('investment.store') }}" method="POST"
@@ -108,18 +96,20 @@
                                                         name="name" class="form-control" placeholder="" required>
                                                 </div>
                                                 <div class="form-group col-md-12">
-                                                    <label> الجهات للموافة علي المشرع </label>
-                                                    @isset($clicense)
-                                                        @if ($clicense && $clicense->count() > 0)
-                                                            @foreach ($clicense as $lice)
-                                                                <div
-                                                                    class="option license-{{ $lice->license_cate->id }} badge badge-danger">
-                                                                    {{ $lice->license->name }}</div>
-                                                                {{-- <input class="option license-{{ $lice->license_cate->id }}" type="text" value="{{ $lice->license_cate->id }}" name="sub_ctegory_id"> --}}
-                                                            @endforeach
-                                                        @endif
-                                                    @endisset
-
+                                                    <label> الجهات للموافة علي المشرع <span
+                                                            style="color: red">*</span></label>
+                                                    <select class="form-control select2" multiple="" name="license[]"
+                                                        style="width: 100%" required>
+                                                        @isset($license)
+                                                            @if ($license && $license->count() > 0)
+                                                                @foreach ($license as $license1)
+                                                                    <option value="{{ $license1->id }}">
+                                                                        {{ $license1->name }}
+                                                                    </option>
+                                                                @endforeach
+                                                            @endif
+                                                        @endisset
+                                                    </select>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label>نوع مقدم الطلب <span style="color: red">*</span></label>
@@ -147,15 +137,15 @@
                                                         name="representative_name" class="form-control" value="">
                                                 </div>
                                                 <div class="form-group col-md-4">
+                                                    <label>بطاقة رقم \ جواز رقم</label>
+                                                    <input style="height: calc(2.25rem + 6px);" type="text"
+                                                        name="NID" class="form-control" maxlength="14"
+                                                        minlength="9">
+                                                </div>
+                                                <div class="form-group col-md-4">
                                                     <label> بالتوكيل رقم </label>
                                                     <input style="height: calc(2.25rem + 6px);" type="number"
                                                         name="representative_id" class="form-control" value="">
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label>بطاقة رقم </label>
-                                                    <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        pattern="\d*" name="NID" class="form-control"
-                                                        maxlength="14" minlength="14">
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label>تليفون <span style="color: red">*</span></label>
@@ -163,56 +153,72 @@
                                                         pattern="\d*" name="phone" maxlength="11" minlength="10"
                                                         class="form-control" placeholder="" required>
                                                 </div>
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-2">
                                                     <label> مساحة المشروع <span style="color: red">*</span></label>
                                                     <input style="height: calc(2.25rem + 6px);" type="number"
                                                         name="size" class="form-control" step="0.1"
                                                         placeholder="" required>
                                                 </div>
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-2">
                                                     <label>نوع المساحة <span style="color: red">*</span></label>
                                                     <select class="form-control" name="size_type" required>
                                                         <option disabled selected value="">اختر نوع المساحة
                                                         </option>
-                                                        <option value="متر">متر مربع</option>
+                                                        <option value="متر مربع">متر مربع</option>
                                                         <option value="فدان">فدان</option>
                                                     </select>
                                                 </div>
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-2">
                                                     <label>برأسمال قيمته </label>
                                                     <input style="height: calc(2.25rem + 6px);" step="0.1"
                                                         type="number" name="capital" class="form-control"
                                                         placeholder="">
                                                 </div>
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-2">
+                                                    <label>فئة العملة</label>
+                                                    <select class="form-control" name="currency_type">
+                                                        <option value="EGP">جنيه</option>
+                                                        <option value="USD">USD</option>
+                                                        <option value="EUR">EUR</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-md-2">
                                                     <label>نسبة التمويل الذاتي </label>
                                                     <input style="height: calc(2.25rem + 6px);" type="number"
                                                         min="0" max="100" step="0.1"
                                                         name="Self_financing" class="form-control" placeholder="">
                                                 </div>
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-2">
                                                     <label>تاريخ تقديم الطلب <span style="color: red">*</span></label>
                                                     <input style="height: calc(2.25rem + 6px);" type="date"
                                                         name="recived_date" class="form-control" placeholder=""
                                                         required>
                                                 </div>
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-2">
                                                     <label>المدينة <span style="color: red">*</span></label>
                                                     <select class="form-control" id="city_id" name="city_id"
                                                         required>
-                                                        <option disabled selected value="">اختر المدينة</option>
-                                                        @isset($city)
-                                                            @if ($city && $city->count() > 0)
-                                                                @foreach ($city as $City)
-                                                                    <option value="{{ $City->id }}">
-                                                                        {{ $City->name }}
-                                                                    </option>
-                                                                @endforeach
-                                                            @endif
-                                                        @endisset
+                                                        @if (auth()->user()->hasRole('city')){
+                                                            <option selected value="{{ $type->city_id }}">
+                                                                {{ $type->city_name->name }}</option>
+                                                            }
+                                                        @else{
+                                                            <option disabled selected value="">اختر المدينة
+                                                            </option>
+                                                            @isset($city)
+                                                                @if ($city && $city->count() > 0)
+                                                                    @foreach ($city as $City)
+                                                                        <option value="{{ $City->id }}">
+                                                                            {{ $City->name }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                @endif
+                                                            @endisset
+                                                            }
+                                                        @endif
                                                     </select>
                                                 </div>
-                                                <div class="form-group col-md-8">
+                                                <div class="form-group col-md-6">
                                                     <label>المواقع المقترحة لإقامة المشروع بالمحافظة</label>
                                                     <select class="form-control select2" multiple id="area"
                                                         name="region[]" style="width: 100%">
@@ -277,13 +283,18 @@
                                                 <div class="form-group col-md-3">
                                                     <label for=""> كروكي الموقع المختار واحداثياته
                                                     </label>
-                                                    <input type="file" name="location_string" class="form-control"
+                                                    <input type="file" name="site_sketch" class="form-control"
                                                         style="height: calc(2.25rem + 6px);">
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for=""> دراسة جدوي للمشروع </label>
                                                     <input type="file" name="feasibility_study"
                                                         class="form-control" style="height: calc(2.25rem + 6px);">
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label for="">محضر الجلسة</label>
+                                                    <input type="file" name="record" class="form-control"
+                                                        style="height: calc(2.25rem + 6px);">
                                                 </div>
                                             </div>
                                             <button type="submit" class="btn btn-success"
@@ -299,7 +310,7 @@
                     </div>
             </div>
             </section>
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="formModal"
+            {{-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="formModal"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -315,19 +326,13 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             @include('layouts.setting')
         </div>
         @include('layouts.footer')
     </div>
-    </div>
     <!-- General JS Scripts -->
     <script src="assets/js/app.min.js"></script>
-    <!-- JS Libraies -->
-    <!-- Page Specific JS File -->
-    <script src="assets/bundles/izitoast/js/iziToast.min.js"></script>
-    <!-- Page Specific JS File -->
-    <script src="assets/js/page/toastr.js"></script>
     <!-- Template JS File -->
     <script src="assets/js/scripts.js"></script>
     <!-- Custom JS File -->

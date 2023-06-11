@@ -123,17 +123,17 @@ class AppModifyController extends Controller
                         return redirect()->route('app.modify')-> with(['error' => 'خطأ'.$ex]);
                     }
                     break;
-                case 'cLicensebtn':
-                    $category = $request['category'];
-                    for($i = 0 ; $i< count($request->category_license) ; $i++){
-                        $license[] = $request->category_license[$i];
-                        c_license::create(([
-                         'category_id' => $category,
-                         'license_id' => $license[$i],
-                         ]));
-                    }
-                    return redirect()->route('app.modify')-> with(['success' => 'تم التسجيل بنجاح']);
-                    break;
+                // case 'cLicensebtn':
+                //     $category = $request['category'];
+                //     for($i = 0 ; $i< count($request->category_license) ; $i++){
+                //         $license[] = $request->category_license[$i];
+                //         c_license::create(([
+                //          'category_id' => $category,
+                //          'license_id' => $license[$i],
+                //          ]));
+                //     }
+                //     return redirect()->route('app.modify')-> with(['success' => 'تم التسجيل بنجاح']);
+                //     break;
                 //other action button
                 case 'contractbtn':
                     $contract = $request['contract_name'];

@@ -13,7 +13,6 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/bundles/bootstrap-daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="assets/bundles/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
-    <link rel="stylesheet" href="assets/bundles/izitoast/css/iziToast.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <!-- Custom style CSS -->
@@ -21,8 +20,8 @@
     <link rel='shortcut icon' type='image/x-icon' href='assets/img/favicon.ico' />
 </head>
 
-<body class="light theme-white dark-sidebar">
-    <div class="loader"></div>E
+<body class="light theme-white">
+    <div class="loader"></div>
     <div id="app">
         <div class="main-wrapper main-wrapper-1">
 
@@ -35,15 +34,14 @@
                             <div class="col-12 col-md-12 col-lg-12">
                                 @include('layouts.success')
                                 @include('layouts.error')
-                                <form method="POST" action="{{ route('user.store') }}">
+                                <form method="POST" class="needs-validation" novalidate=""
+                                    action="{{ route('user.store') }}">
                                     @csrf
                                     <div class="card card-primary">
                                         <div class="card-header">
                                             <h4>اضافة مستخدم جديد</h4>
                                             <div class="card-header-action">
-
-                                            <a href="{{ route('user') }}" class="btn btn-warning">كل المستخدمين</a>
-                                            <a href="{{ route('home') }}" class="btn btn-primary">الرئيسية</a>
+                                                <a href="{{ route('user') }}" class="btn btn-success">كل المستخدمين</a>
                                             </div>
                                             {{-- <button class="btn btn-dark"
                                                 style="position: absolute; left: 10px; top:5px"><a
@@ -115,15 +113,51 @@
                                             <div class="row mb-3">
                                                 <label for="role"
                                                     class="col-md-2 col-form-label text-md-end">{{ __(' صلاحية المستخدم  ') }}</label>
-
                                                 <div class="col-md-6">
-                                                    <select class="form-control" id="role" name="role">
-                                                        <option value="" disabled selected> صلاحية المستخدم </option>
+                                                    <select class="form-control" id="role" name="role" required>
+                                                        <option value="" disabled selected> صلاحية المستخدم
+                                                        </option>
                                                         @isset($role)
                                                             @if ($role && $role->count() > 0)
                                                                 @foreach ($role as $Role)
                                                                     <option value="{{ $Role->id }}">
                                                                         {{ $Role->name }} </option>
+                                                                @endforeach
+                                                            @endif
+                                                        @endisset
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3" id="city" style="display: none;">
+                                                <label for="role"
+                                                    class="col-md-2 col-form-label text-md-end">{{ __(' المركز ') }}</label>
+                                                <div class="col-md-6">
+                                                    <select class="form-control" name="city">
+                                                        <option value="" disabled selected> المركز التابع له
+                                                        </option>
+                                                        @isset($city)
+                                                            @if ($city && $city->count() > 0)
+                                                                @foreach ($city as $c)
+                                                                    <option value="{{ $c->id }}">
+                                                                        {{ $c->name }} </option>
+                                                                @endforeach
+                                                            @endif
+                                                        @endisset
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3" id="side" style="display: none;">
+                                                <label for="role"
+                                                    class="col-md-2 col-form-label text-md-end">{{ __(' الجهة ') }}</label>
+                                                <div class="col-md-6">
+                                                    <select class="form-control" name="side">
+                                                        <option value="" disabled selected> الجهة التابع لها
+                                                        </option>
+                                                        @isset($license)
+                                                            @if ($license && $license->count() > 0)
+                                                                @foreach ($license as $c)
+                                                                    <option value="{{ $c->id }}">
+                                                                        {{ $c->name }} </option>
                                                                 @endforeach
                                                             @endif
                                                         @endisset
@@ -142,20 +176,13 @@
                             </a> --}}
                         </div>
                     </div>
+                </section>
             </div>
-            </section>
-            @include('layouts.setting')
+            @include('layouts.footer')
         </div>
-        @include('layouts.footer')
-    </div>
     </div>
     <!-- General JS Scripts -->
     <script src="assets/js/app.min.js"></script>
-    <!-- JS Libraies -->
-    <!-- Page Specific JS File -->
-    <script src="assets/bundles/izitoast/js/iziToast.min.js"></script>
-    <!-- Page Specific JS File -->
-    <script src="assets/js/page/toastr.js"></script>
     <!-- Template JS File -->
     <script src="assets/js/scripts.js"></script>
     <!-- Custom JS File -->
@@ -163,10 +190,17 @@
     <script src="assets/bundles/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
     <script src="assets/bundles/bootstrap-daterangepicker/daterangepicker.js"></script>
     <script>
-        $('.option').hide();
-        $('#city').on('change', function(e) {
-            $('.option').hide();
-            $('.city-' + e.target.value).show();
+        $('#role').on('change', function(e) {
+            if (e.target.value == 8) {
+                $('#city').show();
+                $('#side').hide();
+            } else if (e.target.value == 5) {
+                $('#side').show();
+                $('#city').hide();
+            } else {
+                $('#city').hide();
+                $('#side').hide();
+            }
         });
     </script>
 

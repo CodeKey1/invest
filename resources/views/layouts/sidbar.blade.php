@@ -53,37 +53,28 @@
                     <a href="{{ route('home') }}" class="nav-link"><span>الرئيسية</span><i class="fa fa-home"
                             aria-hidden="true"></i></a>
                 </li>
-                <li class="menu-header"></li>
                 <li class="dropdown">
-                    <a href="#" class="menu-toggle nav-link has-dropdown"><span> الطلبات </span>
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><span> طلبــات المستثــمر </span>
                         <i class="fa fa-file" aria-hidden="true"></i></a>
                     <ul class="dropdown-menu">
-                        {{-- <li><a class="nav-link" href="{{ route('section') }}">الجهات المختصة</a></li> --}}
-                        <li><a class="nav-link" href="{{ route('investment.Create') }}">اضافة طلب</a></li>
-                        <li><a class="nav-link" href="{{ route('investment') }}">طلبات</a></li>
+                        {{-- <li><a class="nav-link" href="{{ route('investment.Create') }}">اضافة طلب</a></li> --}}
+                        <li><a class="nav-link" href="{{ route('investment') }}">طلبات المستثمرين</a></li>
+                        <li><a class="nav-link" href="{{ route('lecturer') }}"> المحاضر </a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="menu-toggle nav-link has-dropdown"><span> المحاضر </span>
-                        <i class="fa fa-bars" aria-hidden="true"></i></a>
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><span> مزادات واطروحات </span>
+                        <i class="fa fa-university" aria-hidden="true"></i></a>
                     <ul class="dropdown-menu">
-                        {{-- <li><a class="nav-link" href="#">الطلبات المقبولة</a></li> --}}
-                        <li><a class="nav-link" href="{{ route('lecturer') }}"> المحاضر </a></li>
+                        <li><a class="nav-link" href="{{ route('auction') }}">اطروحات</a></li>
+                        <li><a class="nav-link" href="{{ route('offer') }}">ترسيات</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a href="{{ route('tech') }}" class="nav-link"><span>لجنة البت الفني</span><i class="fa fa-bug"
                             aria-hidden="true"></i></a>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="menu-toggle nav-link has-dropdown"><span> المزادات </span>
-                        <i class="fa fa-university" aria-hidden="true"></i></a>
-                    <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="{{ route('auction') }}">مزادات</a></li>
-                        <li><a class="nav-link" href="{{ route('offer') }}">الاطروحات</a></li>
-                    </ul>
-                </li>
-                <li class="menu-header">
+                {{-- <li class="menu-header">
                     <hr />
                 </li>
                 <li class="dropdown">
@@ -103,7 +94,7 @@
                         <li><a class="nav-link" href="{{ route('export.Create') }}">اضافة صادر</a></li>
                         <li><a class="nav-link" href="{{ route('export') }}"> كل الصادر</a></li>
                     </ul>
-                </li>
+                </li> --}}
                 <li class="menu-header">
                     <hr />
                 </li>
@@ -112,6 +103,7 @@
                         <i class="fa fa-file-pdf" aria-hidden="true"></i></a>
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="{{ route('request.report') }}">تقرير الطلبات</a></li>
+                        <li><a class="nav-link" href="{{ route('single.report') }}">ملخص طلب</a></li>
                         <li><a class="nav-link" href="{{ route('auction.report') }}">تقرير المزادات</a></li>
                     </ul>
                 </li>
@@ -123,7 +115,7 @@
                         <i class="fa fa-cogs" aria-hidden="true"></i></a>
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="{{ route('user') }}"> المستخدمين</a></li>
-                        <li><a class="nav-link" href="{{ route('role') }}">الصلحيات</a></li>
+                        {{-- <li><a class="nav-link" href="{{ route('role') }}">الصلحيات</a></li> --}}
                         <li><a class="nav-link" href="{{ route('app.modify') }}">بيانات اساسية</a></li>
                     </ul>
                 </li>
@@ -139,19 +131,11 @@
                 </li>
                 <li class="menu-header"></li>
                 <li class="dropdown">
-                    <a href="#" class="menu-toggle nav-link has-dropdown"><span> الطلبات </span>
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><span> طلبات المستثمر </span>
                         <i class="fa fa-file" aria-hidden="true"></i></a>
                     <ul class="dropdown-menu">
-                        {{-- <li><a class="nav-link" href="{{ route('section') }}">الجهات المختصة</a></li> --}}
-                        <li><a class="nav-link" href="{{ route('investment.Create') }}">اضافة طلب</a></li>
-                        <li><a class="nav-link" href="{{ route('investment') }}">طلبات</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="menu-toggle nav-link has-dropdown"><span> المحاضر </span>
-                        <i class="fa fa-bars" aria-hidden="true"></i></a>
-                    <ul class="dropdown-menu">
-                        {{-- <li><a class="nav-link" href="#">الطلبات المقبولة</a></li> --}}
+                        {{-- <li><a class="nav-link" href="{{ route('investment.Create') }}">اضافة طلب</a></li> --}}
+                        <li><a class="nav-link" href="{{ route('investment') }}">طلبات المستثمرين</a></li>
                         <li><a class="nav-link" href="{{ route('lecturer') }}"> المحاضر </a></li>
                     </ul>
                 </li>
@@ -159,11 +143,11 @@
                     <a href="#" class="menu-toggle nav-link has-dropdown"><span> المزادات </span>
                         <i class="fa fa-university" aria-hidden="true"></i></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="{{ route('auction') }}">مزادات</a></li>
-                        <li><a class="nav-link" href="{{ route('offer') }}">الاطروحات</a></li>
+                        <li><a class="nav-link" href="{{ route('auction') }}">اطروحات</a></li>
+                        <li><a class="nav-link" href="{{ route('offer') }}">ترسيات</a></li>
                     </ul>
                 </li>
-                <li class="menu-header">
+                {{-- <li class="menu-header">
                     <hr />
                 </li>
                 <li class="dropdown">
@@ -183,7 +167,7 @@
                         <li><a class="nav-link" href="{{ route('export.Create') }}">اضافة صادر</a></li>
                         <li><a class="nav-link" href="{{ route('export') }}"> كل الصادر</a></li>
                     </ul>
-                </li>
+                </li> --}}
                 <li class="menu-header">
                     <hr />
                 </li>
@@ -199,7 +183,8 @@
         @endif
 
         {{-- /* side permission and role for sidebar*/ --}}
-        @if (auth()->user()->hasRole('side'))
+        @if (auth()->user()->hasRole('side') ||
+                auth()->user()->hasRole('city'))
             <ul class="sidebar-menu">
                 <li class="dropdown active">
                     <a href="{{ route('home') }}" class="nav-link"><span>الرئيسية</span><i class="fa fa-home"
@@ -207,10 +192,10 @@
                 </li>
                 <li class="menu-header"></li>
                 <li class="dropdown">
-                    <a href="{{ route('side') }}" class="nav-link"><span>الطلبات</span><i class="fa fa-bars"
+                    <a href="{{ route('side') }}" class="nav-link"><span>طلبات المستثمرين</span><i class="fa fa-bug"
                             aria-hidden="true"></i></a>
                 </li>
-                <li class="menu-header">
+                {{-- <li class="menu-header">
                     <hr />
                 </li>
                 <li class="dropdown">
@@ -230,7 +215,7 @@
                         <li><a class="nav-link" href="{{ route('export.Create') }}">اضافة صادر</a></li>
                         <li><a class="nav-link" href="{{ route('export') }}"> كل الصادر</a></li>
                     </ul>
-                </li>
+                </li> --}}
             </ul>
         @endif
 
@@ -246,7 +231,7 @@
                     <a href="{{ route('tech') }}" class="nav-link"><span>لجنة البت الفني</span><i class="fa fa-bug"
                             aria-hidden="true"></i></a>
                 </li>
-                <li class="menu-header">
+                {{-- <li class="menu-header">
                     <hr />
                 </li>
                 <li class="dropdown">
@@ -265,6 +250,42 @@
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="{{ route('export.Create') }}">اضافة صادر</a></li>
                         <li><a class="nav-link" href="{{ route('export') }}"> كل الصادر</a></li>
+                    </ul>
+                </li> --}}
+            </ul>
+        @endif
+
+        @if (auth()->user()->hasRole('viewer'))
+            <ul class="sidebar-menu">
+                <li class="dropdown active">
+                    <a href="{{ route('home') }}" class="nav-link"><span>الرئيسية</span><i class="fa fa-home"
+                            aria-hidden="true"></i></a>
+                </li>
+                <li class="menu-header"></li>
+                <li class="dropdown">
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><span> طلبات المستثمر </span>
+                        <i class="fa fa-file" aria-hidden="true"></i></a>
+                    <ul class="dropdown-menu">
+                        {{-- <li><a class="nav-link" href="{{ route('investment.Create') }}">اضافة طلب</a></li> --}}
+                        <li><a class="nav-link" href="{{ route('investment') }}">طلبات المستثمرين</a></li>
+                        <li><a class="nav-link" href="{{ route('lecturer') }}"> المحاضر </a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><span> المزادات </span>
+                        <i class="fa fa-university" aria-hidden="true"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="nav-link" href="{{ route('auction') }}">اطروحات</a></li>
+                        <li><a class="nav-link" href="{{ route('offer') }}">ترسيات</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><span> التقارير </span>
+                        <i class="fa fa-file-pdf" aria-hidden="true"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="nav-link" href="{{ route('request.report') }}">تقرير الطلبات</a></li>
+                        <li><a class="nav-link" href="{{ route('single.report') }}">ملخص طلب</a></li>
+                        <li><a class="nav-link" href="{{ route('auction.report') }}">تقرير المزادات</a></li>
                     </ul>
                 </li>
             </ul>

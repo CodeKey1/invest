@@ -26,7 +26,7 @@
     <link rel='shortcut icon' type='image/x-icon' href='assets/img/favicon.ico' />
 </head>
 
-<body class="light theme-white dark-sidebar">
+<body class="light theme-white">
     <div class="loader"></div>
     <div id="app">
         <div class="main-wrapper main-wrapper-1">
@@ -41,11 +41,10 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>اطروحات المزادات</h4>
+                                        <h4>ترسيات المزادات</h4>
                                         <div class="card-header-action">
-                                            <a href="{{ route('offer.Create') }}"
-                                                class="dropdown-item has-icon text-dark btn-warning"><i
-                                                    class="fas fa-plus"></i>اضافة اطروحات جديد</a>
+                                            <a href="{{ route('offer.Create') }}" class="btn btn-success">اضافة ترسية
+                                                جديد</a>
                                         </div>
                                     </div>
                                 </div>
@@ -92,11 +91,11 @@
                                                                     </td>
                                                                     <td>{{ $offer1->note }}</td>
                                                                     <td>
-                                                                        <a class="btn btn-icon btn-success"
+                                                                        <a class="col-dark-gray waves-effect"
                                                                             href="{{ route('offer.edit', $offer1->id) }}"
                                                                             ata-toggle="tooltip" data-placement="top"
                                                                             title="عرض وتعديل">
-                                                                            <i class="fas fa-user"></i>
+                                                                            <i class="material-icons">edit</i>
                                                                         </a>
                                                                     </td>
                                                                 </tr>

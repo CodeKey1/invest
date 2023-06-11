@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\User_have_type;
+use App\Models\City;
+use App\Models\License;
 use App\Models\Model_has_roles;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Validator;
@@ -32,7 +35,9 @@ class UsersController extends Controller
     {
         if (auth()->user()->hasRole('super_admin')){
             $role = Role::select()->get();
-            return view('users.create',compact('role'));
+            $city = City::select()->get();
+            $license = License::select()->get();
+            return view('users.create',compact('role','city','license'));
         }else
             abort(403, 'user doesn\'t have access');
     }
@@ -55,13 +60,17 @@ class UsersController extends Controller
                  'email' =>$data['email'],
                  'role' =>$data['role'],
                  'password' => Hash::make($data['password']),
-    
                  ]));
                  Model_has_roles :: create(([
                     'role_id' => $data['role'],
                     'model_id' => $user->id,
                 ]));
-    
+                User_have_type :: create(([
+                    'id' => $user->id,
+                    'type_id' => $data['role'],
+                    'city_id' => $request['city'],
+                    'license_id' => $request['side'],
+                ]));
                 return redirect()->route('user')-> with(['success' => 'تم التسجيل بنجاح']);
             }catch(\Exception $ex){
                 return redirect()->route('user')-> with(['error' => 'خطأ'.$ex]);
@@ -122,6 +131,10 @@ class UsersController extends Controller
     public function destroy(string $id)
     {
         if (auth()->user()->hasRole('super_admin')){
+            $user_have_type = User_have_type::find($id);
+            if($user_have_type){
+                $user_have_type->delete();
+            }
             $user = User::find($id);
             $user->delete();
             return redirect()->route('user')->with(['success' => 'تم الحذف بنجاح']);

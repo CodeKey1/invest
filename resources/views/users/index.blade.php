@@ -24,7 +24,7 @@
 
 </head>
 
-<body class="light theme-white dark-sidebar">
+<body class="light theme-white">
     <div class="loader"></div>
     <div id="app">
         <div class="main-wrapper main-wrapper-1">
@@ -42,9 +42,8 @@
                                         <h4> ادارة المستخدمين </h4>
                                         <div class="card-header-action">
 
-                                            <a href="{{ route('user.Create') }}" class="btn btn-warning">اضافة
+                                            <a href="{{ route('user.Create') }}" class="btn btn-success">اضافة
                                                 مستخدم</a>
-                                            <a href="{{ route('home') }}" class="btn btn-primary">الرئيسية</a>
                                         </div>
                                     </div>
                                     <div class="card-body" style="direction: rtl;">
@@ -77,6 +76,10 @@
                                                                     اللجنة الفنية
                                                                 @elseif($user->role == 8)
                                                                     المدن
+                                                                @elseif($user->role == 9)
+                                                                    مشاهد
+                                                                @else
+                                                                    {{ $user->role }}
                                                                 @endif
                                                             </td>
 
@@ -89,13 +92,17 @@
                                                             </td>
                                                             <td class="mb-2">{{ $user->email }}</td>
                                                             <td>
-                                                                <a class="btn btn-icon btn-success"
+                                                                <a class="col-dark-gray waves-effect"
                                                                     href="{{ route('user.edit', $user->id) }}"
-                                                                    ata-toggle="tooltip" data-placement="top"
-                                                                    title="عرض وتعديل"><i class="fas fa-user"></i></a>
-                                                                <a class="btn btn-icon btn-danger"
-                                                                    href="{{ route('user.delete', $user->id) }}"><i
-                                                                        class="fas fa-times"></i></a>
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="عرض">
+                                                                    <i class="material-icons">edit</i>
+                                                                </a>
+                                                                <a class="col-red waves-effect m-r-10"
+                                                                    href="{{ route('user.delete', $user->id) }}"data-toggle="tooltip"
+                                                                    data-placement="top" id="delete_btn"
+                                                                    title="حذف"><i
+                                                                        class="material-icons">delete</i></a></a>
                                                             </td>
                                                         </tr>
                                                     @endforeach
@@ -130,6 +137,10 @@
     <script>
         $(document).ready(function() {
             $('table.table').DataTable();
+        });
+        $('#delete_btn').click(function(e) {
+            if (confirm("هل انت متأكد!") == false)
+                e.preventDefault();
         });
     </script>
     <!-- Custom JS File -->

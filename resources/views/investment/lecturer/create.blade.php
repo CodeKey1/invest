@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="assets/bundles/bootstrap-daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="assets/bundles/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
     <link rel="stylesheet" href="assets/bundles/select2/dist/css/select2.min.css">
-    <link rel="stylesheet" href="assets/bundles/izitoast/css/iziToast.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/bundles/datatables/datatables.min.css">
@@ -24,7 +23,7 @@
     <link rel='shortcut icon' type='image/x-icon' href='assets/img/favicon.ico' />
 </head>
 
-<body class="light theme-white dark-sidebar">
+<body class="light theme-white">
     <div class="loader"></div>
     <div id="app">
         <div class="main-wrapper main-wrapper-1">
@@ -43,7 +42,7 @@
                                         <h4> محاضر طلب الإسثمار / {{ $request->name }}</h4>
                                         <div class="card-header-action">
                                             <a href="{{ route('investment.show', $request->id) }}"
-                                                class="btn btn-warning">تعديل
+                                                class="btn btn-success">تعديل
                                                 الطلب</a>
                                             <a href="{{ route('lecturer') }}" class="btn btn-primary">ادارة
                                                 المحاضر</a>
@@ -79,13 +78,14 @@
                                     <div class="card-body">
                                         <h4>حالة لجنة البت الفني
                                             @if ($request->technical_state == 2)
-                                                <span style="color: darkslategray"> معلق </span>
+                                                <span style="color: darkslategray"> جاري </span>
                                             @elseif($request->technical_state == 1)
                                                 <span style="color: green"> الموافقة </span>
                                             @elseif($request->technical_state == 0)
                                                 <span style="color: red"> الرفض </span>
                                             @endif
                                         </h4>
+                                        <br>
                                         <h4>بيانات المشروع</h4>
                                         <form class="needs-validation" novalidate=""
                                             action="{{ route('record.approve', $request->id) }}" method="POST"
@@ -156,10 +156,16 @@
                                                         class="form-control" value="{{ $request->size_type }}"
                                                         disabled>
                                                 </div>
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-2">
                                                     <label>برأسمال قيمته </label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
                                                         class="form-control" value="{{ $request->capital }}"
+                                                        disabled>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <label>فئة العملة</label>
+                                                    <input style="height: calc(2.25rem + 6px);" type="text"
+                                                        class="form-control" value="{{ $request->currency_type }}"
                                                         disabled>
                                                 </div>
                                                 <div class="form-group col-md-4">
@@ -171,7 +177,8 @@
                                                 <div class="form-group col-md-4">
                                                     <label>تاريخ تقديم الطلب </label>
                                                     <input style="height: calc(2.25rem + 6px);" type="date"
-                                                        class="form-control" value="{{ $request->recived_date }}"
+                                                        class="form-control"
+                                                        value="{{ $request->recived_date->format('Y-m-d') }}"
                                                         disabled>
                                                 </div>
                                                 <div class="form-group col-md-4">
@@ -222,18 +229,18 @@
                                 <div class="card card-primary">
                                     <div class="form-group col-md-12">
                                         <br>
-                                        <h4>مرفقات الطلب</h4>
+                                        <h4>المرفقات </h4>
                                         <table class="table table-bordered" style="margin-top: 10px;">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">#</th>
                                                     <th scope="col"> عقد نأسيس </th>
                                                     <th scope="col"> السجل التجاري </th>
                                                     <th scope="col"> البطاقة الضريبية </th>
                                                     <th scope="col"> صورة البطاقة </th>
-                                                    <th scope="col"> مستنادات الملاءة المالية </th>
+                                                    <th scope="col"> الملاءة المالية </th>
                                                     <th scope="col"> كروكي الموقع </th>
                                                     <th scope="col"> دراسة جدوي </th>
+                                                    <th scope="col"> محضر الطلب</th>
                                                 </tr>
                                             </thead>
                                             @isset($project)
@@ -241,7 +248,6 @@
                                                     @foreach ($project as $PRG)
                                                         <tbody>
                                                             <tr>
-                                                                <td>{{ $PRG->request_id }}</td>
                                                                 @if ($PRG->company_reg)
                                                                     <td><a href="{{ asset('attatcment_project/' . $PRG->company_reg) }}"
                                                                             target="_blank">اضغط هنا</a></td>
@@ -284,6 +290,12 @@
                                                                 @elseif(!$PRG->feasibility_study)
                                                                     <td>لا يوجد</td>
                                                                 @endif
+                                                                @if ($PRG->record)
+                                                                    <td><a href="{{ asset('attatcment_project/' . $PRG->record) }}"
+                                                                            target="_blank">اضغط هنا</a></td>
+                                                                @elseif(!$PRG->record)
+                                                                    <td>لا يوجد</td>
+                                                                @endif
                                                             </tr>
                                                         </tbody>
                                                     @endforeach
@@ -296,7 +308,7 @@
                             <div class="col-12 col-md-12 col-lg-12" style="direction: rtl; width:100%">
                                 <div class="card card-primary">
                                     <div class="card-body">
-                                        <h4>جهات الموافقات</h4>
+                                        <h4>الموافقات</h4>
                                         <div class="form-group col-md-12">
                                             <form class="needs-validation" novalidate=""
                                                 action="{{ route('record.store') }}" method="POST"
@@ -306,11 +318,12 @@
                                                     <thead>
                                                         <tr>
                                                             {{-- <th scope="col"> # </th> --}}
-                                                            <th scope="col"> اسم الجهة</th>
-                                                            <th scope="col"> الملف المرسل</th>
-                                                            <th scope="col"> تاريخ الارسال </th>
-                                                            <th scope="col"> ملف الرد </th>
-                                                            <th scope="col"> تاريخ الرد </th>
+                                                            <th> اسم الجهة</th>
+                                                            <th> الملف المرسل</th>
+                                                            <th> تاريخ الارسال </th>
+                                                            <th> الرد </th>
+                                                            <th> ملف الرد </th>
+                                                            <th> تاريخ الرد </th>
                                                         </tr>
                                                     </thead>
                                                     @foreach ($r_license as $r)
@@ -337,6 +350,18 @@
                                                                 <td>
                                                                     @if ($r->send_date != null)
                                                                         {{ $r->send_date }}
+                                                                    @endif
+                                                                </td>
+                                                                <td>
+                                                                    @if ($r->state == 1)
+                                                                        <div class="badge badge-success"> موافق
+                                                                        </div>
+                                                                    @elseif ($r->state == 0)
+                                                                        <div class="badge badge-danger"> رفض
+                                                                        </div>
+                                                                    @else
+                                                                        <div class="badge badge-warning"> جاري
+                                                                        </div>
                                                                     @endif
                                                                 </td>
                                                                 @if ($r->response_file != null)
@@ -371,6 +396,7 @@
                                                 <label>اختر الجهة <span style="color: red">*</span></label>
                                                 <select class="form-control select2" style="width: 100%" multiple
                                                     name="l_name[]">
+                                                    {{-- <option value="invest">الاستثمار</option> --}}
                                                     @isset($r_license)
                                                         @if ($r_license && $r_license->count() > 0)
                                                             @foreach ($r_license as $item)
@@ -407,7 +433,7 @@
                                                         <tr>
                                                             <th scope="col"> # </th>
                                                             <th scope="col"> الراسل </th>
-                                                            <th scope="col"> الجهة </th>
+                                                            {{-- <th scope="col"> الجهة </th> --}}
                                                             <th scope="col"> الملاحظة </th>
                                                             <th scope="col"> تاريخ الارسال </th>
                                                             <th scope="col"> خيارات </th>
@@ -415,16 +441,20 @@
                                                     </thead>
                                                     <tbody>
                                                         @isset($r_note)
-                                                            @foreach ($r_note as $note)
+                                                            @foreach ($r_note as $n => $note)
                                                                 <tr>
-                                                                    <td>{{ $note->id }}</td>
+                                                                    <td>{{ $n + 1 }}</td>
                                                                     <td>{{ $note->sender_name->name }}</td>
-                                                                    <td>{{ $note->note_license->name }}</td>
+                                                                    {{-- <td>{{ $note->note_license->name }}</td> --}}
                                                                     <td>{{ $note->notes }}</td>
                                                                     <td>{{ $note->created_at }}</td>
-                                                                    <td><a class="btn btn-icon btn-danger"
-                                                                            href="{{ route('note.delete', $note->id) }}"><i
-                                                                                class="fas fa-times"></i></a></td>
+                                                                    <td>
+                                                                        <a class="col-red waves-effect m-r-10"
+                                                                            href="{{ route('note.delete', $note->id) }}"data-toggle="tooltip"
+                                                                            data-placement="top" id="delete_btn"
+                                                                            title="حذف"><i
+                                                                                class="material-icons">delete</i></a>
+                                                                    </td>
                                                                 </tr>
                                                             @endforeach
                                                         @endisset
@@ -451,9 +481,9 @@
                                                 </thead>
                                                 <tbody>
                                                     @isset($r_tech)
-                                                        @foreach ($r_tech as $note)
+                                                        @foreach ($r_tech as $n => $note)
                                                             <tr>
-                                                                <td>{{ $note->id }}</td>
+                                                                <td>{{ $n + 1 }}</td>
                                                                 <td>{{ $note->note }}</td>
                                                                 <td>{{ $note->date }}</td>
                                                             </tr>
@@ -478,11 +508,6 @@
     </div>
     <!-- General JS Scripts -->
     <script src="assets/js/app.min.js"></script>
-    <!-- JS Libraies -->
-    <!-- Page Specific JS File -->
-    <script src="assets/bundles/izitoast/js/iziToast.min.js"></script>
-    <!-- Page Specific JS File -->
-    <script src="assets/js/page/toastr.js"></script>
     <!-- Template JS File -->
     <script src="assets/js/scripts.js"></script>
     <!-- Custom JS File -->
@@ -497,11 +522,10 @@
             $('table.table').DataTable();
         });
 
-        /*function formConfirm() {
-            if (!confirm("هل انت متأكد من تعزيز الطلب"))
-                return false;
-            location.href = "{{ route('record.store.note', $request->id) }}";
-        }*/
+        $('#delete_btn').click(function(e) {
+            if (confirm("هل انت متأكد!") == false)
+                e.preventDefault();
+        });
     </script>
 
 </body>

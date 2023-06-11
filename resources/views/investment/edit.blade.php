@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="assets/bundles/bootstrap-daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="assets/bundles/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
     <link rel="stylesheet" href="assets/bundles/select2/dist/css/select2.min.css">
-    <link rel="stylesheet" href="assets/bundles/izitoast/css/iziToast.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <!-- Custom style CSS -->
@@ -22,8 +21,8 @@
     <link rel='shortcut icon' type='image/x-icon' href='assets/img/favicon.ico' />
 </head>
 
-<body class="light theme-white dark-sidebar">
-    <div class="loader"></div>E
+<body class="light theme-white">
+    <div class="loader"></div>
     <div id="app">
         <div class="main-wrapper main-wrapper-1">
 
@@ -38,10 +37,10 @@
                                 @include('layouts.error')
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4> عرض طلب الإسثمار / {{ $request->name }}</h4>
+                                        <h4> تعديل طلب الإسثمار / {{ $request->name }}</h4>
                                         <div class="card-header-action">
                                             <a href="{{ route('investment.record', $request->id) }}"
-                                                class="btn btn-warning">
+                                                class="btn btn-success">
                                                 محاضر الطلب</a>
                                             <a href="{{ route('investment') }}" class="btn btn-primary">ادارة
                                                 الطلبات</a>
@@ -51,37 +50,6 @@
                                                     class="nav-link text-white"
                                                     href="#">عودة</a></button> --}}
                                     </div>
-                                    <div class="card-body">
-                                        <p class="card-text" style="text-align:center;">الجهات المختصة للرد</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    @foreach ($r_license as $r)
-                                        @if ($r->response_file != null)
-                                            <div class="col-12 col-md-6 col-lg-2">
-                                                <div class="card card-primary">
-                                                    <div class="card-header">
-                                                        <i class="fas fa-check-double" style="color: green;"></i>
-                                                        <h4>
-                                                            <a style="font-size: 12px;color: green;"
-                                                                href="{{ asset('project_response_file/' . $r->response_file) }}"
-                                                                target="_blank">{{ $r->L_Lisense->name }}</a>
-                                                        </h4>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @elseif($r->response_file == null)
-                                            <div class="col-12 col-md-6 col-lg-2">
-                                                <div class="card card-primary">
-                                                    <div class="card-header">
-                                                        <i class="fas fa-times" style="color: red;"></i>
-                                                        <h4 style="font-size: 12px;color: red;">
-                                                            {{ $r->L_Lisense->name }}</h4>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
                                 </div>
                                 <form class="needs-validation" id="work_experience" novalidate=""
                                     action="{{ route('investment.update', $request->id) }}" method="POST"
@@ -111,23 +79,36 @@
                                                 <div class="form-group col-md-8">
                                                     <label> اسم المشروع </label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        class="form-control" name="name"
-                                                        value="{{ $request->name }}" disabled>
+                                                        class="form-control" name="name" value="{{ $request->name }}"
+                                                        disabled>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        class="form-control" name="name"
-                                                        value="{{ $request->name }}" hidden>
+                                                        class="form-control" name="name" value="{{ $request->name }}"
+                                                        hidden>
                                                 </div>
                                                 <div class="form-group col-md-12">
                                                     <label> الجهات للموافة علي المشرع </label>
-                                                    @isset($clicense)
-                                                        @if ($clicense && $clicense->count() > 0)
-                                                            @foreach ($clicense as $lice)
-                                                                <div class="badge badge-danger">
-                                                                    {{ $lice->license->name }}</div>
-                                                                {{-- <input class="option license-{{ $lice->license_cate->id }}" type="text" value="{{ $lice->license_cate->id }}" name="sub_ctegory_id"> --}}
-                                                            @endforeach
-                                                        @endif
-                                                    @endisset
+                                                    <select class="form-control select2" multiple style="width: 100%"
+                                                        disabled>
+                                                        @isset($r_license)
+                                                            @if ($r_license && $r_license->count() > 0)
+                                                                @foreach ($r_license as $item)
+                                                                    <option selected>{{ $item->L_Lisense->name }}</option>
+                                                                @endforeach
+                                                            @endif
+                                                        @endisset
+                                                    </select>
+                                                    {{-- <select class="form-control select2" multiple=""
+                                                        name="license[]" style="width: 100%">
+                                                        @isset($license)
+                                                            @if ($license && $license->count() > 0)
+                                                                @foreach ($license as $license1)
+                                                                    <option value="{{ $license1->id }}" selected>
+                                                                        {{ $license1->name }}
+                                                                    </option>
+                                                                @endforeach
+                                                            @endif
+                                                        @endisset
+                                                    </select> --}}
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label>نوع مقدم الطلب </label>
@@ -185,31 +166,35 @@
                                                         value="{{ $request->NID }}">
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label>تليفون </label>
+                                                    <label>تليفون <span style="color: red">*</span></label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
                                                         class="form-control" value="{{ $request->phone }}" disabled>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
                                                         class="form-control" name="phone"
-                                                        value="{{ $request->phone }}">
+                                                        value="{{ $request->phone }}" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label> مساحة المشروع </label>
+                                                    <label> مساحة المشروع <span style="color: red">*</span></label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
                                                         class="form-control" value="{{ $request->size }}" disabled>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
                                                         class="form-control" name="size"
-                                                        value="{{ $request->size }}">
+                                                        value="{{ $request->size }}" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label>نوع المساحة </label>
+                                                    <label>نوع المساحة <span style="color: red">*</span></label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
                                                         class="form-control" value="{{ $request->size_type }}"
                                                         disabled>
-                                                    <input style="height: calc(2.25rem + 6px);" type="text"
-                                                        class="form-control" name="size_type"
-                                                        value="{{ $request->size_type }}">
+                                                    <select class="form-control" name="size_type" required>
+                                                        <option selected hidden value="{{ $request->size_type }}">
+                                                            {{ $request->size_type }}
+                                                        </option>
+                                                        <option value="متر مربع">متر مربع</option>
+                                                        <option value="فدان">فدان</option>
+                                                    </select>
                                                 </div>
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-2">
                                                     <label>برأسمال قيمته </label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
                                                         class="form-control" value="{{ $request->capital }}"
@@ -217,6 +202,19 @@
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
                                                         class="form-control" name="capital"
                                                         value="{{ $request->capital }}">
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <label>فئة العملة</label>
+                                                    <input style="height: calc(2.25rem + 6px);" type="text"
+                                                        class="form-control" value="{{ $request->currency_type }}"
+                                                        disabled>
+                                                    <select class="form-control" name="currency_type">
+                                                        <option value="{{ $request->currency_type }}"selected hidden>
+                                                            {{ $request->currency_type }}</option>
+                                                        <option value="EGP">جنيه</option>
+                                                        <option value="USD">USD</option>
+                                                        <option value="EUR">EUR</option>
+                                                    </select>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label>نسبة التمويل الذاتي </label>
@@ -228,20 +226,23 @@
                                                         value="{{ $request->self_financing }}">
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label>تاريخ تقديم الطلب </label>
+                                                    <label>تاريخ تقديم الطلب <span style="color: red">*</span></label>
                                                     <input style="height: calc(2.25rem + 6px);" type="date"
-                                                        class="form-control" value="{{ $request->recived_date }}"
+                                                        class="form-control"
+                                                        value="{{ $request->recived_date->format('Y-m-d') }}"
                                                         disabled>
                                                     <input style="height: calc(2.25rem + 6px);" type="date"
                                                         class="form-control" name="recived_date"
-                                                        value="{{ $request->recived_date }}">
+                                                        value="{{ $request->recived_date->format('Y-m-d') }}"
+                                                        required>
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label>المدينة </label>
+                                                    <label>المدينة <span style="color: red">*</span></label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
                                                         class="form-control" value="{{ $request->city->name }}"
                                                         disabled>
-                                                    <select class="form-control" id="city_id" name="city_id">
+                                                    <select class="form-control" id="city_id" name="city_id"
+                                                        required>
                                                         <option value="{{ $request->city_id }}" selected hidden>
                                                             {{ $request->city->name }}</option>
                                                         @isset($city)
@@ -267,17 +268,17 @@
                                                             @endif
                                                         @endisset
                                                     </select>
-                                                    <select class="form-control select2" name="region[]" multiple
+                                                    {{-- <select class="form-control select2" name="region[]" multiple
                                                         style="width: 100%">
-                                                        @isset($request_places)
-                                                            @if ($request_places && $request_places->count() > 0)
-                                                                @foreach ($request_places as $item)
-                                                                    <option value="{{ $item->Req_place->id }}" selected>
-                                                                        {{ $item->Req_place->name }}</option>
+                                                        @isset($place)
+                                                            @if ($place && $place->count() > 0)
+                                                                @foreach ($place as $item)
+                                                                    <option value="{{ $item->id }}">
+                                                                        {{ $item->name }}</option>
                                                                 @endforeach
                                                             @endif
                                                         @endisset
-                                                    </select>
+                                                    </select> --}}
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label> وصف المشروع </label>
@@ -297,7 +298,6 @@
                                                     <table class="table table-bordered" style="margin-top: 10px;">
                                                         <thead>
                                                             <tr>
-                                                                <th scope="col">#</th>
                                                                 <th scope="col"> عقد نأسيس </th>
                                                                 <th scope="col"> السجل التجاري </th>
                                                                 <th scope="col"> البطاقة الضريبية </th>
@@ -305,6 +305,7 @@
                                                                 <th scope="col"> مستنادات الملاءة المالية </th>
                                                                 <th scope="col"> كروكي الموقع </th>
                                                                 <th scope="col"> دراسة جدوي </th>
+                                                                <th scope="col"> محضر الطلب </th>
                                                             </tr>
                                                         </thead>
                                                         @isset($project)
@@ -312,7 +313,6 @@
                                                                 @foreach ($project as $PRG)
                                                                     <tbody>
                                                                         <tr>
-                                                                            <td>{{ $PRG->request_id }}</td>
                                                                             @if ($PRG->company_reg)
                                                                                 <td><a href="{{ asset('attatcment_project/' . $PRG->company_reg) }}"
                                                                                         target="_blank">اضغط هنا</a></td>
@@ -355,9 +355,14 @@
                                                                             @elseif(!$PRG->feasibility_study)
                                                                                 <td>لا يوجد</td>
                                                                             @endif
+                                                                            @if ($PRG->record)
+                                                                                <td><a href="{{ asset('attatcment_project/' . $PRG->record) }}"
+                                                                                        target="_blank">اضغط هنا</a></td>
+                                                                            @elseif(!$PRG->record)
+                                                                                <td>لا يوجد</td>
+                                                                            @endif
                                                                         </tr>
                                                                         <tr>
-                                                                            <td>2</td>
                                                                             <td>
                                                                                 <input type="file" name="company_reg"
                                                                                     class="form-control">
@@ -386,6 +391,10 @@
                                                                             <td>
                                                                                 <input type="file"
                                                                                     name="feasibility_study"
+                                                                                    class="form-control">
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="file" name="record"
                                                                                     class="form-control">
                                                                             </td>
                                                                         </tr>
@@ -454,14 +463,8 @@
         </div>
         @include('layouts.footer')
     </div>
-    </div>
     <!-- General JS Scripts -->
     <script src="assets/js/app.min.js"></script>
-    <!-- JS Libraies -->
-    <!-- Page Specific JS File -->
-    <script src="assets/bundles/izitoast/js/iziToast.min.js"></script>
-    <!-- Page Specific JS File -->
-    <script src="assets/js/page/toastr.js"></script>
     <!-- Template JS File -->
     <script src="assets/js/scripts.js"></script>
     <!-- Custom JS File -->

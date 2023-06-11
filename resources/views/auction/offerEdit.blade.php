@@ -13,7 +13,6 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/bundles/bootstrap-daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="assets/bundles/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
-    <link rel="stylesheet" href="assets/bundles/izitoast/css/iziToast.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <!-- Custom style CSS -->
@@ -23,7 +22,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
 </head>
 
-<body class="light theme-white dark-sidebar">
+<body class="light theme-white">
     <div class="loader"></div>
     <div id="app">
         <div class="main-wrapper main-wrapper-1">
@@ -42,8 +41,7 @@
                                         <h4>تعديل اطروحة ({{ $offer->auction_name->name }}) -
                                             ({{ $offer->asset_name->name }}) لصالح ({{ $offer->investor }})</h4>
                                         <div class="card-header-action">
-                                            <a href="{{ route('offer') }}"
-                                                class="dropdown-item has-icon text-dark btn-warning"><i
+                                            <a href="{{ route('offer') }}" class="btn btn-success"><i
                                                     class="fa-sharp fa-solid fa-circle-arrow-left"></i>عودة</a>
                                         </div>
                                     </div>
@@ -135,10 +133,11 @@
                                                 <div class="form-group col-md-4">
                                                     <label>تاريخ الاستلام</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="date"
-                                                        value="{{ $offer->recived }}" class="form-control" disabled>
+                                                        value="{{ $offer->recived->format('Y-m-d') }}"
+                                                        class="form-control" disabled>
                                                     <input style="height: calc(2.25rem + 6px);" type="date"
                                                         name="recived" class="form-control"
-                                                        value="{{ $offer->recived }}" required>
+                                                        value="{{ $offer->recived->format('Y-m-d') }}" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label>محضر الاستلام <span style="color: red">pdf او word بحد اقصي
@@ -253,11 +252,6 @@
     </div>
     <!-- General JS Scripts -->
     <script src="assets/js/app.min.js"></script>
-    <!-- JS Libraies -->
-    <!-- Page Specific JS File -->
-    <script src="assets/bundles/izitoast/js/iziToast.min.js"></script>
-    <!-- Page Specific JS File -->
-    <script src="assets/js/page/toastr.js"></script>
     <!-- Template JS File -->
     <script src="assets/js/scripts.js"></script>
     <!-- Custom JS File -->

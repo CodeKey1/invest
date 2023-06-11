@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="assets/bundles/bootstrap-daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="assets/bundles/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
     <link rel="stylesheet" href="assets/bundles/select2/dist/css/select2.min.css">
-    <link rel="stylesheet" href="assets/bundles/izitoast/css/iziToast.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/bundles/datatables/datatables.min.css">
@@ -24,7 +23,7 @@
     <link rel='shortcut icon' type='image/x-icon' href='assets/img/favicon.ico' />
 </head>
 
-<body class="light theme-white dark-sidebar">
+<body class="light theme-white">
     <div class="loader"></div>
     <div id="app">
         <div class="main-wrapper main-wrapper-1">
@@ -42,7 +41,7 @@
                                     <div class="card-header">
                                         <h4> محاضر طلب الإسثمار / {{ $request->name }}</h4>
                                         <div class="card-header-action">
-                                            <a href="{{ route('tech') }}" class="btn btn-primary">ادارة
+                                            <a href="{{ route('tech') }}" class="btn btn-success">ادارة
                                                 الطلبات</a>
                                         </div>
                                     </div>
@@ -78,7 +77,7 @@
                                             @if ($request->technical_state == 1)
                                                 <span style="color: green"> المعتمدة </span>
                                             @elseif($request->technical_state == 2)
-                                                <span style="color: darkslategrey"> المعلقة </span>
+                                                <span style="color: darkslategrey"> الجاري </span>
                                             @elseif($request->technical_state == 0)
                                                 <span style="color: red"> المرفوضة </span>
                                             @endif
@@ -151,10 +150,16 @@
                                                         class="form-control" value="{{ $request->size_type }}"
                                                         disabled>
                                                 </div>
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-2">
                                                     <label>برأسمال قيمته </label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
                                                         class="form-control" value="{{ $request->capital }}"
+                                                        disabled>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <label>برأسمال قيمته </label>
+                                                    <input style="height: calc(2.25rem + 6px);" type="text"
+                                                        class="form-control" value="{{ $request->currency_type }}"
                                                         disabled>
                                                 </div>
                                                 <div class="form-group col-md-4">
@@ -166,7 +171,8 @@
                                                 <div class="form-group col-md-4">
                                                     <label>تاريخ تقديم الطلب </label>
                                                     <input style="height: calc(2.25rem + 6px);" type="date"
-                                                        class="form-control" value="{{ $request->recived_date }}"
+                                                        class="form-control"
+                                                        value="{{ $request->recived_date->format('Y-m-d') }}"
                                                         disabled>
                                                 </div>
                                                 <div class="form-group col-md-4">
@@ -204,7 +210,7 @@
                                                         <button type="submit" class="btn btn-danger"
                                                             style="float: left;" name="actionBTN"
                                                             value="dissApprove">
-                                                            الغاء الاعتماد
+                                                            رفض المشروع
                                                         </button>
                                                     </div>
                                                 @endif
@@ -345,14 +351,17 @@
                                                     </thead>
                                                     <tbody>
                                                         @isset($tech)
-                                                            @foreach ($tech as $note)
+                                                            @foreach ($tech as $n => $note)
                                                                 <tr>
-                                                                    <td>{{ $note->id }}</td>
+                                                                    <td>{{ $n + 1 }}</td>
                                                                     <td>{{ $note->note }}</td>
                                                                     <td>{{ $note->date }}</td>
-                                                                    <td><a class="btn btn-icon btn-danger"
-                                                                            href="{{ route('tech.delete', $note->id) }}"><i
-                                                                                class="fas fa-times"></i></a></td>
+                                                                    <td> <a class="col-red waves-effect m-r-10"
+                                                                            href="{{ route('tech.delete', $note->id) }}"data-toggle="tooltip"
+                                                                            data-placement="top" id="delete_btn"
+                                                                            title="حذف"><i
+                                                                                class="material-icons">delete</i></a>
+                                                                    </td>
                                                                 </tr>
                                                             @endforeach
                                                         @endisset
@@ -376,11 +385,6 @@
     </div>
     <!-- General JS Scripts -->
     <script src="assets/js/app.min.js"></script>
-    <!-- JS Libraies -->
-    <!-- Page Specific JS File -->
-    <script src="assets/bundles/izitoast/js/iziToast.min.js"></script>
-    <!-- Page Specific JS File -->
-    <script src="assets/js/page/toastr.js"></script>
     <!-- Template JS File -->
     <script src="assets/js/scripts.js"></script>
     <!-- Custom JS File -->
@@ -395,11 +399,10 @@
             $('#notes').DataTable();
         });
 
-        /*function formConfirm() {
-            if (!confirm("هل انت متأكد من تعزيز الطلب"))
-                return false;
-            location.href = "{{ route('record.store.note', $request->id) }}";
-        }*/
+        $('#delete_btn').click(function(e) {
+            if (confirm("هل انت متأكد!") == false)
+                e.preventDefault();
+        });
     </script>
 
 </body>

@@ -26,7 +26,7 @@
     <link rel='shortcut icon' type='image/x-icon' href='assets/img/favicon.ico' />
 </head>
 
-<body class="light theme-white dark-sidebar">
+<body class="light theme-white">
     <div class="loader"></div>
     <div id="app">
         <div class="main-wrapper main-wrapper-1">
@@ -42,7 +42,7 @@
                                 @include('layouts.error')
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>ادارة جميع طلبات الإستثمار المرسلة</h4>
+                                        <h4>ادارة جميع طلبات الإستثمار المرسلة للبت الفني</h4>
                                         <div class="card-header-action">
                                             <div class="dropdown">
                                             </div>
@@ -112,7 +112,7 @@
                                                 <a class="nav-link active" id="profile-tab" data-toggle="tab"
                                                     href="#profile" role="tab" aria-controls="profile"
                                                     aria-selected="true">طلبات
-                                                    معلقة</a>
+                                                    جارية</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" id="home-tab" data-toggle="tab" href="#home"
@@ -152,12 +152,13 @@
                                                                                     <td>{{ $requests->owner_type }}</td>
                                                                                     <td>{{ $requests->city->name }}</td>
                                                                                     <td>
-                                                                                        <a class="btn btn-icon btn-success"
+                                                                                        <a class="col-dark-gray waves-effect"
                                                                                             href="{{ route('tech.create', $requests->id) }}"
                                                                                             ata-toggle="tooltip"
                                                                                             data-placement="top"
                                                                                             title="عرض">
-                                                                                            <i class="fas fa-user"></i>
+                                                                                            <i
+                                                                                                class="material-icons">info</i>
                                                                                         </a>
                                                                                     </td>
                                                                                 </tr>

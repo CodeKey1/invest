@@ -10,16 +10,12 @@
     <title></title>
     <!-- General CSS Files -->
     <link rel="stylesheet" href="assets/css/app.min.css" />
+    <link rel="stylesheet" href="assets/bundles/ionicons/css/ionicons.min.css">
     <link rel="stylesheet" href="assets/bundles/datatables/datatables.min.css" />
     <link rel="stylesheet" href="assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css" />
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="assets/css/components.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
-        integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <!-- Custom style CSS -->
     <link rel="stylesheet" href="assets/css/custom.css">
     <link rel='shortcut icon' type='image/x-icon' href='assets/img/favicon.ico' />
@@ -37,9 +33,25 @@
             toastr.success(JSON.stringify(data));
         });
     </script>
+    <style>
+        .col-xl-3 .card {
+            border-radius: 68px;
+            background: linear-gradient(to left, #183242, #2c5875, #fff);
+            background: #2c587526;
+        }
+
+        .col-xl-3 .card .card-statistic-4 {
+            padding: 0;
+        }
+
+        .col-xl-3 .card .card-content {
+            margin-top: 10%;
+            color: #18425f;
+        }
+    </style>
 </head>
 
-<body class="light theme-white dark-sidebar">
+<body class="light theme-white">
     <div class="loader"></div>
     <div id="app">
         <div class="main-wrapper main-wrapper-1">
@@ -47,6 +59,52 @@
             <!-- Main Content -->
             <div class="main-content">
                 <section class="section">
+                    <div class="row" style="margin-top: -15px;margin-bottom: 25px;">
+                        <div class="col-xl-6 col-md-12 col-lg-4 l-bg-green" style="border-radius: 10px 0px 0px 10px;border-right: 2px solid #fff;">
+                            <div class="">
+                                <div class="card-body">
+                                    <div class="text-white">
+                                        <div class="row">
+                                            <div class="col-md-6 col-lg-5" style="color: #00ff72;">
+                                                <h4 class="mb-0 font-26">758</h4>
+                                                <p class="mb-0">
+                                                    <span class="font-20">+25.11%</span> <i class="ion-connection-bars" data-pack="default" data-tags="data, stats"></i>
+                                                </p>
+                                            </div>
+                                            <div class="col-md-6 col-lg-7">
+                                                <p class="lead" style="font-weight: 500; color: #212529;line-height: 12px;"><i class="ion-stats-bars" data-pack="default" data-tags="data, stats"></i> حجـــم الإستثمــــار  </p>
+                                                <p class="mb-2" style="font-weight: 500; color: #00ff72;">  بالـطـرح الـمـبـاشـر  <i class="ion-arrow-graph-up-right" data-pack="default" data-tags="data, stats"></i></p>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-md-12 col-lg-4 l-bg-cyan" style="border-radius: 0px 10px 10px 0px;border-left: 2px solid #fff;">
+                            <div class="">
+                                <div class="card-body">
+                                    <div class="text-white">
+                                        <div class="row">
+                                            <div class="col-md-6 col-lg-5" style="color: #00ff72;">
+                                                <h4 class="mb-0 font-26">758</h4>
+                                                <p class="mb-0">
+                                                    <span class="font-20">+25.11%</span> <i class="ion-connection-bars" data-pack="default" data-tags="data, stats"></i>
+                                                </p>
+                                            </div>
+                                            <div class="col-md-6 col-lg-7">
+                                                <p class="lead" style="font-weight: 500; color: #212529;line-height: 12px;"> <i class="ion-stats-bars" data-pack="default" data-tags="data, stats"></i> حجـــم الإستثمــــار  </p>
+                                                <p class="mb-2" style="font-weight: 500; color: #00ff72;">   الـمـسـتـثـمـريـن <i class="ion-arrow-graph-up-right" data-pack="default" data-tags="data, stats"></i></p>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row ">
                         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="card">
@@ -99,7 +157,7 @@
                                         <div class="row ">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
                                                 <div class="card-content">
-                                                    <h5 class="font-14">المشاريع المنتهية</h5>
+                                                    <h5 class="font-14">الطلبات المنتهية</h5>
                                                     <h2 class="mb-3 font-18">{{ $req->where('state', 1)->count() }}
                                                     </h2>
                                                 </div>
@@ -137,54 +195,39 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
-                        <div class="col-lg-8">
+                        <div class="col-lg-7">
                             <div class="card">
                                 <div class="card-header">
                                     <h4>المشاريع</h4>
                                 </div>
                                 <div class="card-body">
-                                    <canvas id="lineChartFill"></canvas>
-                                    <input type="hidden" name="users" value="{{ $users['user'] }}">
-                                    <input type="hidden" name="service" value="{{ $users['service'] }}">
-                                    <input type="hidden" name="month" value="{{ $users['month'] }}">
+                                    <div id="chart1">
+                                        <input type="hidden" name="pending" value="{{ $users['pending'] }}">
+                                        <input type="hidden" name="rejected" value="{{ $users['rejected'] }}">
+                                        <input type="hidden" name="finished" value="{{ $users['finished'] }}">
+                                        <input type="hidden" name="month" value="{{ $users['month'] }}">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-5">
                             <div class="card">
+                                <div class="card-header">
+                                    <h4>المشاريع</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="recent-report__chart">
 
-                                <div class="card-body" style="direction: rtl;">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th>المزاد</th>
-                                                    <th> الاطروحات </th>
-
-                                                </tr>
-                                            </thead>
-                                            @isset($auctions)
-                                                @if ($auctions && $auctions->count() > 0)
-                                                    @foreach ($auctions as $offer1)
-                                                        <tbody>
-                                                            <tr>
-                                                                <td> {{ $offer1->name }} </td>
-                                                                <td> {{ $offer1->offer_name->count() }} </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    @endforeach
-                                                @endif
-                                            @endisset
-                                        </table>
+                                        <div id="chart7"></div>
+                                        <input type="hidden" name="data"
+                                            value="{{ $orderChart['data'] }}">
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-header">
@@ -192,7 +235,7 @@
 
                                     <div class="card-header-action">
                                         @if (auth()->user()->hasRole('super_admin') ||
-                                                auth()->user()->hasRole('user'))
+    auth()->user()->hasRole('user'))
                                             <a href="{{ route('investment') }}" class="btn btn-primary">كل طلبات
                                                 الإستثمار</a>
                                         @endif
@@ -212,18 +255,18 @@
 
                                                 </tr>
                                             </thead>
-                                            @isset($delaiy_req)
-                                                @if ($delaiy_req && $delaiy_req->count() > 0)
-                                                    @foreach ($delaiy_req as $d => $delaiy)
-                                                        <tbody>
+                                            <tbody>
+                                                @isset($delaiy_req)
+                                                    @if ($delaiy_req && $delaiy_req->count() > 0)
+                                                        @foreach ($delaiy_req as $d => $delaiy)
                                                             <tr>
-                                                                <td>{{ $d + 1 }}</td>
+                                                                <td> {{ $d + 1 }} </td>
                                                                 <td> {{ $delaiy->name }} </td>
                                                                 <td> {{ $delaiy->owner_name }} </td>
-                                                                <td> {{ $delaiy->created_at->diffForHumans($now) }} </td>
-                                                                <td> {{ $delaiy->recived_date }} </td>
+                                                                <td> {{ $delaiy->created_at->diffInDays($now) }} يوم </td>
+                                                                <td> {{ $delaiy->recived_date->format('Y-M-d') }} </td>
                                                                 @if (auth()->user()->hasRole('super_admin') ||
-                                                                        auth()->user()->hasRole('user'))
+    auth()->user()->hasRole('user'))
                                                                     <td><a class="btn btn-icon btn-info"
                                                                             href="{{ route('investment.record', $delaiy->id) }}"
                                                                             ata-toggle="tooltip" data-placement="top"
@@ -232,44 +275,16 @@
                                                                         </a></td>
                                                                 @endif
                                                             </tr>
-
-                                                        </tbody>
-                                                    @endforeach
-                                                @endif
-                                            @endisset
+                                                        @endforeach
+                                                    @endif
+                                                @endisset
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        {{-- <div class="col-lg-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4>المشاريع</h4>
-
-                                <div class="card-header-action">
-                                    <div class="dropdown">
-                                      <a href="#" data-toggle="dropdown" class="btn btn-warning dropdown-toggle">Options</a>
-                                      <div class="dropdown-menu">
-                                        <a href="#" class="dropdown-item has-icon"><i class="fas fa-eye"></i> View</a>
-                                        <a href="#" class="dropdown-item has-icon"><i class="far fa-edit"></i> Edit</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a href="#" class="dropdown-item has-icon text-danger"><i class="far fa-trash-alt"></i>
-                                          Delete</a>
-                                      </div>
-                                    </div>
-                                    <a href="#" class="btn btn-primary">View All</a>
-                                  </div>
-                                </div>
-                                <div class="card-body">
-                                    <canvas id="lineChartFill"></canvas>
-                                    <input type="hidden" name="users" value="">
-                                    <input type="hidden" name="service" value="">
-                                    <input type="hidden" name="month" value="">
-                                </div>
-                            </div>
-                        </div> --}}
-                    </div>
+                    </div> --}}
                 </section>
             </div>
             @include('layouts.footer')
@@ -277,26 +292,21 @@
     </div>
     <!-- General JS Scripts -->
     <script src="assets/js/app.min.js"></script>
+
     <script src="assets/bundles/datatables/datatables.min.js"></script>
     <script src="assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
     <!-- JS Libraies -->
-
+    <!-- Template JS File -->
     <script src="assets/bundles/apexcharts/apexcharts.min.js"></script>
     <!-- Page Specific JS File -->
-    <script src="assets/js/page/index.js"></script>
+    <script src="assets/js/page/chart-apexcharts.js"></script>
     <script src="assets/js/page/datatables.js"></script>
     <!-- Template JS File -->
-    <script src="assets/bundles/chartjs/chart.min.js"></script>
     <!-- Page Specific JS File -->
-    <script src="assets/js/page/chart-chartjs.js"></script>
+    <script src="assets/js/page/ion-icons.js"></script>
     <script src="assets/js/scripts.js"></script>
     <!-- Custom JS File -->
     <script src="assets/js/custom.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
-        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-
 </body>
 
 
