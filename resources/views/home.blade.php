@@ -99,8 +99,9 @@
                                                 {{ 'مليون' }}
                                             </h4>
                                             <p class="mb-0">
-                                                <span
-                                                    class="font-20">{{ ($year_req->count() / $prev_year_req->count()) * 100 }}%</span>
+                                                <span class="font-20">
+                                                    
+                                                </span>
                                                 <i class="ion-connection-bars" data-pack="default"
                                                     data-tags="data, stats"></i>
                                             </p>
@@ -111,8 +112,8 @@
                                                     class="ion-stats-bars" data-pack="default"
                                                     data-tags="data, stats"></i>الطلبات المقبولة</p>
                                             <p class="mb-2" style="font-weight: 500; color: sandybrown;">
-                                                نسبة الزيادة<i class="ion-arrow-graph-up-right" data-pack="default"
-                                                    data-tags="data, stats"></i></p>
+                                                نسبة الزيادة السنوية<i class="ion-arrow-graph-up-right"
+                                                    data-pack="default" data-tags="data, stats"></i></p>
 
                                         </div>
 
@@ -129,9 +130,9 @@
                                         <div class="row ">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
                                                 <div class="card-content">
-                                                    <h5 class="font-14">قيمة الفرص ( الف )</h5>
+                                                    <h5 class="font-14">قيمة الفرص</h5>
                                                     <h2 class="mb-3 font-18">
-                                                        {{ $offers->sum('contract_cost') / 1000 }}
+                                                        {{ round($offers->sum('contract_cost') / 1000000, 2) }} (مليون)
                                                     </h2>
                                                 </div>
                                             </div>
