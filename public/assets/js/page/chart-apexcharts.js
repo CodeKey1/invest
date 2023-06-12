@@ -1,4 +1,4 @@
-"use strict";
+﻿﻿"use strict";
 $(function () {
     chart1();
     chart2();
@@ -520,19 +520,24 @@ function chart6() {
     chart.render();
 }
 function chart7() {
+    var data = JSON.parse($("input[name=data]").val());
     var options = {
         chart: {
             width: 360,
             type: "pie",
         },
-        labels: ["Team A", "Team B", "Team C", "Team D", "Team E"],
-        series: [44, 55, 13, 43, 22],
+        legend: {
+            position: "bottom",
+        },
+        colors: ["#00e396", "#feb018", "#ff4560"],
+        labels: [" مقبول ", " جاري الدراسة  ", " غير ممكن"],
+        series: data,
         responsive: [
             {
                 breakpoint: 480,
                 options: {
                     chart: {
-                        width: 200,
+                        width: 600,
                     },
                     legend: {
                         position: "bottom",

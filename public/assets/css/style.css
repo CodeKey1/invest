@@ -1899,7 +1899,7 @@
 }
 
 .l-bg-green {
-    background: linear-gradient(135deg, #23bdb8 0%, #43e794 100%) !important;
+    background: linear-gradient(20deg, #174360, #a9bfcf) !important;
     color: #fff;
 }
 
@@ -1939,7 +1939,7 @@
 }
 
 .l-bg-cyan {
-    background: linear-gradient(135deg, #289cf5, #84c0ec) !important;
+    background: linear-gradient(20deg, #174360, #a9bfcf) !important;
     color: #fff;
 }
 

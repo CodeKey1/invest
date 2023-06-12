@@ -29,13 +29,17 @@ class HomeController extends Controller
     public function index()
     {
         $now = Carbon::today();
+        $orderChart = $this->orderChart();
         $offers = Offer::select()->get();
-        $auctions = Auction::select()->get()->take(11);
+        $auctions = Auction::select()->get();
         $req = RequestP::select()->get();
+        $accepted_req = RequestP::select()->where('technical_state',1)->whereYear('recived_date',$now->year)->get();
         $delaiy_req = RequestP::select()->where('state',0)->get();
+        $year_req = RequestP::select()->where('technical_state',1)->whereYear('recived_date', $now->year)->get();
+        $prev_year_req = RequestP::select()->where('technical_state',1)->whereYear('recived_date', ($now->year-1))->get();
         $now = Carbon::today()->format('y-m-d');
         $users = $this->userChart();
-        return view('home',compact('users','req','auctions','offers','delaiy_req','now'));
+        return view('home',compact('users','req','auctions','offers','delaiy_req','accepted_req','now','orderChart','year_req','prev_year_req'));
 
     }
     public function userChart()
@@ -63,5 +67,20 @@ class HomeController extends Controller
         $master['finished'] = json_encode($finished);
         $master['rejected'] = json_encode($rejected);
         return $master;
+    }
+    public function orderChart()
+    {
+
+        $now1 = Carbon::now();
+        $master = array();
+
+        array_push(
+            $master,
+            RequestP::select()->where('technical_state',1)->count(),
+            RequestP::select()->where('technical_state',2)->count(),
+            RequestP::select()->where('technical_state',0)->count(),
+        );
+
+        return ['data' => json_encode($master)];
     }
 }

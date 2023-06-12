@@ -58,6 +58,69 @@
             <!-- Main Content -->
             <div class="main-content">
                 <section class="section">
+                    <div class="row" style="margin-top: -15px;margin-bottom: 25px;">
+                        <div class="col-xl-6 col-md-12 col-lg-4 l-bg-green"
+                            style="border-radius: 10px 0px 0px 10px;border-right: 2px solid #fff;">
+                            <div class="">
+                                <div class="card-body">
+                                    <div class="text-white">
+                                        <div class="row">
+                                            <div class="col-md-6 col-lg-5" style="color: #ffffff;">
+                                                <h4 class="mb-0 font-26">758</h4>
+                                                <p class="mb-0">
+                                                    <span class="font-20">+25.11%</span> <i class="ion-connection-bars"
+                                                        data-pack="default" data-tags="data, stats"></i>
+                                                </p>
+                                            </div>
+                                            <div class="col-md-6 col-lg-7">
+                                                <p class="lead"
+                                                    style="font-weight: 500; color: #212529;line-height: 12px;"><i
+                                                        class="ion-stats-bars" data-pack="default"
+                                                        data-tags="data, stats"></i> حجـــم الإستثمــــار </p>
+                                                <p class="mb-2" style="font-weight: 500; color: sandybrown;"> بالـطـرح
+                                                    الـمـبـاشـر <i class="ion-arrow-graph-up-right" data-pack="default"
+                                                        data-tags="data, stats"></i></p>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-md-12 col-lg-4 l-bg-cyan"
+                            style="border-radius: 0px 10px 10px 0px;border-left: 2px solid #fff;">
+                            <div class="card-body">
+                                <div class="text-white">
+                                    <div class="row">
+                                        <div class="col-md-6 col-lg-5" style="color: #ffffff;">
+                                            <h4 class="mb-0 font-26">
+                                                {{ $accepted_req->sum('capital') / 1000000 }}
+                                                {{ 'مليون' }}
+                                            </h4>
+                                            <p class="mb-0">
+                                                <span
+                                                    class="font-20">{{ ($year_req->count() / $prev_year_req->count()) * 100 }}%</span>
+                                                <i class="ion-connection-bars" data-pack="default"
+                                                    data-tags="data, stats"></i>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-6 col-lg-7">
+                                            <p class="lead"
+                                                style="font-weight: 500; color: #212529;line-height: 12px;"> <i
+                                                    class="ion-stats-bars" data-pack="default"
+                                                    data-tags="data, stats"></i>الطلبات المقبولة</p>
+                                            <p class="mb-2" style="font-weight: 500; color: sandybrown;">
+                                                نسبة الزيادة<i class="ion-arrow-graph-up-right" data-pack="default"
+                                                    data-tags="data, stats"></i></p>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row ">
                         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="card">
@@ -66,13 +129,15 @@
                                         <div class="row ">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
                                                 <div class="card-content">
-                                                    <h5 class="font-15">الإطروحات</h5>
-                                                    <h2 class="mb-3 font-18">{{ $offers->count() }}</h2>
+                                                    <h5 class="font-14">قيمة الفرص ( الف )</h5>
+                                                    <h2 class="mb-3 font-18">
+                                                        {{ $offers->sum('contract_cost') / 1000 }}
+                                                    </h2>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
                                                 <div class="banner-img">
-                                                    <img src="images/pay.png" alt="">
+                                                    <img src="images/money.png" alt="">
                                                 </div>
                                             </div>
                                         </div>
@@ -87,15 +152,14 @@
                                         <div class="row ">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
                                                 <div class="card-content">
-                                                    <h5 class="font-14"> المزادات</h5>
-                                                    <h2 class="mb-3 font-18">
-                                                        {{ $auctions->count() }}
-                                                    </h2>
+                                                    <h5 class="font-15">فرص منتهية</h5>
+                                                    <h2 class="mb-3 font-18">{{ $offers->count() }}</h2>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
                                                 <div class="banner-img">
-                                                    <img src="images/money.png" alt="">
+                                                    <a href="{{ route('offer') }}"><img src="images/pay.png"
+                                                            alt=""></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -132,14 +196,15 @@
                                         <div class="row ">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
                                                 <div class="card-content">
-                                                    <h5 class="font-14"> طلبات الإستثمار</h5>
+                                                    <h5 class="font-14"> طلبات الاستثمار </h5>
                                                     <h2 class="mb-3 font-18">{{ $req->count() }}
                                                     </h2>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
                                                 <div class="banner-img">
-                                                    <img src="images/project.png" alt="">
+                                                    <a href="{{ route('single.report') }}"><img
+                                                            src="images/project.png" alt=""></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -148,9 +213,8 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-lg-7">
                             <div class="card">
                                 <div class="card-header">
                                     <h4>المشاريع</h4>
@@ -165,8 +229,21 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="col-lg-5">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>المشاريع</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="recent-report__chart">
 
+                                        <div id="chart7"></div>
+                                        <input type="hidden" name="data" value="{{ $orderChart['data'] }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     {{-- <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
@@ -232,6 +309,7 @@
     </div>
     <!-- General JS Scripts -->
     <script src="assets/js/app.min.js"></script>
+
     <script src="assets/bundles/datatables/datatables.min.js"></script>
     <script src="assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
     <!-- JS Libraies -->
@@ -241,7 +319,6 @@
     <script src="assets/js/page/chart-apexcharts.js"></script>
     <script src="assets/js/page/datatables.js"></script>
     <!-- Template JS File -->
-    <!-- Page Specific JS File -->
     <script src="assets/js/scripts.js"></script>
     <!-- Custom JS File -->
     <script src="assets/js/custom.js"></script>
