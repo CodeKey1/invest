@@ -340,7 +340,8 @@
                                                                 {{-- <td>{{ $item->owner_type }}</td> --}}
                                                                 <td>0{{ $item->phone }}</td>
                                                                 <td>{{ $item->size }} {{ $item->size_type }}</td>
-                                                                <td>{{ $item->capital ?? 'null' }} {{ $item->currency_type }}
+                                                                <td>{{ $item->capital / 1000 ?? 'null' }} الف
+                                                                    {{ $item->currency_type }}
                                                                 </td>
                                                                 <td>{{ $item->self_financing }}%</td>
                                                                 <td>{{ $item->recived_date->format('Y-m-d') }}</td>
@@ -421,7 +422,7 @@
                                                                 {{-- <td>{{ $item->owner_type }}</td> --}}
                                                                 <td>0{{ $item->phone }}</td>
                                                                 <td>{{ $item->size }} {{ $item->size_type }}</td>
-                                                                <td>{{ $item->capital ?? 'null' }}
+                                                                <td>{{ $item->capital / 1000 ?? 'null' }} الف
                                                                     {{ $item->currency_type }}
                                                                 </td>
                                                                 <td>{{ $item->self_financing }}%</td>
@@ -503,7 +504,7 @@
                                                                 {{-- <td>{{ $item->owner_type }}</td> --}}
                                                                 <td>0{{ $item->phone }}</td>
                                                                 <td>{{ $item->size }} {{ $item->size_type }}</td>
-                                                                <td>{{ $item->capital ?? 'null' }}
+                                                                <td>{{ $item->capital / 1000 ?? 'null' }} الف
                                                                     {{ $item->currency_type }}
                                                                 </td>
                                                                 <td>{{ $item->self_financing }}%</td>
@@ -587,7 +588,7 @@
                                                                 {{-- <td>{{ $item->owner_type }}</td> --}}
                                                                 <td>0{{ $item->phone }}</td>
                                                                 <td>{{ $item->size }} {{ $item->size_type }}</td>
-                                                                <td>{{ $item->capital ?? 'null' }}
+                                                                <td>{{ $item->capital / 1000 ?? 'null' }} الف
                                                                     {{ $item->currency_type }}
                                                                 </td>
                                                                 <td>{{ $item->self_financing }}%</td>
@@ -669,7 +670,7 @@
                                                                 {{-- <td>{{ $item->owner_type }}</td> --}}
                                                                 <td>0{{ $item->phone }}</td>
                                                                 <td>{{ $item->size }} {{ $item->size_type }}</td>
-                                                                <td>{{ $item->capital ?? 'null' }}
+                                                                <td>{{ $item->capital / 1000 ?? 'null' }} الف
                                                                     {{ $item->currency_type }}
                                                                 </td>
                                                                 <td>{{ $item->self_financing }}%</td>
@@ -751,7 +752,7 @@
                                                                 {{-- <td>{{ $item->owner_type }}</td> --}}
                                                                 <td>0{{ $item->phone }}</td>
                                                                 <td>{{ $item->size }} {{ $item->size_type }}</td>
-                                                                <td>{{ $item->capital ?? 'null' }}
+                                                                <td>{{ $item->capital /1000 ?? 'null' }} الف
                                                                     {{ $item->currency_type }}
                                                                 </td>
                                                                 <td>{{ $item->self_financing }}%</td>

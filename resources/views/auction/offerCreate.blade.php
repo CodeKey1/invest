@@ -36,7 +36,7 @@
                                 @include('layouts.error')
                                 <div class="card card-primary">
                                     <div class="card-header">
-                                        <h4>اضافة اطروحة جديد</h4>
+                                        <h4>اضافة ترسية جديد</h4>
                                         <div class="card-header-action">
                                             <a href="{{ route('offer') }}" class="btn btn-success">عودة</a>
                                         </div>

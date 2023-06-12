@@ -185,7 +185,7 @@
                                                                         style="text-align: inherit;width: 130px;">
                                                                         راس المال:</th>
                                                                     <td style="text-align: inherit;">
-                                                                        {{ $request->capital }}
+                                                                        {{ $request->capital / 1000 }} الف
                                                                         {{ $request->currency_type }} -
                                                                         بنسبة تمويل ذاتي
                                                                         {{ $request->self_financing }}%

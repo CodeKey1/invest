@@ -66,8 +66,8 @@
                     <a href="#" class="menu-toggle nav-link has-dropdown"><span> مزادات واطروحات </span>
                         <i class="fa fa-university" aria-hidden="true"></i></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="{{ route('auction') }}">مزادات</a></li>
-                        <li><a class="nav-link" href="{{ route('offer') }}">الاطروحات</a></li>
+                        <li><a class="nav-link" href="{{ route('auction') }}">اطروحات</a></li>
+                        <li><a class="nav-link" href="{{ route('offer') }}">ترسيات</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -143,8 +143,8 @@
                     <a href="#" class="menu-toggle nav-link has-dropdown"><span> المزادات </span>
                         <i class="fa fa-university" aria-hidden="true"></i></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="{{ route('auction') }}">مزادات</a></li>
-                        <li><a class="nav-link" href="{{ route('offer') }}">الاطروحات</a></li>
+                        <li><a class="nav-link" href="{{ route('auction') }}">اطروحات</a></li>
+                        <li><a class="nav-link" href="{{ route('offer') }}">ترسيات</a></li>
                     </ul>
                 </li>
                 {{-- <li class="menu-header">
@@ -275,8 +275,8 @@
                     <a href="#" class="menu-toggle nav-link has-dropdown"><span> المزادات </span>
                         <i class="fa fa-university" aria-hidden="true"></i></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="{{ route('auction') }}">مزادات</a></li>
-                        <li><a class="nav-link" href="{{ route('offer') }}">الاطروحات</a></li>
+                        <li><a class="nav-link" href="{{ route('auction') }}">اطروحات</a></li>
+                        <li><a class="nav-link" href="{{ route('offer') }}">ترسيات</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">

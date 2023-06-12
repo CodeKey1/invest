@@ -41,9 +41,9 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>اطروحات المزادات</h4>
+                                        <h4>ترسيات المزادات</h4>
                                         <div class="card-header-action">
-                                            <a href="{{ route('offer.Create') }}" class="btn btn-success">اضافة اطروحات
+                                            <a href="{{ route('offer.Create') }}" class="btn btn-success">اضافة ترسية
                                                 جديد</a>
                                         </div>
                                     </div>

@@ -133,10 +133,11 @@
                                                 <div class="form-group col-md-4">
                                                     <label>تاريخ الاستلام</label>
                                                     <input style="height: calc(2.25rem + 6px);" type="date"
-                                                        value="{{ $offer->recived }}" class="form-control" disabled>
+                                                        value="{{ $offer->recived->format('Y-m-d') }}"
+                                                        class="form-control" disabled>
                                                     <input style="height: calc(2.25rem + 6px);" type="date"
                                                         name="recived" class="form-control"
-                                                        value="{{ $offer->recived }}" required>
+                                                        value="{{ $offer->recived->format('Y-m-d') }}" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label>محضر الاستلام <span style="color: red">pdf او word بحد اقصي

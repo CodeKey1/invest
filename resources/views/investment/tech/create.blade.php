@@ -171,7 +171,8 @@
                                                 <div class="form-group col-md-4">
                                                     <label>تاريخ تقديم الطلب </label>
                                                     <input style="height: calc(2.25rem + 6px);" type="date"
-                                                        class="form-control" value="{{ $request->recived_date }}"
+                                                        class="form-control"
+                                                        value="{{ $request->recived_date->format('Y-m-d') }}"
                                                         disabled>
                                                 </div>
                                                 <div class="form-group col-md-4">

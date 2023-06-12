@@ -58,10 +58,11 @@
                                             <div class="form-group col-md-12">
                                                 <label> تاريخ المزاد</label>
                                                 <input style="height: calc(2.25rem + 6px);" type="date"
-                                                    value="{{ $auction->date }}" class="form-control" disabled>
+                                                    value="{{ $auction->date->format('Y-m-d') }}" class="form-control"
+                                                    disabled>
                                                 <input style="height: calc(2.25rem + 6px);" type="date"
-                                                    name="date" class="form-control" value="{{ $auction->date }}"
-                                                    required>
+                                                    name="date" class="form-control"
+                                                    value="{{ $auction->date->format('Y-m-d') }}" required>
                                             </div>
                                             <div class="form-group col-md-12">
                                                 <label> عنوان المزاد</label>
