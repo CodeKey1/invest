@@ -530,7 +530,7 @@ function chart7() {
             position: 'bottom',
           },
           colors: ['#00e396', '#feb018', '#ff4560'],
-          labels:[" مقبول "," جاري  ", " مرفوض" ],
+          labels:[" مقبول "," جاري الدراسة  ", " غير ممكن" ],
         series: data,
         responsive: [
             {

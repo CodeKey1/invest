@@ -65,7 +65,7 @@
                                 <div class="card-body">
                                     <div class="text-white">
                                         <div class="row">
-                                            <div class="col-md-6 col-lg-5" style="color: #00ff72;">
+                                            <div class="col-md-6 col-lg-5" style="color: #ffffff;">
                                                 <h4 class="mb-0 font-26">758</h4>
                                                 <p class="mb-0">
                                                     <span class="font-20">+25.11%</span> <i class="ion-connection-bars" data-pack="default" data-tags="data, stats"></i>
@@ -73,7 +73,7 @@
                                             </div>
                                             <div class="col-md-6 col-lg-7">
                                                 <p class="lead" style="font-weight: 500; color: #212529;line-height: 12px;"><i class="ion-stats-bars" data-pack="default" data-tags="data, stats"></i> حجـــم الإستثمــــار  </p>
-                                                <p class="mb-2" style="font-weight: 500; color: #00ff72;">  بالـطـرح الـمـبـاشـر  <i class="ion-arrow-graph-up-right" data-pack="default" data-tags="data, stats"></i></p>
+                                                <p class="mb-2" style="font-weight: 500; color: #870900;">  بالـطـرح الـمـبـاشـر  <i class="ion-arrow-graph-up-right" data-pack="default" data-tags="data, stats"></i></p>
 
                                             </div>
 
@@ -87,7 +87,7 @@
                                 <div class="card-body">
                                     <div class="text-white">
                                         <div class="row">
-                                            <div class="col-md-6 col-lg-5" style="color: #00ff72;">
+                                            <div class="col-md-6 col-lg-5" style="color: #ffffff;">
                                                 <h4 class="mb-0 font-26">758</h4>
                                                 <p class="mb-0">
                                                     <span class="font-20">+25.11%</span> <i class="ion-connection-bars" data-pack="default" data-tags="data, stats"></i>
@@ -95,7 +95,7 @@
                                             </div>
                                             <div class="col-md-6 col-lg-7">
                                                 <p class="lead" style="font-weight: 500; color: #212529;line-height: 12px;"> <i class="ion-stats-bars" data-pack="default" data-tags="data, stats"></i> حجـــم الإستثمــــار  </p>
-                                                <p class="mb-2" style="font-weight: 500; color: #00ff72;">   الـمـسـتـثـمـريـن <i class="ion-arrow-graph-up-right" data-pack="default" data-tags="data, stats"></i></p>
+                                                <p class="mb-2" style="font-weight: 500; color: #870900;">   الـمـسـتـثـمـريـن <i class="ion-arrow-graph-up-right" data-pack="default" data-tags="data, stats"></i></p>
 
                                             </div>
 
@@ -119,7 +119,8 @@
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
                                                 <div class="banner-img">
-                                                    <img src="images/pay.png" alt="">
+                                                    <a href="{{ route('auction') }}"><img src="images/pay.png" alt=""></a>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -142,7 +143,7 @@
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
                                                 <div class="banner-img">
-                                                    <img src="images/money.png" alt="">
+                                                    <a href="{{ route('offer') }}"><img src="images/money.png" alt=""></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -179,14 +180,14 @@
                                         <div class="row ">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
                                                 <div class="card-content">
-                                                    <h5 class="font-14"> طلبات الإستثمار</h5>
+                                                    <h5 class="font-14"> <a href="{{ route('single.report') }}"> طلبات الإستثمار  </a>  </h5>
                                                     <h2 class="mb-3 font-18">{{ $req->count() }}
                                                     </h2>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
                                                 <div class="banner-img">
-                                                    <img src="images/project.png" alt="">
+                                                    <a href="{{ route('single.report') }}"><img src="images/project.png" alt=""></a>
                                                 </div>
                                             </div>
                                         </div>
