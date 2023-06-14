@@ -71,8 +71,13 @@
                                                     {{ 'مليون' }}
                                                 </h4>
                                                 <p class="mb-0">
-                                                    <span class="font-20"></span>
-                                                    {{ round((($offers->sum('contract_cost') - $prev_offers->sum('contract_cost')) / $offers->sum('contract_cost')) * 100, 2) }}%
+                                                    <span class="font-20">
+                                                        @if ($offers->sum('contract_cost') != 0 && $offers->sum('contract_cost') > $prev_offers->sum('contract_cost'))
+                                                            {{ round((($offers->sum('contract_cost') - $prev_offers->sum('contract_cost')) / $offers->sum('contract_cost')) * 100, 2) }}%
+                                                        @else
+                                                            0%
+                                                        @endif
+                                                    </span>
                                                     <i class="ion-connection-bars" data-pack="default"
                                                         data-tags="data, stats"></i>
                                                 </p>
@@ -103,7 +108,11 @@
                                             </h4>
                                             <p class="mb-0">
                                                 <span class="font-20">
-                                                    {{ round((($accepted_req->sum('capital') - $prev_year_req->sum('capital')) / $accepted_req->sum('capital')) * 100, 2) }}%
+                                                    @if ($accepted_req->sum('capital') != 0 && $accepted_req->sum('capital') > $prev_year_req->sum('capital'))
+                                                        {{ round((($accepted_req->sum('capital') - $prev_year_req->sum('capital')) / $accepted_req->sum('capital')) * 100, 2) }}%
+                                                    @else
+                                                        0%
+                                                    @endif
                                                 </span>
                                                 <i class="ion-connection-bars" data-pack="default"
                                                     data-tags="data, stats"></i>
