@@ -269,7 +269,7 @@ class InvestmentController extends Controller
                 $record = $record_file ;
             }
             try{
-               $request_id   = RequestP::where('id',$id)-> update(([
+                $request_id   = RequestP::where('id',$id)-> update(([
                      'address' =>$request['address'],
                      'representative_name' =>$request['representative_name'],
                      'representative_id' =>$request['representative_id'],
@@ -287,7 +287,7 @@ class InvestmentController extends Controller
                      'technical_state' =>2,
     
                   ]));
-               Project::where('request_id',$id)->update(([
+                Project::where('request_id',$id)->update(([
                     'feasibility_study'   =>$feasibility_file,
                     'financial_capital'   =>$financial_file,
                     'commercial_register' =>$commercial_file,
@@ -297,14 +297,17 @@ class InvestmentController extends Controller
                     'nid_photo'           =>$nid_file,
                     'record'              =>$record_file,
                  ]));
-                if($request->region)
-                for($i = 0 ; $i < count($request->region) ; $i++){
-                    $region[] = $request->region[$i];
-                    $Request_places = Request_places::where('request_id', $id)-> update(([
+                if($request->region){
+                    Request_places::where('request_id',$id)->delete ('request_id');
+                    for($i = 0 ; $i < count($request->region) ; $i++){
+                        $region[] = $request->region[$i];
+                       $Request_places = Request_places:: create(([
                         'suggested_places' => $region[$i],
+                        'request_id' => $id,
                     ]));
+                    }
                 }
-                 return redirect()->route('investment')-> with(['success' => 'تم التسجيل بنجاح']);
+                return redirect()->route('investment')-> with(['success' => 'تم التسجيل بنجاح']);
             }catch(\Exception $ex){
                 return redirect()->route('investment')-> with(['error' => 'خطأ'.$ex]);
             }
@@ -369,24 +372,21 @@ class InvestmentController extends Controller
                     }
                 }catch( \Exception $ex){}
                 $r_license = R_license::where('id', $request->r_id[$i])-> update(([
-                    'send_date' => Carbon::today()->format('y-m-d'),
+                    'send_date' => $request->send_date[$i],
                     'file' => $file_name,
                     'state' => 2,
                     'point' => ($record_name->point)+1,
                 ]));
             }
-            return redirect()->route('lecturer')-> with(['success' => 'نجح']);
+            return redirect()->back()-> with(['success' => 'نجح']);
         }catch( \Exception $ex){
-            return redirect()->route('lecturer')-> with(['error' => ' خطأ '.$ex]);
+            return redirect()->back()-> with(['error' => ' خطأ '.$ex]);
         }
 
     }
 
     public function request_approve(Request $request,string $id)
     {
-        echo "<script>";
-        echo "if (!confirm('هل انت متأكد من تعزيز الطلب'))return false;";
-        echo "</script>";
         switch($request['actionBTN']){
             case 'approve':
                 RequestP::where('id',$id)-> update(([

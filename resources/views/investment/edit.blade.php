@@ -257,7 +257,9 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-8">
-                                                    <label>المواقع المقترحة لإقامة المشروع بالمحافظة</label>
+                                                    <label> المواقع المقترحة لإقامة المشروع بالمحافظة <span
+                                                            style="color: red">(الرجاء
+                                                            اختيار جميع المواقع المقترحه حالة التعديل)</span></label>
                                                     <select class="form-control select2" multiple style="width: 100%"
                                                         disabled>
                                                         @isset($request_places)
@@ -268,7 +270,7 @@
                                                             @endif
                                                         @endisset
                                                     </select>
-                                                    {{-- <select class="form-control select2" name="region[]" multiple
+                                                    <select class="form-control select2" name="region[]" multiple
                                                         style="width: 100%">
                                                         @isset($place)
                                                             @if ($place && $place->count() > 0)
@@ -278,7 +280,7 @@
                                                                 @endforeach
                                                             @endif
                                                         @endisset
-                                                    </select> --}}
+                                                    </select>
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label> وصف المشروع </label>

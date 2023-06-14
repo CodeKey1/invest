@@ -343,14 +343,9 @@
                                                                         accept=",.doc, .docx, .pdf, image/*"
                                                                         name="send_file[]">
                                                                 </td>
-                                                                {{-- <td>
-                                                                    <input type="date" value="{{ $r->send_date }}"
-                                                                        name="send_date[]">
-                                                                </td> --}}
                                                                 <td>
-                                                                    @if ($r->send_date != null)
-                                                                        {{ $r->send_date }}
-                                                                    @endif
+                                                                    <input type="date" class="form-control" value="{{ $r->send_date }}"
+                                                                        name="send_date[]">
                                                                 </td>
                                                                 <td>
                                                                     @if ($r->state == 1)

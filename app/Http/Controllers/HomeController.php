@@ -29,17 +29,18 @@ class HomeController extends Controller
     public function index()
     {
         $now = Carbon::today();
+        $now1 = Carbon::today();
         $orderChart = $this->orderChart();
-        $offers = Offer::select()->get();
+        $offers = Offer::select()->where('status',1)->whereYear('work_date',$now->year)->get();
+        $prev_offers = Offer::select()->where('status',1)->whereYear('work_date',$now->subYear())->get();
         $auctions = Auction::select()->get();
-        $req = RequestP::select()->get();
-        $accepted_req = RequestP::select()->where('technical_state',1)->whereYear('recived_date',$now->year)->get();
+        $req = RequestP::select()->whereYear('recived_date',$now1->year)->get();
+        $accepted_req = RequestP::select()->where('technical_state',1)->whereYear('recived_date',$now1->year)->get();
         $delaiy_req = RequestP::select()->where('state',0)->get();
-        $year_req = RequestP::select()->where('technical_state',1)->whereYear('recived_date', $now->year)->get();
-        $prev_year_req = RequestP::select()->where('technical_state',1)->whereYear('recived_date', ($now->year-1))->get();
+        $prev_year_req = RequestP::select()->where('technical_state',1)->whereYear('recived_date', ($now1->subYear()))->get();
         $now = Carbon::today()->format('y-m-d');
         $users = $this->userChart();
-        return view('home',compact('users','req','auctions','offers','delaiy_req','accepted_req','now','orderChart','year_req','prev_year_req'));
+        return view('home',compact('users','req','auctions','offers','delaiy_req','accepted_req','now','orderChart','prev_year_req','prev_offers'));
 
     }
     public function userChart()
@@ -71,14 +72,14 @@ class HomeController extends Controller
     public function orderChart()
     {
 
-        $now1 = Carbon::now();
+        $now = Carbon::today();
         $master = array();
 
         array_push(
             $master,
-            RequestP::select()->where('technical_state',1)->count(),
-            RequestP::select()->where('technical_state',2)->count(),
-            RequestP::select()->where('technical_state',0)->count(),
+            RequestP::select()->whereYear('recived_date',$now->year)->where('technical_state',1)->count(),
+            RequestP::select()->whereYear('recived_date',$now->year)->where('technical_state',2)->count(),
+            RequestP::select()->whereYear('recived_date',$now->year)->where('technical_state',0)->count(),
         );
 
         return ['data' => json_encode($master)];

@@ -66,23 +66,26 @@
                                     <div class="text-white">
                                         <div class="row">
                                             <div class="col-md-6 col-lg-5" style="color: #ffffff;">
-                                                <h4 class="mb-0 font-26">758</h4>
+                                                <h4 class="mb-0 font-26">
+                                                    {{ round($offers->sum('contract_cost') / 1000000, 2) }}
+                                                    {{ 'مليون' }}
+                                                </h4>
                                                 <p class="mb-0">
-                                                    <span class="font-20">+25.11%</span> <i class="ion-connection-bars"
-                                                        data-pack="default" data-tags="data, stats"></i>
+                                                    <span class="font-20"></span>
+                                                    {{ round((($offers->sum('contract_cost') - $prev_offers->sum('contract_cost')) / $offers->sum('contract_cost')) * 100, 2) }}%
+                                                    <i class="ion-connection-bars" data-pack="default"
+                                                        data-tags="data, stats"></i>
                                                 </p>
                                             </div>
                                             <div class="col-md-6 col-lg-7">
                                                 <p class="lead"
                                                     style="font-weight: 500; color: #212529;line-height: 12px;"><i
                                                         class="ion-stats-bars" data-pack="default"
-                                                        data-tags="data, stats"></i> حجـــم الإستثمــــار </p>
-                                                <p class="mb-2" style="font-weight: 500; color: sandybrown;"> بالـطـرح
-                                                    الـمـبـاشـر <i class="ion-arrow-graph-up-right" data-pack="default"
-                                                        data-tags="data, stats"></i></p>
-
+                                                        data-tags="data, stats"></i> حجـــم الفرص الغير مباشرة </p>
+                                                <p class="mb-2" style="font-weight: 500; color: sandybrown;">نسبة
+                                                    الزيادة السنوية<i class="ion-arrow-graph-up-right"
+                                                        data-pack="default" data-tags="data, stats"></i></p>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
@@ -95,12 +98,12 @@
                                     <div class="row">
                                         <div class="col-md-6 col-lg-5" style="color: #ffffff;">
                                             <h4 class="mb-0 font-26">
-                                                {{ $accepted_req->sum('capital') / 1000000 }}
+                                                {{ round($accepted_req->sum('capital') / 1000000, 2) }}
                                                 {{ 'مليون' }}
                                             </h4>
                                             <p class="mb-0">
                                                 <span class="font-20">
-                                                    
+                                                    {{ round((($accepted_req->sum('capital') - $prev_year_req->sum('capital')) / $accepted_req->sum('capital')) * 100, 2) }}%
                                                 </span>
                                                 <i class="ion-connection-bars" data-pack="default"
                                                     data-tags="data, stats"></i>
@@ -110,13 +113,12 @@
                                             <p class="lead"
                                                 style="font-weight: 500; color: #212529;line-height: 12px;"> <i
                                                     class="ion-stats-bars" data-pack="default"
-                                                    data-tags="data, stats"></i>الطلبات المقبولة</p>
+                                                    data-tags="data, stats"></i>حجم الاستثمار السنوي</p>
                                             <p class="mb-2" style="font-weight: 500; color: sandybrown;">
                                                 نسبة الزيادة السنوية<i class="ion-arrow-graph-up-right"
                                                     data-pack="default" data-tags="data, stats"></i></p>
 
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
