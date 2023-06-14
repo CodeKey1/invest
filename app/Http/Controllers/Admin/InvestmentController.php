@@ -380,7 +380,7 @@ class InvestmentController extends Controller
             }
             return redirect()->back()-> with(['success' => 'نجح']);
         }catch( \Exception $ex){
-            return redirect()->back()-> with(['error' => ' خطأ '.$ex]);
+            return redirect()->back()-> with(['error' => ' خطأ '.$ex]); 
         }
 
     }
