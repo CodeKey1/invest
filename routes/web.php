@@ -114,7 +114,8 @@ Route::get('/auction-edit{id}', [App\Http\Controllers\Auction\AuctionController:
 Route::POST('/auction-update{id}', [App\Http\Controllers\Auction\AuctionController::class, 'update'])->name('auction.update');
 
 Route::get('/offer', [App\Http\Controllers\Auction\AuctionController::class, 'offer_index'])->name('offer');
-Route::get('/offer-create', [App\Http\Controllers\Auction\AuctionController::class, 'offer_create'])->name('offer.Create');
+Route::get('/offer-create', [App\Http\Controllers\Auction\AuctionController::class, 'offer_create'])->name('offer.notDircectCreate');
+Route::get('/offer-direct-create', [App\Http\Controllers\Auction\AuctionController::class, 'offer_direct_create'])->name('offer.drirectCreate');
 Route::POST('/offer-insert', [App\Http\Controllers\Auction\AuctionController::class, 'offer_store'])->name('offer.Store');
 Route::get('/offer-edit{id}', [App\Http\Controllers\Auction\AuctionController::class, 'offer_edit'])->name('offer.edit');
 Route::POST('/offer-update{id}', [App\Http\Controllers\Auction\AuctionController::class, 'offer_update'])->name('offer.update');

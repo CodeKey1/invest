@@ -18,36 +18,6 @@
     <!-- Custom style CSS -->
     <link rel="stylesheet" href="assets/css/custom.css">
     <link rel='shortcut icon' type='image/x-icon' href='assets/img/favicon.ico' />
-    <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
-    <script>
-        // Enable pusher logging - don't include this in production
-        Pusher.logToConsole = true;
-
-        var pusher = new Pusher('2dbd33348671a769597f', {
-            cluster: 'ap1'
-        });
-
-        var channel = pusher.subscribe('user-notification');
-        channel.bind('my-notification', function(data) {
-            toastr.success(JSON.stringify(data));
-        });
-    </script>
-    <style>
-        .col-xl-3 .card {
-            border-radius: 68px;
-            background: linear-gradient(to left, #183242, #2c5875, #fff);
-            background: #2c587526;
-        }
-
-        .col-xl-3 .card .card-statistic-4 {
-            padding: 0;
-        }
-
-        .col-xl-3 .card .card-content {
-            margin-top: 10%;
-            color: #18425f;
-        }
-    </style>
 </head>
 
 <body class="light theme-white">
@@ -59,7 +29,7 @@
             <div class="main-content">
                 <section class="section">
                     <div class="row" style="margin-top: -15px;margin-bottom: 25px;">
-                        <div class="col-xl-6 col-md-12 col-lg-4 l-bg-green"
+                        <div class="col-xl-4 col-md-12 col-lg-4 l-bg-green"
                             style="border-radius: 10px 0px 0px 10px;border-right: 2px solid #fff;">
                             <div class="">
                                 <div class="card-body">
@@ -67,13 +37,15 @@
                                         <div class="row">
                                             <div class="col-md-6 col-lg-5" style="color: #ffffff;">
                                                 <h4 class="mb-0 font-26">
-                                                    {{ round($offers->sum('contract_cost') / 1000000, 2) }}
+                                                    {{ round($not_direct_offers->sum('contract_cost') / 1000000, 2) }}
                                                     {{ 'مليون' }}
                                                 </h4>
                                                 <p class="mb-0">
                                                     <span class="font-20">
-                                                        @if ($offers->sum('contract_cost') != 0 && $offers->sum('contract_cost') > $prev_offers->sum('contract_cost'))
-                                                            {{ round((($offers->sum('contract_cost') - $prev_offers->sum('contract_cost')) / $offers->sum('contract_cost')) * 100, 2) }}%
+                                                        @if (
+                                                            $not_direct_offers->sum('contract_cost') != 0 &&
+                                                                $not_direct_offers->sum('contract_cost') > $not_direct_prev_offers->sum('contract_cost'))
+                                                            {{ round((($not_direct_offers->sum('contract_cost') - $not_direct_prev_offers->sum('contract_cost')) / $not_direct_offers->sum('contract_cost')) * 100, 2) }}%
                                                         @else
                                                             0%
                                                         @endif
@@ -86,8 +58,9 @@
                                                 <p class="lead"
                                                     style="font-weight: 500; color: #212529;line-height: 12px;"><i
                                                         class="ion-stats-bars" data-pack="default"
-                                                        data-tags="data, stats"></i> حجـــم الفرص الغير مباشرة </p>
-                                                <p class="mb-2" style="font-weight: 500; color: sandybrown;">نسبة
+                                                        data-tags="data, stats"></i>الفرص الغير مباشرة</p>
+                                                <br>
+                                                <p class="mb-2" style="font-weight: 500; color: sandybrown;">
                                                     الزيادة السنوية<i class="ion-arrow-graph-up-right"
                                                         data-pack="default" data-tags="data, stats"></i></p>
                                             </div>
@@ -96,7 +69,47 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-6 col-md-12 col-lg-4 l-bg-cyan"
+                        <div class="col-xl-4 col-md-12 col-lg-4 l-bg-green"
+                            style="border-radius: 10px 10px 10px 10px;border-right: 2px solid #fff;border-left: 2px solid #fff;">
+                            <div class="">
+                                <div class="card-body">
+                                    <div class="text-white">
+                                        <div class="row">
+                                            <div class="col-md-6 col-lg-5" style="color: #ffffff;">
+                                                <h4 class="mb-0 font-26">
+                                                    {{ round($direct_offers->sum('contract_cost') / 1000000, 2) }}
+                                                    {{ 'مليون' }}
+                                                </h4>
+                                                <p class="mb-0">
+                                                    <span class="font-20">
+                                                        @if (
+                                                            $direct_offers->sum('contract_cost') != 0 &&
+                                                                $direct_offers->sum('contract_cost') > $direct_prev_offers->sum('contract_cost'))
+                                                            {{ round((($direct_offers->sum('contract_cost') - $direct_prev_offers->sum('contract_cost')) / $direct_offers->sum('contract_cost')) * 100, 2) }}%
+                                                        @else
+                                                            0%
+                                                        @endif
+                                                    </span>
+                                                    <i class="ion-connection-bars" data-pack="default"
+                                                        data-tags="data, stats"></i>
+                                                </p>
+                                            </div>
+                                            <div class="col-md-6 col-lg-7">
+                                                <p class="lead"
+                                                    style="font-weight: 500; color: #212529;line-height: 12px;"><i
+                                                        class="ion-stats-bars" data-pack="default"
+                                                        data-tags="data, stats"></i>الفرص المباشرة</p>
+                                                <br>
+                                                <p class="mb-2" style="font-weight: 500; color: sandybrown;"> الزيادة
+                                                    السنوية<i class="ion-arrow-graph-up-right" data-pack="default"
+                                                        data-tags="data, stats"></i></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-12 col-lg-4 l-bg-cyan"
                             style="border-radius: 0px 10px 10px 0px;border-left: 2px solid #fff;">
                             <div class="card-body">
                                 <div class="text-white">
@@ -122,10 +135,11 @@
                                             <p class="lead"
                                                 style="font-weight: 500; color: #212529;line-height: 12px;"> <i
                                                     class="ion-stats-bars" data-pack="default"
-                                                    data-tags="data, stats"></i>حجم الاستثمار السنوي</p>
+                                                    data-tags="data, stats"></i>الاستثمار السنوي</p>
+                                            <br>
                                             <p class="mb-2" style="font-weight: 500; color: sandybrown;">
-                                                نسبة الزيادة السنوية<i class="ion-arrow-graph-up-right"
-                                                    data-pack="default" data-tags="data, stats"></i></p>
+                                                الزيادة السنوية<i class="ion-arrow-graph-up-right" data-pack="default"
+                                                    data-tags="data, stats"></i></p>
 
                                         </div>
                                     </div>
@@ -143,7 +157,8 @@
                                                 <div class="card-content">
                                                     <h5 class="font-14">قيمة الفرص</h5>
                                                     <h2 class="mb-3 font-18">
-                                                        {{ round($offers->sum('contract_cost') / 1000000, 2) }} (مليون)
+                                                        {{ round($not_direct_offers->sum('contract_cost') / 1000000, 2) }}
+                                                        (مليون)
                                                     </h2>
                                                 </div>
                                             </div>
@@ -165,7 +180,7 @@
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
                                                 <div class="card-content">
                                                     <h5 class="font-15">فرص منتهية</h5>
-                                                    <h2 class="mb-3 font-18">{{ $offers->count() }}</h2>
+                                                    <h2 class="mb-3 font-18">{{ $not_direct_offers->count() }}</h2>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
@@ -187,7 +202,8 @@
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
                                                 <div class="card-content">
                                                     <h5 class="font-14">الطلبات المنتهية</h5>
-                                                    <h2 class="mb-3 font-18">{{ $req->where('technical_state', 1)->count() }}
+                                                    <h2 class="mb-3 font-18">
+                                                        {{ $req->where('technical_state', 1)->count() }}
                                                     </h2>
                                                 </div>
                                             </div>

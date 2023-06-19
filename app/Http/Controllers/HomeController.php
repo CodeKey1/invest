@@ -30,9 +30,12 @@ class HomeController extends Controller
     {
         $now = Carbon::today();
         $now1 = Carbon::today();
+        $now2 = Carbon::today();
         $orderChart = $this->orderChart();
-        $offers = Offer::select()->where('status',1)->whereYear('work_date',$now->year)->get();
-        $prev_offers = Offer::select()->where('status',1)->whereYear('work_date',$now->subYear())->get();
+        $not_direct_offers = Offer::select()->where('status',1)->whereYear('work_date',$now->year)->where('is_direct',0)->get();
+        $not_direct_prev_offers = Offer::select()->where('status',1)->whereYear('work_date',$now->subYear())->where('is_direct',0)->get();
+        $direct_offers = Offer::select()->where('status',1)->whereYear('work_date',$now2->year)->where('is_direct',1)->get();
+        $direct_prev_offers = Offer::select()->where('status',1)->whereYear('work_date',$now2->subYear())->where('is_direct',1)->get();
         $auctions = Auction::select()->get();
         $req = RequestP::select()->whereYear('recived_date',$now1->year)->get();
         $accepted_req = RequestP::select()->where('technical_state',1)->whereYear('recived_date',$now1->year)->get();
@@ -40,7 +43,7 @@ class HomeController extends Controller
         $prev_year_req = RequestP::select()->where('technical_state',1)->whereYear('recived_date', ($now1->subYear()))->get();
         $now = Carbon::today()->format('y-m-d');
         $users = $this->userChart();
-        return view('home',compact('users','req','auctions','offers','delaiy_req','accepted_req','now','orderChart','prev_year_req','prev_offers'));
+        return view('home',compact('users','req','auctions','not_direct_offers','direct_offers','delaiy_req','accepted_req','now','orderChart','prev_year_req','not_direct_prev_offers','direct_prev_offers'));
 
     }
     public function userChart()

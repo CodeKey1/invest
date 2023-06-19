@@ -45,6 +45,14 @@ class AuctionController extends Controller
         $contract_type = Contract_type::select()->get();
         return view('auction.offerCreate',compact('auction','city','assets','contract_type'));
     }
+    public function offer_direct_create()
+    {
+        $direct = 1;
+        $city = City::select()->get();
+        $assets = Asset::select()->where('status','=',0)->get();
+        $contract_type = Contract_type::select()->get();
+        return view('auction.offerCreate',compact('direct','city','assets','contract_type'));
+    }
 
     public function store(Request $request)
     {
@@ -93,7 +101,10 @@ class AuctionController extends Controller
         $delivery_record = $file;
         $note = $request['note'];
         $increase_rate = $request['increase_rate'];
-
+        if($request['auction'])
+            $is_direct = 0;
+        else
+            $is_direct = 1;
         $assetStatus = 1;
         $contract_type = $request['contract_type'];
         $contract_period = $request['contract_period'];
@@ -101,6 +112,7 @@ class AuctionController extends Controller
         try{
             Offer::create(([
                 'recived' => $recived,
+                'is_direct' => $is_direct,
                 'investor' => $investor,
                 'phone' => $phone,
                 'work_date' => $work_date,
@@ -117,9 +129,9 @@ class AuctionController extends Controller
              Asset::select()->find($asset_id)->update(([
                 'status' => $assetStatus,
              ]));
-            return redirect()->route('offer.Create')-> with(['success' => 'تم التسجيل بنجاح']);
+            return redirect()->route('offer')-> with(['success' => 'تم التسجيل بنجاح']);
         }catch(\Exception $ex){
-            return redirect()->route('offer.Create')-> with(['error' => ' خطأ\n '.$ex]);
+            return redirect()->route('offer')-> with(['error' => ' خطأ\n '.$ex]);
         }
     }
 

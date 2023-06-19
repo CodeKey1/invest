@@ -43,8 +43,11 @@
                                     <div class="card-header">
                                         <h4>ترسيات المزادات</h4>
                                         <div class="card-header-action">
-                                            <a href="{{ route('offer.Create') }}" class="btn btn-success">اضافة ترسية
-                                                جديد</a>
+                                            <a href="{{ route('offer.notDircectCreate') }}"
+                                                class="btn btn-success">ترسية
+                                                غير مباشرة</a>
+                                            <a href="{{ route('offer.drirectCreate') }}" class="btn btn-primary">ترسية
+                                                مباشرة</a>
                                         </div>
                                     </div>
                                 </div>
@@ -74,8 +77,9 @@
                                                             @foreach ($offer as $offer1)
                                                                 <tr>
                                                                     <td>{{ $offer1->id }}</td>
-                                                                    <td>{{ $offer1->auction_name->name }}</td>
-                                                                    <td>{{ $offer1->auction_name->date }}</td>
+                                                                    <td>{{ $offer1->auction_name->name ?? 'طرح مباشر' }}
+                                                                    </td>
+                                                                    <td>{{ $offer1->auction_name->date ?? 'لا يوجد' }}</td>
                                                                     <td>{{ $offer1->investor }}</td>
                                                                     <td>{{ $offer1->asset_name->name }}</td>
                                                                     <td>{{ $offer1->contract_type->name }}</td>

@@ -50,62 +50,104 @@
                                     <div class="card card-primary">
                                         <div class="card-body">
                                             <div class="row">
-                                                <div class="form-group col-md-4">
-                                                    <label> اختر المزاد <span style="color: red">*</span></label>
-                                                    <select class="form-control" name="auction" required>
-                                                        <option value="" hidden disabled selected>
-                                                            اختر
-                                                            المزاد
-                                                        </option>
-                                                        @isset($auction)
-                                                            @if ($auction && $auction->count() > 0)
-                                                                @foreach ($auction as $auction1)
-                                                                    <option value="{{ $auction1->id }}">
-                                                                        {{ $auction1->name }}
-                                                                    </option>
-                                                                @endforeach
-                                                            @endif
-                                                        @endisset
-                                                    </select>
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label> اختر المدينة <span style="color: red">*</span></label>
-                                                    <select class="form-control" id="cityselect" name="city"
-                                                        required>
-                                                        <option value="" hidden disabled selected>
-                                                            اختر
-                                                            المدينة
-                                                        </option>
-                                                        @isset($city)
-                                                            @if ($city && $city->count() > 0)
-                                                                @foreach ($city as $city1)
-                                                                    <option value="{{ $city1->id }}">
-                                                                        {{ $city1->name }}
-                                                                    </option>
-                                                                @endforeach
-                                                            @endif
-                                                        @endisset
-                                                    </select>
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label> اختر الاصل <span style="color: red">*</span></label>
-                                                    <select class="form-control" name="asset" required>
-                                                        <option value="" hidden disabled selected>
-                                                            اختر
-                                                            الاصل
-                                                        </option>
-                                                        @isset($assets)
-                                                            @if ($assets && $assets->count() > 0)
-                                                                @foreach ($assets as $assets1)
-                                                                    <option class="option asset-{{ $assets1->city_id }}"
-                                                                        value="{{ $assets1->id }}">
-                                                                        {{ $assets1->name }}
-                                                                    </option>
-                                                                @endforeach
-                                                            @endif
-                                                        @endisset
-                                                    </select>
-                                                </div>
+                                                @isset($auction)
+                                                    <div class="form-group col-md-4">
+                                                        <label> اختر المزاد <span style="color: red">*</span></label>
+                                                        <select class="form-control" name="auction" required>
+                                                            <option value="" hidden disabled selected>
+                                                                اختر
+                                                                المزاد
+                                                            </option>
+                                                            @isset($auction)
+                                                                @if ($auction && $auction->count() > 0)
+                                                                    @foreach ($auction as $auction1)
+                                                                        <option value="{{ $auction1->id }}">
+                                                                            {{ $auction1->name }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                @endif
+                                                            @endisset
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-md-4">
+                                                        <label> اختر المدينة <span style="color: red">*</span></label>
+                                                        <select class="form-control" id="cityselect" name="city"
+                                                            required>
+                                                            <option value="" hidden disabled selected>
+                                                                اختر
+                                                                المدينة
+                                                            </option>
+                                                            @isset($city)
+                                                                @if ($city && $city->count() > 0)
+                                                                    @foreach ($city as $city1)
+                                                                        <option value="{{ $city1->id }}">
+                                                                            {{ $city1->name }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                @endif
+                                                            @endisset
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-md-4">
+                                                        <label> اختر الاصل <span style="color: red">*</span></label>
+                                                        <select class="form-control" name="asset" required>
+                                                            <option value="" hidden disabled selected>
+                                                                اختر
+                                                                الاصل
+                                                            </option>
+                                                            @isset($assets)
+                                                                @if ($assets && $assets->count() > 0)
+                                                                    @foreach ($assets as $assets1)
+                                                                        <option class="option asset-{{ $assets1->city_id }}"
+                                                                            value="{{ $assets1->id }}">
+                                                                            {{ $assets1->name }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                @endif
+                                                            @endisset
+                                                        </select>
+                                                    </div>
+                                                @endisset
+                                                @isset($direct)
+                                                    <div class="form-group col-md-6">
+                                                        <label> اختر المدينة <span style="color: red">*</span></label>
+                                                        <select class="form-control" id="cityselect" name="city"
+                                                            required>
+                                                            <option value="" hidden disabled selected>
+                                                                اختر
+                                                                المدينة
+                                                            </option>
+                                                            @isset($city)
+                                                                @if ($city && $city->count() > 0)
+                                                                    @foreach ($city as $city1)
+                                                                        <option value="{{ $city1->id }}">
+                                                                            {{ $city1->name }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                @endif
+                                                            @endisset
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label> اختر الاصل <span style="color: red">*</span></label>
+                                                        <select class="form-control" name="asset" required>
+                                                            <option value="" hidden disabled selected>
+                                                                اختر
+                                                                الاصل
+                                                            </option>
+                                                            @isset($assets)
+                                                                @if ($assets && $assets->count() > 0)
+                                                                    @foreach ($assets as $assets1)
+                                                                        <option class="option asset-{{ $assets1->city_id }}"
+                                                                            value="{{ $assets1->id }}">
+                                                                            {{ $assets1->name }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                @endif
+                                                            @endisset
+                                                        </select>
+                                                    </div>
+                                                @endisset
                                                 <div class="form-group col-md-4">
                                                     <label>اسم المستفيد <span style="color: red">*</span></label>
                                                     <input style="height: calc(2.25rem + 6px);" type="text"
