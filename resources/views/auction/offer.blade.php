@@ -51,63 +51,145 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="card card-secondary">
-                                    <div class="card-body" style="direction: rtl;">
-                                        <div class="table-responsive">
-                                            <table class="table table-striped table-hover" id="save-stage"
-                                                style="width:100%;">
-                                                <thead>
-                                                    <tr>
-                                                        <th> # </th>
-                                                        <th>اسم المزاد</th>
-                                                        <th>تاريخ الجلسة</th>
-                                                        <th>اسم المستفيد</th>
-                                                        <th>اسم الاصل</th>
-                                                        <th>نوع التعاقد</th>
-                                                        <th>تاريخ الاستلام</th>
-                                                        <th>الحالة</th>
-                                                        <th>ملاحظات</th>
-                                                        <th>تفاصيل</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @isset($offer)
-                                                        @if ($offer && $offer->count() > 0)
-                                                            @foreach ($offer as $offer1)
-                                                                <tr>
-                                                                    <td>{{ $offer1->id }}</td>
-                                                                    <td>{{ $offer1->auction_name->name ?? 'طرح مباشر' }}
-                                                                    </td>
-                                                                    <td>{{ $offer1->auction_name->date ?? 'لا يوجد' }}</td>
-                                                                    <td>{{ $offer1->investor }}</td>
-                                                                    <td>{{ $offer1->asset_name->name }}</td>
-                                                                    <td>{{ $offer1->contract_type->name }}</td>
-                                                                    <td>{{ $offer1->recived }}</td>
-                                                                    <td>
-                                                                        @if ($offer1->status)
-                                                                            <div class="badge badge-success">
-                                                                            </div>
-                                                                        @else
-                                                                            <div class="badge badge-danger">
-                                                                            </div>
+                                    <div class="card-body">
+                                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" id="profile-tab" data-toggle="tab"
+                                                    href="#profile" role="tab" aria-controls="profile"
+                                                    aria-selected="true">ترسيات غير مباشرة</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="home-tab" data-toggle="tab" href="#home"
+                                                    role="tab" aria-controls="home" aria-selected="false">ترسيات
+                                                    مباشرة</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-content" id="myTabContent">
+                                        <div class="tab-pane fade  show active" id="profile" role="tabpanel"
+                                            aria-labelledby="profile-tab">
+                                            <div class="card-body" style="direction: rtl;">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-hover" id="save-stage"
+                                                        style="width:100%;">
+                                                        <thead>
+                                                            <tr>
+                                                                <th> # </th>
+                                                                <th>اسم المزاد</th>
+                                                                <th>تاريخ الجلسة</th>
+                                                                <th>اسم المستفيد</th>
+                                                                <th>اسم الاصل</th>
+                                                                <th>نوع التعاقد</th>
+                                                                <th>تاريخ الاستلام</th>
+                                                                <th>الحالة</th>
+                                                                <th>ملاحظات</th>
+                                                                <th>تفاصيل</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @isset($offer)
+                                                                @if ($offer && $offer->count() > 0)
+                                                                    @foreach ($offer as $offer1)
+                                                                        @if ($offer1->is_direct == 0)
+                                                                            <tr>
+                                                                                <td>{{ $offer1->id }}</td>
+                                                                                <td>{{ $offer1->auction_name->name ?? 'طرح مباشر' }}
+                                                                                </td>
+                                                                                <td>{{ $offer1->auction_name->date ?? 'لا يوجد' }}
+                                                                                </td>
+                                                                                <td>{{ $offer1->investor }}</td>
+                                                                                <td>{{ $offer1->asset_name->name }}</td>
+                                                                                <td>{{ $offer1->contract_type->name }}</td>
+                                                                                <td>{{ $offer1->recived }}</td>
+                                                                                <td>
+                                                                                    @if ($offer1->status)
+                                                                                        <div class="badge badge-success">
+                                                                                        </div>
+                                                                                    @else
+                                                                                        <div class="badge badge-danger">
+                                                                                        </div>
+                                                                                    @endif
+                                                                                </td>
+                                                                                <td>{{ $offer1->note }}</td>
+                                                                                <td>
+                                                                                    <a class="col-dark-gray waves-effect"
+                                                                                        href="{{ route('offer.edit', $offer1->id) }}"
+                                                                                        ata-toggle="tooltip"
+                                                                                        data-placement="top"
+                                                                                        title="عرض وتعديل">
+                                                                                        <i class="material-icons">edit</i>
+                                                                                    </a>
+                                                                                </td>
+                                                                            </tr>
                                                                         @endif
-                                                                    </td>
-                                                                    <td>{{ $offer1->note }}</td>
-                                                                    <td>
-                                                                        <a class="col-dark-gray waves-effect"
-                                                                            href="{{ route('offer.edit', $offer1->id) }}"
-                                                                            ata-toggle="tooltip" data-placement="top"
-                                                                            title="عرض وتعديل">
-                                                                            <i class="material-icons">edit</i>
-                                                                        </a>
-                                                                    </td>
-                                                                </tr>
-                                                            @endforeach
-                                                        @endif
-                                                    @endisset
-                                                </tbody>
-                                            </table>
+                                                                    @endforeach
+                                                                @endif
+                                                            @endisset
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="home" role="tabpanel"
+                                            aria-labelledby="home-tab">
+                                            <div class="card-body" style="direction: rtl;">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-hover" id="save-stage"
+                                                        style="width:100%;">
+                                                        <thead>
+                                                            <tr>
+                                                                <th> # </th>
+                                                                <th>اسم المستفيد</th>
+                                                                <th>اسم الاصل</th>
+                                                                <th>الهاتف</th>
+                                                                <th>نوع التعاقد</th>
+                                                                <th>تاريخ الاستلام</th>
+                                                                <th>الحالة</th>
+                                                                <th>ملاحظات</th>
+                                                                <th>تفاصيل</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @isset($offer)
+                                                                @if ($offer && $offer->count() > 0)
+                                                                    @foreach ($offer as $item)
+                                                                        @if ($item->is_direct == 1)
+                                                                            <tr>
+                                                                                <td>{{ $item->id }}</td>
+                                                                                <td>{{ $item->investor }}</td>
+                                                                                <td>{{ $item->asset_name->name }}</td>
+                                                                                <td>{{ $item->phone }}</td>
+                                                                                <td>{{ $item->contract_type->name }}</td>
+                                                                                <td>{{ $item->recived }}</td>
+                                                                                <td>
+                                                                                    @if ($item->status)
+                                                                                        <div class="badge badge-success">
+                                                                                        </div>
+                                                                                    @else
+                                                                                        <div class="badge badge-danger">
+                                                                                        </div>
+                                                                                    @endif
+                                                                                </td>
+                                                                                <td>{{ $item->note }}</td>
+                                                                                <td>
+                                                                                    <a class="col-dark-gray waves-effect"
+                                                                                        href="{{ route('offer.edit', $item->id) }}"
+                                                                                        ata-toggle="tooltip"
+                                                                                        data-placement="top"
+                                                                                        title="عرض وتعديل">
+                                                                                        <i class="material-icons">edit</i>
+                                                                                    </a>
+                                                                                </td>
+                                                                            </tr>
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endif
+                                                            @endisset
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
