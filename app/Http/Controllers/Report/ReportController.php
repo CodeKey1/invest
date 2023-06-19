@@ -121,20 +121,20 @@ class ReportController extends Controller
                 $cat_id =  $request['category'];
                 $city_id =  $request['city'];
                 $request_detail_all = RequestP::whereRaw('category_id '. $cat_id)
-                    ->whereRaw('city_id '. $city_id)->get(); 
+                    ->whereRaw('city_id '. $city_id)->orderBy('capital', 'desc')->get(); 
                 $category_name = Category::select()->whereRaw('id '.$cat_id)->get(); 
                 $city_name = City::select()->whereRaw('id '.$city_id)->get(); 
                 return view('report.request_report',compact('category','request','city','request_detail_all','category_name','city_name'));
                 break;
             case "city":
                 $city_id =  $request->city_id;
-                $request_detail_city = RequestP::select()->where('city_id',$city_id)->get();
+                $request_detail_city = RequestP::select()->where('city_id',$city_id)->orderBy('capital', 'desc')->get();
                 $name = City::select()->find($city_id); 
                 return view('report.request_report',compact('category','request','city','request_detail_city','name'));
                 break;
             case "cat":
                 $category_id =  $request->category_id;
-                $request_detail_cat = RequestP::select()->where('category_id',$category_id)->get();
+                $request_detail_cat = RequestP::select()->where('category_id',$category_id)->orderBy('capital', 'desc')->get();
                 $name = Category::select()->find($category_id);
                 return view('report.request_report',compact('category','request','city','request_detail_cat','name'));
                 break;
@@ -142,22 +142,22 @@ class ReportController extends Controller
                 $start_size =  $request->start_size;
                 $end_size =  $request->end_size;
                 $size_type =  $request->size_type;
-                $request_detail_size = RequestP::select()->where('size','>=',$start_size)->where('size','<=',$end_size)->where('size_type',$size_type)->get();
+                $request_detail_size = RequestP::select()->where('size','>=',$start_size)->where('size','<=',$end_size)->where('size_type',$size_type)->orderBy('capital', 'desc')->get();
                 return view('report.request_report',compact('category','request','city','request_detail_size','start_size','end_size','size_type'));
                 break;
             case "capital":
                 $capital =  $request->capital;
                 switch($capital){
                     case "small":
-                        $request_detail_capital = RequestP::select()->where('capital','<=','1000000')->get();
+                        $request_detail_capital = RequestP::select()->where('capital','<=','1000000')->orderBy('capital', 'desc')->get();
                         $name = "اقل من مليون";
                         break;
                     case "mediam":
-                        $request_detail_capital = RequestP::select()->where('capital','>=','1000000')->where('capital','<=','5000000')->get();
+                        $request_detail_capital = RequestP::select()->where('capital','>=','1000000')->where('capital','<=','5000000')->orderBy('capital', 'desc')->get();
                         $name = "اكبر من مليون واقل من 5 مليون";
                         break;
                     case "large":
-                        $request_detail_capital = RequestP::select()->where('capital','>=','5000000')->get();
+                        $request_detail_capital = RequestP::select()->where('capital','>=','5000000')->orderBy('capital', 'desc')->get();
                         $name = "اكبر من 5 مليون";
                         break;
                 }
@@ -166,7 +166,7 @@ class ReportController extends Controller
             case "date":
                 $start_date =  $request->start_date;
                 $end_date =  $request->end_date;
-                $request_detail_date = RequestP::select()->where('recived_date','>=',$start_date)->where('recived_date','<=',$end_date)->get();
+                $request_detail_date = RequestP::select()->where('recived_date','>=',$start_date)->where('recived_date','<=',$end_date)->orderBy('recived_date', 'asc')->get();
                 return view('report.request_report',compact('category','request','city','request_detail_date','start_date','end_date'));
                 break;
         }

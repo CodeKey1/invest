@@ -31,14 +31,11 @@
 
             <div class="main-content">
                 <section class="section">
-
                     <div class="section-body">
                         <div class="row" style="direction: rtl">
                             <div class="col-12 col-md-12 col-lg-12">
                                 @include('layouts.success')
                                 @include('layouts.error')
-
-
                                 <div class="card">
                                     <div class="card-header">
                                         <h4>طلب الحصول علي موافقة لإقامة مشروع</h4>
@@ -96,7 +93,7 @@
                                                         name="name" class="form-control" placeholder="" required>
                                                 </div>
                                                 <div class="form-group col-md-12">
-                                                    <label> الجهات للموافة علي المشرع <span
+                                                    <label> جهات الموافقة علي المشروع <span
                                                             style="color: red">*</span></label>
                                                     <select class="form-control select2" multiple="" name="license[]"
                                                         style="width: 100%" required>
@@ -308,8 +305,8 @@
                             </a> --}}
                         </div>
                     </div>
+                </section>
             </div>
-            </section>
             {{-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="formModal"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">

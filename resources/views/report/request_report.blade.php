@@ -11,6 +11,8 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/bundles/bootstrap-daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="assets/bundles/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
+    <link rel="stylesheet" href="assets/bundles/datatables/datatables.min.css" />
+    <link rel="stylesheet" href="assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css" />
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <!-- Custom style CSS -->
@@ -277,17 +279,22 @@
                         <h3>قطاع الشؤن الاقتصادية والاستثمار</h3>
                         <img width="120px" height="120px" src="../images/logo/new_logo.png">
                     </div>
-                    @isset($request_detail_all)
-                        <div class="section-body">
-                            <div class="row" style="direction: rtl">
-                                <div class="col-12 col-md-12 col-lg-12">
-                                    <div class="card card-primary work-xp">
+                    <div class="section-body">
+                        <div class="row" style="direction: rtl">
+                            <div class="col-12 col-md-12 col-lg-12">
+                                <div class="card card-primary work-xp">
+                                    <div class="justify-content-right d-flex">
+                                        <button class="btn btn-danger  float-left mt-3 mr-2" id="print_Button"
+                                            onclick="printDiv()">
+                                            <i class="mdi mdi-printer ml-1"></i>طباعة</button>
+                                    </div>
+                                    @isset($request_detail_all)
                                         <div class="card-header">
                                             <h3>تقرير الطلبات
                                             </h3>
                                         </div>
                                         <div class="card-body">
-                                            <table class="table">
+                                            <table>
                                                 <tbody class="tbody">
                                                     <tr style="height: 50px;">
                                                         <th scope="row" style="text-align: inherit;width: 130px; ">
@@ -331,65 +338,63 @@
                                                         <th class="info">تفاصيل</th>
                                                     </tr>
                                                 </thead>
-                                                @isset($request_detail_all)
-                                                    @foreach ($request_detail_all as $item)
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>{{ $item->name }}</td>
-                                                                <td>{{ $item->owner_name }}</td>
-                                                                {{-- <td>{{ $item->owner_type }}</td> --}}
-                                                                <td>0{{ $item->phone }}</td>
-                                                                <td>{{ $item->size }} {{ $item->size_type }}</td>
-                                                                <td>{{ $item->capital / 1000 ?? 'null' }} الف
-                                                                    {{ $item->currency_type }}
-                                                                </td>
-                                                                <td>{{ $item->self_financing }}%</td>
-                                                                <td>{{ $item->recived_date->format('Y-m-d') }}</td>
-                                                                {{-- <td>
+                                                <tbody>
+                                                    @isset($request_detail_all)
+                                                        @foreach ($request_detail_all as $item)
+                                                            @if ($item->capital / 1000000 > 5)
+                                                                <tr style="background-color: rgba(172, 255, 47, 0.25)">
+                                                                @elseif($item->capital / 1000000 < 5 && $item->capital / 1000000 >= 1)
+                                                                <tr style="background-color: rgba(47, 241, 255, 0.25)">
+                                                                @else
+                                                                <tr>
+                                                            @endif
+                                                            <td>{{ $item->name }}</td>
+                                                            <td>{{ $item->owner_name }}</td>
+                                                            {{-- <td>{{ $item->owner_type }}</td> --}}
+                                                            <td>0{{ $item->phone }}</td>
+                                                            <td>{{ $item->size }} {{ $item->size_type }}
+                                                            </td>
+                                                            <td>
+                                                                {{ $item->capital / 1000000 ?? 'null' }}
+                                                                مليون
+                                                                {{ $item->currency_type }}
+                                                            </td>
+                                                            <td>{{ $item->self_financing }}%</td>
+                                                            <td>{{ $item->recived_date->format('Y-m-d') }}
+                                                            </td>
+                                                            {{-- <td>
                                                                     @foreach (App\Models\Request_places::where('request_id', $item->id)->get() as $item1)
                                                                         {{ $item1->Req_place->name }} -
                                                                     @endforeach
                                                                 </td> --}}
-                                                                <td>
-                                                                    @if ($item->technical_state == 1)
-                                                                        <span style="color: green">مقبول</span>
-                                                                    @elseif ($item->technical_state == 0)
-                                                                        <span style="color: red">مرفوض</span>
-                                                                    @else
-                                                                        <span style="color: darkslategrey">جاري</span>
-                                                                    @endif
-                                                                </td>
-                                                                <td>{{ $item->categoryname->name }}</td>
-                                                                <td>{{ $item->city->name }}</td>
-                                                                <td class="info">
-                                                                    <a class="col-dark-gray waves-effect"
-                                                                        href="{{ route('single_report', $item->id) }}"
-                                                                        data-toggle="tooltip" data-placement="top"
-                                                                        title="عرض">
-                                                                        <i class="material-icons">info</i>
-                                                                    </a>
-                                                                </td>
-                                                                {{-- <td>{{ $item->subCat->name }}</td> --}}
+                                                            <td>
+                                                                @if ($item->technical_state == 1)
+                                                                    <span style="color: green">مقبول</span>
+                                                                @elseif ($item->technical_state == 0)
+                                                                    <span style="color: red">مرفوض</span>
+                                                                @else
+                                                                    <span style="color: darkslategrey">جاري</span>
+                                                                @endif
+                                                            </td>
+                                                            <td>{{ $item->categoryname->name }}</td>
+                                                            <td>{{ $item->city->name }}</td>
+                                                            <td class="info">
+                                                                <a class="col-dark-gray waves-effect"
+                                                                    href="{{ route('single_report', $item->id) }}"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="عرض">
+                                                                    <i class="material-icons">info</i>
+                                                                </a>
+                                                            </td>
+                                                            {{-- <td>{{ $item->subCat->name }}</td> --}}
                                                             </tr>
-                                                        </tbody>
-                                                    @endforeach
-                                                @endisset
+                                                        @endforeach
+                                                    @endisset
+                                                </tbody>
                                             </table>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="justify-content-right d-flex">
-                                    <button class="btn btn-danger  float-left mt-3 mr-2" id="print_Button"
-                                        onclick="printDiv()"> <i class="mdi mdi-printer ml-1"></i>طباعة</button>
-                                </div>
-                            </div>
-                        </div>
-                    @endisset
-                    @isset($request_detail_city)
-                        <div class="section-body">
-                            <div class="row" style="direction: rtl">
-                                <div class="col-12 col-md-12 col-lg-12">
-                                    <div class="card card-primary work-xp">
+                                    @endisset
+                                    @isset($request_detail_city)
                                         <div class="card-header">
                                             <h3>تقرير طلبات الاستثمار لمدينة {{ $name->name }}
                                             </h3>
@@ -413,65 +418,61 @@
                                                         <th>المدينة</th> --}}
                                                     </tr>
                                                 </thead>
-                                                @isset($request_detail_city)
-                                                    @foreach ($request_detail_city as $item)
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>{{ $item->name }}</td>
-                                                                <td>{{ $item->owner_name }}</td>
-                                                                {{-- <td>{{ $item->owner_type }}</td> --}}
-                                                                <td>0{{ $item->phone }}</td>
-                                                                <td>{{ $item->size }} {{ $item->size_type }}</td>
-                                                                <td>{{ $item->capital / 1000 ?? 'null' }} الف
-                                                                    {{ $item->currency_type }}
-                                                                </td>
-                                                                <td>{{ $item->self_financing }}%</td>
-                                                                <td>{{ $item->recived_date->format('Y-m-d') }}</td>
-                                                                {{-- <td>
+                                                <tbody>
+                                                    @isset($request_detail_city)
+                                                        @foreach ($request_detail_city as $item)
+                                                            @if ($item->capital / 1000000 > 5)
+                                                                <tr style="background-color: rgba(172, 255, 47, 0.25)">
+                                                                @elseif($item->capital / 1000000 < 5 && $item->capital / 1000000 >= 1)
+                                                                <tr style="background-color: rgba(47, 241, 255, 0.25)">
+                                                                @else
+                                                                <tr>
+                                                            @endif
+                                                            <td>{{ $item->name }}</td>
+                                                            <td>{{ $item->owner_name }}</td>
+                                                            {{-- <td>{{ $item->owner_type }}</td> --}}
+                                                            <td>0{{ $item->phone }}</td>
+                                                            <td>{{ $item->size }} {{ $item->size_type }}</td>
+                                                            <td>
+                                                                {{ $item->capital / 1000000 ?? 'null' }}
+                                                                مليون
+                                                                {{ $item->currency_type }}
+                                                            </td>
+                                                            <td>{{ $item->self_financing }}%</td>
+                                                            <td>{{ $item->recived_date->format('Y-m-d') }}</td>
+                                                            {{-- <td>
                                                                     @foreach (App\Models\Request_places::where('request_id', $item->id)->get() as $item1)
                                                                         {{ $item1->Req_place->name }} -
                                                                     @endforeach
                                                                 </td> --}}
-                                                                <td>
-                                                                    @if ($item->technical_state == 1)
-                                                                        <span style="color: green">مقبول</span>
-                                                                    @elseif ($item->technical_state == 0)
-                                                                        <span style="color: red">مرفوض</span>
-                                                                    @else
-                                                                        <span style="color: darkslategrey">جاري</span>
-                                                                    @endif
-                                                                </td>
-                                                                <td>{{ $item->categoryname->name }}</td>
-                                                                <td class="info">
-                                                                    <a class="col-dark-gray waves-effect"
-                                                                        href="{{ route('single_report', $item->id) }}"
-                                                                        data-toggle="tooltip" data-placement="top"
-                                                                        title="عرض">
-                                                                        <i class="material-icons">info</i>
-                                                                    </a>
-                                                                </td>
-                                                                {{-- <td>{{ $item->subCat->name }}</td>
+                                                            <td>
+                                                                @if ($item->technical_state == 1)
+                                                                    <span style="color: green">مقبول</span>
+                                                                @elseif ($item->technical_state == 0)
+                                                                    <span style="color: red">مرفوض</span>
+                                                                @else
+                                                                    <span style="color: darkslategrey">جاري</span>
+                                                                @endif
+                                                            </td>
+                                                            <td>{{ $item->categoryname->name }}</td>
+                                                            <td class="info">
+                                                                <a class="col-dark-gray waves-effect"
+                                                                    href="{{ route('single_report', $item->id) }}"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="عرض">
+                                                                    <i class="material-icons">info</i>
+                                                                </a>
+                                                            </td>
+                                                            {{-- <td>{{ $item->subCat->name }}</td>
                                                                     <td>{{ $item->city->name }}</td> --}}
                                                             </tr>
-                                                        </tbody>
-                                                    @endforeach
-                                                @endisset
+                                                        @endforeach
+                                                    @endisset
+                                                </tbody>
                                             </table>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="justify-content-right d-flex">
-                                    <button class="btn btn-danger  float-left mt-3 mr-2" id="print_Button"
-                                        onclick="printDiv()"> <i class="mdi mdi-printer ml-1"></i>طباعة</button>
-                                </div>
-                            </div>
-                        </div>
-                    @endisset
-                    @isset($request_detail_cat)
-                        <div class="section-body">
-                            <div class="row" style="direction: rtl">
-                                <div class="col-12 col-md-12 col-lg-12">
-                                    <div class="card card-primary work-xp">
+                                    @endisset
+                                    @isset($request_detail_cat)
                                         <div class="card-header">
                                             <h3>تقرير فئات الطلبات الاستثمارية {{ $name->name }}
                                             </h3>
@@ -495,65 +496,64 @@
                                                         <th class="info">تفاصيل</th>
                                                     </tr>
                                                 </thead>
-                                                @isset($request_detail_cat)
-                                                    @foreach ($request_detail_cat as $item)
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>{{ $item->name }}</td>
-                                                                <td>{{ $item->owner_name }}</td>
-                                                                {{-- <td>{{ $item->owner_type }}</td> --}}
-                                                                <td>0{{ $item->phone }}</td>
-                                                                <td>{{ $item->size }} {{ $item->size_type }}</td>
-                                                                <td>{{ $item->capital / 1000 ?? 'null' }} الف
-                                                                    {{ $item->currency_type }}
-                                                                </td>
-                                                                <td>{{ $item->self_financing }}%</td>
-                                                                <td>{{ $item->recived_date->format('Y-m-d') }}</td>
-                                                                {{-- <td>
+                                                <tbody>
+                                                    @isset($request_detail_cat)
+                                                        @foreach ($request_detail_cat as $item)
+                                                            @if ($item->capital / 1000000 > 5)
+                                                                <tr style="background-color: rgba(172, 255, 47, 0.25)">
+                                                                @elseif($item->capital / 1000000 < 5 && $item->capital / 1000000 >= 1)
+                                                                <tr style="background-color: rgba(47, 241, 255, 0.25)">
+                                                                @else
+                                                                <tr>
+                                                            @endif
+                                                            <td>{{ $item->name }}</td>
+                                                            <td>{{ $item->owner_name }}</td>
+                                                            {{-- <td>{{ $item->owner_type }}</td> --}}
+                                                            <td>0{{ $item->phone }}</td>
+                                                            <td>{{ $item->size }} {{ $item->size_type }}
+                                                            </td>
+                                                            <td>
+                                                                {{ $item->capital / 1000000 ?? 'null' }}
+                                                                مليون
+                                                                {{ $item->currency_type }}
+
+                                                            </td>
+                                                            <td>{{ $item->self_financing }}%</td>
+                                                            <td>{{ $item->recived_date->format('Y-m-d') }}
+                                                            </td>
+                                                            {{-- <td>
                                                                     @foreach (App\Models\Request_places::where('request_id', $item->id)->get() as $item1)
                                                                         {{ $item1->Req_place->name }} -
                                                                     @endforeach
                                                                 </td> --}}
-                                                                <td>
-                                                                    @if ($item->technical_state == 1)
-                                                                        <span style="color: green">مقبول</span>
-                                                                    @elseif ($item->technical_state == 0)
-                                                                        <span style="color: red">مرفوض</span>
-                                                                    @else
-                                                                        <span style="color: darkslategrey">جاري</span>
-                                                                    @endif
-                                                                </td>
-                                                                {{-- <td>{{ $item->categoryname->name }}</td> --}}
-                                                                <td>{{ $item->city->name }}</td>
-                                                                <td class="info">
-                                                                    <a class="col-dark-gray waves-effect"
-                                                                        href="{{ route('single_report', $item->id) }}"
-                                                                        data-toggle="tooltip" data-placement="top"
-                                                                        title="عرض">
-                                                                        <i class="material-icons">info</i>
-                                                                    </a>
-                                                                </td>
-                                                                {{-- <td>{{ $item->subCat->name }}</td> --}}
+                                                            <td>
+                                                                @if ($item->technical_state == 1)
+                                                                    <span style="color: green">مقبول</span>
+                                                                @elseif ($item->technical_state == 0)
+                                                                    <span style="color: red">مرفوض</span>
+                                                                @else
+                                                                    <span style="color: darkslategrey">جاري</span>
+                                                                @endif
+                                                            </td>
+                                                            {{-- <td>{{ $item->categoryname->name }}</td> --}}
+                                                            <td>{{ $item->city->name }}</td>
+                                                            <td class="info">
+                                                                <a class="col-dark-gray waves-effect"
+                                                                    href="{{ route('single_report', $item->id) }}"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="عرض">
+                                                                    <i class="material-icons">info</i>
+                                                                </a>
+                                                            </td>
+                                                            {{-- <td>{{ $item->subCat->name }}</td> --}}
                                                             </tr>
-                                                        </tbody>
-                                                    @endforeach
-                                                @endisset
+                                                        @endforeach
+                                                    @endisset
+                                                </tbody>
                                             </table>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="justify-content-right d-flex">
-                                    <button class="btn btn-danger  float-left mt-3 mr-2" id="print_Button"
-                                        onclick="printDiv()"> <i class="mdi mdi-printer ml-1"></i>طباعة</button>
-                                </div>
-                            </div>
-                        </div>
-                    @endisset
-                    @isset($request_detail_size)
-                        <div class="section-body">
-                            <div class="row" style="direction: rtl">
-                                <div class="col-12 col-md-12 col-lg-12">
-                                    <div class="card card-primary work-xp">
+                                    @endisset
+                                    @isset($request_detail_size)
                                         <div class="card-header">
                                             <h3>تقرير الطلبات الاستثمارية للمساحة
                                             </h3>
@@ -579,65 +579,63 @@
                                                         <th class="info">تفاصيل</th>
                                                     </tr>
                                                 </thead>
-                                                @isset($request_detail_size)
-                                                    @foreach ($request_detail_size as $item)
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>{{ $item->name }}</td>
-                                                                <td>{{ $item->owner_name }}</td>
-                                                                {{-- <td>{{ $item->owner_type }}</td> --}}
-                                                                <td>0{{ $item->phone }}</td>
-                                                                <td>{{ $item->size }} {{ $item->size_type }}</td>
-                                                                <td>{{ $item->capital / 1000 ?? 'null' }} الف
-                                                                    {{ $item->currency_type }}
-                                                                </td>
-                                                                <td>{{ $item->self_financing }}%</td>
-                                                                <td>{{ $item->recived_date->format('Y-m-d') }}</td>
-                                                                {{-- <td>
+                                                <tbody>
+                                                    @isset($request_detail_size)
+                                                        @foreach ($request_detail_size as $item)
+                                                            @if ($item->capital / 1000000 > 5)
+                                                                <tr style="background-color: rgba(172, 255, 47, 0.25)">
+                                                                @elseif($item->capital / 1000000 < 5 && $item->capital / 1000000 >= 1)
+                                                                <tr style="background-color: rgba(47, 241, 255, 0.25)">
+                                                                @else
+                                                                <tr>
+                                                            @endif
+                                                            <td>{{ $item->name }}</td>
+                                                            <td>{{ $item->owner_name }}</td>
+                                                            {{-- <td>{{ $item->owner_type }}</td> --}}
+                                                            <td>0{{ $item->phone }}</td>
+                                                            <td>{{ $item->size }} {{ $item->size_type }}
+                                                            </td>
+                                                            <td>
+                                                                {{ $item->capital / 1000000 ?? 'null' }}
+                                                                مليون
+                                                                {{ $item->currency_type }}
+                                                            </td>
+                                                            <td>{{ $item->self_financing }}%</td>
+                                                            <td>{{ $item->recived_date->format('Y-m-d') }}
+                                                            </td>
+                                                            {{-- <td>
                                                                     @foreach (App\Models\Request_places::where('request_id', $item->id)->get() as $item1)
                                                                         {{ $item1->Req_place->name }} -
                                                                     @endforeach
                                                                 </td> --}}
-                                                                <td>
-                                                                    @if ($item->technical_state == 1)
-                                                                        <span style="color: green">مقبول</span>
-                                                                    @elseif ($item->technical_state == 0)
-                                                                        <span style="color: red">مرفوض</span>
-                                                                    @else
-                                                                        <span style="color: darkslategrey">جاري</span>
-                                                                    @endif
-                                                                </td>
-                                                                <td>{{ $item->categoryname->name }}</td>
-                                                                <td>{{ $item->city->name }}</td>
-                                                                <td class="info">
-                                                                    <a class="col-dark-gray waves-effect"
-                                                                        href="{{ route('single_report', $item->id) }}"
-                                                                        data-toggle="tooltip" data-placement="top"
-                                                                        title="عرض">
-                                                                        <i class="material-icons">info</i>
-                                                                    </a>
-                                                                </td>
-                                                                {{-- <td>{{ $item->subCat->name }}</td> --}}
+                                                            <td>
+                                                                @if ($item->technical_state == 1)
+                                                                    <span style="color: green">مقبول</span>
+                                                                @elseif ($item->technical_state == 0)
+                                                                    <span style="color: red">مرفوض</span>
+                                                                @else
+                                                                    <span style="color: darkslategrey">جاري</span>
+                                                                @endif
+                                                            </td>
+                                                            <td>{{ $item->categoryname->name }}</td>
+                                                            <td>{{ $item->city->name }}</td>
+                                                            <td class="info">
+                                                                <a class="col-dark-gray waves-effect"
+                                                                    href="{{ route('single_report', $item->id) }}"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="عرض">
+                                                                    <i class="material-icons">info</i>
+                                                                </a>
+                                                            </td>
+                                                            {{-- <td>{{ $item->subCat->name }}</td> --}}
                                                             </tr>
-                                                        </tbody>
-                                                    @endforeach
-                                                @endisset
+                                                        @endforeach
+                                                    @endisset
+                                                </tbody>
                                             </table>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="justify-content-right d-flex">
-                                    <button class="btn btn-danger  float-left mt-3 mr-2" id="print_Button"
-                                        onclick="printDiv()"> <i class="mdi mdi-printer ml-1"></i>طباعة</button>
-                                </div>
-                            </div>
-                        </div>
-                    @endisset
-                    @isset($request_detail_capital)
-                        <div class="section-body">
-                            <div class="row" style="direction: rtl">
-                                <div class="col-12 col-md-12 col-lg-12">
-                                    <div class="card card-primary work-xp">
+                                    @endisset
+                                    @isset($request_detail_capital)
                                         <div class="card-header">
                                             <h3>تقرير الفئات السعرية لطلبات الاستثمار {{ $name }}
                                             </h3>
@@ -661,67 +659,66 @@
                                                         <th class="info">تفاصيل</th>
                                                     </tr>
                                                 </thead>
-                                                @isset($request_detail_capital)
-                                                    @foreach ($request_detail_capital as $item)
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>{{ $item->name }}</td>
-                                                                <td>{{ $item->owner_name }}</td>
-                                                                {{-- <td>{{ $item->owner_type }}</td> --}}
-                                                                <td>0{{ $item->phone }}</td>
-                                                                <td>{{ $item->size }} {{ $item->size_type }}</td>
-                                                                <td>{{ $item->capital / 1000 ?? 'null' }} الف
-                                                                    {{ $item->currency_type }}
-                                                                </td>
-                                                                <td>{{ $item->self_financing }}%</td>
-                                                                <td>{{ $item->recived_date->format('Y-m-d') }}</td>
-                                                                {{-- <td>
+                                                <tbody>
+                                                    @isset($request_detail_capital)
+                                                        @foreach ($request_detail_capital as $item)
+                                                            @if ($item->capital / 1000000 > 5)
+                                                                <tr style="background-color: rgba(172, 255, 47, 0.25)">
+                                                                @elseif($item->capital / 1000000 < 5 && $item->capital / 1000000 >= 1)
+                                                                <tr style="background-color: rgba(47, 241, 255, 0.25)">
+                                                                @else
+                                                                <tr>
+                                                            @endif
+                                                            <td>{{ $item->name }}</td>
+                                                            <td>{{ $item->owner_name }}</td>
+                                                            {{-- <td>{{ $item->owner_type }}</td> --}}
+                                                            <td>0{{ $item->phone }}</td>
+                                                            <td>{{ $item->size }} {{ $item->size_type }}
+                                                            </td>
+                                                            <td>
+                                                                {{ $item->capital / 1000000 ?? 'null' }}
+                                                                مليون
+                                                                {{ $item->currency_type }}
+                                                            </td>
+                                                            <td>{{ $item->self_financing }}%</td>
+                                                            <td>{{ $item->recived_date->format('Y-m-d') }}
+                                                            </td>
+                                                            {{-- <td>
                                                                     @foreach (App\Models\Request_places::where('request_id', $item->id)->get() as $item1)
                                                                         {{ $item1->Req_place->name }} -
                                                                     @endforeach
                                                                 </td> --}}
-                                                                <td>
-                                                                    @if ($item->technical_state == 1)
-                                                                        <span style="color: green">مقبول</span>
-                                                                    @elseif ($item->technical_state == 0)
-                                                                        <span style="color: red">مرفوض</span>
-                                                                    @else
-                                                                        <span style="color: darkslategrey">جاري</span>
-                                                                    @endif
-                                                                </td>
-                                                                <td>{{ $item->categoryname->name }}</td>
-                                                                <td>{{ $item->city->name }}</td>
-                                                                <td class="info">
-                                                                    <a class="col-dark-gray waves-effect"
-                                                                        href="{{ route('single_report', $item->id) }}"
-                                                                        data-toggle="tooltip" data-placement="top"
-                                                                        title="عرض">
-                                                                        <i class="material-icons">info</i>
-                                                                    </a>
-                                                                </td>
-                                                                {{-- <td>{{ $item->subCat->name }}</td> --}}
+                                                            <td>
+                                                                @if ($item->technical_state == 1)
+                                                                    <span style="color: green">مقبول</span>
+                                                                @elseif ($item->technical_state == 0)
+                                                                    <span style="color: red">مرفوض</span>
+                                                                @else
+                                                                    <span style="color: darkslategrey">جاري</span>
+                                                                @endif
+                                                            </td>
+                                                            <td>{{ $item->categoryname->name }}</td>
+                                                            <td>{{ $item->city->name }}</td>
+                                                            <td class="info">
+                                                                <a class="col-dark-gray waves-effect"
+                                                                    href="{{ route('single_report', $item->id) }}"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="عرض">
+                                                                    <i class="material-icons">info</i>
+                                                                </a>
+                                                            </td>
+                                                            {{-- <td>{{ $item->subCat->name }}</td> --}}
                                                             </tr>
-                                                        </tbody>
-                                                    @endforeach
-                                                @endisset
+                                                        @endforeach
+                                                    @endisset
+                                                </tbody>
                                             </table>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="justify-content-right d-flex">
-                                    <button class="btn btn-danger  float-left mt-3 mr-2" id="print_Button"
-                                        onclick="printDiv()"> <i class="mdi mdi-printer ml-1"></i>طباعة</button>
-                                </div>
-                            </div>
-                        </div>
-                    @endisset
-                    @isset($request_detail_date)
-                        <div class="section-body">
-                            <div class="row" style="direction: rtl">
-                                <div class="col-12 col-md-12 col-lg-12">
-                                    <div class="card card-primary work-xp">
+                                    @endisset
+                                    @isset($request_detail_date)
                                         <div class="card-header">
-                                            <h3>تقرير طلبات الاستثمار من {{ $start_date }} الى {{ $end_date }}
+                                            <h3>تقرير طلبات الاستثمار من {{ $start_date }} الى
+                                                {{ $end_date }}
                                             </h3>
                                         </div>
                                         <div class="card-body">
@@ -743,72 +740,78 @@
                                                         <th class="info">تفاصيل</th>
                                                     </tr>
                                                 </thead>
-                                                @isset($request_detail_date)
-                                                    @foreach ($request_detail_date as $item)
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>{{ $item->name }}</td>
-                                                                <td>{{ $item->owner_name }}</td>
-                                                                {{-- <td>{{ $item->owner_type }}</td> --}}
-                                                                <td>0{{ $item->phone }}</td>
-                                                                <td>{{ $item->size }} {{ $item->size_type }}</td>
-                                                                <td>{{ $item->capital /1000 ?? 'null' }} الف
-                                                                    {{ $item->currency_type }}
-                                                                </td>
-                                                                <td>{{ $item->self_financing }}%</td>
-                                                                <td>{{ $item->recived_date->format('Y-m-d') }}</td>
-                                                                {{-- <td>
+                                                <tbody>
+                                                    @isset($request_detail_date)
+                                                        @foreach ($request_detail_date as $item)
+                                                            @if ($item->capital / 1000000 > 5)
+                                                                <tr style="background-color: rgba(172, 255, 47, 0.25)">
+                                                                @elseif($item->capital / 1000000 < 5 && $item->capital / 1000000 >= 1)
+                                                                <tr style="background-color: rgba(47, 241, 255, 0.25)">
+                                                                @else
+                                                                <tr>
+                                                            @endif
+                                                            <td>{{ $item->name }}</td>
+                                                            <td>{{ $item->owner_name }}</td>
+                                                            {{-- <td>{{ $item->owner_type }}</td> --}}
+                                                            <td>0{{ $item->phone }}</td>
+                                                            <td>{{ $item->size }}
+                                                                {{ $item->size_type }}</td>
+                                                            <td>
+                                                                {{ $item->capital / 1000000 ?? 'null' }}
+                                                                مليون
+                                                                {{ $item->currency_type }}
+                                                            </td>
+                                                            <td>{{ $item->self_financing }}%</td>
+                                                            <td>{{ $item->recived_date->format('Y-m-d') }}
+                                                            </td>
+                                                            {{-- <td>
                                                                     @foreach (App\Models\Request_places::where('request_id', $item->id)->get() as $item1)
                                                                         {{ $item1->Req_place->name }} -
                                                                     @endforeach
                                                                 </td> --}}
-                                                                <td>
-                                                                    @if ($item->technical_state == 1)
-                                                                        <span style="color: green">مقبول</span>
-                                                                    @elseif ($item->technical_state == 0)
-                                                                        <span style="color: red">مرفوض</span>
-                                                                    @else
-                                                                        <span style="color: darkslategrey">جاري</span>
-                                                                    @endif
-                                                                </td>
-                                                                <td>{{ $item->categoryname->name }}</td>
-                                                                <td>{{ $item->city->name }}</td>
-                                                                <td class="info">
-                                                                    <a class="col-dark-gray waves-effect"
-                                                                        href="{{ route('single_report', $item->id) }}"
-                                                                        data-toggle="tooltip" data-placement="top"
-                                                                        title="عرض">
-                                                                        <i class="material-icons">info</i>
-                                                                    </a>
-                                                                </td>
-                                                                {{-- <td>{{ $item->subCat->name }}</td> --}}
+                                                            <td>
+                                                                @if ($item->technical_state == 1)
+                                                                    <span style="color: green">مقبول</span>
+                                                                @elseif ($item->technical_state == 0)
+                                                                    <span style="color: red">مرفوض</span>
+                                                                @else
+                                                                    <span style="color: darkslategrey">جاري</span>
+                                                                @endif
+                                                            </td>
+                                                            <td>{{ $item->categoryname->name }}</td>
+                                                            <td>{{ $item->city->name }}</td>
+                                                            <td class="info">
+                                                                <a class="col-dark-gray waves-effect"
+                                                                    href="{{ route('single_report', $item->id) }}"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="عرض">
+                                                                    <i class="material-icons">info</i>
+                                                                </a>
+                                                            </td>
+                                                            {{-- <td>{{ $item->subCat->name }}</td> --}}
                                                             </tr>
-                                                        </tbody>
-                                                    @endforeach
-                                                @endisset
+                                                        @endforeach
+                                                    @endisset
+                                                </tbody>
                                             </table>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="justify-content-right d-flex">
-                                    <button class="btn btn-danger  float-left mt-3 mr-2" id="print_Button"
-                                        onclick="printDiv()"> <i class="mdi mdi-printer ml-1"></i>طباعة</button>
+                                    @endisset
                                 </div>
                             </div>
                         </div>
-                    @endisset
+                    </div>
                     <div class="divFooter">
                         <img src="../images/logo/logo.png" class="logo">
-                        <h6 style="color: darkslategrey">&nbsp;&nbsp; جميع الحقوق محفوظة لمركز نظم المعلومات
+                        <h6 style="color: darkslategrey">&nbsp;&nbsp; جميع الحقوق محفوظة لمركز نظم
+                            المعلومات
                             والتحول الرقمي&nbsp;&nbsp;
                         </h6>
                     </div>
                 </section>
+                @include('layouts.setting')
             </div>
-            @include('layouts.setting')
+            @include('layouts.footer')
         </div>
-        @include('layouts.footer')
-    </div>
     </div>
     <!-- General JS Scripts -->
     <script src="assets/js/app.min.js"></script>
@@ -818,10 +821,29 @@
     <script src="assets/js/custom.js"></script>
     <script src="assets/bundles/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
     <script src="assets/bundles/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="assets/bundles/datatables/datatables.min.js"></script>
+    <script src="assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <script src="assets/bundles/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Page Specific JS File -->
+    <script src="assets/js/page/datatables.js"></script>
     <script type="text/javascript">
+        $(document).ready(function() {
+            $('table.table').DataTable({
+                bFilter: false,
+                bInfo: false,
+                paging: false,
+                "aaSorting": [],
+                dom: 'Bfrtip',
+                buttons: [
+                    'excel'
+                ]
+            });
+        });
+
         function printDiv() {
 
             $('.info').hide();
+            $('.print_Button').hide();
             var printContents = document.getElementById('print').innerHTML;
             var originalContents = document.body.innerHTML;
             document.body.innerHTML = printContents;
